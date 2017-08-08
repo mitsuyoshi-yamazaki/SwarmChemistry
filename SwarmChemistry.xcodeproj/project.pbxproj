@@ -6,7 +6,13 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		ED7C21171F39942800018F97 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21161F39942800018F97 /* Parameters.swift */; };
+		ED7C21181F39942800018F97 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21161F39942800018F97 /* Parameters.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		ED7C21161F39942800018F97 /* Parameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
 		ED97B22B1F398ECF001DDA4B /* SwarmChemistry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwarmChemistry.h; sourceTree = "<group>"; };
 		ED97B22C1F398ECF001DDA4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED97B2381F39901D001DDA4B /* SwarmChemistry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwarmChemistry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +58,7 @@
 			isa = PBXGroup;
 			children = (
 				ED97B22B1F398ECF001DDA4B /* SwarmChemistry.h */,
+				ED7C21161F39942800018F97 /* Parameters.swift */,
 				ED97B22C1F398ECF001DDA4B /* Info.plist */,
 			);
 			path = SwarmChemistry;
@@ -124,10 +131,12 @@
 				TargetAttributes = {
 					ED97B2371F39901D001DDA4B = {
 						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					ED97B2441F399037001DDA4B = {
 						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -172,6 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED7C21171F39942800018F97 /* Parameters.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +189,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED7C21181F39942800018F97 /* Parameters.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +300,7 @@
 		ED97B23D1F39901D001DDA4B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -302,6 +314,7 @@
 				PRODUCT_MODULE_NAME = SwarmChemistry;
 				PRODUCT_NAME = SwarmChemistry;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -309,6 +322,7 @@
 		ED97B23E1F39901D001DDA4B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -329,6 +343,7 @@
 		ED97B24B1F399037001DDA4B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -345,6 +360,7 @@
 				PRODUCT_NAME = SwarmChemistry;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -352,6 +368,7 @@
 		ED97B24C1F399037001DDA4B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -391,6 +408,7 @@
 				ED97B23E1F39901D001DDA4B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ED97B24A1F399037001DDA4B /* Build configuration list for PBXNativeTarget "SwarmChemistry_Mac" */ = {
 			isa = XCConfigurationList;
@@ -399,6 +417,7 @@
 				ED97B24C1F399037001DDA4B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
