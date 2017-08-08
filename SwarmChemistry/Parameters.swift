@@ -33,6 +33,22 @@ public struct Parameters {
   
   let tendencyOfPacekeeping: Value
   static let tendencyOfPacekeepingMax = 1.0
+  
+  let maxVelocity: Value
+  
+  public init(neighborhoodRadius: Value, normalSpeed: Value, maxSpeed: Value, cohesiveForce: Value, aligningForce: Value, separatingForce: Value, probabilityOfRandomSteering: Value, tendencyOfPacekeeping: Value) {
+    
+    self.neighborhoodRadius = neighborhoodRadius
+    self.normalSpeed = normalSpeed
+    self.maxSpeed = maxSpeed
+    self.cohesiveForce = cohesiveForce
+    self.aligningForce = aligningForce
+    self.separatingForce = separatingForce
+    self.probabilityOfRandomSteering = probabilityOfRandomSteering
+    self.tendencyOfPacekeeping = tendencyOfPacekeeping
+    
+    maxVelocity = maxSpeed * maxSpeed
+  }
 }
 
 extension Parameters {
@@ -67,6 +83,8 @@ extension Parameters {
     separatingForce             = parameters[5]
     probabilityOfRandomSteering = parameters[6]
     tendencyOfPacekeeping       = parameters[7]
+    
+    maxVelocity = maxSpeed * maxSpeed
   }
 }
 
