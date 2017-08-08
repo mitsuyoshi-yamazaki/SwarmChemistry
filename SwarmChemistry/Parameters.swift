@@ -34,7 +34,24 @@ public struct Parameters {
   
   let tendencyOfPacekeeping: Value
   static let tendencyOfPacekeepingMax = 1.0
-  
+}
+
+extension Parameters {
+  var all: [Value] {
+    return [
+      neighborhoodRadius,
+      normalSpeed,
+      maxSpeed,
+      cohesiveForce,
+      aligningForce,
+      separatingForce,
+      probabilityOfRandomSteering,
+      tendencyOfPacekeeping
+    ]
+  }
+}
+
+extension Parameters {
   private static let numberOfParameters = 8
   
   public init?(_ parameters: [Value]) {
@@ -54,4 +71,9 @@ public struct Parameters {
   }
 }
 
-
+extension Parameters: CustomStringConvertible {
+  public var description: String {
+    let values = all.map { String.init(format: "%.2f", $0) }.joined(separator: ", ")
+    return "(\(values))"
+  }
+}
