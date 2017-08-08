@@ -322,6 +322,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "mitsuyoshi.SwarmChemistry-iOS";
 				PRODUCT_MODULE_NAME = SwarmChemistry;
 				PRODUCT_NAME = SwarmChemistry;
@@ -344,6 +345,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "mitsuyoshi.SwarmChemistry-iOS";
 				PRODUCT_MODULE_NAME = SwarmChemistry;
 				PRODUCT_NAME = SwarmChemistry;
@@ -367,6 +369,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "mitsuyoshi.SwarmChemistry-Mac";
 				PRODUCT_MODULE_NAME = SwarmChemistry;
 				PRODUCT_NAME = SwarmChemistry;

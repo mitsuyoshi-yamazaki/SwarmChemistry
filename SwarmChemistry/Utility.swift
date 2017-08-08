@@ -27,3 +27,27 @@ extension Coordinate {
     self.y = y
   }
 }
+
+internal struct Log {
+  private enum Level {
+    case debug
+    case error
+  }
+  
+  private static func log(_ message: String, _ level: Level) {
+    if level == .error {
+      #if DEBUG
+        fatalError(message)
+      #endif
+    }
+    print(message)
+  }
+  
+  static func debug(_ message: String) {
+    log(message, .debug)
+  }
+  
+  static func error(_ message: String) {
+    log(message, .error)
+  }
+}
