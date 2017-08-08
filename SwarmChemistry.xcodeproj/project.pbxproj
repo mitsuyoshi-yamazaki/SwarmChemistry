@@ -9,10 +9,16 @@
 /* Begin PBXBuildFile section */
 		ED7C21171F39942800018F97 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21161F39942800018F97 /* Parameters.swift */; };
 		ED7C21181F39942800018F97 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21161F39942800018F97 /* Parameters.swift */; };
+		ED7C211A1F399E8700018F97 /* Individual.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21191F399E8700018F97 /* Individual.swift */; };
+		ED7C211B1F399E8700018F97 /* Individual.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21191F399E8700018F97 /* Individual.swift */; };
+		ED7C211D1F399F6E00018F97 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C211C1F399F6E00018F97 /* Utility.swift */; };
+		ED7C211E1F399F6E00018F97 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C211C1F399F6E00018F97 /* Utility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		ED7C21161F39942800018F97 /* Parameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
+		ED7C21191F399E8700018F97 /* Individual.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Individual.swift; sourceTree = "<group>"; };
+		ED7C211C1F399F6E00018F97 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		ED97B22B1F398ECF001DDA4B /* SwarmChemistry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwarmChemistry.h; sourceTree = "<group>"; };
 		ED97B22C1F398ECF001DDA4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED97B2381F39901D001DDA4B /* SwarmChemistry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwarmChemistry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +65,8 @@
 			children = (
 				ED97B22B1F398ECF001DDA4B /* SwarmChemistry.h */,
 				ED7C21161F39942800018F97 /* Parameters.swift */,
+				ED7C21191F399E8700018F97 /* Individual.swift */,
+				ED7C211C1F399F6E00018F97 /* Utility.swift */,
 				ED97B22C1F398ECF001DDA4B /* Info.plist */,
 			);
 			path = SwarmChemistry;
@@ -181,7 +189,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED7C211A1F399E8700018F97 /* Individual.swift in Sources */,
 				ED7C21171F39942800018F97 /* Parameters.swift in Sources */,
+				ED7C211D1F399F6E00018F97 /* Utility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,7 +199,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED7C211B1F399E8700018F97 /* Individual.swift in Sources */,
 				ED7C21181F39942800018F97 /* Parameters.swift in Sources */,
+				ED7C211E1F399F6E00018F97 /* Utility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

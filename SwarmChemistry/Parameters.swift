@@ -9,7 +9,6 @@
 import Foundation
 
 public struct Parameters {
-  public typealias Value = Double
   
   let neighborhoodRadius: Value
   static let neighborhoodRadiusMax = 300.0
