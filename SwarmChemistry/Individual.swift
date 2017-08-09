@@ -10,20 +10,22 @@ import Foundation
 
 public class Individual {
   
+  public var fieldSize: Coordinate
   fileprivate(set) public var position: Coordinate
   fileprivate(set) public var velocity = Coordinate.zero
   fileprivate(set) public var acceleration = Coordinate.zero
   public let genome: Parameters
 
-  public init(position: Coordinate, genome: Parameters) {
+  public init(fieldSize: Coordinate, position: Coordinate, genome: Parameters) {
+    self.fieldSize = fieldSize
     self.position = position
     self.genome = genome
   }
 }
 
 extension Individual {
-  public convenience init(genome: Parameters) {
-    self.init(position: .zero, genome: genome)
+  public convenience init(fieldSize: Coordinate, genome: Parameters) {
+    self.init(fieldSize: fieldSize, position: .zero, genome: genome)
   }
 }
 
