@@ -23,6 +23,10 @@
 		ED7C21491F3AD33700018F97 /* CoordinateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21471F3AD33700018F97 /* CoordinateTests.swift */; };
 		ED7C214B1F3AD8C200018F97 /* ParametersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C214A1F3AD8C200018F97 /* ParametersTests.swift */; };
 		ED7C214C1F3AD8C200018F97 /* ParametersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C214A1F3AD8C200018F97 /* ParametersTests.swift */; };
+		ED7C21671F3AE51100018F97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21661F3AE51100018F97 /* AppDelegate.swift */; };
+		ED7C21691F3AE51100018F97 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21681F3AE51100018F97 /* ViewController.swift */; };
+		ED7C216B1F3AE51100018F97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED7C216A1F3AE51100018F97 /* Assets.xcassets */; };
+		ED7C216E1F3AE51100018F97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED7C216C1F3AE51100018F97 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,12 @@
 		ED7C21441F3AD13100018F97 /* SwarmChemistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwarmChemistryTests.swift; sourceTree = "<group>"; };
 		ED7C21471F3AD33700018F97 /* CoordinateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinateTests.swift; sourceTree = "<group>"; };
 		ED7C214A1F3AD8C200018F97 /* ParametersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParametersTests.swift; sourceTree = "<group>"; };
+		ED7C21641F3AE51000018F97 /* Demo_Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo_Mac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED7C21661F3AE51100018F97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ED7C21681F3AE51100018F97 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		ED7C216A1F3AE51100018F97 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ED7C216D1F3AE51100018F97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ED7C216F1F3AE51100018F97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED97B22B1F398ECF001DDA4B /* SwarmChemistry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwarmChemistry.h; sourceTree = "<group>"; };
 		ED97B22C1F398ECF001DDA4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED97B2381F39901D001DDA4B /* SwarmChemistry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwarmChemistry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +83,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED7C213C1F3AD10B00018F97 /* SwarmChemistry.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED7C21611F3AE51000018F97 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,11 +121,24 @@
 			path = SwarmChemistryTests;
 			sourceTree = "<group>";
 		};
+		ED7C21651F3AE51100018F97 /* Demo_Mac */ = {
+			isa = PBXGroup;
+			children = (
+				ED7C21661F3AE51100018F97 /* AppDelegate.swift */,
+				ED7C21681F3AE51100018F97 /* ViewController.swift */,
+				ED7C216A1F3AE51100018F97 /* Assets.xcassets */,
+				ED7C216C1F3AE51100018F97 /* Main.storyboard */,
+				ED7C216F1F3AE51100018F97 /* Info.plist */,
+			);
+			path = Demo_Mac;
+			sourceTree = "<group>";
+		};
 		ED97B21E1F398ECF001DDA4B = {
 			isa = PBXGroup;
 			children = (
 				ED97B22A1F398ECF001DDA4B /* SwarmChemistry */,
 				ED7C21421F3AD13100018F97 /* SwarmChemistryTests */,
+				ED7C21651F3AE51100018F97 /* Demo_Mac */,
 				ED97B2291F398ECF001DDA4B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -120,6 +150,7 @@
 				ED97B2451F399037001DDA4B /* SwarmChemistry.framework */,
 				ED7C21281F3AD0F800018F97 /* SwarmChemistryTests_iOS.xctest */,
 				ED7C21371F3AD10B00018F97 /* SwarmChemistryTests_Mac.xctest */,
+				ED7C21641F3AE51000018F97 /* Demo_Mac.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -193,6 +224,23 @@
 			productReference = ED7C21371F3AD10B00018F97 /* SwarmChemistryTests_Mac.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		ED7C21631F3AE51000018F97 /* Demo_Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED7C21721F3AE51100018F97 /* Build configuration list for PBXNativeTarget "Demo_Mac" */;
+			buildPhases = (
+				ED7C21601F3AE51000018F97 /* Sources */,
+				ED7C21611F3AE51000018F97 /* Frameworks */,
+				ED7C21621F3AE51000018F97 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Demo_Mac;
+			productName = Demo_Mac;
+			productReference = ED7C21641F3AE51000018F97 /* Demo_Mac.app */;
+			productType = "com.apple.product-type.application";
+		};
 		ED97B2371F39901D001DDA4B /* SwarmChemistry_iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = ED97B23F1F39901D001DDA4B /* Build configuration list for PBXNativeTarget "SwarmChemistry_iOS" */;
@@ -247,6 +295,10 @@
 						CreatedOnToolsVersion = 8.3.3;
 						ProvisioningStyle = Automatic;
 					};
+					ED7C21631F3AE51000018F97 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+					};
 					ED97B2371F39901D001DDA4B = {
 						CreatedOnToolsVersion = 8.3.3;
 						LastSwiftMigration = 0830;
@@ -265,6 +317,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = ED97B21E1F398ECF001DDA4B;
 			productRefGroup = ED97B2291F398ECF001DDA4B /* Products */;
@@ -275,6 +328,7 @@
 				ED97B2441F399037001DDA4B /* SwarmChemistry_Mac */,
 				ED7C21271F3AD0F800018F97 /* SwarmChemistryTests_iOS */,
 				ED7C21361F3AD10B00018F97 /* SwarmChemistryTests_Mac */,
+				ED7C21631F3AE51000018F97 /* Demo_Mac */,
 			);
 		};
 /* End PBXProject section */
@@ -291,6 +345,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED7C21621F3AE51000018F97 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED7C216B1F3AE51100018F97 /* Assets.xcassets in Resources */,
+				ED7C216E1F3AE51100018F97 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,6 +394,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ED7C21601F3AE51000018F97 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED7C21691F3AE51100018F97 /* ViewController.swift in Sources */,
+				ED7C21671F3AE51100018F97 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ED97B2331F39901D001DDA4B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -367,6 +439,17 @@
 			targetProxy = ED7C213D1F3AD10B00018F97 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		ED7C216C1F3AE51100018F97 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED7C216D1F3AE51100018F97 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		ED7C21301F3AD0F900018F97 /* Debug */ = {
@@ -415,6 +498,38 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "mitsuyoshi.SwarmChemistryTests-Mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		ED7C21701F3AE51100018F97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Demo_Mac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "mitsuyoshi.Demo-Mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		ED7C21711F3AE51100018F97 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Demo_Mac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "mitsuyoshi.Demo-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 3.0;
@@ -627,12 +742,22 @@
 				ED7C21311F3AD0F900018F97 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ED7C213F1F3AD10B00018F97 /* Build configuration list for PBXNativeTarget "SwarmChemistryTests_Mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ED7C21401F3AD10B00018F97 /* Debug */,
 				ED7C21411F3AD10B00018F97 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED7C21721F3AE51100018F97 /* Build configuration list for PBXNativeTarget "Demo_Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED7C21701F3AE51100018F97 /* Debug */,
+				ED7C21711F3AE51100018F97 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
