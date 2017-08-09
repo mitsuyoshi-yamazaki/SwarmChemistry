@@ -106,3 +106,9 @@ extension Parameters: CustomStringConvertible {
     return "(\(values))"
   }
 }
+
+extension Parameters: Equatable {
+  public static func ==(lhs: Parameters, rhs: Parameters) -> Bool {
+    return lhs.all == rhs.all
+  }
+}

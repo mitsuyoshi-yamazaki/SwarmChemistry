@@ -32,4 +32,12 @@ class ParametersTests: XCTestCase {
     
     XCTAssert(parameters.all == values)
   }
+  
+  func test_equality() {
+    let values = [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ]
+    let anotherValues = [ 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 ]
+
+    XCTAssert(Parameters(values)! == Parameters(values)!)
+    XCTAssert(Parameters(values)! != Parameters(anotherValues)!)
+  }
 }
