@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		ED7C21171F39942800018F97 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21161F39942800018F97 /* Parameters.swift */; };
 		ED7C21181F39942800018F97 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21161F39942800018F97 /* Parameters.swift */; };
-		ED7C211A1F399E8700018F97 /* Individual.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21191F399E8700018F97 /* Individual.swift */; };
-		ED7C211B1F399E8700018F97 /* Individual.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21191F399E8700018F97 /* Individual.swift */; };
 		ED7C211D1F399F6E00018F97 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C211C1F399F6E00018F97 /* Utility.swift */; };
 		ED7C211E1F399F6E00018F97 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C211C1F399F6E00018F97 /* Utility.swift */; };
 		ED7C21201F39A91E00018F97 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C211F1F39A91E00018F97 /* Coordinate.swift */; };
@@ -29,6 +27,12 @@
 		ED7C216E1F3AE51100018F97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED7C216C1F3AE51100018F97 /* Main.storyboard */; };
 		ED7C21741F3AEA5100018F97 /* PlatformSpecific.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21731F3AEA5100018F97 /* PlatformSpecific.swift */; };
 		ED7C21751F3AEF4900018F97 /* PlatformSpecific.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21731F3AEA5100018F97 /* PlatformSpecific.swift */; };
+		ED7C21771F3AF54100018F97 /* Population.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21761F3AF54100018F97 /* Population.swift */; };
+		ED7C21781F3AF66900018F97 /* SwarmChemistry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED97B2451F399037001DDA4B /* SwarmChemistry.framework */; };
+		ED7C21791F3AF66900018F97 /* SwarmChemistry.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED97B2451F399037001DDA4B /* SwarmChemistry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		ED7C217D1F3AF68A00018F97 /* Population.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21761F3AF54100018F97 /* Population.swift */; };
+		ED7C217F1F3AFBE600018F97 /* Individual.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C217E1F3AFBE600018F97 /* Individual.swift */; };
+		ED7C21801F3AFBE600018F97 /* Individual.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C217E1F3AFBE600018F97 /* Individual.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,11 +50,31 @@
 			remoteGlobalIDString = ED97B2441F399037001DDA4B;
 			remoteInfo = SwarmChemistry_Mac;
 		};
+		ED7C217A1F3AF66900018F97 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED97B21F1F398ECF001DDA4B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED97B2441F399037001DDA4B;
+			remoteInfo = SwarmChemistry_Mac;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		ED7C217C1F3AF66900018F97 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				ED7C21791F3AF66900018F97 /* SwarmChemistry.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		ED7C21161F39942800018F97 /* Parameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
-		ED7C21191F399E8700018F97 /* Individual.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Individual.swift; sourceTree = "<group>"; };
 		ED7C211C1F399F6E00018F97 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		ED7C211F1F39A91E00018F97 /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		ED7C21281F3AD0F800018F97 /* SwarmChemistryTests_iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwarmChemistryTests_iOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +90,8 @@
 		ED7C216D1F3AE51100018F97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ED7C216F1F3AE51100018F97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED7C21731F3AEA5100018F97 /* PlatformSpecific.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformSpecific.swift; sourceTree = "<group>"; };
+		ED7C21761F3AF54100018F97 /* Population.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Population.swift; sourceTree = "<group>"; };
+		ED7C217E1F3AFBE600018F97 /* Individual.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Individual.swift; sourceTree = "<group>"; };
 		ED97B22B1F398ECF001DDA4B /* SwarmChemistry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwarmChemistry.h; sourceTree = "<group>"; };
 		ED97B22C1F398ECF001DDA4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED97B2381F39901D001DDA4B /* SwarmChemistry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwarmChemistry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED7C21781F3AF66900018F97 /* SwarmChemistry.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,7 +190,8 @@
 			children = (
 				ED97B22B1F398ECF001DDA4B /* SwarmChemistry.h */,
 				ED7C21161F39942800018F97 /* Parameters.swift */,
-				ED7C21191F399E8700018F97 /* Individual.swift */,
+				ED7C217E1F3AFBE600018F97 /* Individual.swift */,
+				ED7C21761F3AF54100018F97 /* Population.swift */,
 				ED7C211F1F39A91E00018F97 /* Coordinate.swift */,
 				ED7C211C1F399F6E00018F97 /* Utility.swift */,
 				ED7C21731F3AEA5100018F97 /* PlatformSpecific.swift */,
@@ -235,10 +263,12 @@
 				ED7C21601F3AE51000018F97 /* Sources */,
 				ED7C21611F3AE51000018F97 /* Frameworks */,
 				ED7C21621F3AE51000018F97 /* Resources */,
+				ED7C217C1F3AF66900018F97 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				ED7C217B1F3AF66900018F97 /* PBXTargetDependency */,
 			);
 			name = Demo_Mac;
 			productName = Demo_Mac;
@@ -411,7 +441,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED7C211A1F399E8700018F97 /* Individual.swift in Sources */,
+				ED7C217F1F3AFBE600018F97 /* Individual.swift in Sources */,
+				ED7C21771F3AF54100018F97 /* Population.swift in Sources */,
 				ED7C21171F39942800018F97 /* Parameters.swift in Sources */,
 				ED7C211D1F399F6E00018F97 /* Utility.swift in Sources */,
 				ED7C21201F39A91E00018F97 /* Coordinate.swift in Sources */,
@@ -423,7 +454,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED7C211B1F399E8700018F97 /* Individual.swift in Sources */,
+				ED7C21801F3AFBE600018F97 /* Individual.swift in Sources */,
+				ED7C217D1F3AF68A00018F97 /* Population.swift in Sources */,
 				ED7C21181F39942800018F97 /* Parameters.swift in Sources */,
 				ED7C211E1F399F6E00018F97 /* Utility.swift in Sources */,
 				ED7C21211F39A98600018F97 /* Coordinate.swift in Sources */,
@@ -443,6 +475,11 @@
 			isa = PBXTargetDependency;
 			target = ED97B2441F399037001DDA4B /* SwarmChemistry_Mac */;
 			targetProxy = ED7C213D1F3AD10B00018F97 /* PBXContainerItemProxy */;
+		};
+		ED7C217B1F3AF66900018F97 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED97B2441F399037001DDA4B /* SwarmChemistry_Mac */;
+			targetProxy = ED7C217A1F3AF66900018F97 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -513,6 +550,7 @@
 		ED7C21701F3AE51100018F97 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -529,6 +567,7 @@
 		ED7C21711F3AE51100018F97 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
