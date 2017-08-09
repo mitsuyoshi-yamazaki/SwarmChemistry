@@ -27,6 +27,8 @@
 		ED7C21691F3AE51100018F97 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21681F3AE51100018F97 /* ViewController.swift */; };
 		ED7C216B1F3AE51100018F97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED7C216A1F3AE51100018F97 /* Assets.xcassets */; };
 		ED7C216E1F3AE51100018F97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED7C216C1F3AE51100018F97 /* Main.storyboard */; };
+		ED7C21741F3AEA5100018F97 /* PlatformSpecific.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21731F3AEA5100018F97 /* PlatformSpecific.swift */; };
+		ED7C21751F3AEF4900018F97 /* PlatformSpecific.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21731F3AEA5100018F97 /* PlatformSpecific.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,7 @@
 		ED7C216A1F3AE51100018F97 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED7C216D1F3AE51100018F97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ED7C216F1F3AE51100018F97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED7C21731F3AEA5100018F97 /* PlatformSpecific.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformSpecific.swift; sourceTree = "<group>"; };
 		ED97B22B1F398ECF001DDA4B /* SwarmChemistry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwarmChemistry.h; sourceTree = "<group>"; };
 		ED97B22C1F398ECF001DDA4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED97B2381F39901D001DDA4B /* SwarmChemistry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwarmChemistry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,6 +166,7 @@
 				ED7C21191F399E8700018F97 /* Individual.swift */,
 				ED7C211F1F39A91E00018F97 /* Coordinate.swift */,
 				ED7C211C1F399F6E00018F97 /* Utility.swift */,
+				ED7C21731F3AEA5100018F97 /* PlatformSpecific.swift */,
 				ED97B22C1F398ECF001DDA4B /* Info.plist */,
 			);
 			path = SwarmChemistry;
@@ -411,6 +415,7 @@
 				ED7C21171F39942800018F97 /* Parameters.swift in Sources */,
 				ED7C211D1F399F6E00018F97 /* Utility.swift in Sources */,
 				ED7C21201F39A91E00018F97 /* Coordinate.swift in Sources */,
+				ED7C21741F3AEA5100018F97 /* PlatformSpecific.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +427,7 @@
 				ED7C21181F39942800018F97 /* Parameters.swift in Sources */,
 				ED7C211E1F399F6E00018F97 /* Utility.swift in Sources */,
 				ED7C21211F39A98600018F97 /* Coordinate.swift in Sources */,
+				ED7C21751F3AEF4900018F97 /* PlatformSpecific.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

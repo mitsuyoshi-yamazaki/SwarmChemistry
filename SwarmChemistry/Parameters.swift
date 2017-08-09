@@ -7,34 +7,36 @@
 //
 
 import Foundation
+import CoreGraphics
 
 public struct Parameters {
   
-  let neighborhoodRadius: Value
-  static let neighborhoodRadiusMax = 300.0
+  public let neighborhoodRadius: Value
+  public static let neighborhoodRadiusMax = 300.0
   
-  let normalSpeed: Value
-  static let normalSpeedMax = 20.0
+  public let normalSpeed: Value
+  public static let normalSpeedMax = 20.0
   
-  let maxSpeed: Value
-  static let maxSpeedMax = 40.0
+  public let maxSpeed: Value
+  public static let maxSpeedMax = 40.0
   
-  let cohesiveForce: Value
-  static let cohesiveForceMax = 1.0
+  public let cohesiveForce: Value
+  public static let cohesiveForceMax = 1.0
   
-  let aligningForce: Value
-  static let aligningForceMax = 1.0
+  public let aligningForce: Value
+  public static let aligningForceMax = 1.0
   
-  let separatingForce: Value
-  static let separatingForceMax = 100.0
+  public let separatingForce: Value
+  public static let separatingForceMax = 100.0
   
-  let probabilityOfRandomSteering: Value
-  static let probabilityOfRandomSteeringMax = 0.5
+  public let probabilityOfRandomSteering: Value
+  public static let probabilityOfRandomSteeringMax = 0.5
   
-  let tendencyOfPacekeeping: Value
-  static let tendencyOfPacekeepingMax = 1.0
+  public let tendencyOfPacekeeping: Value
+  public static let tendencyOfPacekeepingMax = 1.0
   
-  let maxVelocity: Value
+  public let maxVelocity: Value
+  public let color: Color
   
   public init(neighborhoodRadius: Value, normalSpeed: Value, maxSpeed: Value, cohesiveForce: Value, aligningForce: Value, separatingForce: Value, probabilityOfRandomSteering: Value, tendencyOfPacekeeping: Value) {
     
@@ -48,11 +50,16 @@ public struct Parameters {
     self.tendencyOfPacekeeping = tendencyOfPacekeeping
     
     maxVelocity = maxSpeed * maxSpeed
+    
+    let red = CGFloat((cohesiveForce / type(of: self).cohesiveForceMax) * 0.8)
+    let green = CGFloat((aligningForce / type(of: self).aligningForceMax) * 0.8)
+    let blue = CGFloat((separatingForce / type(of: self).separatingForceMax) * 0.8)
+    color = Color.init(red: red, green: green, blue: blue, alpha: 1.0)
   }
 }
 
 extension Parameters {
-  var all: [Value] {
+  public var all: [Value] {
     return [
       neighborhoodRadius,
       normalSpeed,
@@ -85,6 +92,11 @@ extension Parameters {
     tendencyOfPacekeeping       = parameters[7]
     
     maxVelocity = maxSpeed * maxSpeed
+
+    let red = CGFloat((cohesiveForce / type(of: self).cohesiveForceMax) * 0.8)
+    let green = CGFloat((aligningForce / type(of: self).aligningForceMax) * 0.8)
+    let blue = CGFloat((separatingForce / type(of: self).separatingForceMax) * 0.8)
+    color = Color.init(red: red, green: green, blue: blue, alpha: 1.0)
   }
 }
 
