@@ -33,7 +33,7 @@ extension Individual {
   func accelerate(_ acceleration: Coordinate) {
     self.acceleration = self.acceleration + acceleration
 
-    let magunitude = hypot(acceleration.x, acceleration.y)
+    let magunitude = hypot(self.acceleration.x, self.acceleration.y)
     if magunitude > genome.maxVelocity {
       self.acceleration = self.acceleration * (genome.maxVelocity / magunitude)
     }
@@ -41,7 +41,7 @@ extension Individual {
   
   func move() {
     velocity = acceleration
-    position = position + velocity
+    position = (position + velocity).fit(to: fieldSize)
   }
 }
 
@@ -92,7 +92,7 @@ extension Array where Element == Individual {
         
         // Separation
         let sumSeparation = distances.reduce(Coordinate.zero) { (result, value) -> Coordinate in
-          let divider = value.distance / individual.genome.separatingForce
+          let divider = value.distance * individual.genome.separatingForce
           return result + (individual.position - value.individual.position) / divider
         }
         
