@@ -40,4 +40,8 @@ class ParametersTests: XCTestCase {
     XCTAssert(Parameters(values)! == Parameters(values)!)
     XCTAssert(Parameters(values)! != Parameters(anotherValues)!)
   }
+  
+  func test_random() {
+    XCTAssert(Parameters.random != Parameters.random)
+  }
 }

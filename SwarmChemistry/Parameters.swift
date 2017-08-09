@@ -71,10 +71,30 @@ extension Parameters {
       tendencyOfPacekeeping
     ]
   }
+  
+  public static var maxValues: [Value] {
+    return [
+      neighborhoodRadiusMax,
+      normalSpeedMax,
+      maxSpeedMax,
+      cohesiveForceMax,
+      aligningForceMax,
+      separatingForceMax,
+      probabilityOfRandomSteeringMax,
+      tendencyOfPacekeepingMax
+    ]
+  }
+  
+  public static var random: Parameters {
+    let values = maxValues
+      .map { Value(Int(arc4random()) % Int($0 * 100)) / 100.0 }
+    
+    return Parameters(values)!
+  }
 }
 
 extension Parameters {
-  private static let numberOfParameters = 8
+  fileprivate static let numberOfParameters = 8
   
   public init?(_ parameters: [Value]) {
     guard parameters.count == type(of: self).numberOfParameters else {
