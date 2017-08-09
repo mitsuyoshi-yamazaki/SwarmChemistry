@@ -15,13 +15,38 @@
 		ED7C211E1F399F6E00018F97 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C211C1F399F6E00018F97 /* Utility.swift */; };
 		ED7C21201F39A91E00018F97 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C211F1F39A91E00018F97 /* Coordinate.swift */; };
 		ED7C21211F39A98600018F97 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C211F1F39A91E00018F97 /* Coordinate.swift */; };
+		ED7C212D1F3AD0F900018F97 /* SwarmChemistry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED97B2381F39901D001DDA4B /* SwarmChemistry.framework */; };
+		ED7C213C1F3AD10B00018F97 /* SwarmChemistry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED97B2451F399037001DDA4B /* SwarmChemistry.framework */; };
+		ED7C21451F3AD1C400018F97 /* SwarmChemistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21441F3AD13100018F97 /* SwarmChemistryTests.swift */; };
+		ED7C21461F3AD1C400018F97 /* SwarmChemistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21441F3AD13100018F97 /* SwarmChemistryTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ED7C212E1F3AD0F900018F97 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED97B21F1F398ECF001DDA4B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED97B2371F39901D001DDA4B;
+			remoteInfo = SwarmChemistry_iOS;
+		};
+		ED7C213D1F3AD10B00018F97 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED97B21F1F398ECF001DDA4B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED97B2441F399037001DDA4B;
+			remoteInfo = SwarmChemistry_Mac;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		ED7C21161F39942800018F97 /* Parameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
 		ED7C21191F399E8700018F97 /* Individual.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Individual.swift; sourceTree = "<group>"; };
 		ED7C211C1F399F6E00018F97 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		ED7C211F1F39A91E00018F97 /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		ED7C21281F3AD0F800018F97 /* SwarmChemistryTests_iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwarmChemistryTests_iOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED7C21371F3AD10B00018F97 /* SwarmChemistryTests_Mac.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwarmChemistryTests_Mac.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED7C21431F3AD13100018F97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED7C21441F3AD13100018F97 /* SwarmChemistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwarmChemistryTests.swift; sourceTree = "<group>"; };
 		ED97B22B1F398ECF001DDA4B /* SwarmChemistry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwarmChemistry.h; sourceTree = "<group>"; };
 		ED97B22C1F398ECF001DDA4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED97B2381F39901D001DDA4B /* SwarmChemistry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwarmChemistry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -29,6 +54,22 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		ED7C21251F3AD0F800018F97 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED7C212D1F3AD0F900018F97 /* SwarmChemistry.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED7C21341F3AD10B00018F97 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED7C213C1F3AD10B00018F97 /* SwarmChemistry.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ED97B2341F39901D001DDA4B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -46,10 +87,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED7C21421F3AD13100018F97 /* SwarmChemistryTests */ = {
+			isa = PBXGroup;
+			children = (
+				ED7C21431F3AD13100018F97 /* Info.plist */,
+				ED7C21441F3AD13100018F97 /* SwarmChemistryTests.swift */,
+			);
+			path = SwarmChemistryTests;
+			sourceTree = "<group>";
+		};
 		ED97B21E1F398ECF001DDA4B = {
 			isa = PBXGroup;
 			children = (
 				ED97B22A1F398ECF001DDA4B /* SwarmChemistry */,
+				ED7C21421F3AD13100018F97 /* SwarmChemistryTests */,
 				ED97B2291F398ECF001DDA4B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,6 +110,8 @@
 			children = (
 				ED97B2381F39901D001DDA4B /* SwarmChemistry.framework */,
 				ED97B2451F399037001DDA4B /* SwarmChemistry.framework */,
+				ED7C21281F3AD0F800018F97 /* SwarmChemistryTests_iOS.xctest */,
+				ED7C21371F3AD10B00018F97 /* SwarmChemistryTests_Mac.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -96,6 +149,42 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		ED7C21271F3AD0F800018F97 /* SwarmChemistryTests_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED7C21321F3AD0F900018F97 /* Build configuration list for PBXNativeTarget "SwarmChemistryTests_iOS" */;
+			buildPhases = (
+				ED7C21241F3AD0F800018F97 /* Sources */,
+				ED7C21251F3AD0F800018F97 /* Frameworks */,
+				ED7C21261F3AD0F800018F97 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ED7C212F1F3AD0F900018F97 /* PBXTargetDependency */,
+			);
+			name = SwarmChemistryTests_iOS;
+			productName = SwarmChemistryTests_iOS;
+			productReference = ED7C21281F3AD0F800018F97 /* SwarmChemistryTests_iOS.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		ED7C21361F3AD10B00018F97 /* SwarmChemistryTests_Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED7C213F1F3AD10B00018F97 /* Build configuration list for PBXNativeTarget "SwarmChemistryTests_Mac" */;
+			buildPhases = (
+				ED7C21331F3AD10B00018F97 /* Sources */,
+				ED7C21341F3AD10B00018F97 /* Frameworks */,
+				ED7C21351F3AD10B00018F97 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ED7C213E1F3AD10B00018F97 /* PBXTargetDependency */,
+			);
+			name = SwarmChemistryTests_Mac;
+			productName = SwarmChemistryTests_Mac;
+			productReference = ED7C21371F3AD10B00018F97 /* SwarmChemistryTests_Mac.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		ED97B2371F39901D001DDA4B /* SwarmChemistry_iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = ED97B23F1F39901D001DDA4B /* Build configuration list for PBXNativeTarget "SwarmChemistry_iOS" */;
@@ -138,9 +227,18 @@
 		ED97B21F1F398ECF001DDA4B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Mitsuyoshi Yamazaki";
 				TargetAttributes = {
+					ED7C21271F3AD0F800018F97 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+					};
+					ED7C21361F3AD10B00018F97 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+					};
 					ED97B2371F39901D001DDA4B = {
 						CreatedOnToolsVersion = 8.3.3;
 						LastSwiftMigration = 0830;
@@ -167,11 +265,27 @@
 			targets = (
 				ED97B2371F39901D001DDA4B /* SwarmChemistry_iOS */,
 				ED97B2441F399037001DDA4B /* SwarmChemistry_Mac */,
+				ED7C21271F3AD0F800018F97 /* SwarmChemistryTests_iOS */,
+				ED7C21361F3AD10B00018F97 /* SwarmChemistryTests_Mac */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		ED7C21261F3AD0F800018F97 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED7C21351F3AD10B00018F97 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ED97B2361F39901D001DDA4B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -189,6 +303,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		ED7C21241F3AD0F800018F97 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED7C21451F3AD1C400018F97 /* SwarmChemistryTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED7C21331F3AD10B00018F97 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED7C21461F3AD1C400018F97 /* SwarmChemistryTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ED97B2331F39901D001DDA4B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -213,7 +343,72 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		ED7C212F1F3AD0F900018F97 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED97B2371F39901D001DDA4B /* SwarmChemistry_iOS */;
+			targetProxy = ED7C212E1F3AD0F900018F97 /* PBXContainerItemProxy */;
+		};
+		ED7C213E1F3AD10B00018F97 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED97B2441F399037001DDA4B /* SwarmChemistry_Mac */;
+			targetProxy = ED7C213D1F3AD10B00018F97 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		ED7C21301F3AD0F900018F97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SwarmChemistryTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "mitsuyoshi.SwarmChemistryTests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		ED7C21311F3AD0F900018F97 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SwarmChemistryTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "mitsuyoshi.SwarmChemistryTests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		ED7C21401F3AD10B00018F97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = SwarmChemistryTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "mitsuyoshi.SwarmChemistryTests-Mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		ED7C21411F3AD10B00018F97 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = SwarmChemistryTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "mitsuyoshi.SwarmChemistryTests-Mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		ED97B22E1F398ECF001DDA4B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -413,6 +608,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		ED7C21321F3AD0F900018F97 /* Build configuration list for PBXNativeTarget "SwarmChemistryTests_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED7C21301F3AD0F900018F97 /* Debug */,
+				ED7C21311F3AD0F900018F97 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		ED7C213F1F3AD10B00018F97 /* Build configuration list for PBXNativeTarget "SwarmChemistryTests_Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED7C21401F3AD10B00018F97 /* Debug */,
+				ED7C21411F3AD10B00018F97 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		ED97B2221F398ECF001DDA4B /* Build configuration list for PBXProject "SwarmChemistry" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
