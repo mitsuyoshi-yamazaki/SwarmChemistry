@@ -15,14 +15,12 @@ class ViewController: NSViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    setup()
   }
   
   override func viewWillAppear() {
     super.viewWillAppear()
-    
-    if renderView.population.isEmpty {
-      setup()
-    }
   }
   
   override func viewDidAppear() {
@@ -44,18 +42,19 @@ class ViewController: NSViewController {
     let genomeCount = genomes.count
     let width = Int(renderView.frame.width)
     let height = Int(renderView.frame.height)
-    let fieldSize = Coordinate(width, height)
     
-    let population: [Individual] = (0..<500)
+    let population: [Individual] = (0..<1300)
       .map { _ in Coordinate(random() % width, random() % height) }
-      .map { Individual.init(fieldSize: fieldSize, position: $0, genome: genomes[random() % genomeCount]) }
-    
-    renderView.population = population
+      .map { Individual.init(position: $0, genome: genomes[random() % genomeCount]) }
+ 
+    let fieldSize = Coordinate(width, height)
+
+    renderView.population = Population.init(fieldSize: fieldSize, population: population)
   }
   
   private func step() {
 
-    renderView.population.step()
+    renderView.population?.step(3)
     renderView.setNeedsDisplay(renderView.bounds)
     
     DispatchQueue.main.async {
@@ -70,23 +69,32 @@ func random() -> Int {
 
 class RenderView: NSView {
   
-  var population: [Individual] = []
-  var cellSize = 2.0
+  var population: Population?
+  var cellSize: CGFloat = 2.0
 
   override func draw(_ dirtyRect: NSRect) {
     guard let context = NSGraphicsContext.current()?.cgContext else {
       fatalError()
     }
+    context.setFillColor(NSColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor)
+    context.fill(bounds)
 
-    let size = cellSize
+    guard let population = population else {
+      return
+    }
+
+    let fieldWidth = CGFloat(population.fieldSize.x)
+    let fieldHeight = CGFloat(population.fieldSize.y)
+    let multiplier = min(frame.width / fieldWidth, frame.height / fieldHeight)
+    let size = cellSize * multiplier
     
     context.setFillColor(NSColor.white.cgColor)
-    context.fill(bounds)
+    context.fill(.init(x: 0.0, y: 0.0, width: fieldWidth * multiplier, height: fieldHeight * multiplier))
     
-    for individual in population {
+    for individual in population.population {
       
       individual.genome.color.setFill()
-      context.fillEllipse(in: CGRect(x: individual.position.x, y: individual.position.y, width: size, height: size))
+      context.fillEllipse(in: CGRect(x: CGFloat(individual.position.x) * multiplier, y: CGFloat(individual.position.y) * multiplier, width: size, height: size))
     }
   }
 }
