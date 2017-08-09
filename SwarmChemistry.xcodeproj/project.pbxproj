@@ -21,6 +21,8 @@
 		ED7C21461F3AD1C400018F97 /* SwarmChemistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21441F3AD13100018F97 /* SwarmChemistryTests.swift */; };
 		ED7C21481F3AD33700018F97 /* CoordinateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21471F3AD33700018F97 /* CoordinateTests.swift */; };
 		ED7C21491F3AD33700018F97 /* CoordinateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21471F3AD33700018F97 /* CoordinateTests.swift */; };
+		ED7C214B1F3AD8C200018F97 /* ParametersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C214A1F3AD8C200018F97 /* ParametersTests.swift */; };
+		ED7C214C1F3AD8C200018F97 /* ParametersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C214A1F3AD8C200018F97 /* ParametersTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,7 @@
 		ED7C21431F3AD13100018F97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED7C21441F3AD13100018F97 /* SwarmChemistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwarmChemistryTests.swift; sourceTree = "<group>"; };
 		ED7C21471F3AD33700018F97 /* CoordinateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinateTests.swift; sourceTree = "<group>"; };
+		ED7C214A1F3AD8C200018F97 /* ParametersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParametersTests.swift; sourceTree = "<group>"; };
 		ED97B22B1F398ECF001DDA4B /* SwarmChemistry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwarmChemistry.h; sourceTree = "<group>"; };
 		ED97B22C1F398ECF001DDA4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED97B2381F39901D001DDA4B /* SwarmChemistry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwarmChemistry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +98,7 @@
 			children = (
 				ED7C21431F3AD13100018F97 /* Info.plist */,
 				ED7C21441F3AD13100018F97 /* SwarmChemistryTests.swift */,
+				ED7C214A1F3AD8C200018F97 /* ParametersTests.swift */,
 				ED7C21471F3AD33700018F97 /* CoordinateTests.swift */,
 			);
 			path = SwarmChemistryTests;
@@ -311,6 +315,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED7C214B1F3AD8C200018F97 /* ParametersTests.swift in Sources */,
 				ED7C21451F3AD1C400018F97 /* SwarmChemistryTests.swift in Sources */,
 				ED7C21481F3AD33700018F97 /* CoordinateTests.swift in Sources */,
 			);
@@ -320,6 +325,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED7C214C1F3AD8C200018F97 /* ParametersTests.swift in Sources */,
 				ED7C21461F3AD1C400018F97 /* SwarmChemistryTests.swift in Sources */,
 				ED7C21491F3AD33700018F97 /* CoordinateTests.swift in Sources */,
 			);
