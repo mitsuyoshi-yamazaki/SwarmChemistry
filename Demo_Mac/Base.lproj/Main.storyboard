@@ -685,6 +685,22 @@
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl" customClass="RenderView" customModule="Demo_Mac" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2ZL-Es-Ppo">
+                                <rect key="frame" x="14" y="222" width="84" height="32"/>
+                                <buttonCell key="cell" type="push" title="Restart" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RjO-aZ-0W9">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="resetWithSender:" target="XfG-lQ-9wD" id="5ju-fI-aUC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="2ZL-Es-Ppo" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="MZP-df-b7g"/>
+                            <constraint firstItem="2ZL-Es-Ppo" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="wyM-dY-lFc"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="renderView" destination="m2S-Jp-Qdl" id="9lv-hD-ljC"/>

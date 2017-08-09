@@ -76,6 +76,12 @@ class ViewController: NSViewController {
       self.step()
     }
   }
+  
+  // MARK: - 
+  @IBAction func reset(sender: AnyObject!) {
+    setup()
+    step()
+  }
 }
 
 func random() -> Int {
