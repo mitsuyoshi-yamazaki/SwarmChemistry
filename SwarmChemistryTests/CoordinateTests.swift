@@ -45,4 +45,23 @@ class CoordinateTests: XCTestCase {
     XCTAssert(Coordinate(3.2, 1.0) == Coordinate(3.2, 1.0))
     XCTAssert(Coordinate(3.2, 1.0) != Coordinate(3.2, 1.1))
   }
+  
+  func test_random() {
+    let coordinate = Coordinate(10.0, 10.0)
+    
+    (0..<100).forEach { _ in
+      XCTAssert(coordinate.contains(coordinate.random()))
+    }
+  }
+  
+  func test_contains() {
+    XCTAssert(Coordinate(10.0, 10.0).contains(Coordinate(10.0, 10.0)))
+    XCTAssert(Coordinate(10.0, 10.0).contains(Coordinate(10.0, 5.0)))
+    XCTAssert(Coordinate(10.0, 10.0).contains(Coordinate(5.0, 10.0)))
+    XCTAssert(Coordinate(10.0, 10.0).contains(Coordinate(5.0, 5.0)))
+    
+    XCTAssert(Coordinate(10.0, 10.0).contains(Coordinate(20.0, 20.0)) == false)
+    XCTAssert(Coordinate(10.0, 10.0).contains(Coordinate(20.0, 10.0)) == false)
+    XCTAssert(Coordinate(10.0, 10.0).contains(Coordinate(10.0, 20.0)) == false)
+  }
 }

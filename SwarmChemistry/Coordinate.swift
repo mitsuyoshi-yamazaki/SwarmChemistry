@@ -43,6 +43,17 @@ public extension Coordinate {
 
     return Coordinate(x, y)
   }
+  
+  func random() -> Coordinate {
+    let x = self.x * (Value(Int(arc4random() % 100)) / 100.0)
+    let y = self.y * (Value(Int(arc4random() % 100)) / 100.0)
+
+    return Coordinate(x, y)
+  }
+  
+  func contains(_ other: Coordinate) -> Bool {
+    return (x >= other.x) && (y >= other.y)
+  }
 }
 
 public extension Coordinate {
