@@ -14,6 +14,8 @@
 		2CA5C3201F3CA0DF0037080C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CA5C31E1F3CA0DF0037080C /* LaunchScreen.storyboard */; };
 		2CA5C3281F3CA1A00037080C /* SwarmRenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3251F3CA19B0037080C /* SwarmRenderView.swift */; };
 		2CA5C3291F3CA1A00037080C /* SwarmRenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3251F3CA19B0037080C /* SwarmRenderView.swift */; };
+		2CA5C32A1F3CA31B0037080C /* SwarmChemistry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED97B2381F39901D001DDA4B /* SwarmChemistry.framework */; };
+		2CA5C32B1F3CA31B0037080C /* SwarmChemistry.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED97B2381F39901D001DDA4B /* SwarmChemistry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ED7C21171F39942800018F97 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21161F39942800018F97 /* Parameters.swift */; };
 		ED7C21181F39942800018F97 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21161F39942800018F97 /* Parameters.swift */; };
 		ED7C211D1F399F6E00018F97 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C211C1F399F6E00018F97 /* Utility.swift */; };
@@ -47,6 +49,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2CA5C32C1F3CA31B0037080C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED97B21F1F398ECF001DDA4B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED97B2371F39901D001DDA4B;
+			remoteInfo = SwarmChemistry_iOS;
+		};
 		ED7C212E1F3AD0F900018F97 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ED97B21F1F398ECF001DDA4B /* Project object */;
@@ -71,6 +80,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		2CA5C32E1F3CA31B0037080C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2CA5C32B1F3CA31B0037080C /* SwarmChemistry.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ED7C217C1F3AF66900018F97 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -124,6 +144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CA5C32A1F3CA31B0037080C /* SwarmChemistry.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,10 +302,12 @@
 				2CA5C30F1F3CA0DF0037080C /* Sources */,
 				2CA5C3101F3CA0DF0037080C /* Frameworks */,
 				2CA5C3111F3CA0DF0037080C /* Resources */,
+				2CA5C32E1F3CA31B0037080C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2CA5C32D1F3CA31B0037080C /* PBXTargetDependency */,
 			);
 			name = Demo_iOS;
 			productName = Demo_iOS;
@@ -567,6 +590,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2CA5C32D1F3CA31B0037080C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED97B2371F39901D001DDA4B /* SwarmChemistry_iOS */;
+			targetProxy = 2CA5C32C1F3CA31B0037080C /* PBXContainerItemProxy */;
+		};
 		ED7C212F1F3AD0F900018F97 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = ED97B2371F39901D001DDA4B /* SwarmChemistry_iOS */;
@@ -615,6 +643,7 @@
 		2CA5C3231F3CA0DF0037080C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Demo_iOS/Info.plist;
@@ -629,6 +658,7 @@
 		2CA5C3241F3CA0DF0037080C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Demo_iOS/Info.plist;
@@ -833,6 +863,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -856,6 +887,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
