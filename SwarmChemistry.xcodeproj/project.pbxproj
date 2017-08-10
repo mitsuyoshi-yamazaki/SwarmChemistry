@@ -16,6 +16,12 @@
 		2CA5C3291F3CA1A00037080C /* SwarmRenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3251F3CA19B0037080C /* SwarmRenderView.swift */; };
 		2CA5C32A1F3CA31B0037080C /* SwarmChemistry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED97B2381F39901D001DDA4B /* SwarmChemistry.framework */; };
 		2CA5C32B1F3CA31B0037080C /* SwarmChemistry.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED97B2381F39901D001DDA4B /* SwarmChemistry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2CA5C3321F3CAABC0037080C /* SwarmRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C32F1F3CAAB70037080C /* SwarmRenderer.swift */; };
+		2CA5C3331F3CAABD0037080C /* SwarmRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C32F1F3CAAB70037080C /* SwarmRenderer.swift */; };
+		2CA5C3371F3CAB3B0037080C /* PlatformSpecific.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3341F3CAB370037080C /* PlatformSpecific.swift */; };
+		2CA5C3381F3CAB3C0037080C /* PlatformSpecific.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3341F3CAB370037080C /* PlatformSpecific.swift */; };
+		2CA5C33A1F3CACEF0037080C /* RecipeDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3391F3CACEF0037080C /* RecipeDefinitions.swift */; };
+		2CA5C33B1F3CACEF0037080C /* RecipeDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3391F3CACEF0037080C /* RecipeDefinitions.swift */; };
 		ED7C21171F39942800018F97 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21161F39942800018F97 /* Parameters.swift */; };
 		ED7C21181F39942800018F97 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21161F39942800018F97 /* Parameters.swift */; };
 		ED7C211D1F399F6E00018F97 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C211C1F399F6E00018F97 /* Utility.swift */; };
@@ -113,6 +119,9 @@
 		2CA5C31F1F3CA0DF0037080C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2CA5C3211F3CA0DF0037080C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CA5C3251F3CA19B0037080C /* SwarmRenderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwarmRenderView.swift; sourceTree = "<group>"; };
+		2CA5C32F1F3CAAB70037080C /* SwarmRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwarmRenderer.swift; sourceTree = "<group>"; };
+		2CA5C3341F3CAB370037080C /* PlatformSpecific.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformSpecific.swift; sourceTree = "<group>"; };
+		2CA5C3391F3CACEF0037080C /* RecipeDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDefinitions.swift; sourceTree = "<group>"; };
 		ED7C21161F39942800018F97 /* Parameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
 		ED7C211C1F399F6E00018F97 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		ED7C211F1F39A91E00018F97 /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
@@ -193,6 +202,8 @@
 			isa = PBXGroup;
 			children = (
 				2CA5C3251F3CA19B0037080C /* SwarmRenderView.swift */,
+				2CA5C32F1F3CAAB70037080C /* SwarmRenderer.swift */,
+				2CA5C3341F3CAB370037080C /* PlatformSpecific.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -267,6 +278,7 @@
 				ED7C217E1F3AFBE600018F97 /* Individual.swift */,
 				ED7C21761F3AF54100018F97 /* Population.swift */,
 				EDABFDF41F3C5A3C00E1D56C /* Recipe.swift */,
+				2CA5C3391F3CACEF0037080C /* RecipeDefinitions.swift */,
 				ED7C211F1F39A91E00018F97 /* Coordinate.swift */,
 				ED7C211C1F399F6E00018F97 /* Utility.swift */,
 				ED7C21731F3AEA5100018F97 /* PlatformSpecific.swift */,
@@ -524,6 +536,8 @@
 				2CA5C3181F3CA0DF0037080C /* ViewController.swift in Sources */,
 				2CA5C3161F3CA0DF0037080C /* AppDelegate.swift in Sources */,
 				2CA5C3281F3CA1A00037080C /* SwarmRenderView.swift in Sources */,
+				2CA5C3321F3CAABC0037080C /* SwarmRenderer.swift in Sources */,
+				2CA5C3371F3CAB3B0037080C /* PlatformSpecific.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,6 +570,8 @@
 				ED7C21691F3AE51100018F97 /* ViewController.swift in Sources */,
 				ED7C21671F3AE51100018F97 /* AppDelegate.swift in Sources */,
 				2CA5C3291F3CA1A00037080C /* SwarmRenderView.swift in Sources */,
+				2CA5C3331F3CAABD0037080C /* SwarmRenderer.swift in Sources */,
+				2CA5C3381F3CAB3C0037080C /* PlatformSpecific.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,6 +585,7 @@
 				ED7C21171F39942800018F97 /* Parameters.swift in Sources */,
 				ED7C211D1F399F6E00018F97 /* Utility.swift in Sources */,
 				ED7C21201F39A91E00018F97 /* Coordinate.swift in Sources */,
+				2CA5C33A1F3CACEF0037080C /* RecipeDefinitions.swift in Sources */,
 				ED7C21741F3AEA5100018F97 /* PlatformSpecific.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -583,6 +600,7 @@
 				ED7C21181F39942800018F97 /* Parameters.swift in Sources */,
 				ED7C211E1F399F6E00018F97 /* Utility.swift in Sources */,
 				ED7C21211F39A98600018F97 /* Coordinate.swift in Sources */,
+				2CA5C33B1F3CACEF0037080C /* RecipeDefinitions.swift in Sources */,
 				ED7C21751F3AEF4900018F97 /* PlatformSpecific.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
