@@ -21,6 +21,12 @@ class CoordinateTests: XCTestCase {
     XCTAssert(Coordinate(12.0, 12.0) == Coordinate(12, 12))
   }
   
+  func test_size() {
+    XCTAssert(Coordinate(3, 4).size() == 5.0)
+    XCTAssert(Coordinate(-3, -4).size() == 5.0)
+    XCTAssert(Coordinate.zero.size() == 0.0)
+  }
+  
   func test_distance() {
     let zero = Coordinate.zero
     

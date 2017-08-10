@@ -33,6 +33,10 @@ public extension Coordinate {
 public extension Coordinate {
   static let zero = Coordinate(0.0, 0.0)
   
+  func size() -> Value {
+    return hypot(x, y)
+  }
+  
   func distance(_ other: Coordinate) -> Value {
     return hypot(x - other.x, y - other.y)
   }
