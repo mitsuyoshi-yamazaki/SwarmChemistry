@@ -19,6 +19,16 @@ public struct Population {
 }
 
 extension Population {
+  public func uniqueGenomes() -> [(genome: Parameters, count: Int)] {
+    return population
+      .reduce([Parameters]()) { (result, individual) -> [Parameters] in
+        return result.filter { $0 == individual.genome }.isEmpty ? result + [individual.genome] : result
+      }
+      .map { genome -> (genome: Parameters, count: Int) in
+        return (genome: genome, count: self.population.filter { $0.genome == genome }.count)
+      }
+  }
+  
   public func step(_ count: Int = 1) {
     guard count > 0 else {
       Log.error("Argument \"count\" should be a positive value")
