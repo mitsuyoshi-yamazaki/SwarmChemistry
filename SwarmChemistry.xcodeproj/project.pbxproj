@@ -982,6 +982,7 @@
 				2CA5C3241F3CA0DF0037080C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ED7C21321F3AD0F900018F97 /* Build configuration list for PBXNativeTarget "SwarmChemistryTests_iOS" */ = {
 			isa = XCConfigurationList;
