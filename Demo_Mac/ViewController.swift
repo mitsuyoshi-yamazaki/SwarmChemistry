@@ -35,7 +35,7 @@ class ViewController: NSViewController {
   private func setup() {
     isRunning = false
 
-    let numberOfPopulation = 1300
+    let numberOfPopulation = 2000
     let fieldSize = Coordinate(6000, 4000)
 
     renderView.population = Population.init(Recipe.jellyFish,
@@ -47,14 +47,15 @@ class ViewController: NSViewController {
   private func step() {
     isRunning = true
     
-    renderView.population?.step(3)
-    renderView.setNeedsDisplay(renderView.bounds)
-    
-    DispatchQueue.main.async {
-      guard self.isRunning else {
-        return
+    DispatchQueue.global(qos: .userInitiated).async {
+      self.renderView.population?.step(6)
+      DispatchQueue.main.async {
+        self.renderView.setNeedsDisplay(self.renderView.bounds)
+        guard self.isRunning else {
+          return
+        }
+        self.step()
       }
-      self.step()
     }
   }
   
