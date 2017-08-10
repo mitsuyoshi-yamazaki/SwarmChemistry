@@ -9,12 +9,87 @@
 import Foundation
 
 public struct Population {
-  public let fieldSize: Coordinate
+  public var fieldSize = Coordinate(500, 500)
   public let population: [Individual]
   
-  public init(fieldSize: Coordinate, population: [Individual]) {
-    self.fieldSize = fieldSize
+  public init(fieldSize: Coordinate?, population: [Individual]) {
     self.population = population
+    
+    if let fieldSize = fieldSize {
+      self.fieldSize = fieldSize
+    }
+  }
+}
+
+// MARK: - Recipe
+extension Population {
+  /**
+   Expecting:
+   41 * (249.84, 4.85, 28.73, 0.34, 0.45, 14.44, 0.09, 0.82)
+   26 * (277.87, 15.02, 35.48, 0.68, 0.05, 82.96, 0.46, 0.9)
+   ...
+   */
+  public init?(_ recipeText: String, numberOfPopulation: Int? = nil) {
+    func parseLine(_ text: String) -> (count: Int, genomeText: String)? {
+      let components = text
+        .trimmingCharacters(in: .whitespaces)
+        .components(separatedBy: "*")
+      
+      guard
+        let count = Int(components.first ?? ""),
+        let genomeText = components.dropFirst().first
+      else {
+        return nil
+      }
+      return (count: count, genomeText: genomeText)
+    }
+    func parseGenome(from text: String) -> Parameters? {
+      let components = text
+        .trimmingCharacters(in: .whitespaces)
+        .trimmingCharacters(in: .init(charactersIn: "()"))
+        .components(separatedBy: ",")
+      
+      guard let values = components.map({ Value($0) }) as? [Value] else {
+        return nil
+      }
+      return Parameters(values)
+    }
+    
+    let result = recipeText.components(separatedBy: "\n")
+      .map { line -> (count: Int, genomeText: String)? in
+        parseLine(line)
+      }
+      .map { value -> (count: Int, genome: Parameters)? in
+        guard let value = value else {
+          return nil
+        }
+        guard let genome = parseGenome(from: value.genomeText) else {
+          return nil
+        }
+        return (count: value.count, genome: genome)
+      }
+    
+    guard let recipe = result as? [(count: Int, genome: Parameters)] else {
+      Log.debug("Parsing recipe failed:\n\(recipeText)")
+      return nil
+    }
+    
+    let sum = recipe
+      .reduce(0) { (result, value) -> Int in
+        result + value.count
+      }
+    let magnitude = Value(numberOfPopulation ?? sum) / Value(sum)
+    
+    let fieldSize = Coordinate(500, 500)
+    population = recipe
+      .map { value -> [Individual] in
+        let count = Int(Value(value.count) * magnitude)
+        return (0..<count)
+          .map { _ in
+            Individual(position: fieldSize.random(), genome: value.genome)
+          }
+      }
+      .flatMap { $0 }
   }
 }
 

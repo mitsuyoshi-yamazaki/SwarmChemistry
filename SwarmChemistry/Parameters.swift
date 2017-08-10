@@ -94,7 +94,7 @@ extension Parameters {
 }
 
 extension Parameters {
-  fileprivate static let numberOfParameters = 8
+  internal static let numberOfParameters = 8
   
   public init?(_ parameters: [Value]) {
     guard parameters.count == type(of: self).numberOfParameters else {
