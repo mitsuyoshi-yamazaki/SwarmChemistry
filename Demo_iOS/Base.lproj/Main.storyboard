@@ -39,7 +39,7 @@
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="0.20000000000000001" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="50B-Fr-sjG"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="355" id="gOP-ff-hDg"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="355" id="gOP-ff-hDg"/>
                                 </constraints>
                                 <state key="normal" title="Recipe">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -67,11 +67,11 @@
                             <constraint firstItem="uDD-wS-6A4" firstAttribute="width" secondItem="Cxl-Xt-jEE" secondAttribute="width" id="DPS-kz-nn1"/>
                             <constraint firstItem="pHE-GL-UpH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HvF-Pe-eg3"/>
                             <constraint firstItem="uDD-wS-6A4" firstAttribute="bottom" secondItem="Cxl-Xt-jEE" secondAttribute="bottom" id="SOb-yx-57j"/>
-                            <constraint firstItem="pHE-GL-UpH" firstAttribute="leading" secondItem="Cxl-Xt-jEE" secondAttribute="leading" id="YYW-RF-Lzv"/>
-                            <constraint firstItem="pHE-GL-UpH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="cqJ-wJ-7JA"/>
+                            <constraint firstItem="pHE-GL-UpH" firstAttribute="leading" secondItem="Cxl-Xt-jEE" secondAttribute="leading" priority="900" id="YYW-RF-Lzv"/>
                             <constraint firstItem="pHE-GL-UpH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="edj-ox-Iz2"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Cxl-Xt-jEE" secondAttribute="bottom" constant="10" id="gPw-rB-r65"/>
                             <constraint firstAttribute="trailing" secondItem="uDD-wS-6A4" secondAttribute="trailing" constant="16" id="lbl-Wp-Uml"/>
+                            <constraint firstItem="Cxl-Xt-jEE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="qvL-ku-7D4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cZi-lq-mwh"/>
@@ -95,7 +95,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="A8c-4K-SPE" style="IBUITableViewCellStyleDefault" id="ill-ze-Lha">
-                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ill-ze-Lha" id="QZm-W6-i5L">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
