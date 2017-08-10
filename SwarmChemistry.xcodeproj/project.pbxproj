@@ -434,8 +434,8 @@
 				ED97B2441F399037001DDA4B /* SwarmChemistry_Mac */,
 				ED7C21271F3AD0F800018F97 /* SwarmChemistryTests_iOS */,
 				ED7C21361F3AD10B00018F97 /* SwarmChemistryTests_Mac */,
-				ED7C21631F3AE51000018F97 /* Demo_Mac */,
 				2CA5C3121F3CA0DF0037080C /* Demo_iOS */,
+				ED7C21631F3AE51000018F97 /* Demo_Mac */,
 			);
 		};
 /* End PBXProject section */
@@ -613,8 +613,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3EDT3669ZJ;
 				INFOPLIST_FILE = Demo_iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "mitsuyoshi.Demo-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = mitsuyoshi.SwarmChemistryIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -626,8 +627,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3EDT3669ZJ;
 				INFOPLIST_FILE = Demo_iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "mitsuyoshi.Demo-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = mitsuyoshi.SwarmChemistryIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
