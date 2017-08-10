@@ -130,6 +130,9 @@ public extension Population {
         
         let distances = population
           .map { neighbor -> (distance: Value, individual: Individual)? in
+            guard neighbor !== individual else {
+              return nil
+            }
             let distance = individual.position.distance(neighbor.position)
             guard distance < individual.genome.neighborhoodRadius else {
               return nil
@@ -139,7 +142,7 @@ public extension Population {
           .flatMap { $0 }
         
         if distances.count == 0 {
-          Log.debug("No nearby neighbors")
+//          Log.debug("No nearby neighbors")
           // TODO:
         }
         
