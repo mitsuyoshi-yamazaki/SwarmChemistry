@@ -32,30 +32,35 @@ extension Population {
   public init?(_ recipeText: String, numberOfPopulation: Int? = nil) {
     func parseLine(_ text: String) -> (count: Int, genomeText: String)? {
       let components = text
-        .trimmingCharacters(in: .whitespaces)
+        .replacingOccurrences(of: " ", with: "")
         .components(separatedBy: "*")
       
       guard
         let count = Int(components.first ?? ""),
         let genomeText = components.dropFirst().first
       else {
+        Log.debug("Parse line failed: \"\(text)\"")
         return nil
       }
       return (count: count, genomeText: genomeText)
     }
     func parseGenome(from text: String) -> Parameters? {
       let components = text
-        .trimmingCharacters(in: .whitespaces)
-        .trimmingCharacters(in: .init(charactersIn: "()"))
+        .replacingOccurrences(of: " ", with: "")
+        .replacingOccurrences(of: "(", with: "")
+        .replacingOccurrences(of: ")", with: "")
         .components(separatedBy: ",")
       
       guard let values = components.map({ Value($0) }) as? [Value] else {
+        Log.debug("Parse genome parameters failed: \"\(text)\"")
         return nil
       }
       return Parameters(values)
     }
     
-    let result = recipeText.components(separatedBy: "\n")
+    let result = recipeText
+      .trimmingCharacters(in: .whitespacesAndNewlines)
+      .components(separatedBy: "\n")
       .map { line -> (count: Int, genomeText: String)? in
         parseLine(line)
       }
@@ -70,7 +75,7 @@ extension Population {
       }
     
     guard let recipe = result as? [(count: Int, genome: Parameters)] else {
-      Log.debug("Parsing recipe failed:\n\(recipeText)")
+      Log.debug("Parsing recipe failed")
       return nil
     }
     
@@ -91,9 +96,7 @@ extension Population {
       }
       .flatMap { $0 }
   }
-}
-
-extension Population {
+  
   public func uniqueGenomes() -> [(genome: Parameters, count: Int)] {
     // Could we make it O(n) ?
     return population
@@ -102,9 +105,18 @@ extension Population {
       }
       .map { genome -> (genome: Parameters, count: Int) in
         return (genome: genome, count: self.population.filter { $0.genome == genome }.count)
-      }
+    }
   }
-  
+
+  public func recipe() -> String {
+    return uniqueGenomes()
+      .map { "\($0.count) * \($0.genome)" }
+      .joined(separator: "\n")
+  }
+}
+
+// MARK: - Run
+extension Population {
   public func step(_ count: Int = 1) {
     guard count > 0 else {
       Log.error("Argument \"count\" should be a positive value")
@@ -175,11 +187,10 @@ extension Population {
   }
 }
 
+// MARK: - CustomStringConvertible
 extension Population: CustomStringConvertible {
   // po print(self.description)
   public var description: String {
-    return uniqueGenomes()
-      .map { "\($0.count) * \($0.genome)" }
-      .joined(separator: "\n")
+    return recipe()
   }
 }
