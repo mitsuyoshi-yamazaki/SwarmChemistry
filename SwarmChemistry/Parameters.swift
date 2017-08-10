@@ -21,19 +21,19 @@ public struct Parameters {
   public let maxSpeed: Value
   public static let maxSpeedMax = 40.0
   
-  public let cohesiveForce: Value
+  public let cohesiveForce: Value // c1
   public static let cohesiveForceMax = 1.0
   
-  public let aligningForce: Value
+  public let aligningForce: Value // c2
   public static let aligningForceMax = 1.0
   
-  public let separatingForce: Value
+  public let separatingForce: Value // c3
   public static let separatingForceMax = 100.0
   
-  public let probabilityOfRandomSteering: Value
+  public let probabilityOfRandomSteering: Value // c4
   public static let probabilityOfRandomSteeringMax = 0.5
   
-  public let tendencyOfPacekeeping: Value
+  public let tendencyOfPacekeeping: Value // c5
   public static let tendencyOfPacekeepingMax = 1.0
   
   public let maxVelocity: Value

@@ -36,7 +36,7 @@ class ViewController: NSViewController {
     isRunning = false
 
     let numberOfPopulation = 1300
-    let fieldSize = Coordinate(1000, 1000)
+    let fieldSize = Coordinate(2000, 2000)
 
     let recipeInsurmountableWall = ""
     + "42 * (52.57, 9.91, 20.42, 0.32, 0.76, 1.8, 0.01, 0.64)\n"
@@ -59,6 +59,11 @@ class ViewController: NSViewController {
     + "8 * (159.59, 2.09, 24.19, 0.96, 0.59, 76.03, 0.01, 0.07)\n"
     + "42 * (73.07, 1.82, 2.36, 0.27, 0.61, 40.55, 0.22, 0.86)\n"
 
+    let recipeJellyFish = ""
+    + "134 * (262.65, 12.01, 25.87, 0.97, 1.0, 56.35, 0.26, 0.61)\n"
+    + "67 * (288.17, 6.19, 23.37, 0.95, 1.0, 1.31, 0.1, 0.9)\n"
+    + "68 * (150.5, 12.97, 15.87, 0.46, 0.39, 57.95, 0.17, 0.48)\n"
+    
     renderView.population = Population.init(recipeCellWithTwoNuclei,
                                             numberOfPopulation: numberOfPopulation,
                                             fieldSize: fieldSize)!
@@ -93,7 +98,7 @@ func random() -> Int {
 class RenderView: NSView {
   
   var population: Population?
-  var cellSize: CGFloat = 2.0
+  var cellSize: CGFloat = 10.0
 
   override func draw(_ dirtyRect: NSRect) {
     guard let context = NSGraphicsContext.current()?.cgContext else {

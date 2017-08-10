@@ -125,66 +125,72 @@ public extension Population {
       return
     }
     
+    func getNeighbors(individual: Individual) -> [(distance: Value, individual: Individual)] {
+      return population
+        .map { neighbor -> (distance: Value, individual: Individual)? in
+          guard neighbor !== individual else {
+            return nil
+          }
+          let distance = individual.position.distance(neighbor.position)
+          guard distance < individual.genome.neighborhoodRadius else {
+            return nil
+          }
+          return (distance: distance, individual: neighbor)
+        }
+        .flatMap { $0 }
+    }
+    
     (0..<count).forEach { _ in
       population.forEach { individual in
         
-        let distances = population
-          .map { neighbor -> (distance: Value, individual: Individual)? in
-            guard neighbor !== individual else {
-              return nil
-            }
-            let distance = individual.position.distance(neighbor.position)
-            guard distance < individual.genome.neighborhoodRadius else {
-              return nil
-            }
-            return (distance: distance, individual: neighbor)
-          }
-          .flatMap { $0 }
+        let genome = individual.genome
+        let neighbors = getNeighbors(individual: individual)
+        let acceleration: Coordinate
         
-        if distances.count == 0 {
-//          Log.debug("No nearby neighbors")
-          // TODO:
-        }
-        
-        let numberOfNeighbors = Value(distances.count)
-        
-        // Center
-        let sumCenter = distances.reduce(Coordinate.zero) { (result, value) -> Coordinate in
-          return result + value.individual.position
-        }
-        let averageCenter = sumCenter / numberOfNeighbors
-        
-        // Velocity
-        let sumVelocity = distances.reduce(Coordinate.zero) { (result, value) -> Coordinate in
-          return result + value.individual.velocity
-        }
-        let averageVelocity = sumVelocity / numberOfNeighbors
-        
-        // Separation
-        let sumSeparation = distances.reduce(Coordinate.zero) { (result, value) -> Coordinate in
-          let divider = value.distance * individual.genome.separatingForce
-          return result + (individual.position - value.individual.position) / divider
-        }
-        
-        // Steering
-        let steering: Coordinate
-        if Double(arc4random() % 100) < (individual.genome.probabilityOfRandomSteering * 100.0) {
-          steering = Coordinate(Double(arc4random() % 4) - 1.5, Double(arc4random() % 4) - 1.5)
+        if neighbors.count == 0 {
+          acceleration = Coordinate(1, 1).random() - Coordinate(0.5, 0.5)
+          
         } else {
-          steering = .zero
+          let numberOfNeighbors = Value(neighbors.count)
+          
+          // Center
+          let sumCenter = neighbors.reduce(Coordinate.zero) { (result, value) -> Coordinate in
+            return result + value.individual.position
+          }
+          let averageCenter = sumCenter / numberOfNeighbors
+          
+          // Velocity
+          let sumVelocity = neighbors.reduce(Coordinate.zero) { (result, value) -> Coordinate in
+            return result + value.individual.velocity
+          }
+          let averageVelocity = sumVelocity / numberOfNeighbors
+
+          // Separation
+          let sumSeparation = neighbors.reduce(Coordinate.zero) { (result, value) -> Coordinate in
+            return result
+              + (individual.position - value.individual.position)
+              / max(value.distance * value.distance, 0.001)
+              * genome.separatingForce
+          }
+          
+          // Steering
+          let steering: Coordinate
+          if Double(arc4random() % 100) < (genome.probabilityOfRandomSteering * 100.0) {
+            steering = Coordinate(Value(arc4random() % 10) - 5.0, Value(arc4random() % 10) - 5.0)
+          } else {
+            steering = .zero
+          }
+          
+          acceleration = (averageCenter - individual.position) * genome.cohesiveForce
+            + (averageVelocity - individual.velocity) * genome.aligningForce
+            + sumSeparation
+            + steering
         }
-        
-        let acceleration = (averageCenter - individual.position) * individual.genome.cohesiveForce
-          + (averageVelocity - individual.velocity) * individual.genome.aligningForce
-          + sumSeparation
-          + steering
         
         individual.accelerate(acceleration)
         
-        let distance = Swift.max(hypot(individual.acceleration.x, individual.acceleration.y), 0.0001)
-        let accelerateMultiplier = (individual.genome.normalSpeed - distance) / distance * individual.genome.tendencyOfPacekeeping
-        
-        individual.accelerate(individual.acceleration * accelerateMultiplier)
+        let d = max(individual.acceleration.size(), 0.001)
+        individual.accelerate(individual.acceleration * (genome.normalSpeed - d) / d * genome.tendencyOfPacekeeping)
         
         individual.move(in: self.fieldSize)
       }

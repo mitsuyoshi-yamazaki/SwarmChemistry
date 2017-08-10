@@ -34,9 +34,9 @@ extension Individual {
   func accelerate(_ acceleration: Coordinate) {
     self.acceleration = self.acceleration + acceleration
 
-    let magunitude = hypot(self.acceleration.x, self.acceleration.y)
-    if magunitude > genome.maxVelocity {
-      self.acceleration = self.acceleration * (genome.maxVelocity / magunitude)
+    let d = self.acceleration.x * self.acceleration.x + self.acceleration.y * self.acceleration.y
+    if d > genome.maxVelocity {
+      self.acceleration = self.acceleration * (genome.maxSpeed / sqrt(d))
     }
   }
   
