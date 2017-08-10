@@ -33,6 +33,8 @@
 		ED7C217D1F3AF68A00018F97 /* Population.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21761F3AF54100018F97 /* Population.swift */; };
 		ED7C217F1F3AFBE600018F97 /* Individual.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C217E1F3AFBE600018F97 /* Individual.swift */; };
 		ED7C21801F3AFBE600018F97 /* Individual.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C217E1F3AFBE600018F97 /* Individual.swift */; };
+		EDABFDF51F3C5A3C00E1D56C /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDABFDF41F3C5A3C00E1D56C /* Recipe.swift */; };
+		EDABFDF61F3C5A4500E1D56C /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDABFDF41F3C5A3C00E1D56C /* Recipe.swift */; };
 		EDBA52431F3B11D60091BEE5 /* PopulationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBA52421F3B11D60091BEE5 /* PopulationTests.swift */; };
 		EDBA52441F3B11D60091BEE5 /* PopulationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBA52421F3B11D60091BEE5 /* PopulationTests.swift */; };
 /* End PBXBuildFile section */
@@ -98,6 +100,7 @@
 		ED97B22C1F398ECF001DDA4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED97B2381F39901D001DDA4B /* SwarmChemistry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwarmChemistry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED97B2451F399037001DDA4B /* SwarmChemistry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwarmChemistry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDABFDF41F3C5A3C00E1D56C /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		EDBA52421F3B11D60091BEE5 /* PopulationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopulationTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -196,6 +199,7 @@
 				ED7C21161F39942800018F97 /* Parameters.swift */,
 				ED7C217E1F3AFBE600018F97 /* Individual.swift */,
 				ED7C21761F3AF54100018F97 /* Population.swift */,
+				EDABFDF41F3C5A3C00E1D56C /* Recipe.swift */,
 				ED7C211F1F39A91E00018F97 /* Coordinate.swift */,
 				ED7C211C1F399F6E00018F97 /* Utility.swift */,
 				ED7C21731F3AEA5100018F97 /* PlatformSpecific.swift */,
@@ -449,6 +453,7 @@
 			files = (
 				ED7C217F1F3AFBE600018F97 /* Individual.swift in Sources */,
 				ED7C21771F3AF54100018F97 /* Population.swift in Sources */,
+				EDABFDF51F3C5A3C00E1D56C /* Recipe.swift in Sources */,
 				ED7C21171F39942800018F97 /* Parameters.swift in Sources */,
 				ED7C211D1F399F6E00018F97 /* Utility.swift in Sources */,
 				ED7C21201F39A91E00018F97 /* Coordinate.swift in Sources */,
@@ -462,6 +467,7 @@
 			files = (
 				ED7C21801F3AFBE600018F97 /* Individual.swift in Sources */,
 				ED7C217D1F3AF68A00018F97 /* Population.swift in Sources */,
+				EDABFDF61F3C5A4500E1D56C /* Recipe.swift in Sources */,
 				ED7C21181F39942800018F97 /* Parameters.swift in Sources */,
 				ED7C211E1F399F6E00018F97 /* Utility.swift in Sources */,
 				ED7C21211F39A98600018F97 /* Coordinate.swift in Sources */,

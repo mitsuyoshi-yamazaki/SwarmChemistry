@@ -24,61 +24,7 @@ public struct Population {
 
 // MARK: - Recipe
 public extension Population {
-  /**
-   Expecting:
-   41 * (249.84, 4.85, 28.73, 0.34, 0.45, 14.44, 0.09, 0.82)
-   26 * (277.87, 15.02, 35.48, 0.68, 0.05, 82.96, 0.46, 0.9)
-   ...
-   */
-  init?(_ recipeText: String, numberOfPopulation: Int? = nil, fieldSize: Coordinate = Coordinate(500, 500)) {
-    func parseLine(_ text: String) -> (count: Int, genomeText: String)? {
-      let components = text
-        .replacingOccurrences(of: " ", with: "")
-        .components(separatedBy: "*")
-      
-      guard
-        let count = Int(components.first ?? ""),
-        let genomeText = components.dropFirst().first
-      else {
-        Log.debug("Parse line failed: \"\(text)\"")
-        return nil
-      }
-      return (count: count, genomeText: genomeText)
-    }
-    func parseGenome(from text: String) -> Parameters? {
-      let components = text
-        .replacingOccurrences(of: " ", with: "")
-        .replacingOccurrences(of: "(", with: "")
-        .replacingOccurrences(of: ")", with: "")
-        .components(separatedBy: ",")
-      
-      guard let values = components.map({ Value($0) }) as? [Value] else {
-        Log.debug("Parse genome parameters failed: \"\(text)\"")
-        return nil
-      }
-      return Parameters(values)
-    }
-    
-    let result = recipeText
-      .trimmingCharacters(in: .whitespacesAndNewlines)
-      .components(separatedBy: "\n")
-      .map { line -> (count: Int, genomeText: String)? in
-        parseLine(line)
-      }
-      .map { value -> (count: Int, genome: Parameters)? in
-        guard let value = value else {
-          return nil
-        }
-        guard let genome = parseGenome(from: value.genomeText) else {
-          return nil
-        }
-        return (count: value.count, genome: genome)
-      }
-    
-    guard let recipe = result as? [(count: Int, genome: Parameters)] else {
-      Log.debug("Parsing recipe failed")
-      return nil
-    }
+  init(_ recipe: Recipe, numberOfPopulation: Int? = nil, fieldSize: Coordinate = Coordinate(500, 500)) {
     
     let sum = recipe
       .reduce(0) { (result, value) -> Int in
@@ -99,7 +45,7 @@ public extension Population {
     self.fieldSize = fieldSize
   }
   
-  func uniqueGenomes() -> [(genome: Parameters, count: Int)] {
+  func recipe() -> Recipe {
     // Could we make it O(n) ?
     return population
       .reduce([Parameters]()) { (result, individual) -> [Parameters] in
@@ -108,12 +54,6 @@ public extension Population {
       .map { genome -> (genome: Parameters, count: Int) in
         return (genome: genome, count: self.population.filter { $0.genome == genome }.count)
     }
-  }
-
-  func recipe() -> String {
-    return uniqueGenomes()
-      .map { "\($0.count) * \($0.genome)" }
-      .joined(separator: "\n")
   }
 }
 
@@ -200,8 +140,11 @@ public extension Population {
 
 // MARK: - CustomStringConvertible
 extension Population: CustomStringConvertible {
-  // po print(self.description)
   public var description: String {
+    // FixMe: ambiguous usage of description
+//    return recipe().description
     return recipe()
+      .map { "\($0.count) * \($0.genome)" }
+      .joined(separator: "\n")
   }
 }
