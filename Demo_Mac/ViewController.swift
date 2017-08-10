@@ -35,7 +35,7 @@ class ViewController: NSViewController {
   private func setup() {
     isRunning = false
 
-    let numberOfPopulation = 2000
+    let numberOfPopulation = 1000
     let fieldSize = Coordinate(6000, 4000)
 
     renderView.population = Population.init(Recipe.jellyFish,
