@@ -14,36 +14,64 @@ protocol RecipeListViewControllerDelegate: class {
 }
 
 class RecipeListViewController: UITableViewController {
+  enum Section: Int {
+    case random
+    case preset
+  }
   
   weak var delegate: RecipeListViewControllerDelegate?
   
   private let recipeList = Recipe.definedRecipes
   
+  private func recipe(at indexPath: IndexPath) -> (name: String, recipe: Recipe) {
+    switch Section.init(rawValue: indexPath.section)! {
+    case .random:
+      return (name: "Random", Recipe.random(numberOfGenomes: 5))
+    case .preset:
+      return recipeList[indexPath.row]
+    }
+  }
+
+  // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
   }
   
   // MARK: - TableViewDataSource
   override func numberOfSections(in tableView: UITableView) -> Int {
-    return 1
+    return 2
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return recipeList.count
+    switch Section.init(rawValue: section)! {
+    case .random:
+      return 1
+    case .preset:
+      return recipeList.count
+    }
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-    let recipe = recipeList[indexPath.row]
+    let recipe = self.recipe(at: indexPath)
     
     cell.textLabel?.text = recipe.name
     
     return cell
   }
   
+  override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    switch Section.init(rawValue: section)! {
+    case .random:
+      return nil
+    case .preset:
+      return "Preset"
+    }
+  }
+  
   // MARK: - TableViewDelegate
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let recipe = recipeList[indexPath.row]
+    let recipe = self.recipe(at: indexPath)
     delegate?.recipeListViewController(self, didSelect: recipe)
     
     dismiss(animated: true, completion: nil)
