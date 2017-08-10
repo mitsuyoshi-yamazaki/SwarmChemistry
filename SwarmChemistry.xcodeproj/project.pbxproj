@@ -12,6 +12,8 @@
 		2CA5C31B1F3CA0DF0037080C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CA5C3191F3CA0DF0037080C /* Main.storyboard */; };
 		2CA5C31D1F3CA0DF0037080C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CA5C31C1F3CA0DF0037080C /* Assets.xcassets */; };
 		2CA5C3201F3CA0DF0037080C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CA5C31E1F3CA0DF0037080C /* LaunchScreen.storyboard */; };
+		2CA5C3281F3CA1A00037080C /* SwarmRenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3251F3CA19B0037080C /* SwarmRenderView.swift */; };
+		2CA5C3291F3CA1A00037080C /* SwarmRenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3251F3CA19B0037080C /* SwarmRenderView.swift */; };
 		ED7C21171F39942800018F97 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21161F39942800018F97 /* Parameters.swift */; };
 		ED7C21181F39942800018F97 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21161F39942800018F97 /* Parameters.swift */; };
 		ED7C211D1F399F6E00018F97 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C211C1F399F6E00018F97 /* Utility.swift */; };
@@ -90,6 +92,7 @@
 		2CA5C31C1F3CA0DF0037080C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2CA5C31F1F3CA0DF0037080C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2CA5C3211F3CA0DF0037080C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CA5C3251F3CA19B0037080C /* SwarmRenderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwarmRenderView.swift; sourceTree = "<group>"; };
 		ED7C21161F39942800018F97 /* Parameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
 		ED7C211C1F399F6E00018F97 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		ED7C211F1F39A91E00018F97 /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
@@ -168,6 +171,7 @@
 		2CA5C30D1F3CA0B60037080C /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				2CA5C3251F3CA19B0037080C /* SwarmRenderView.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -496,6 +500,7 @@
 			files = (
 				2CA5C3181F3CA0DF0037080C /* ViewController.swift in Sources */,
 				2CA5C3161F3CA0DF0037080C /* AppDelegate.swift in Sources */,
+				2CA5C3281F3CA1A00037080C /* SwarmRenderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,6 +532,7 @@
 			files = (
 				ED7C21691F3AE51100018F97 /* ViewController.swift in Sources */,
 				ED7C21671F3AE51100018F97 /* AppDelegate.swift in Sources */,
+				2CA5C3291F3CA1A00037080C /* SwarmRenderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
