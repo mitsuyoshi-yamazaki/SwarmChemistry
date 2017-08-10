@@ -8,6 +8,7 @@
 
 import Foundation
 
+// MARK: - Population
 public struct Population {
   public var fieldSize = Coordinate(500, 500)
   public let population: [Individual]
@@ -22,14 +23,14 @@ public struct Population {
 }
 
 // MARK: - Recipe
-extension Population {
+public extension Population {
   /**
    Expecting:
    41 * (249.84, 4.85, 28.73, 0.34, 0.45, 14.44, 0.09, 0.82)
    26 * (277.87, 15.02, 35.48, 0.68, 0.05, 82.96, 0.46, 0.9)
    ...
    */
-  public init?(_ recipeText: String, numberOfPopulation: Int? = nil) {
+  init?(_ recipeText: String, numberOfPopulation: Int? = nil) {
     func parseLine(_ text: String) -> (count: Int, genomeText: String)? {
       let components = text
         .replacingOccurrences(of: " ", with: "")
@@ -97,7 +98,7 @@ extension Population {
       .flatMap { $0 }
   }
   
-  public func uniqueGenomes() -> [(genome: Parameters, count: Int)] {
+  func uniqueGenomes() -> [(genome: Parameters, count: Int)] {
     // Could we make it O(n) ?
     return population
       .reduce([Parameters]()) { (result, individual) -> [Parameters] in
@@ -108,16 +109,16 @@ extension Population {
     }
   }
 
-  public func recipe() -> String {
+  func recipe() -> String {
     return uniqueGenomes()
       .map { "\($0.count) * \($0.genome)" }
       .joined(separator: "\n")
   }
 }
 
-// MARK: - Run
-extension Population {
-  public func step(_ count: Int = 1) {
+// MARK: - Function
+public extension Population {
+  func step(_ count: Int = 1) {
     guard count > 0 else {
       Log.error("Argument \"count\" should be a positive value")
       return

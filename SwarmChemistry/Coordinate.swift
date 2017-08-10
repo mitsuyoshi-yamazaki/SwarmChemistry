@@ -8,6 +8,7 @@
 
 import Foundation
 
+// MARK: - Coordinate
 public struct Coordinate {
   
   public let x: Value
@@ -15,6 +16,20 @@ public struct Coordinate {
   //  let z: Double // TODO: make it 3D
 }
 
+// MARK: - Convenience initializer
+public extension Coordinate {
+  public init(_ x: Value, _ y: Value) {
+    self.x = x
+    self.y = y
+  }
+  
+  public init(_ x: Int, _ y: Int) {
+    self.x = Value(x)
+    self.y = Value(y)
+  }
+}
+
+// MARK: - Function
 public extension Coordinate {
   static let zero = Coordinate(0.0, 0.0)
   
@@ -56,18 +71,7 @@ public extension Coordinate {
   }
 }
 
-public extension Coordinate {
-  public init(_ x: Value, _ y: Value) {
-    self.x = x
-    self.y = y
-  }
-  
-  public init(_ x: Int, _ y: Int) {
-    self.x = Value(x)
-    self.y = Value(y)
-  }
-}
-
+// MARK: - Operator override
 public extension Coordinate {
   static func +(lhs: Coordinate, rhs: Coordinate) -> Coordinate {
     return Coordinate(lhs.x + rhs.x, lhs.y + rhs.y)
@@ -86,12 +90,14 @@ public extension Coordinate {
   }
 }
 
+// MARK: - CustomStringConvertible
 extension Coordinate: CustomStringConvertible {
   public var description: String {
     return "(\(x), \(y))"
   }
 }
 
+// MARK: - Equatable
 extension Coordinate: Equatable {
   public static func ==(lhs: Coordinate, rhs: Coordinate) -> Bool {
     return (lhs.x == rhs.x) && (lhs.y == rhs.y)

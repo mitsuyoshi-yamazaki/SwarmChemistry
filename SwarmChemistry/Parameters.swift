@@ -9,6 +9,7 @@
 import Foundation
 import CoreGraphics
 
+// MARK: - Parameters
 public struct Parameters {
   
   public let neighborhoodRadius: Value
@@ -58,45 +59,11 @@ public struct Parameters {
   }
 }
 
-extension Parameters {
-  public var all: [Value] {
-    return [
-      neighborhoodRadius,
-      normalSpeed,
-      maxSpeed,
-      cohesiveForce,
-      aligningForce,
-      separatingForce,
-      probabilityOfRandomSteering,
-      tendencyOfPacekeeping
-    ]
-  }
-  
-  public static var maxValues: [Value] {
-    return [
-      neighborhoodRadiusMax,
-      normalSpeedMax,
-      maxSpeedMax,
-      cohesiveForceMax,
-      aligningForceMax,
-      separatingForceMax,
-      probabilityOfRandomSteeringMax,
-      tendencyOfPacekeepingMax
-    ]
-  }
-  
-  public static var random: Parameters {
-    let values = maxValues
-      .map { Value(Int(arc4random()) % Int($0 * 100)) / 100.0 }
-    
-    return Parameters(values)!
-  }
-}
-
-extension Parameters {
+// MARK: Convenience initializer
+public extension Parameters {
   internal static let numberOfParameters = 8
   
-  public init?(_ parameters: [Value]) {
+  init?(_ parameters: [Value]) {
     guard parameters.count == type(of: self).numberOfParameters else {
       return nil
     }
@@ -112,7 +79,7 @@ extension Parameters {
     tendencyOfPacekeeping       = parameters[7]
     
     maxVelocity = maxSpeed * maxSpeed
-
+    
     let red = CGFloat((cohesiveForce / type(of: self).cohesiveForceMax) * 0.8)
     let green = CGFloat((aligningForce / type(of: self).aligningForceMax) * 0.8)
     let blue = CGFloat((separatingForce / type(of: self).separatingForceMax) * 0.8)
@@ -120,6 +87,43 @@ extension Parameters {
   }
 }
 
+// MARK: - Function
+public extension Parameters {
+  var all: [Value] {
+    return [
+      neighborhoodRadius,
+      normalSpeed,
+      maxSpeed,
+      cohesiveForce,
+      aligningForce,
+      separatingForce,
+      probabilityOfRandomSteering,
+      tendencyOfPacekeeping
+    ]
+  }
+  
+  static var maxValues: [Value] {
+    return [
+      neighborhoodRadiusMax,
+      normalSpeedMax,
+      maxSpeedMax,
+      cohesiveForceMax,
+      aligningForceMax,
+      separatingForceMax,
+      probabilityOfRandomSteeringMax,
+      tendencyOfPacekeepingMax
+    ]
+  }
+  
+  static var random: Parameters {
+    let values = maxValues
+      .map { Value(Int(arc4random()) % Int($0 * 100)) / 100.0 }
+    
+    return Parameters(values)!
+  }
+}
+
+// MARK: - CustomStringConvertible
 extension Parameters: CustomStringConvertible {
   public var description: String {
     let values = all.map { String.init(format: "%.2f", $0) }.joined(separator: ", ")
@@ -127,6 +131,7 @@ extension Parameters: CustomStringConvertible {
   }
 }
 
+// MARK: - Equatable
 extension Parameters: Equatable {
   public static func ==(lhs: Parameters, rhs: Parameters) -> Bool {
     return lhs.all == rhs.all

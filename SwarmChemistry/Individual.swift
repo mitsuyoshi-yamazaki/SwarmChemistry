@@ -8,6 +8,7 @@
 
 import Foundation
 
+// MARK: - Individual
 public class Individual {
   
   fileprivate(set) public var position: Coordinate
@@ -21,12 +22,14 @@ public class Individual {
   }
 }
 
-extension Individual {
-  public convenience init(genome: Parameters) {
+// MARK: - Convenience initializer
+public extension Individual {
+  convenience init(genome: Parameters) {
     self.init(position: .zero, genome: genome)
   }
 }
 
+// MARK: - Function
 extension Individual {
   func accelerate(_ acceleration: Coordinate) {
     self.acceleration = self.acceleration + acceleration
@@ -43,6 +46,7 @@ extension Individual {
   }
 }
 
+// MARK: - CustomStringConvertible
 extension Individual: CustomStringConvertible {
   public var description: String {
     return "(\(String(describing: type(of: self))) position: \(position), genome: \(genome))"
