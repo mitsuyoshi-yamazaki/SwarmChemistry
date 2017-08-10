@@ -45,7 +45,7 @@ class ViewController: NSViewController {
 //    let genomeCount = genomes.count
 
     let numberOfPopulation = 1300
-    let genomeCount = numberOfPopulation / 50
+    let genomeCount = 8
   
     let genomes: [Parameters] = (0..<genomeCount)
       .map { _ in Parameters.random }
@@ -58,7 +58,7 @@ class ViewController: NSViewController {
       .map { Individual.init(position: $0, genome: genomes[random() % genomeCount]) }
 //      .map { Individual.init(position: $0, genome: Parameters.random) }
  
-    let fieldSize = Coordinate(width, height)
+    let fieldSize = Coordinate(width / 2, height / 2)
 
     renderView.population = Population.init(fieldSize: fieldSize, population: population)
   }

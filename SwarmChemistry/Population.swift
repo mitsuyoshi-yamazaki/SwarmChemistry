@@ -20,6 +20,7 @@ public struct Population {
 
 extension Population {
   public func uniqueGenomes() -> [(genome: Parameters, count: Int)] {
+    // Could we make it O(n) ?
     return population
       .reduce([Parameters]()) { (result, individual) -> [Parameters] in
         return result.filter { $0 == individual.genome }.isEmpty ? result + [individual.genome] : result
@@ -96,5 +97,14 @@ extension Population {
         individual.move(in: self.fieldSize)
       }
     }
+  }
+}
+
+extension Population: CustomStringConvertible {
+  // po print(self.description)
+  public var description: String {
+    return uniqueGenomes()
+      .map { "\($0.count) * \($0.genome)" }
+      .joined(separator: "\n")
   }
 }
