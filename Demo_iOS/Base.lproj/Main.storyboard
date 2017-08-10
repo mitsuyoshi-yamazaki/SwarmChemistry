@@ -20,7 +20,23 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="SwarmRenderView" customModule="Demo_iOS" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cxl-Xt-jEE">
+                                <rect key="frame" x="10" y="627" width="65" height="30"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="0.20000000000000001" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="RESTART">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tNy-vj-vJd"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Cxl-Xt-jEE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="CxX-n7-o2I"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Cxl-Xt-jEE" secondAttribute="bottom" constant="10" id="gPw-rB-r65"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cZi-lq-mwh"/>
                     <nil key="simulatedTopBarMetrics"/>
