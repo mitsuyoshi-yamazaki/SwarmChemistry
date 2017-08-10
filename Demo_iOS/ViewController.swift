@@ -24,7 +24,7 @@ class ViewController: UIViewController, SwarmRenderer {
     super.viewWillAppear(animated)
     
     navigationController?.setNavigationBarHidden(true, animated: true)
-    stepSwarm()
+    stepSwarm(3)
   }
   
   // MARK: - Function
@@ -38,7 +38,7 @@ class ViewController: UIViewController, SwarmRenderer {
   // MARK: - Action
   @IBAction func reset(sender: AnyObject!) {
     setup()
-    stepSwarm()
+    stepSwarm(3)
   }
 }
 

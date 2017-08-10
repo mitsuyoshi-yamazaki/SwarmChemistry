@@ -19,7 +19,7 @@ protocol SwarmRenderer: class {
   var isRunning: Bool { set get }
   
   func setupRenderView(with recipe: Recipe?, numberOfPopulation: Int, fieldSize: Coordinate)
-  func stepSwarm()
+  func stepSwarm(_ step: Int)
 }
 
 extension SwarmRenderer {
@@ -31,21 +31,21 @@ extension SwarmRenderer {
                                             fieldSize: fieldSize)
   }
   
-  func stepSwarm() {
+  func stepSwarm(_ step: Int) {
     guard isRunning == false else {
       return
     }
     isRunning = true
     
     DispatchQueue.global(qos: .userInitiated).async {
-      self.renderView.population?.step(6)
+      self.renderView.population?.step(step)
       DispatchQueue.main.async {
         self.renderView.setNeedsDisplay(self.renderView.bounds)
         guard self.isRunning else {
           return
         }
         self.isRunning = false
-        self.stepSwarm()
+        self.stepSwarm(step)
       }
     }
   }

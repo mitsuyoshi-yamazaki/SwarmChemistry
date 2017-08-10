@@ -23,7 +23,7 @@ class ViewController: NSViewController, SwarmRenderer {
   
   override func viewDidAppear() {
     super.viewDidAppear()
-    stepSwarm()
+    stepSwarm(6)
   }
   
   // MARK: - Function
@@ -34,6 +34,6 @@ class ViewController: NSViewController, SwarmRenderer {
   // MARK: - Action
   @IBAction func reset(sender: AnyObject!) {
     setup()
-    stepSwarm()
+    stepSwarm(6)
   }
 }
