@@ -17,6 +17,7 @@ class ViewController: UIViewController, SwarmRenderer {
   @IBOutlet private weak var recipeSelectionButton: UIButton!
   @IBOutlet weak var renderView: SwarmRenderView!
   var isRunning = false
+  fileprivate var isRecipeSaved = false
   fileprivate var selectedRecipe = (name: "JellyFish", recipe: Recipe.jellyFish)
   
   // MARK: - Lifecycle
@@ -45,12 +46,54 @@ class ViewController: UIViewController, SwarmRenderer {
     let screenSize = UIScreen.main.bounds.size
     let fieldSize = Coordinate(Value(screenSize.width), Value(screenSize.height)) * 10
     setupRenderView(with: selectedRecipe.recipe, numberOfPopulation: 1000, fieldSize: fieldSize)
+    
+    isRecipeSaved = false
   }
   
   // MARK: - Action
   @IBAction func reset(sender: AnyObject!) {
     setup()
     stepSwarm(3)
+  }
+  
+  @IBAction func share(sender: AnyObject!) {
+//    guard isRecipeSaved == false else {
+//      return
+//    }
+    guard let recipeText = renderView.population?.description else {  // Currently Population?.description is the recipe text representable
+      print("No population")
+      return
+    }
+//    guard selectedRecipe.name.lowercased() == "random" else {
+//      print("Preset recipe doesn't need to be saved")
+//      return
+//    }
+//    isRecipeSaved = true
+//
+//    let key = "recipe"
+//    let defaults = UserDefaults.standard
+//    var stored: [String: String] = defaults.object(forKey: key) as? [String : String] ?? [:]
+//    
+    let timestamp = Date().description
+//    stored[timestamp] = recipeText
+//    
+//    defaults.setValue(stored, forKey: key)
+//    defaults.synchronize()
+    
+    //
+//    isRunning = false
+    
+    let activityItems: [Any] = [
+      "\(timestamp)\n\(recipeText)"
+    ]
+    let completionHandler: UIActivityViewControllerCompletionWithItemsHandler = { [unowned self] _ in
+      self.isRunning = true
+    }
+    
+    let activityViewController = UIActivityViewController.init(activityItems: activityItems, applicationActivities: nil)
+    activityViewController.completionWithItemsHandler = completionHandler // FixMe: Not working
+    
+    present(activityViewController, animated: true, completion: nil)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
