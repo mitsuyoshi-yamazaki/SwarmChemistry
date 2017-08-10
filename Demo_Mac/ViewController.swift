@@ -9,63 +9,31 @@
 import Cocoa
 import SwarmChemistry
 
-class ViewController: NSViewController {
+class ViewController: NSViewController, SwarmRenderer {
 
-  @IBOutlet private weak var renderView: SwarmRenderView!
+  @IBOutlet weak var renderView: SwarmRenderView!
   
-  private var isRunning = false
+  var isRunning = false
   
+  // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     setup()
-  }
-  
-  override func viewWillAppear() {
-    super.viewWillAppear()
   }
   
   override func viewDidAppear() {
     super.viewDidAppear()
-    
-    step()
+    stepSwarm()
   }
   
-  // MARK: -
+  // MARK: - Function
   private func setup() {
-    isRunning = false
-
-    let numberOfPopulation = 1000
-    let fieldSize = Coordinate(6000, 4000)
-
-    renderView.population = Population.init(Recipe.jellyFish,
-                                            numberOfPopulation: numberOfPopulation,
-                                            fieldSize: fieldSize)
-    // More recipes see: http://bingweb.binghamton.edu/~sayama/SwarmChemistry/
+    setupRenderView(with: .jellyFish, numberOfPopulation: 1000, fieldSize: Coordinate(6000, 4000))
   }
-  
-  private func step() {
-    isRunning = true
-    
-    DispatchQueue.global(qos: .userInitiated).async {
-      self.renderView.population?.step(6)
-      DispatchQueue.main.async {
-        self.renderView.setNeedsDisplay(self.renderView.bounds)
-        guard self.isRunning else {
-          return
-        }
-        self.step()
-      }
-    }
-  }
-  
-  // MARK: - 
+
+  // MARK: - Action
   @IBAction func reset(sender: AnyObject!) {
     setup()
-    step()
+    stepSwarm()
   }
-}
-
-func random() -> Int {
-  return Int(arc4random())
 }

@@ -8,10 +8,8 @@
 
 #if os(iOS) || os(watchOS) || os(tvOS)
   import UIKit
-  typealias View = UIView
 #elseif os(macOS)
   import Cocoa
-  typealias View = NSView
 #endif
 
 import SwarmChemistry
