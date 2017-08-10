@@ -16,6 +16,28 @@ public typealias Recipe = [GenomeInfo]
 
 // MARK: - Recipe List
 public extension Array where Element == GenomeInfo {
+  static var definedRecipes: [(name: String, recipe: Recipe)] {
+    return [
+      (name: "InsurmountableWall", recipe: insurmountableWall),
+      (name: "CellWithTwoNuclei", recipe: cellWithTwoNuclei),
+      (name: "Multicellularity", recipe: multicellularity),
+      (name: "JellyFish", recipe: jellyFish),
+      (name: "NoWaitThisWay", recipe: noWaitThisWay),
+      (name: "RecombiningBlobs", recipe: recombiningBlobs),
+      (name: "PlayingCatch", recipe: playingCatch),
+      (name: "PulsatingEye", recipe: pulsatingEye),
+      (name: "AggressivePredator", recipe: aggressivePredator),
+      (name: "FastWalkerAndSlowFollower", recipe: fastWalkerAndSlowFollower),
+      (name: "Swinger", recipe: swinger),
+      (name: "Rotary", recipe: rotary),
+      (name: "WeddingRing", recipe: weddingRing),
+      (name: "TurbulentRunner", recipe: turbulentRunner),
+      (name: "Blobs", recipe: blobs),
+      (name: "LinearOscillator", recipe: linearOscillator),
+    ]
+    // More recipes see: http://bingweb.binghamton.edu/~sayama/SwarmChemistry/
+  }
+  
   static var insurmountableWall: Recipe {
     return self.init(Raw.insurmountableWall)!
   }
@@ -34,6 +56,50 @@ public extension Array where Element == GenomeInfo {
   
   static var noWaitThisWay: Recipe {
     return self.init(Raw.noWaitThisWay)!
+  }
+  
+  static var recombiningBlobs: Recipe {
+    return self.init(Raw.recombiningBlobs)!
+  }
+
+  static var playingCatch: Recipe {
+    return self.init(Raw.playingCatch)!
+  }
+
+  static var pulsatingEye: Recipe {
+    return self.init(Raw.pulsatingEye)!
+  }
+
+  static var aggressivePredator: Recipe {
+    return self.init(Raw.aggressivePredator)!
+  }
+
+  static var fastWalkerAndSlowFollower: Recipe {
+    return self.init(Raw.fastWalkerAndSlowFollower)!
+  }
+
+  static var swinger: Recipe {
+    return self.init(Raw.swinger)!
+  }
+  
+  static var rotary: Recipe {
+    return self.init(Raw.rotary)!
+  }
+
+  static var weddingRing: Recipe {
+    return self.init(Raw.weddingRing)!
+  }
+  
+  static var turbulentRunner: Recipe {
+    return self.init(Raw.turbulentRunner)!
+  }
+
+  static var blobs: Recipe {
+    return self.init(Raw.blobs)!
+  }
+
+  static var linearOscillator: Recipe {
+    return self.init(Raw.linearOscillator)!
   }
 }
 
@@ -78,6 +144,87 @@ private extension Array where Element == GenomeInfo {
       + "60 * (262.68, 2.82, 38.32, 0.21, 0.01, 54.93, 0.11, 0.19)\n"
       + "40 * (78.58, 5.7, 33.23, 0.89, 0.18, 45.44, 0.04, 0.05)\n"
       + "40 * (257.27, 14.96, 35.66, 0.2, 0.8, 47.81, 0.13, 0.13)\n"
+    }
+    
+    static var recombiningBlobs: String {
+      return ""
+      + "132 * (45.91, 10.82, 21.11, 0.86, 0.13, 42.48, 0.32, 0.74)\n"
+      + "84 * (113.26, 3.41, 25.71, 0.4, 0.39, 49.53, 0.13, 0.24)\n"
+    }
+
+    static var playingCatch: String {
+      return ""
+      + "76 * (84.06, 0.09, 9.89, 0.33, 0.32, 15.66, 0.22, 0.68)\n"
+      + "100 * (158.86, 18.4, 24.98, 0.3, 0.3, 1.72, 0.06, 0.37)\n"
+    }
+
+    static var pulsatingEye: String {
+      return ""
+      + "102 * (293.86, 17.06, 38.3, 0.81, 0.05, 0.83, 0.2, 0.9)\n"
+      + "124 * (226.18, 19.27, 24.57, 0.95, 0.84, 13.09, 0.07, 0.8)\n"
+      + "74 * (49.98, 8.44, 4.39, 0.92, 0.14, 96.92, 0.13, 0.51)\n"
+    }
+
+    static var chaosCells: String {
+      return ""
+      + "144 * (109.03, 6.71, 12.7, 0.47, 0.6, 61.43, 0.02, 0.21)\n"
+      + "89 * (117.15, 16.33, 31.88, 0.39, 0.13, 12.96, 0.48, 0.8)\n"
+      + "67 * (76.3, 8.59, 26.57, 0.7, 0.64, 28.39, 0.3, 0.35)\n"
+    }
+
+    static var aggressivePredator: String {
+      return ""
+      + "18 * (211.92, 12.59, 19.37, 0.09, 0.21, 57.92, 0.0, 0.95)\n"
+      + "41 * (257.27, 14.96, 35.66, 0.2, 0.8, 47.81, 0.13, 0.13)\n"
+      + "35 * (262.68, 2.82, 38.32, 0.21, 0.01, 54.93, 0.11, 0.19)\n"
+      + "31 * (78.58, 5.7, 33.23, 0.89, 0.18, 45.44, 0.04, 0.05)\n"
+      + "7 * (194.21, 12.88, 21.68, 0.97, 0.19, 99.21, 0.5, 0.13)\n"
+    }
+    
+    static var fastWalkerAndSlowFollower: String {
+      return ""
+      + "67 * (216.35, 11.75, 7.7, 0.83, 0.97, 97.31, 0.02, 0.38)\n"
+      + "29 * (254.64, 7.28, 7.0, 0.95, 0.11, 22.41, 0.43, 0.31)\n"
+      + "13 * (105.4, 3.55, 5.24, 0.34, 0.18, 23.53, 0.39, 0.24)\n"
+    }
+
+    static var swinger: String {
+      return ""
+      + "48 * (150.39, 15.89, 23.54, 0.74, 0.45, 62.65, 0.33, 0.13)\n"
+      + "152 * (217.14, 12.13, 12.42, 0.59, 0.98, 14.06, 0.04, 0.65)\n"
+      + "14 * (248.54, 5.85, 22.26, 0.43, 0.11, 17.14, 0.06, 0.68)\n"
+      + "31 * (141.53, 2.91, 4.86, 0.92, 0.03, 21.87, 0.28, 0.2)\n"
+    }
+
+    static var rotary: String {
+      return ""
+      + "29 * (122.13, 19.19, 17.98, 0.65, 0.44, 19.88, 0.46, 0.2)\n"
+      + "51 * (299.13, 0.79, 38.71, 0.25, 0.18, 86.49, 0.38, 0.43)\n"
+      + "10 * (252.92, 19.99, 10.21, 0.23, 0.17, 1.22, 0.28, 0.92)\n"
+    }
+
+    static var weddingRing: String {
+      return ""
+      + "24 * (220.51, 13.88, 3.47, 0.46, 0.38, 6.23, 0.19, 0.68)\n"
+      + "13 * (64.07, 1.4, 19.7, 0.88, 0.27, 0.36, 0.47, 0.72)\n"
+      + "35 * (117.53, 7.31, 21.72, 0.3, 0.5, 98.69, 0.03, 0.29)\n"
+    }
+
+    static var turbulentRunner: String {
+      return ""
+      + "131 * (177.1, 9.71, 30.06, 0.8, 0.43, 19.65, 0.45, 0.91)\n"
+      + "169 * (277.3, 14.67, 37.71, 0.68, 0.23, 77.01, 0.02, 0.31)\n"
+    }
+
+    static var blobs: String {
+      return ""
+      + "300 * (20.8, 1.95, 20.75, 0.95, 0.99, 9.31, 0.05, 0.68)\n"
+    }
+
+    static var linearOscillator: String {
+      return ""
+      + "133 * (214.41, 17.93, 35.14, 0.64, 0.13, 0.29, 0.08, 0.97)\n"
+      + "24 * (253.6, 7.19, 15.51, 0.82, 0.33, 32.65, 0.34, 0.56)\n"
     }
   }
 }
