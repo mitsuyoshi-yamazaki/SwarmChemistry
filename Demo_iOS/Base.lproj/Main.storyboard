@@ -35,8 +35,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHE-GL-UpH">
-                                <rect key="frame" x="285" y="627" width="80" height="30"/>
+                                <rect key="frame" x="10" y="20" width="355" height="36"/>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="0.20000000000000001" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="50B-Fr-sjG"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="355" id="gOP-ff-hDg"/>
+                                </constraints>
                                 <state key="normal" title="Recipe">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -48,22 +52,23 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Cxl-Xt-jEE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="CxX-n7-o2I"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="pHE-GL-UpH" secondAttribute="bottom" constant="10" id="FHK-Py-Z86"/>
-                            <constraint firstAttribute="trailing" secondItem="pHE-GL-UpH" secondAttribute="trailing" constant="10" id="YFy-5o-hMg"/>
-                            <constraint firstItem="Cxl-Xt-jEE" firstAttribute="width" secondItem="pHE-GL-UpH" secondAttribute="width" id="aXv-2L-DpM"/>
+                            <constraint firstItem="pHE-GL-UpH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HvF-Pe-eg3"/>
+                            <constraint firstItem="pHE-GL-UpH" firstAttribute="leading" secondItem="Cxl-Xt-jEE" secondAttribute="leading" id="YYW-RF-Lzv"/>
+                            <constraint firstItem="pHE-GL-UpH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="cqJ-wJ-7JA"/>
+                            <constraint firstItem="pHE-GL-UpH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="edj-ox-Iz2"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Cxl-Xt-jEE" secondAttribute="bottom" constant="10" id="gPw-rB-r65"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cZi-lq-mwh"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="recipeSelectionButton" destination="pHE-GL-UpH" id="Z7d-jm-E0h"/>
                         <outlet property="renderView" destination="8bC-Xf-vdC" id="FnM-n3-qA3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1076" y="-544"/>
+            <point key="canvasLocation" x="1076" y="-544.67766116941539"/>
         </scene>
         <!--Select Recipe-->
         <scene sceneID="AH0-fM-Isc">

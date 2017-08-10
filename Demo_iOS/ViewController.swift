@@ -14,9 +14,9 @@ class ViewController: UIViewController, SwarmRenderer {
     case selectRecipe = "SelectRecipe"
   }
   
+  @IBOutlet private weak var recipeSelectionButton: UIButton!
   @IBOutlet weak var renderView: SwarmRenderView!
   var isRunning = false
-
   fileprivate var selectedRecipe = (name: "JellyFish", recipe: Recipe.jellyFish)
   
   // MARK: - Lifecycle
@@ -39,6 +39,8 @@ class ViewController: UIViewController, SwarmRenderer {
   
   // MARK: - Function
   private func setup() {
+    
+    recipeSelectionButton.setTitle(selectedRecipe.name, for: .normal)
     
     let screenSize = UIScreen.main.bounds.size
     let fieldSize = Coordinate(Value(screenSize.width), Value(screenSize.height)) * 10
