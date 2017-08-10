@@ -30,7 +30,7 @@ public extension Population {
    26 * (277.87, 15.02, 35.48, 0.68, 0.05, 82.96, 0.46, 0.9)
    ...
    */
-  init?(_ recipeText: String, numberOfPopulation: Int? = nil) {
+  init?(_ recipeText: String, numberOfPopulation: Int? = nil, fieldSize: Coordinate = Coordinate(500, 500)) {
     func parseLine(_ text: String) -> (count: Int, genomeText: String)? {
       let components = text
         .replacingOccurrences(of: " ", with: "")
@@ -86,7 +86,6 @@ public extension Population {
       }
     let magnitude = Value(numberOfPopulation ?? sum) / Value(sum)
     
-    let fieldSize = Coordinate(500, 500)
     population = recipe
       .map { value -> [Individual] in
         let count = Int(Value(value.count) * magnitude)
@@ -96,6 +95,8 @@ public extension Population {
           }
       }
       .flatMap { $0 }
+    
+    self.fieldSize = fieldSize
   }
   
   func uniqueGenomes() -> [(genome: Parameters, count: Int)] {
