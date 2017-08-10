@@ -34,7 +34,7 @@ public extension Coordinate {
   static let zero = Coordinate(0.0, 0.0)
   
   func distance(_ other: Coordinate) -> Value {
-    return max(hypot(x - other.x, y - other.y), 0.0001) // TODO: consider if 0.0001 literal needed
+    return hypot(x - other.x, y - other.y)
   }
   
   func fit(to coordinate: Coordinate) -> Coordinate {

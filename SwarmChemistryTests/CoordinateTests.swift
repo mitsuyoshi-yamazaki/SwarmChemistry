@@ -26,7 +26,7 @@ class CoordinateTests: XCTestCase {
     
     XCTAssert(zero.distance(Coordinate(3, 4)) == 5)
     XCTAssert(zero.distance(Coordinate(-3, -4)) == 5)
-    XCTAssert(zero.distance(Coordinate(00001, 0)) == 0001)
+    XCTAssert(zero.distance(.zero) == 0.0)
   }
   
   func test_fit() {
