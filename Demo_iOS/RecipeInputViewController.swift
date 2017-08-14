@@ -31,7 +31,10 @@ class RecipeInputViewController: UIViewController {
 
   @IBAction func done(sender: AnyObject!) {
     guard let recipe = Recipe.init(textView.text) else {
-      print("Cannot parse recipe")
+      let alertController = UIAlertController.init(title: "Error", message: "Cannot parse recipe", preferredStyle: .alert)
+      alertController.addAction(.init(title: "OK", style: .cancel, handler: nil))
+      
+      present(alertController, animated: true, completion: nil)
       return
     }
     
