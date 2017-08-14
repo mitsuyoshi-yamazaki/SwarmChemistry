@@ -10,15 +10,15 @@ import Foundation
 
 // MARK: - Recipe
 public struct Recipe {
-  typealias GenomeInfo = (genome: Parameters, count: Int)
+  public typealias GenomeInfo = (genome: Parameters, count: Int)
   
-  let name: String
-  let genomes: [GenomeInfo]
+  public let name: String
+  public let genomes: [GenomeInfo]
 }
 
 // TODO: write tests
 
-extension Recipe {
+public extension Recipe {
   /**
    Expecting:
    Recipe Name
@@ -112,8 +112,10 @@ public extension Recipe {
 // MARK: - CustomStringConvertible
 extension Recipe: CustomStringConvertible {
   public var description: String {
-    return genomes
+    let genomesText = genomes
       .map { "\($0.count) * \($0.genome)" }
       .joined(separator: "\n")
+    
+    return "\(name)\n\(genomesText)"
   }
 }

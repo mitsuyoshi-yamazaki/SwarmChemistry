@@ -12,27 +12,22 @@ import Foundation
 public struct Population {
   public var fieldSize = Coordinate(500, 500)
   public let population: [Individual]
-  
-  public init(fieldSize: Coordinate?, population: [Individual]) {
-    self.population = population
-    
-    if let fieldSize = fieldSize {
-      self.fieldSize = fieldSize
-    }
-  }
+  public let recipe: Recipe
 }
 
 // MARK: - Recipe
 public extension Population {
   init(_ recipe: Recipe, numberOfPopulation: Int? = nil, fieldSize: Coordinate = Coordinate(500, 500)) {
     
-    let sum = recipe
+    self.recipe = recipe
+    
+    let sum = recipe.genomes
       .reduce(0) { (result, value) -> Int in
         result + value.count
       }
     let magnitude = Value(numberOfPopulation ?? sum) / Value(sum)
     
-    population = recipe
+    population = recipe.genomes
       .map { value -> [Individual] in
         let count = Int(Value(value.count) * magnitude)
         return (0..<count)
@@ -43,17 +38,6 @@ public extension Population {
       .flatMap { $0 }
     
     self.fieldSize = fieldSize
-  }
-  
-  func recipe() -> Recipe {
-    // Could we make it O(n) ?
-    return population
-      .reduce([Parameters]()) { (result, individual) -> [Parameters] in
-        return result.filter { $0 == individual.genome }.isEmpty ? result + [individual.genome] : result
-      }
-      .map { genome -> (genome: Parameters, count: Int) in
-        return (genome: genome, count: self.population.filter { $0.genome == genome }.count)
-    }
   }
 }
 
@@ -141,9 +125,7 @@ public extension Population {
 // MARK: - CustomStringConvertible
 extension Population: CustomStringConvertible {
   public var description: String {
-    // FixMe: ambiguous usage of description
-//    return recipe().description
-    return recipe()
+    return recipe.genomes
       .map { "\($0.count) * \($0.genome)" }
       .joined(separator: "\n")
   }
