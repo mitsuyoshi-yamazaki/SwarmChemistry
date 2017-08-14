@@ -10,7 +10,7 @@ import UIKit
 import SwarmChemistry
 
 protocol RecipeListViewControllerDelegate: class {
-  func recipeListViewController(_ controller: RecipeListViewController, didSelect recipe: (name: String, recipe: Recipe))
+  func recipeListViewController(_ controller: RecipeListViewController, didSelect recipe: Recipe)
 }
 
 class RecipeListViewController: UITableViewController {
@@ -28,12 +28,12 @@ class RecipeListViewController: UITableViewController {
   
   weak var delegate: RecipeListViewControllerDelegate?
   
-  private let recipeList = Recipe.definedRecipes
+  private let recipeList = Recipe.presetRecipes
   
-  private func recipe(at indexPath: IndexPath) -> (name: String, recipe: Recipe) {
+  private func recipe(at indexPath: IndexPath) -> Recipe {
     switch Section.init(rawValue: indexPath.section)! {
     case .random:
-      return (name: "Random", Recipe.random(numberOfGenomes: 5))
+      return Recipe.random(numberOfGenomes: 5)
     case .preset:
       return recipeList[indexPath.row]
     case .input:
@@ -111,7 +111,7 @@ class RecipeListViewController: UITableViewController {
 }
 
 extension RecipeListViewController: RecipeInputViewControllerDelegate {
-  func recipeInputViewController(_ controller: RecipeInputViewController, didInput recipe: (name: String, recipe: Recipe)) {
+  func recipeInputViewController(_ controller: RecipeInputViewController, didInput recipe: Recipe) {
     delegate?.recipeListViewController(self, didSelect: recipe)
     dismiss(animated: true, completion: nil)
   }

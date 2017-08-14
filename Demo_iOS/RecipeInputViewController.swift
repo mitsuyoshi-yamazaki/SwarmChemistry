@@ -10,7 +10,7 @@ import UIKit
 import SwarmChemistry
 
 protocol RecipeInputViewControllerDelegate: class {
-  func recipeInputViewController(_ controller: RecipeInputViewController, didInput recipe: (name: String, recipe: Recipe))
+  func recipeInputViewController(_ controller: RecipeInputViewController, didInput recipe: Recipe)
 }
 
 class RecipeInputViewController: UIViewController {
@@ -30,7 +30,7 @@ class RecipeInputViewController: UIViewController {
   }
 
   @IBAction func done(sender: AnyObject!) {
-    guard let recipe = Recipe.init(textView.text) else {
+    guard let recipe = Recipe.init(textView.text, name: "Manual Input") else {
       let alertController = UIAlertController.init(title: "Error", message: "Cannot parse recipe", preferredStyle: .alert)
       alertController.addAction(.init(title: "OK", style: .cancel, handler: nil))
       
@@ -41,7 +41,7 @@ class RecipeInputViewController: UIViewController {
     let delegate = self.delegate
     
     dismiss(animated: true) {
-      delegate?.recipeInputViewController(self, didInput: (name: "Manual Input", recipe: recipe))
+      delegate?.recipeInputViewController(self, didInput: recipe)
     }
   }
 }
