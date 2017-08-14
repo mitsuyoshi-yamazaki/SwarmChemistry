@@ -58,7 +58,24 @@ extension Recipe {
       }
       return Parameters(values)
     }
-
+    
+    func isGenome(_ line: String) -> Bool {
+      if let (genomeText, _) = parseLine(line) {
+        if let _ = parseGenome(from: genomeText) {
+          return true
+        }
+      }
+      return false
+    }
+    
+    let firstLine = recipeText.components(separatedBy: "\n").first!
+    let name: String
+    if isGenome(firstLine) {
+      name = "Untitled"
+    } else {
+      name = firstLine
+    }
+    
     let result = recipeText
       .trimmingCharacters(in: .whitespacesAndNewlines)
       .components(separatedBy: "\n")
@@ -79,7 +96,7 @@ extension Recipe {
       Log.debug("Parsing recipe failed")
       return nil
     }
-    self.init(name: "Untitled", genomes: genome)
+    self.init(name: name, genomes: genome)
   }
 }
 
