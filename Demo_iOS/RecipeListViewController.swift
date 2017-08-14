@@ -14,9 +14,16 @@ protocol RecipeListViewControllerDelegate: class {
 }
 
 class RecipeListViewController: UITableViewController {
+  enum SegueIdentifier: String {
+    case inputRecipe = "InputRecipe"
+  }
+  
   enum Section: Int {
     case random
+    case input
     case preset
+    
+    static let count = 3
   }
   
   weak var delegate: RecipeListViewControllerDelegate?
@@ -29,6 +36,8 @@ class RecipeListViewController: UITableViewController {
       return (name: "Random", Recipe.random(numberOfGenomes: 5))
     case .preset:
       return recipeList[indexPath.row]
+    case .input:
+      fatalError()  // TODO:
     }
   }
 
@@ -39,7 +48,7 @@ class RecipeListViewController: UITableViewController {
   
   // MARK: - TableViewDataSource
   override func numberOfSections(in tableView: UITableView) -> Int {
-    return 2
+    return Section.count
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,11 +57,19 @@ class RecipeListViewController: UITableViewController {
       return 1
     case .preset:
       return recipeList.count
+    case .input:
+      return 1
     }
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+    
+    guard indexPath.section != Section.input.rawValue else {
+      cell.textLabel?.text = "Input Manually"
+      return cell
+    }
+    
     let recipe = self.recipe(at: indexPath)
     
     cell.textLabel?.text = recipe.name
@@ -66,14 +83,36 @@ class RecipeListViewController: UITableViewController {
       return nil
     case .preset:
       return "Preset"
+    case .input:
+      return nil
     }
   }
   
   // MARK: - TableViewDelegate
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard indexPath.section != Section.input.rawValue else {
+      performSegue(withIdentifier: "InputRecipe", sender: self)
+      return
+    }
+
     let recipe = self.recipe(at: indexPath)
     delegate?.recipeListViewController(self, didSelect: recipe)
     
+    dismiss(animated: true, completion: nil)
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    switch SegueIdentifier.init(rawValue: segue.identifier!)! {
+    case .inputRecipe:
+      let inputViewController = segue.destination as! RecipeInputViewController
+      inputViewController.delegate = self
+    }
+  }
+}
+
+extension RecipeListViewController: RecipeInputViewControllerDelegate {
+  func recipeInputViewController(_ controller: RecipeInputViewController, didInput recipe: (name: String, recipe: Recipe)) {
+    delegate?.recipeListViewController(self, didSelect: recipe)
     dismiss(animated: true, completion: nil)
   }
 }

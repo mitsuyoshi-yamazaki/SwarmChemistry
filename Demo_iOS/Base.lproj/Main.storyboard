@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -79,6 +80,7 @@
                     <connections>
                         <outlet property="recipeSelectionButton" destination="pHE-GL-UpH" id="Z7d-jm-E0h"/>
                         <outlet property="renderView" destination="8bC-Xf-vdC" id="FnM-n3-qA3"/>
+                        <outlet property="shareButton" destination="uDD-wS-6A4" id="Ryv-Hq-Vec"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -95,7 +97,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="A8c-4K-SPE" style="IBUITableViewCellStyleDefault" id="ill-ze-Lha">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ill-ze-Lha" id="QZm-W6-i5L">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -118,10 +120,55 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Select Recipe" id="SpL-ij-yMf"/>
+                    <connections>
+                        <segue destination="xRw-eL-F57" kind="show" identifier="InputRecipe" id="a7N-9F-NfX"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PMC-yu-mKA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2983" y="-543"/>
+        </scene>
+        <!--Input Recipe-->
+        <scene sceneID="aCA-ao-0aD">
+            <objects>
+                <viewController id="xRw-eL-F57" customClass="RecipeInputViewController" customModule="Demo_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="A9w-0z-okK"/>
+                        <viewControllerLayoutGuide type="bottom" id="CPl-cg-Flw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3w9-xB-YyU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="INc-La-6CV">
+                                <rect key="frame" x="10" y="10" width="355" height="333.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="INc-La-6CV" firstAttribute="centerX" secondItem="3w9-xB-YyU" secondAttribute="centerX" id="Bjb-6K-V1a"/>
+                            <constraint firstItem="INc-La-6CV" firstAttribute="leading" secondItem="3w9-xB-YyU" secondAttribute="leading" constant="10" id="Da0-lQ-kXu"/>
+                            <constraint firstItem="INc-La-6CV" firstAttribute="top" secondItem="3w9-xB-YyU" secondAttribute="top" constant="10" id="kyM-DE-qoj"/>
+                            <constraint firstItem="INc-La-6CV" firstAttribute="height" secondItem="3w9-xB-YyU" secondAttribute="height" multiplier="1:2" id="oLc-Mv-WL3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Input Recipe" id="Grj-6R-1dj">
+                        <barButtonItem key="rightBarButtonItem" title="Apply" style="done" id="1Lp-z7-OGd">
+                            <connections>
+                                <action selector="doneWithSender:" destination="xRw-eL-F57" id="hAF-ba-CZ9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textView" destination="INc-La-6CV" id="G5x-eH-hLe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zsv-ad-Dkd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3952.8000000000002" y="-544.67766116941539"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vQ9-2u-eYn">

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C33F2311F411EE1007A4068 /* RecipeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C33F2301F411EE1007A4068 /* RecipeInputViewController.swift */; };
 		2C5A625D1F3CB50500F10E8E /* RecipeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5A625C1F3CB50500F10E8E /* RecipeListViewController.swift */; };
 		2CA5C3161F3CA0DF0037080C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3151F3CA0DF0037080C /* AppDelegate.swift */; };
 		2CA5C3181F3CA0DF0037080C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3171F3CA0DF0037080C /* ViewController.swift */; };
@@ -112,6 +113,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2C33F2301F411EE1007A4068 /* RecipeInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeInputViewController.swift; sourceTree = "<group>"; };
 		2C5A625C1F3CB50500F10E8E /* RecipeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeListViewController.swift; sourceTree = "<group>"; };
 		2CA5C3131F3CA0DF0037080C /* Demo_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA5C3151F3CA0DF0037080C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				2CA5C3151F3CA0DF0037080C /* AppDelegate.swift */,
 				2CA5C3171F3CA0DF0037080C /* ViewController.swift */,
 				2C5A625C1F3CB50500F10E8E /* RecipeListViewController.swift */,
+				2C33F2301F411EE1007A4068 /* RecipeInputViewController.swift */,
 				2CA5C3191F3CA0DF0037080C /* Main.storyboard */,
 				2CA5C31C1F3CA0DF0037080C /* Assets.xcassets */,
 				2CA5C31E1F3CA0DF0037080C /* LaunchScreen.storyboard */,
@@ -536,6 +539,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C33F2311F411EE1007A4068 /* RecipeInputViewController.swift in Sources */,
 				2CA5C3181F3CA0DF0037080C /* ViewController.swift in Sources */,
 				2CA5C3161F3CA0DF0037080C /* AppDelegate.swift in Sources */,
 				2C5A625D1F3CB50500F10E8E /* RecipeListViewController.swift in Sources */,
