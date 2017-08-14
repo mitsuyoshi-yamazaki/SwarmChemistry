@@ -63,9 +63,8 @@ class ViewController: UIViewController, SwarmRenderer {
       print("No population")
       return
     }
-    let timestamp = Date().description
-    let shareText = "\(timestamp)\n\(recipeText)"
     
+    let shareText = "\(selectedRecipe.name)\n\(recipeText)"
     var activityItems: [Any] = [
       shareText
     ]
