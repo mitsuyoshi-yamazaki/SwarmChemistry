@@ -20,7 +20,7 @@ class ViewController: UIViewController, SwarmRenderer {
   
   var isRunning = false
   fileprivate var isRecipeSaved = false
-  fileprivate var selectedRecipe = (name: "JellyFish", recipe: Recipe.jellyFish)
+  fileprivate var selectedRecipe = Recipe.jellyFish
   
   // MARK: - Lifecycle
   override func viewDidLoad() {
@@ -47,7 +47,7 @@ class ViewController: UIViewController, SwarmRenderer {
     
     let screenSize = UIScreen.main.bounds.size
     let fieldSize = Coordinate(Value(screenSize.width), Value(screenSize.height)) * 10
-    setupRenderView(with: selectedRecipe.recipe, numberOfPopulation: 1000, fieldSize: fieldSize)
+    setupRenderView(with: selectedRecipe, numberOfPopulation: 1000, fieldSize: fieldSize)
     
     isRecipeSaved = false
   }
@@ -59,35 +59,19 @@ class ViewController: UIViewController, SwarmRenderer {
   }
   
   @IBAction func share(sender: AnyObject!) {
-//    guard isRecipeSaved == false else {
-//      return
-//    }
     guard let recipeText = renderView.population?.description else {  // Currently Population?.description is the recipe text representable
       print("No population")
       return
     }
-//    guard selectedRecipe.name.lowercased() == "random" else {
-//      print("Preset recipe doesn't need to be saved")
-//      return
-//    }
-//    isRecipeSaved = true
-//
-//    let key = "recipe"
-//    let defaults = UserDefaults.standard
-//    var stored: [String: String] = defaults.object(forKey: key) as? [String : String] ?? [:]
-//    
-    let timestamp = Date().description
-//    stored[timestamp] = recipeText
-//    
-//    defaults.setValue(stored, forKey: key)
-//    defaults.synchronize()
     
-    //
-//    isRunning = false
-    
-    let activityItems: [Any] = [
-      "\(timestamp)\n\(recipeText)"
+    let shareText = "\(selectedRecipe.name)\n\(recipeText)"
+    var activityItems: [Any] = [
+      shareText
     ]
+    if  let shareImage = renderView.takeScreenshot() {
+      activityItems.append(shareImage)
+    }
+    
     let completionHandler: UIActivityViewControllerCompletionWithItemsHandler = { [unowned self] _ in
       self.isRunning = true
     }
@@ -113,7 +97,7 @@ class ViewController: UIViewController, SwarmRenderer {
 }
 
 extension ViewController: RecipeListViewControllerDelegate {
-  func recipeListViewController(_ controller: RecipeListViewController, didSelect recipe: (name: String, recipe: Recipe)) {
+  func recipeListViewController(_ controller: RecipeListViewController, didSelect recipe: Recipe) {
     selectedRecipe = recipe
     reset(sender: self)
   }

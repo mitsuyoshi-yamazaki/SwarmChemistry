@@ -9,84 +9,118 @@
 import Foundation
 
 // MARK: - Recipe
-public typealias GenomeInfo = (genome: Parameters, count: Int)
-public typealias Recipe = [GenomeInfo]
+public struct Recipe {
+  public typealias GenomeInfo = (genome: Parameters, count: Int)
+  
+  public let name: String
+  public let genomes: [GenomeInfo]
+}
 
 // TODO: write tests
 
-// MARK: - Convenience initializer
-public extension Array where Element == GenomeInfo {
+public extension Recipe {
   /**
    Expecting:
+   Recipe Name
    41 * (249.84, 4.85, 28.73, 0.34, 0.45, 14.44, 0.09, 0.82)
    26 * (277.87, 15.02, 35.48, 0.68, 0.05, 82.96, 0.46, 0.9)
    ...
    */
   init?(_ recipeText: String) {
-    func parseLine(_ text: String) -> (genomeText: String, count: Int)? {
-      let components = text
-        .replacingOccurrences(of: " ", with: "")
-        .components(separatedBy: "*")
-      
-      guard
-        let count = Int(components.first ?? ""),
-        let genomeText = components.dropFirst().first
-        else {
-          Log.debug("Parse line failed: \"\(text)\"")
-          return nil
+    func isGenome(_ line: String) -> Bool {
+      if let (genomeText, _) = Recipe.parseLine(line) {
+        if let _ = Recipe.parseGenome(from: genomeText) {
+          return true
+        }
       }
-      return (genomeText: genomeText, count: count)
+      return false
     }
-    func parseGenome(from text: String) -> Parameters? {
-      let components = text
-        .replacingOccurrences(of: " ", with: "")
-        .replacingOccurrences(of: "(", with: "")
-        .replacingOccurrences(of: ")", with: "")
-        .components(separatedBy: ",")
-      
-      guard let values = components.map({ Value($0) }) as? [Value] else {
-        Log.debug("Parse genome parameters failed: \"\(text)\"")
-        return nil
-      }
-      return Parameters(values)
+    
+    let lineSeparator = "\n"
+    let components = recipeText.components(separatedBy: lineSeparator)
+    let firstLine = components.first!
+
+    if isGenome(firstLine) {
+      self.init(recipeText, name: "Untitled")
+
+    } else {
+      let genomeText = components.dropFirst().joined(separator: lineSeparator)
+      self.init(genomeText, name: firstLine)
+    }
+  }
+  
+  init?(_ recipeText: String, name: String) {
+    guard recipeText.characters.isEmpty == false else {
+      return nil
     }
     
     let result = recipeText
       .trimmingCharacters(in: .whitespacesAndNewlines)
       .components(separatedBy: "\n")
       .map { line -> (genomeText: String, count: Int)? in
-        parseLine(line)
+        Recipe.parseLine(line)
       }
       .map { value -> GenomeInfo? in
         guard let value = value else {
           return nil
         }
-        guard let genome = parseGenome(from: value.genomeText) else {
+        guard let genome = Recipe.parseGenome(from: value.genomeText) else {
           return nil
         }
         return (genome: genome, count: value.count)
     }
     
-    guard let recipe = result as? [GenomeInfo] else {
-      Log.debug("Parsing recipe failed")
+    guard let genome = result as? [GenomeInfo] else {
       return nil
     }
-    self.init(recipe)
+    self.init(name: name, genomes: genome)
+  }
+  
+  private static func parseLine(_ text: String) -> (genomeText: String, count: Int)? {
+    let components = text
+      .replacingOccurrences(of: " ", with: "")
+      .components(separatedBy: "*")
+    
+    guard
+      let count = Int(components.first ?? ""),
+      let genomeText = components.dropFirst().first
+      else {
+        return nil
+    }
+    return (genomeText: genomeText, count: count)
+  }
+  
+  private static func parseGenome(from text: String) -> Parameters? {
+    let components = text
+      .replacingOccurrences(of: " ", with: "")  // Can't just use CharacterSet?
+      .replacingOccurrences(of: "(", with: "")
+      .replacingOccurrences(of: ")", with: "")
+      .components(separatedBy: ",")
+    
+    guard let values = components.map({ Value($0) }) as? [Value] else {
+      Log.debug("Parse genome parameters failed: \"\(text)\"")
+      return nil
+    }
+    return Parameters(values)
   }
 }
 
 // MARK: - Function
-public extension Array where Element == GenomeInfo {
+public extension Recipe {
   static func random(numberOfGenomes: Int) -> Recipe {
-    return (0..<numberOfGenomes)
+    let genomes = (0..<numberOfGenomes)
       .map { _ in (genome: Parameters.random, count: 10) }
+    return self.init(name: "Random", genomes: genomes)
   }
 }
 
 // MARK: - CustomStringConvertible
-public extension Array where Element == GenomeInfo {
-  var description: String {
-    return map { "\($0.count) * \($0.genome)" }
+extension Recipe: CustomStringConvertible {
+  public var description: String {
+    let genomesText = genomes
+      .map { "\($0.count) * \($0.genome)" }
       .joined(separator: "\n")
+    
+    return "\(name)\n\(genomesText)"
   }
 }
