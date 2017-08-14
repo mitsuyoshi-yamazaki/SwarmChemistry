@@ -59,35 +59,20 @@ class ViewController: UIViewController, SwarmRenderer {
   }
   
   @IBAction func share(sender: AnyObject!) {
-//    guard isRecipeSaved == false else {
-//      return
-//    }
     guard let recipeText = renderView.population?.description else {  // Currently Population?.description is the recipe text representable
       print("No population")
       return
     }
-//    guard selectedRecipe.name.lowercased() == "random" else {
-//      print("Preset recipe doesn't need to be saved")
-//      return
-//    }
-//    isRecipeSaved = true
-//
-//    let key = "recipe"
-//    let defaults = UserDefaults.standard
-//    var stored: [String: String] = defaults.object(forKey: key) as? [String : String] ?? [:]
-//    
     let timestamp = Date().description
-//    stored[timestamp] = recipeText
-//    
-//    defaults.setValue(stored, forKey: key)
-//    defaults.synchronize()
+    let shareText = "\(timestamp)\n\(recipeText)"
     
-    //
-//    isRunning = false
-    
-    let activityItems: [Any] = [
-      "\(timestamp)\n\(recipeText)"
+    var activityItems: [Any] = [
+      shareText
     ]
+    if  let shareImage = renderView.takeScreenshot() {
+      activityItems.append(shareImage)
+    }
+    
     let completionHandler: UIActivityViewControllerCompletionWithItemsHandler = { [unowned self] _ in
       self.isRunning = true
     }
