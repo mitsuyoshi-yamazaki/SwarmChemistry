@@ -119,7 +119,13 @@
                             <outlet property="delegate" destination="Wuz-MR-siS" id="Uh3-hT-uvX"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Select Recipe" id="SpL-ij-yMf"/>
+                    <navigationItem key="navigationItem" title="Select Recipe" id="SpL-ij-yMf">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="f7e-Qh-I0E">
+                            <connections>
+                                <action selector="dismissWithSender:" destination="Wuz-MR-siS" id="BRA-Pd-Dgs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="xRw-eL-F57" kind="show" identifier="InputRecipe" id="a7N-9F-NfX"/>
                     </connections>
