@@ -36,14 +36,17 @@ public extension Recipe {
       return false
     }
     
-    let firstLine = recipeText.components(separatedBy: "\n").first!
-    let name: String
+    let lineSeparator = "\n"
+    let components = recipeText.components(separatedBy: lineSeparator)
+    let firstLine = components.first!
+
     if isGenome(firstLine) {
-      name = "Untitled"
+      self.init(recipeText, name: "Untitled")
+
     } else {
-      name = firstLine
+      let genomeText = components.dropFirst().joined(separator: lineSeparator)
+      self.init(genomeText, name: firstLine)
     }
-    self.init(recipeText, name: name)
   }
   
   init?(_ recipeText: String, name: String) {
@@ -68,7 +71,6 @@ public extension Recipe {
     }
     
     guard let genome = result as? [GenomeInfo] else {
-      Log.debug("Parsing recipe failed")
       return nil
     }
     self.init(name: name, genomes: genome)
@@ -83,7 +85,6 @@ public extension Recipe {
       let count = Int(components.first ?? ""),
       let genomeText = components.dropFirst().first
       else {
-        Log.debug("Parse line failed: \"\(text)\"")
         return nil
     }
     return (genomeText: genomeText, count: count)
