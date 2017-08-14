@@ -15,7 +15,9 @@ class ViewController: UIViewController, SwarmRenderer {
   }
   
   @IBOutlet private weak var recipeSelectionButton: UIButton!
+  @IBOutlet private weak var shareButton: UIButton!
   @IBOutlet weak var renderView: SwarmRenderView!
+  
   var isRunning = false
   fileprivate var isRecipeSaved = false
   fileprivate var selectedRecipe = (name: "JellyFish", recipe: Recipe.jellyFish)
@@ -92,6 +94,10 @@ class ViewController: UIViewController, SwarmRenderer {
     
     let activityViewController = UIActivityViewController.init(activityItems: activityItems, applicationActivities: nil)
     activityViewController.completionWithItemsHandler = completionHandler // FixMe: Not working
+    
+    let popoverPresentationController = activityViewController.popoverPresentationController!
+    popoverPresentationController.sourceView = view
+    popoverPresentationController.sourceRect = shareButton.frame
     
     present(activityViewController, animated: true, completion: nil)
   }
