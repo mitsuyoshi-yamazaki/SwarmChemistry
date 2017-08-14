@@ -27,41 +27,9 @@ public extension Recipe {
    ...
    */
   init?(_ recipeText: String) {
-    guard recipeText.characters.isEmpty == false else {
-      return nil
-    }
-
-    func parseLine(_ text: String) -> (genomeText: String, count: Int)? {
-      let components = text
-        .replacingOccurrences(of: " ", with: "")
-        .components(separatedBy: "*")
-      
-      guard
-        let count = Int(components.first ?? ""),
-        let genomeText = components.dropFirst().first
-        else {
-          Log.debug("Parse line failed: \"\(text)\"")
-          return nil
-      }
-      return (genomeText: genomeText, count: count)
-    }
-    func parseGenome(from text: String) -> Parameters? {
-      let components = text
-        .replacingOccurrences(of: " ", with: "")
-        .replacingOccurrences(of: "(", with: "")
-        .replacingOccurrences(of: ")", with: "")
-        .components(separatedBy: ",")
-      
-      guard let values = components.map({ Value($0) }) as? [Value] else {
-        Log.debug("Parse genome parameters failed: \"\(text)\"")
-        return nil
-      }
-      return Parameters(values)
-    }
-    
     func isGenome(_ line: String) -> Bool {
-      if let (genomeText, _) = parseLine(line) {
-        if let _ = parseGenome(from: genomeText) {
+      if let (genomeText, _) = Recipe.parseLine(line) {
+        if let _ = Recipe.parseGenome(from: genomeText) {
           return true
         }
       }
@@ -75,28 +43,64 @@ public extension Recipe {
     } else {
       name = firstLine
     }
+    self.init(recipeText, name: name)
+  }
+  
+  init?(_ recipeText: String, name: String) {
+    guard recipeText.characters.isEmpty == false else {
+      return nil
+    }
     
     let result = recipeText
       .trimmingCharacters(in: .whitespacesAndNewlines)
       .components(separatedBy: "\n")
       .map { line -> (genomeText: String, count: Int)? in
-        parseLine(line)
+        Recipe.parseLine(line)
       }
       .map { value -> GenomeInfo? in
         guard let value = value else {
           return nil
         }
-        guard let genome = parseGenome(from: value.genomeText) else {
+        guard let genome = Recipe.parseGenome(from: value.genomeText) else {
           return nil
         }
         return (genome: genome, count: value.count)
-      }
+    }
     
     guard let genome = result as? [GenomeInfo] else {
       Log.debug("Parsing recipe failed")
       return nil
     }
     self.init(name: name, genomes: genome)
+  }
+  
+  private static func parseLine(_ text: String) -> (genomeText: String, count: Int)? {
+    let components = text
+      .replacingOccurrences(of: " ", with: "")
+      .components(separatedBy: "*")
+    
+    guard
+      let count = Int(components.first ?? ""),
+      let genomeText = components.dropFirst().first
+      else {
+        Log.debug("Parse line failed: \"\(text)\"")
+        return nil
+    }
+    return (genomeText: genomeText, count: count)
+  }
+  
+  private static func parseGenome(from text: String) -> Parameters? {
+    let components = text
+      .replacingOccurrences(of: " ", with: "")  // Can't just use CharacterSet?
+      .replacingOccurrences(of: "(", with: "")
+      .replacingOccurrences(of: ")", with: "")
+      .components(separatedBy: ",")
+    
+    guard let values = components.map({ Value($0) }) as? [Value] else {
+      Log.debug("Parse genome parameters failed: \"\(text)\"")
+      return nil
+    }
+    return Parameters(values)
   }
 }
 
