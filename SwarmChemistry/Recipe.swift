@@ -9,20 +9,28 @@
 import Foundation
 
 // MARK: - Recipe
-public typealias GenomeInfo = (genome: Parameters, count: Int)
-public typealias Recipe = [GenomeInfo]
+public struct Recipe {
+  typealias GenomeInfo = (genome: Parameters, count: Int)
+  
+  let name: String
+  let genomes: [GenomeInfo]
+}
 
 // TODO: write tests
 
-// MARK: - Convenience initializer
-public extension Array where Element == GenomeInfo {
+extension Recipe {
   /**
    Expecting:
+   Recipe Name
    41 * (249.84, 4.85, 28.73, 0.34, 0.45, 14.44, 0.09, 0.82)
    26 * (277.87, 15.02, 35.48, 0.68, 0.05, 82.96, 0.46, 0.9)
    ...
    */
   init?(_ recipeText: String) {
+    guard recipeText.characters.isEmpty == false else {
+      return nil
+    }
+
     func parseLine(_ text: String) -> (genomeText: String, count: Int)? {
       let components = text
         .replacingOccurrences(of: " ", with: "")
@@ -50,7 +58,7 @@ public extension Array where Element == GenomeInfo {
       }
       return Parameters(values)
     }
-    
+
     let result = recipeText
       .trimmingCharacters(in: .whitespacesAndNewlines)
       .components(separatedBy: "\n")
@@ -65,28 +73,30 @@ public extension Array where Element == GenomeInfo {
           return nil
         }
         return (genome: genome, count: value.count)
-    }
+      }
     
-    guard let recipe = result as? [GenomeInfo] else {
+    guard let genome = result as? [GenomeInfo] else {
       Log.debug("Parsing recipe failed")
       return nil
     }
-    self.init(recipe)
+    self.init(name: "Untitled", genomes: genome)
   }
 }
 
 // MARK: - Function
-public extension Array where Element == GenomeInfo {
+public extension Recipe {
   static func random(numberOfGenomes: Int) -> Recipe {
-    return (0..<numberOfGenomes)
+    let genomes = (0..<numberOfGenomes)
       .map { _ in (genome: Parameters.random, count: 10) }
+    return self.init(name: "Random", genomes: genomes)
   }
 }
 
 // MARK: - CustomStringConvertible
-public extension Array where Element == GenomeInfo {
-  var description: String {
-    return map { "\($0.count) * \($0.genome)" }
+extension Recipe: CustomStringConvertible {
+  public var description: String {
+    return genomes
+      .map { "\($0.count) * \($0.genome)" }
       .joined(separator: "\n")
   }
 }

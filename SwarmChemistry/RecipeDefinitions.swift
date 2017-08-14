@@ -9,8 +9,8 @@
 import Foundation
 
 // MARK: - Recipe List
-public extension Array where Element == GenomeInfo {
-  static var definedRecipes: [(name: String, recipe: Recipe)] {
+public extension Recipe {
+  static var presetRecipes: [Recipe] {
     return [
       (name: "InsurmountableWall", recipe: insurmountableWall),
       (name: "CellWithTwoNuclei", recipe: cellWithTwoNuclei),
@@ -97,7 +97,7 @@ public extension Array where Element == GenomeInfo {
   }
 }
 
-private extension Array where Element == GenomeInfo {
+private extension Recipe {
   struct Raw {
     static var insurmountableWall: String {
       return ""
