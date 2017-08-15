@@ -42,6 +42,9 @@ extension SwarmRenderer {
     DispatchQueue.global(qos: .userInitiated).async {
       self.renderView.population?.step(self.steps)
       DispatchQueue.main.async {
+        guard self.isRunning == true else {
+          return  // Without this, setNeedsDisplay() maybe called one time after pause() call
+        }
         self.renderView.setNeedsDisplay(self.renderView.bounds)
         self.step()
       }

@@ -21,6 +21,7 @@ class ViewController: UIViewController, SwarmRenderer {
 
   fileprivate var isRecipeSaved = false
   fileprivate var selectedRecipe = Recipe.jellyFish
+  fileprivate var shouldRun = false
   
   // MARK: - SwarmRenderer
   @IBOutlet weak var renderView: SwarmRenderView!
@@ -133,5 +134,17 @@ extension ViewController: RecipeListViewControllerDelegate {
 extension ViewController: UIScrollViewDelegate {
   func viewForZooming(in scrollView: UIScrollView) -> UIView? {
     return renderView
+  }
+  
+  func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+    shouldRun = isRunning
+    pause()
+  }
+  
+  func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+    if shouldRun {
+      resume()
+      shouldRun = false
+    }
   }
 }
