@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2C33F2311F411EE1007A4068 /* RecipeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C33F2301F411EE1007A4068 /* RecipeInputViewController.swift */; };
 		2C33F2331F41CB62007A4068 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C33F2321F41CB62007A4068 /* Utility.swift */; };
+		2C33F2351F43427E007A4068 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C33F2341F43427E007A4068 /* Extensions.swift */; };
+		2C33F2361F43427E007A4068 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C33F2341F43427E007A4068 /* Extensions.swift */; };
 		2C5A625D1F3CB50500F10E8E /* RecipeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5A625C1F3CB50500F10E8E /* RecipeListViewController.swift */; };
 		2CA5C3161F3CA0DF0037080C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3151F3CA0DF0037080C /* AppDelegate.swift */; };
 		2CA5C3181F3CA0DF0037080C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3171F3CA0DF0037080C /* ViewController.swift */; };
@@ -118,6 +120,7 @@
 /* Begin PBXFileReference section */
 		2C33F2301F411EE1007A4068 /* RecipeInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeInputViewController.swift; sourceTree = "<group>"; };
 		2C33F2321F41CB62007A4068 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		2C33F2341F43427E007A4068 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2C5A625C1F3CB50500F10E8E /* RecipeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeListViewController.swift; sourceTree = "<group>"; };
 		2CA5C3131F3CA0DF0037080C /* Demo_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA5C3151F3CA0DF0037080C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -242,6 +245,7 @@
 				ED7C21471F3AD33700018F97 /* Vector2Tests.swift */,
 				EDBA52421F3B11D60091BEE5 /* PopulationTests.swift */,
 				EDABFDF71F42ECCE00E1D56C /* RecipeTests.swift */,
+				2C33F2341F43427E007A4068 /* Extensions.swift */,
 			);
 			path = SwarmChemistryTests;
 			sourceTree = "<group>";
@@ -562,6 +566,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED7C214B1F3AD8C200018F97 /* ParametersTests.swift in Sources */,
+				2C33F2351F43427E007A4068 /* Extensions.swift in Sources */,
 				ED7C21451F3AD1C400018F97 /* SwarmChemistryTests.swift in Sources */,
 				EDABFDF81F42ECCE00E1D56C /* RecipeTests.swift in Sources */,
 				EDBA52431F3B11D60091BEE5 /* PopulationTests.swift in Sources */,
@@ -574,6 +579,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED7C214C1F3AD8C200018F97 /* ParametersTests.swift in Sources */,
+				2C33F2361F43427E007A4068 /* Extensions.swift in Sources */,
 				ED7C21461F3AD1C400018F97 /* SwarmChemistryTests.swift in Sources */,
 				EDABFDF91F42ECCE00E1D56C /* RecipeTests.swift in Sources */,
 				EDBA52441F3B11D60091BEE5 /* PopulationTests.swift in Sources */,

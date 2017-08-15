@@ -43,6 +43,23 @@ public extension Population {
 
 // MARK: - Function
 public extension Population {
+  func recipe(`in` rect: Vector2.Rect) -> Recipe {
+    let populationInRect = population
+      .filter { rect.contains($0.position) }
+    
+    let genomesInRect = populationInRect
+      .reduce([Parameters]()) { (result, individual) -> [Parameters] in
+        return result.filter { $0 == individual.genome }.isEmpty ? result + [individual.genome] : result
+      }
+      .map { genome -> Recipe.GenomeInfo in
+        return (genome: genome, count: populationInRect.filter { $0.genome == genome }.count)
+    }
+    
+    let name = "Subset of \(recipe.name)"
+    
+    return Recipe.init(name: name, genomes: genomesInRect)
+  }
+
   func step(_ count: Int = 1) {
     guard count > 0 else {
       Log.error("Argument \"count\" should be a positive value")
