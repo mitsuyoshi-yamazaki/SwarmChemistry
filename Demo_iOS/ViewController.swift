@@ -15,6 +15,7 @@ class ViewController: UIViewController, SwarmRenderer {
   }
   
   @IBOutlet private weak var recipeSelectionButton: UIButton!
+  @IBOutlet private weak var resumeButton: UIButton!
   @IBOutlet private weak var shareButton: UIButton!
 
   fileprivate var isRecipeSaved = false
@@ -63,6 +64,22 @@ class ViewController: UIViewController, SwarmRenderer {
     resume()
   }
   
+  @IBAction func pause(sender: AnyObject!) {
+    guard isRunning == true else {
+      return
+    }
+    pause()
+    resumeButton.isHidden = false
+  }
+
+  @IBAction func resume(sender: AnyObject!) {
+    guard isRunning == false else {
+      return
+    }
+    resume()
+    resumeButton.isHidden = true
+  }
+
   @IBAction func share(sender: AnyObject!) {
     guard let recipeText = renderView.population?.description else {  // Currently Population?.description is the recipe text representable
       print("No population")

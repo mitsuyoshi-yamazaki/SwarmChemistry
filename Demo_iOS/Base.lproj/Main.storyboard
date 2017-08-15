@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hjP-Vu-DJQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hjP-Vu-DJQ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -62,28 +62,55 @@
                                     <action selector="shareWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fz1-xA-YgA"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RxH-3o-4KJ">
+                                <rect key="frame" x="147" y="627" width="80" height="30"/>
+                                <color key="backgroundColor" red="0.33333333333333331" green="0.3333333432674408" blue="0.3333333432674408" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="Weo-aj-gxC"/>
+                                </constraints>
+                                <state key="normal" title="Resume">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="resumeWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cFU-5z-Y2F"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="uDD-wS-6A4" firstAttribute="width" secondItem="Cxl-Xt-jEE" secondAttribute="width" id="DPS-kz-nn1"/>
+                            <constraint firstItem="RxH-3o-4KJ" firstAttribute="bottom" secondItem="Cxl-Xt-jEE" secondAttribute="bottom" id="EJQ-vU-NYi"/>
                             <constraint firstItem="pHE-GL-UpH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HvF-Pe-eg3"/>
+                            <constraint firstItem="RxH-3o-4KJ" firstAttribute="width" secondItem="Cxl-Xt-jEE" secondAttribute="width" id="PRK-z7-gdx"/>
                             <constraint firstItem="uDD-wS-6A4" firstAttribute="bottom" secondItem="Cxl-Xt-jEE" secondAttribute="bottom" id="SOb-yx-57j"/>
                             <constraint firstItem="pHE-GL-UpH" firstAttribute="leading" secondItem="Cxl-Xt-jEE" secondAttribute="leading" priority="900" id="YYW-RF-Lzv"/>
+                            <constraint firstItem="RxH-3o-4KJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eFQ-H5-ptF"/>
                             <constraint firstItem="pHE-GL-UpH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="edj-ox-Iz2"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Cxl-Xt-jEE" secondAttribute="bottom" constant="10" id="gPw-rB-r65"/>
                             <constraint firstAttribute="trailing" secondItem="uDD-wS-6A4" secondAttribute="trailing" constant="16" id="lbl-Wp-Uml"/>
                             <constraint firstItem="Cxl-Xt-jEE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="qvL-ku-7D4"/>
+                            <constraint firstItem="RxH-3o-4KJ" firstAttribute="centerY" secondItem="Cxl-Xt-jEE" secondAttribute="centerY" id="zOx-pm-1PN"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="4ZL-ef-cPx" appends="YES" id="1a2-v1-zH4"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="cZi-lq-mwh"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="recipeSelectionButton" destination="pHE-GL-UpH" id="Z7d-jm-E0h"/>
                         <outlet property="renderView" destination="8bC-Xf-vdC" id="FnM-n3-qA3"/>
+                        <outlet property="resumeButton" destination="RxH-3o-4KJ" id="GGw-Fa-10j"/>
                         <outlet property="shareButton" destination="uDD-wS-6A4" id="Ryv-Hq-Vec"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="4ZL-ef-cPx">
+                    <connections>
+                        <action selector="pauseWithSender:" destination="BYZ-38-t0r" id="8Yp-BP-hB9"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1076" y="-544.67766116941539"/>
         </scene>
@@ -97,7 +124,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="A8c-4K-SPE" style="IBUITableViewCellStyleDefault" id="ill-ze-Lha">
-                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ill-ze-Lha" id="QZm-W6-i5L">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
