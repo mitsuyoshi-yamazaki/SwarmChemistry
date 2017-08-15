@@ -87,7 +87,7 @@ public extension Parameters {
   }
 }
 
-// MARK: - Function
+// MARK: - Accessor
 public extension Parameters {
   var all: [Value] {
     return [

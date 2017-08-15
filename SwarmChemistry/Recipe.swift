@@ -103,7 +103,7 @@ public extension Recipe {
   }
 }
 
-// MARK: - Function
+// MARK: - Accessor
 public extension Recipe {
   static func none() -> Recipe {
     return self.init(name: "None", genomes: [])

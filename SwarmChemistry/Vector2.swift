@@ -28,14 +28,24 @@ public extension Vector2 {
   }
 }
 
-// MARK: - Function
+// MARK: - Accessor
 public extension Vector2 {
   static let zero = Vector2(0.0, 0.0)
   
   func size() -> Value {
     return hypot(x, y)
   }
-  
+ 
+  func random() -> Vector2 {
+    let x = self.x * (Value(Int(arc4random() % 100)) / 100.0)
+    let y = self.y * (Value(Int(arc4random() % 100)) / 100.0)
+    
+    return Vector2(x, y)
+  }
+}
+
+// MARK: - Function
+public extension Vector2 {
   func distance(_ other: Vector2) -> Value {
     return hypot(x - other.x, y - other.y)
   }
@@ -58,13 +68,6 @@ public extension Vector2 {
     } else {
       y = self.y
     }
-
-    return Vector2(x, y)
-  }
-  
-  func random() -> Vector2 {
-    let x = self.x * (Value(Int(arc4random() % 100)) / 100.0)
-    let y = self.y * (Value(Int(arc4random() % 100)) / 100.0)
 
     return Vector2(x, y)
   }
