@@ -11,9 +11,12 @@ import SwarmChemistry
 
 class ViewController: NSViewController, SwarmRenderer {
 
+  // MARK: - SwarmRenderer
   @IBOutlet weak var renderView: SwarmRenderView!
-  
   var isRunning = false
+  var steps: Int {
+    return 6
+  }
   
   // MARK: - Lifecycle
   override func viewDidLoad() {
@@ -23,7 +26,7 @@ class ViewController: NSViewController, SwarmRenderer {
   
   override func viewDidAppear() {
     super.viewDidAppear()
-    stepSwarm(6)
+    resume()
   }
   
   // MARK: - Function
@@ -34,6 +37,6 @@ class ViewController: NSViewController, SwarmRenderer {
   // MARK: - Action
   @IBAction func reset(sender: AnyObject!) {
     setup()
-    stepSwarm(6)
+    resume()
   }
 }
