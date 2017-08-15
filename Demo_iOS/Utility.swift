@@ -35,3 +35,15 @@ extension UIView {
     return UIImage(cgImage: cgImage, scale: scale, orientation: .up)
   }
 }
+
+class TouchTransparentStackView: UIStackView {
+  
+  override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    let hitView = super.hitTest(point, with: event)
+    
+    guard hitView !== self else {
+      return nil
+    }
+    return hitView
+  }
+}

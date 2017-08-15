@@ -124,3 +124,9 @@ extension ViewController: RecipeListViewControllerDelegate {
     reset(sender: self)
   }
 }
+
+extension ViewController: UIScrollViewDelegate {
+  func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+    return renderView
+  }
+}
