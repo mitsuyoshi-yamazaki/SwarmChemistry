@@ -16,11 +16,16 @@ class ViewController: UIViewController, SwarmRenderer {
   
   @IBOutlet private weak var recipeSelectionButton: UIButton!
   @IBOutlet private weak var shareButton: UIButton!
-  @IBOutlet weak var renderView: SwarmRenderView!
-  
-  var isRunning = false
+
   fileprivate var isRecipeSaved = false
   fileprivate var selectedRecipe = Recipe.jellyFish
+  
+  // MARK: - SwarmRenderer
+  @IBOutlet weak var renderView: SwarmRenderView!
+  var isRunning = false
+  var steps: Int {
+    return 3
+  }
   
   // MARK: - Lifecycle
   override func viewDidLoad() {
@@ -32,12 +37,12 @@ class ViewController: UIViewController, SwarmRenderer {
     super.viewWillAppear(animated)
     
     navigationController?.setNavigationBarHidden(true, animated: true)
-    stepSwarm(3)
+    resume()
   }
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    isRunning = false
+    pause()
   }
   
   // MARK: - Function
@@ -55,7 +60,7 @@ class ViewController: UIViewController, SwarmRenderer {
   // MARK: - Action
   @IBAction func reset(sender: AnyObject!) {
     setup()
-    stepSwarm(3)
+    resume()
   }
   
   @IBAction func share(sender: AnyObject!) {
