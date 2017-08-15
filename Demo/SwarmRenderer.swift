@@ -17,36 +17,43 @@ import SwarmChemistry
 protocol SwarmRenderer: class {
   weak var renderView: SwarmRenderView! { set get }
   var isRunning: Bool { set get }
+  var steps: Int { get }
   
   func setupRenderView(with recipe: Recipe?, numberOfPopulation: Int, fieldSize: Coordinate)
-  func stepSwarm(_ step: Int)
+  func step()
+  func pause()
+  func resume()
 }
 
 extension SwarmRenderer {
   func setupRenderView(with recipe: Recipe?, numberOfPopulation: Int, fieldSize: Coordinate) {
     isRunning = false
 
-    renderView.population = Population.init(recipe ?? Recipe.random(numberOfGenomes: 5),
+    renderView.population = Population.init(recipe ?? Recipe.none(),
                                             numberOfPopulation: numberOfPopulation,
                                             fieldSize: fieldSize)
   }
   
-  func stepSwarm(_ step: Int) {
-    guard isRunning == false else {
+  func step() {
+    guard isRunning == true else {
       return
     }
-    isRunning = true
     
     DispatchQueue.global(qos: .userInitiated).async {
-      self.renderView.population?.step(step)
+      self.renderView.population?.step(self.steps)
       DispatchQueue.main.async {
         self.renderView.setNeedsDisplay(self.renderView.bounds)
-        guard self.isRunning else {
-          return
-        }
-        self.isRunning = false
-        self.stepSwarm(step)
+        self.step()
       }
     }
+  }
+  
+  func pause() {
+    isRunning = false
+  }
+  
+  func resume() {
+    isRunning = true
+    step()
   }
 }
