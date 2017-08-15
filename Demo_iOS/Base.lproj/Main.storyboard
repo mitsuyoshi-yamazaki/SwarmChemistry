@@ -75,8 +75,8 @@
                                                     <action selector="resetWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tNy-vj-vJd"/>
                                                 </connections>
                                             </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RxH-3o-4KJ">
-                                                <rect key="frame" x="137.5" y="0.0" width="80" height="30"/>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RxH-3o-4KJ">
+                                                <rect key="frame" x="275" y="0.0" width="0.0" height="30"/>
                                                 <color key="backgroundColor" red="0.33333333333333331" green="0.3333333432674408" blue="0.3333333432674408" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" priority="999" constant="80" id="vyx-xy-9dT"/>
@@ -131,6 +131,7 @@
                         <outlet property="recipeSelectionButton" destination="pHE-GL-UpH" id="Z7d-jm-E0h"/>
                         <outlet property="renderView" destination="EW7-GK-6Kv" id="3Wj-Ez-ufM"/>
                         <outlet property="resumeButton" destination="RxH-3o-4KJ" id="GGw-Fa-10j"/>
+                        <outlet property="scrollView" destination="D2Q-p0-PsY" id="yHe-0T-jTm"/>
                         <outlet property="shareButton" destination="uDD-wS-6A4" id="Ryv-Hq-Vec"/>
                     </connections>
                 </viewController>

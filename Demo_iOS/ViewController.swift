@@ -14,6 +14,7 @@ class ViewController: UIViewController, SwarmRenderer {
     case selectRecipe = "SelectRecipe"
   }
   
+  @IBOutlet private weak var scrollView: UIScrollView!
   @IBOutlet private weak var recipeSelectionButton: UIButton!
   @IBOutlet private weak var resumeButton: UIButton!
   @IBOutlet private weak var shareButton: UIButton!
@@ -35,7 +36,9 @@ class ViewController: UIViewController, SwarmRenderer {
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     setup()
+    scrollView.maximumZoomScale = CGFloat(renderView.population!.fieldSize.x) / 400.0
   }
 
   override func viewWillAppear(_ animated: Bool) {
