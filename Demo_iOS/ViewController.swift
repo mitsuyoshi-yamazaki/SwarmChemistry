@@ -39,7 +39,7 @@ class ViewController: UIViewController, SwarmRenderer {
     super.viewDidLoad()
     
     setup()
-    scrollView.maximumZoomScale = CGFloat(renderView.population!.fieldSize.x) / 400.0
+    scrollView.maximumZoomScale = CGFloat(renderView.population.fieldSize.x) / 400.0
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -87,11 +87,10 @@ class ViewController: UIViewController, SwarmRenderer {
   }
 
   @IBAction func share(sender: AnyObject!) {
-    guard let recipeText = renderView.population?.description else {  // Currently Population?.description is the recipe text representable
-      print("No population")
-      return
-    }
+//    print(renderView.population!.recipe(in: .init(x: 0, y: 0, width: 300, height: 300)))
     
+    
+    let recipeText = renderView.population.description  // Currently Population?.description is the recipe text representable    let shareText = "\(selectedRecipe.name)\n\(recipeText)"
     let shareText = "\(selectedRecipe.name)\n\(recipeText)"
     var activityItems: [Any] = [
       shareText

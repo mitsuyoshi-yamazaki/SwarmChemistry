@@ -16,7 +16,7 @@ import SwarmChemistry
 
 class SwarmRenderView: View {
 
-  var population: Population?
+  var population = Population.zero()
   var cellSize: CGFloat = 16.0
 
   #if os(iOS) || os(watchOS) || os(tvOS)
@@ -37,10 +37,6 @@ class SwarmRenderView: View {
 
     context.setFillColor(Color(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor)
     context.fill(bounds)
-    
-    guard let population = population else {
-      return
-    }
     
     let fieldWidth = CGFloat(population.fieldSize.x)
     let fieldHeight = CGFloat(population.fieldSize.y)
