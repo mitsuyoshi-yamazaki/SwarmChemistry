@@ -41,6 +41,20 @@ class ParametersTests: XCTestCase {
     XCTAssert(Parameters(values)! != Parameters(anotherValues)!)
   }
   
+  func test_zero() {
+    let parameters = Parameters.zero
+
+    XCTAssert(parameters.neighborhoodRadius == 0.0)
+    XCTAssert(parameters.normalSpeed == 0.0)
+    XCTAssert(parameters.maxSpeed == 0.0)
+    XCTAssert(parameters.cohesiveForce == 0.0)
+    XCTAssert(parameters.aligningForce == 0.0)
+    XCTAssert(parameters.separatingForce == 0.0)
+    XCTAssert(parameters.probabilityOfRandomSteering == 0.0)
+    XCTAssert(parameters.tendencyOfPacekeeping == 0.0)
+    XCTAssert(parameters.maxVelocity == 0.0)
+  }
+  
   func test_random() {
     XCTAssert(Parameters.random != Parameters.random)
   }

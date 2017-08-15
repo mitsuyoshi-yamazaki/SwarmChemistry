@@ -115,6 +115,10 @@ public extension Parameters {
     ]
   }
   
+  static var zero: Parameters {
+    return Parameters((0..<numberOfParameters).map { _ in 0.0 })!
+  }
+  
   static var random: Parameters {
     let values = maxValues
       .map { Value(Int(arc4random()) % Int($0 * 100)) / 100.0 }
