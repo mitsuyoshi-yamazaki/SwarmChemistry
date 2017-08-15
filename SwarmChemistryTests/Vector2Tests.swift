@@ -74,6 +74,24 @@ class Vector2Tests: XCTestCase {
 
 class Vector2RectTests: XCTestCase {
   
+  func test_init() {
+    let rectWithValue = Vector2.Rect.init(x: 1.0, y: 2.0, width: 10.0, height: 20.0)
+    
+    XCTAssert(rectWithValue.origin.x == 1.0)
+    XCTAssert(rectWithValue.origin.y == 2.0)
+    XCTAssert(rectWithValue.size.x == 10.0)
+    XCTAssert(rectWithValue.size.y == 20.0)
+
+    let rectWithInt = Vector2.Rect.init(x: 1, y: 2, width: 10, height: 20)
+    
+    XCTAssert(rectWithInt.origin.x == 1.0)
+    XCTAssert(rectWithInt.origin.y == 2.0)
+    XCTAssert(rectWithInt.size.x == 10.0)
+    XCTAssert(rectWithInt.size.y == 20.0)
+    
+    XCTAssert(rectWithValue == rectWithInt)
+  }
+  
   func test_contains() {
     let rect = Vector2.Rect.init(origin: .init(10, 10), size: .init(5, 5))
     

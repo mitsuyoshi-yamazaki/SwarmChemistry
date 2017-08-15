@@ -118,6 +118,17 @@ public extension Vector2 {
   }
 }
 
+// MARK: - Convenience initializer
+public extension Vector2.Rect {
+  init(x: Value, y: Value, width: Value, height: Value) {
+    self.init(origin: .init(x, y), size: .init(width, height))
+  }
+  
+  init(x: Int, y: Int, width: Int, height: Int) {
+    self.init(origin: .init(x, y), size: .init(width, height))
+  }
+}
+
 // MARK: - Function
 public extension Vector2.Rect {
   func contains(_ point: Vector2) -> Bool {
@@ -130,3 +141,11 @@ public extension Vector2.Rect {
     return true
   }
 }
+
+// MARK: - Equatable
+extension Vector2.Rect: Equatable {
+  public static func ==(lhs: Vector2.Rect, rhs: Vector2.Rect) -> Bool {
+    return (lhs.origin == rhs.origin) && (lhs.size == rhs.size)
+  }
+}
+
