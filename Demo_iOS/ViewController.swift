@@ -23,7 +23,11 @@ class ViewController: UIViewController, SwarmRenderer {
   
   // MARK: - SwarmRenderer
   @IBOutlet weak var renderView: SwarmRenderView!
-  var isRunning = false
+  var isRunning = false {
+    didSet {
+      resumeButton.isHidden = isRunning
+    }
+  }
   var steps: Int {
     return 3
   }
@@ -69,7 +73,6 @@ class ViewController: UIViewController, SwarmRenderer {
       return
     }
     pause()
-    resumeButton.isHidden = false
   }
 
   @IBAction func resume(sender: AnyObject!) {
@@ -77,7 +80,6 @@ class ViewController: UIViewController, SwarmRenderer {
       return
     }
     resume()
-    resumeButton.isHidden = true
   }
 
   @IBAction func share(sender: AnyObject!) {
