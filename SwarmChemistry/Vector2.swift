@@ -99,7 +99,7 @@ public extension Vector2 {
 // MARK: - CustomStringConvertible
 extension Vector2: CustomStringConvertible {
   public var description: String {
-    return "(\(x), \(y))"
+    return String.init(format: "(%.2f, %.2f)", x, y)
   }
 }
 
@@ -129,6 +129,11 @@ public extension Vector2.Rect {
   }
 }
 
+// MARK: - Accessor
+public extension Vector2.Rect {
+  static let zero = Vector2.Rect.init(x: 0, y: 0, width: 0, height: 0)
+}
+
 // MARK: - Function
 public extension Vector2.Rect {
   func contains(_ point: Vector2) -> Bool {
@@ -142,6 +147,25 @@ public extension Vector2.Rect {
   }
 }
 
+// MARK: - Operator override
+public extension Vector2.Rect {
+  static func +(lhs: Vector2.Rect, rhs: Vector2.Rect) -> Vector2.Rect {
+    return .init(origin: lhs.origin + rhs.origin, size: lhs.size + rhs.size)
+  }
+  
+  static func -(lhs: Vector2.Rect, rhs: Vector2.Rect) -> Vector2.Rect {
+    return .init(origin: lhs.origin - rhs.origin, size: lhs.size - rhs.size)
+  }
+  
+  static func *(rect: Vector2.Rect, multiplier: Value) -> Vector2.Rect {
+    return .init(origin: rect.origin * multiplier, size: rect.size * multiplier)
+  }
+  
+  static func /(rect: Vector2.Rect, divider: Value) -> Vector2.Rect {
+    return .init(origin: rect.origin / divider, size: rect.size / divider)
+  }
+}
+
 // MARK: - Equatable
 extension Vector2.Rect: Equatable {
   public static func ==(lhs: Vector2.Rect, rhs: Vector2.Rect) -> Bool {
@@ -149,3 +173,9 @@ extension Vector2.Rect: Equatable {
   }
 }
 
+// MARK: - CustomStringConvertible
+extension Vector2.Rect: CustomStringConvertible {
+  public var description: String {
+    return String.init(format: "((x: %.2f, y: %.2f), (width: %.2f, height: %.2f))", origin.x, origin.y, size.x, size.y)
+  }
+}

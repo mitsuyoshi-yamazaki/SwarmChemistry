@@ -47,9 +47,26 @@ class Vector2Tests: XCTestCase {
     XCTAssert(negative.fit(to: Vector2(10, 10)) == Vector2(5, 5))
   }
   
+  func test_operators() {
+    let vector = Vector2(1, 2)
+    
+    XCTAssert(vector + Vector2(-1, -2) == .zero)
+    XCTAssert(vector - vector == .zero)
+    XCTAssert(vector * 2 == Vector2(2, 4))
+    XCTAssert(vector / 2 == Vector2(0.5, 1))
+  }
+  
   func test_equality() {
-    XCTAssert(Vector2(3.2, 1.0) == Vector2(3.2, 1.0))
-    XCTAssert(Vector2(3.2, 1.0) != Vector2(3.2, 1.1))
+    let vector = Vector2(1.1, 2.2)
+    
+    XCTAssert(vector == Vector2(1.1, 2.2))
+    XCTAssert(vector != Vector2(1.0, 2.2))
+    XCTAssert(vector != Vector2(1.1, 2.0))
+ }
+  
+  func test_description() {
+    XCTAssert(Vector2(1, 2).description == "(1.00, 2.00)")
+    XCTAssert(Vector2(1.001, 2.001).description == "(1.00, 2.00)")
   }
   
   func test_random() {
@@ -92,6 +109,10 @@ class Vector2RectTests: XCTestCase {
     XCTAssert(rectWithValue == rectWithInt)
   }
   
+  func test_zero() {
+    XCTAssert(Vector2.Rect.zero == Vector2.Rect.init(x: 0, y: 0, width: 0, height: 0))
+  }
+  
   func test_contains() {
     let rect = Vector2.Rect.init(origin: .init(10, 10), size: .init(5, 5))
     
@@ -105,5 +126,34 @@ class Vector2RectTests: XCTestCase {
     XCTAssert(rect.contains(.init(10, 10)) == true)
     XCTAssert(rect.contains(.init(12, 12)) == true)
     XCTAssert(rect.contains(.init(15, 15)) == true)
+  }
+  
+  func test_operators() {
+    let rect = Vector2.Rect.init(x: 1, y: 2, width: 3, height: 4)
+    
+    XCTAssert(rect + Vector2.Rect.init(x: -1, y: -2, width: -3, height: -4) == .zero)
+    XCTAssert(rect - rect == .zero)
+    XCTAssert(rect * 2.0 == .init(x: 2, y: 4, width: 6, height: 8))
+    XCTAssert(rect / 2.0 == .init(x: 0.5, y: 1.0, width: 1.5, height: 2.0))
+  }
+  
+  func test_equality() {
+    let rect = Vector2.Rect.init(x: 1.1, y: 2.2, width: 3.3, height: 4.4)
+    
+    XCTAssert(rect == Vector2.Rect.init(x: 1.1, y: 2.2, width: 3.3, height: 4.4))
+    XCTAssert(rect != Vector2.Rect.init(x: 1.0, y: 2.2, width: 3.3, height: 4.4))
+    XCTAssert(rect != Vector2.Rect.init(x: 1.1, y: 2.0, width: 3.3, height: 4.4))
+    XCTAssert(rect != Vector2.Rect.init(x: 1.1, y: 2.2, width: 3.0, height: 4.4))
+    XCTAssert(rect != Vector2.Rect.init(x: 1.1, y: 2.2, width: 3.3, height: 4.0))
+  }
+  
+  func test_description() {
+    let expectedDescription = "((x: 1.00, y: 2.00), (width: 3.00, height: 4.00))"
+    
+    let description1 = Vector2.Rect.init(x: 1, y: 2, width: 3, height: 4).description
+    XCTAssert(description1 == expectedDescription)
+    
+    let description2 = Vector2.Rect.init(x: 1.001, y: 2.001, width: 3.001, height: 4.001).description
+    XCTAssert(description2 == expectedDescription)
   }
 }
