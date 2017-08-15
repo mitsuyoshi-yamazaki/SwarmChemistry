@@ -109,3 +109,24 @@ extension Vector2: Equatable {
     return (lhs.x == rhs.x) && (lhs.y == rhs.y)
   }
 }
+
+// MARK: - Rect
+public extension Vector2 {
+  struct Rect {
+    let origin: Vector2
+    let size: Vector2
+  }
+}
+
+// MARK: - Function
+public extension Vector2.Rect {
+  func contains(_ point: Vector2) -> Bool {
+    guard (point.x >= origin.x) && (point.x <= origin.x + size.x) else {
+      return false
+    }
+    guard (point.y >= origin.y) && (point.y <= origin.y + size.y) else {
+      return false
+    }
+    return true
+  }
+}

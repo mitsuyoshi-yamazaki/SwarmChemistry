@@ -71,3 +71,21 @@ class Vector2Tests: XCTestCase {
     XCTAssert(Vector2(10.0, 10.0).contains(Vector2(10.0, 20.0)) == false)
   }
 }
+
+class Vector2RectTests: XCTestCase {
+  
+  func test_contains() {
+    let rect = Vector2.Rect.init(origin: .init(10, 10), size: .init(5, 5))
+    
+    XCTAssert(rect.contains(.init(9, 9)) == false)
+    XCTAssert(rect.contains(.init(9, 10)) == false)
+    XCTAssert(rect.contains(.init(10, 9)) == false)
+    XCTAssert(rect.contains(.init(15, 16)) == false)
+    XCTAssert(rect.contains(.init(16, 15)) == false)
+    XCTAssert(rect.contains(.init(16, 16)) == false)
+    
+    XCTAssert(rect.contains(.init(10, 10)) == true)
+    XCTAssert(rect.contains(.init(12, 12)) == true)
+    XCTAssert(rect.contains(.init(15, 15)) == true)
+  }
+}
