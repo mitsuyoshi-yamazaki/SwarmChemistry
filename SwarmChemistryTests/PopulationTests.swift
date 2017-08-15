@@ -18,6 +18,14 @@ class PopulationTests: XCTestCase {
     let _ = Population.init(.random(numberOfGenomes: 10))
   }
   
+  func test_zero() {
+    let zero = Population.zero()
+    
+    XCTAssert(zero.fieldSize == .zero)
+    XCTAssert(zero.population.isEmpty == true)
+    XCTAssert(zero.recipe.genomes.isEmpty == true)
+  }
+  
   func test_recipeInRect() {
     let individuals = (0..<10)
       .map { Individual.init(position: .init($0, $0), genome: .init($0)) }

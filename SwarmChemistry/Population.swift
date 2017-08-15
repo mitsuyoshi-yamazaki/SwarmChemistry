@@ -41,6 +41,13 @@ public extension Population {
   }
 }
 
+// MARK: - Accessor
+public extension Population {
+  static func zero() -> Population {
+    return Population.init(.none(), numberOfPopulation: 0, fieldSize: .zero)
+  }
+}
+
 // MARK: - Function
 public extension Population {
   func recipe(`in` rect: Vector2.Rect) -> Recipe {
