@@ -18,10 +18,27 @@
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="SwarmRenderView" customModule="Demo_iOS" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D2Q-p0-PsY">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EW7-GK-6Kv" customClass="SwarmRenderView" customModule="Demo_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="EW7-GK-6Kv" secondAttribute="trailing" id="Gnn-7r-zVb"/>
+                                    <constraint firstItem="EW7-GK-6Kv" firstAttribute="top" secondItem="D2Q-p0-PsY" secondAttribute="top" id="OLl-YA-VwL"/>
+                                    <constraint firstAttribute="bottom" secondItem="EW7-GK-6Kv" secondAttribute="bottom" id="Wmy-db-Jvh"/>
+                                    <constraint firstItem="EW7-GK-6Kv" firstAttribute="leading" secondItem="D2Q-p0-PsY" secondAttribute="leading" id="ZGJ-Xo-ipn"/>
+                                    <constraint firstItem="EW7-GK-6Kv" firstAttribute="width" secondItem="D2Q-p0-PsY" secondAttribute="width" id="eFr-u2-n1c"/>
+                                    <constraint firstItem="EW7-GK-6Kv" firstAttribute="height" secondItem="D2Q-p0-PsY" secondAttribute="height" id="fn4-4q-ece"/>
+                                </constraints>
+                            </scrollView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="YdM-E3-BKi">
                                 <rect key="frame" x="10" y="20" width="355" height="637"/>
                                 <subviews>
@@ -81,7 +98,6 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="uDD-wS-6A4" firstAttribute="width" secondItem="Cxl-Xt-jEE" secondAttribute="width" id="ps9-jr-O6X"/>
-                                            <constraint firstItem="Cxl-Xt-jEE" firstAttribute="leading" secondItem="Ylr-dR-qbr" secondAttribute="leading" id="ysV-r7-Chb"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -90,9 +106,13 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="D2Q-p0-PsY" secondAttribute="trailing" id="109-bX-vZW"/>
+                            <constraint firstItem="D2Q-p0-PsY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="2Na-fm-ATn"/>
                             <constraint firstItem="YdM-E3-BKi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5Mm-qI-uIu"/>
                             <constraint firstItem="YdM-E3-BKi" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Jel-kt-LLt"/>
                             <constraint firstItem="YdM-E3-BKi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="Sll-uO-Yja"/>
+                            <constraint firstAttribute="bottom" secondItem="D2Q-p0-PsY" secondAttribute="bottom" id="XDf-T5-frr"/>
+                            <constraint firstItem="D2Q-p0-PsY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="i3N-Up-q30"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="YdM-E3-BKi" secondAttribute="bottom" constant="10" id="k8C-k0-T3b"/>
                         </constraints>
                         <connections>
@@ -103,7 +123,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="recipeSelectionButton" destination="pHE-GL-UpH" id="Z7d-jm-E0h"/>
-                        <outlet property="renderView" destination="8bC-Xf-vdC" id="FnM-n3-qA3"/>
+                        <outlet property="renderView" destination="EW7-GK-6Kv" id="3Wj-Ez-ufM"/>
                         <outlet property="resumeButton" destination="RxH-3o-4KJ" id="GGw-Fa-10j"/>
                         <outlet property="shareButton" destination="uDD-wS-6A4" id="Ryv-Hq-Vec"/>
                     </connections>
