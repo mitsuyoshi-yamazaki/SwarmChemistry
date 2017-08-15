@@ -81,6 +81,7 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="uDD-wS-6A4" firstAttribute="width" secondItem="Cxl-Xt-jEE" secondAttribute="width" id="ps9-jr-O6X"/>
+                                            <constraint firstItem="Cxl-Xt-jEE" firstAttribute="leading" secondItem="Ylr-dR-qbr" secondAttribute="leading" id="ysV-r7-Chb"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
