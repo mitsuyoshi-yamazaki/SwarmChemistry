@@ -60,7 +60,7 @@ class ViewController: UIViewController, SwarmRenderer {
     recipeSelectionButton.setTitle(selectedRecipe.name, for: .normal)
     
     let screenSize = UIScreen.main.bounds.size
-    let fieldSize = Coordinate(Value(screenSize.width), Value(screenSize.height)) * 10
+    let fieldSize = Vector2(Value(screenSize.width), Value(screenSize.height)) * 10
     setupRenderView(with: selectedRecipe, numberOfPopulation: 1000, fieldSize: fieldSize)
     
     isRecipeSaved = false

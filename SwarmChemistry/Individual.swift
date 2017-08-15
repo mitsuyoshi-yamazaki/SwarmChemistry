@@ -11,12 +11,12 @@ import Foundation
 // MARK: - Individual
 public class Individual {
   
-  fileprivate(set) public var position: Coordinate
-  fileprivate(set) public var velocity = Coordinate.zero
-  fileprivate(set) public var acceleration = Coordinate.zero
+  fileprivate(set) public var position: Vector2
+  fileprivate(set) public var velocity = Vector2.zero
+  fileprivate(set) public var acceleration = Vector2.zero
   public let genome: Parameters
 
-  public init(position: Coordinate, genome: Parameters) {
+  public init(position: Vector2, genome: Parameters) {
     self.position = position
     self.genome = genome
   }
@@ -31,7 +31,7 @@ public extension Individual {
 
 // MARK: - Function
 extension Individual {
-  func accelerate(_ acceleration: Coordinate) {
+  func accelerate(_ acceleration: Vector2) {
     self.acceleration = self.acceleration + acceleration
 
     let d = self.acceleration.x * self.acceleration.x + self.acceleration.y * self.acceleration.y
@@ -40,7 +40,7 @@ extension Individual {
     }
   }
   
-  func move(`in` fieldSize: Coordinate) {
+  func move(`in` fieldSize: Vector2) {
     velocity = acceleration
     position = (position + velocity).fit(to: fieldSize)
   }

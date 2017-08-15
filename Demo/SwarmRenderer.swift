@@ -19,14 +19,14 @@ protocol SwarmRenderer: class {
   var isRunning: Bool { set get }
   var steps: Int { get }
   
-  func setupRenderView(with recipe: Recipe?, numberOfPopulation: Int, fieldSize: Coordinate)
+  func setupRenderView(with recipe: Recipe?, numberOfPopulation: Int, fieldSize: Vector2)
   func step()
   func pause()
   func resume()
 }
 
 extension SwarmRenderer {
-  func setupRenderView(with recipe: Recipe?, numberOfPopulation: Int, fieldSize: Coordinate) {
+  func setupRenderView(with recipe: Recipe?, numberOfPopulation: Int, fieldSize: Vector2) {
     isRunning = false
 
     renderView.population = Population.init(recipe ?? Recipe.none(),

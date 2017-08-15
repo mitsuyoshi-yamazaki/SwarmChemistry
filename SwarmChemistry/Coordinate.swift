@@ -1,5 +1,5 @@
 //
-//  Coordinate.swift
+//  Vector2.swift
 //  SwarmChemistry
 //
 //  Created by mitsuyoshi.yamazaki on 2017/08/08.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-// MARK: - Coordinate
-public struct Coordinate {
+// MARK: - Vector2
+public struct Vector2 {
   
   public let x: Value
   public let y: Value
@@ -17,7 +17,7 @@ public struct Coordinate {
 }
 
 // MARK: - Convenience initializer
-public extension Coordinate {
+public extension Vector2 {
   public init(_ x: Value, _ y: Value) {
     self.x = x
     self.y = y
@@ -30,80 +30,80 @@ public extension Coordinate {
 }
 
 // MARK: - Function
-public extension Coordinate {
-  static let zero = Coordinate(0.0, 0.0)
+public extension Vector2 {
+  static let zero = Vector2(0.0, 0.0)
   
   func size() -> Value {
     return hypot(x, y)
   }
   
-  func distance(_ other: Coordinate) -> Value {
+  func distance(_ other: Vector2) -> Value {
     return hypot(x - other.x, y - other.y)
   }
   
-  func fit(to coordinate: Coordinate) -> Coordinate {
+  func fit(to size: Vector2) -> Vector2 {
     let x: Value
-    if self.x > coordinate.x {
-      x = self.x - (floor(self.x / coordinate.x) * coordinate.x)
+    if self.x > size.x {
+      x = self.x - (floor(self.x / size.x) * size.x)
     } else if self.x < 0.0 {
-      x = self.x + (floor((-self.x + coordinate.x) / coordinate.x) * coordinate.x)
+      x = self.x + (floor((-self.x + size.x) / size.x) * size.x)
     } else {
       x = self.x
     }
 
     let y: Value
-    if self.y > coordinate.y {
-      y = self.y - (floor(self.y / coordinate.y) * coordinate.y)
+    if self.y > size.y {
+      y = self.y - (floor(self.y / size.y) * size.y)
     } else if self.y < 0.0 {
-      y = self.y + (floor((-self.y + coordinate.y) / coordinate.y) * coordinate.y)
+      y = self.y + (floor((-self.y + size.y) / size.y) * size.y)
     } else {
       y = self.y
     }
 
-    return Coordinate(x, y)
+    return Vector2(x, y)
   }
   
-  func random() -> Coordinate {
+  func random() -> Vector2 {
     let x = self.x * (Value(Int(arc4random() % 100)) / 100.0)
     let y = self.y * (Value(Int(arc4random() % 100)) / 100.0)
 
-    return Coordinate(x, y)
+    return Vector2(x, y)
   }
   
-  func contains(_ other: Coordinate) -> Bool {
+  func contains(_ other: Vector2) -> Bool {
     return (x >= other.x) && (y >= other.y)
   }
 }
 
 // MARK: - Operator override
-public extension Coordinate {
-  static func +(lhs: Coordinate, rhs: Coordinate) -> Coordinate {
-    return Coordinate(lhs.x + rhs.x, lhs.y + rhs.y)
+public extension Vector2 {
+  static func +(lhs: Vector2, rhs: Vector2) -> Vector2 {
+    return Vector2(lhs.x + rhs.x, lhs.y + rhs.y)
   }
   
-  static func -(lhs: Coordinate, rhs: Coordinate) -> Coordinate {
-    return Coordinate(lhs.x - rhs.x, lhs.y - rhs.y)
+  static func -(lhs: Vector2, rhs: Vector2) -> Vector2 {
+    return Vector2(lhs.x - rhs.x, lhs.y - rhs.y)
   }
   
-  static func *(coordinate: Coordinate, multiplier: Value) -> Coordinate {
-    return Coordinate(coordinate.x * multiplier, coordinate.y * multiplier)
+  static func *(vector: Vector2, multiplier: Value) -> Vector2 {
+    return Vector2(vector.x * multiplier, vector.y * multiplier)
   }
   
-  static func /(coordinate: Coordinate, divider: Value) -> Coordinate {
-    return Coordinate(coordinate.x / divider, coordinate.y / divider)
+  static func /(vector: Vector2, divider: Value) -> Vector2 {
+    return Vector2(vector.x / divider, vector.y / divider)
   }
 }
 
 // MARK: - CustomStringConvertible
-extension Coordinate: CustomStringConvertible {
+extension Vector2: CustomStringConvertible {
   public var description: String {
     return "(\(x), \(y))"
   }
 }
 
 // MARK: - Equatable
-extension Coordinate: Equatable {
-  public static func ==(lhs: Coordinate, rhs: Coordinate) -> Bool {
+extension Vector2: Equatable {
+  public static func ==(lhs: Vector2, rhs: Vector2) -> Bool {
     return (lhs.x == rhs.x) && (lhs.y == rhs.y)
   }
 }

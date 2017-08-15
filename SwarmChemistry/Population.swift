@@ -10,14 +10,14 @@ import Foundation
 
 // MARK: - Population
 public struct Population {
-  public var fieldSize = Coordinate(500, 500)
+  public var fieldSize = Vector2(500, 500)
   public let population: [Individual]
   public let recipe: Recipe
 }
 
 // MARK: - Recipe
 public extension Population {
-  init(_ recipe: Recipe, numberOfPopulation: Int? = nil, fieldSize: Coordinate = Coordinate(500, 500)) {
+  init(_ recipe: Recipe, numberOfPopulation: Int? = nil, fieldSize: Vector2 = Vector2(500, 500)) {
     
     self.recipe = recipe
     
@@ -69,28 +69,28 @@ public extension Population {
         
         let genome = individual.genome
         let neighbors = getNeighbors(individual: individual)
-        let acceleration: Coordinate
+        let acceleration: Vector2
         
         if neighbors.count == 0 {
-          acceleration = Coordinate(1, 1).random() - Coordinate(0.5, 0.5)
+          acceleration = Vector2(1, 1).random() - Vector2(0.5, 0.5)
           
         } else {
           let numberOfNeighbors = Value(neighbors.count)
           
           // Center
-          let sumCenter = neighbors.reduce(Coordinate.zero) { (result, value) -> Coordinate in
+          let sumCenter = neighbors.reduce(Vector2.zero) { (result, value) -> Vector2 in
             return result + value.individual.position
           }
           let averageCenter = sumCenter / numberOfNeighbors
           
           // Velocity
-          let sumVelocity = neighbors.reduce(Coordinate.zero) { (result, value) -> Coordinate in
+          let sumVelocity = neighbors.reduce(Vector2.zero) { (result, value) -> Vector2 in
             return result + value.individual.velocity
           }
           let averageVelocity = sumVelocity / numberOfNeighbors
 
           // Separation
-          let sumSeparation = neighbors.reduce(Coordinate.zero) { (result, value) -> Coordinate in
+          let sumSeparation = neighbors.reduce(Vector2.zero) { (result, value) -> Vector2 in
             return result
               + (individual.position - value.individual.position)
               / max(value.distance * value.distance, 0.001)
@@ -98,9 +98,9 @@ public extension Population {
           }
           
           // Steering
-          let steering: Coordinate
+          let steering: Vector2
           if Double(arc4random() % 100) < (genome.probabilityOfRandomSteering * 100.0) {
-            steering = Coordinate(Value(arc4random() % 10) - 5.0, Value(arc4random() % 10) - 5.0)
+            steering = Vector2(Value(arc4random() % 10) - 5.0, Value(arc4random() % 10) - 5.0)
           } else {
             steering = .zero
           }

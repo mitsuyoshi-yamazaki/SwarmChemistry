@@ -31,7 +31,7 @@ class ViewController: NSViewController, SwarmRenderer {
   
   // MARK: - Function
   private func setup() {
-    setupRenderView(with: .jellyFish, numberOfPopulation: 1000, fieldSize: Coordinate(6000, 4000))
+    setupRenderView(with: .jellyFish, numberOfPopulation: 1000, fieldSize: Vector2(6000, 4000))
   }
 
   // MARK: - Action
