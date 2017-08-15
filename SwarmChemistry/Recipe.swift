@@ -16,8 +16,6 @@ public struct Recipe {
   public let genomes: [GenomeInfo]
 }
 
-// TODO: write tests
-
 public extension Recipe {
   /**
    Expecting:
