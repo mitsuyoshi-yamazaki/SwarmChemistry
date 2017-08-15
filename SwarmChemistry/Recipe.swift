@@ -107,6 +107,10 @@ public extension Recipe {
 
 // MARK: - Function
 public extension Recipe {
+  static func none() -> Recipe {
+    return self.init(name: "None", genomes: [])
+  }
+  
   static func random(numberOfGenomes: Int) -> Recipe {
     let genomes = (0..<numberOfGenomes)
       .map { _ in (genome: Parameters.random, count: 10) }

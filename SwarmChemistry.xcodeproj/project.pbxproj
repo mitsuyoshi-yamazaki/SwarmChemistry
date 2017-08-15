@@ -53,6 +53,8 @@
 		ED7C21801F3AFBE600018F97 /* Individual.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C217E1F3AFBE600018F97 /* Individual.swift */; };
 		EDABFDF51F3C5A3C00E1D56C /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDABFDF41F3C5A3C00E1D56C /* Recipe.swift */; };
 		EDABFDF61F3C5A4500E1D56C /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDABFDF41F3C5A3C00E1D56C /* Recipe.swift */; };
+		EDABFDF81F42ECCE00E1D56C /* RecipeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDABFDF71F42ECCE00E1D56C /* RecipeTests.swift */; };
+		EDABFDF91F42ECCE00E1D56C /* RecipeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDABFDF71F42ECCE00E1D56C /* RecipeTests.swift */; };
 		EDBA52431F3B11D60091BEE5 /* PopulationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBA52421F3B11D60091BEE5 /* PopulationTests.swift */; };
 		EDBA52441F3B11D60091BEE5 /* PopulationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBA52421F3B11D60091BEE5 /* PopulationTests.swift */; };
 /* End PBXBuildFile section */
@@ -151,6 +153,7 @@
 		ED97B2381F39901D001DDA4B /* SwarmChemistry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwarmChemistry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED97B2451F399037001DDA4B /* SwarmChemistry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwarmChemistry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDABFDF41F3C5A3C00E1D56C /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		EDABFDF71F42ECCE00E1D56C /* RecipeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeTests.swift; sourceTree = "<group>"; };
 		EDBA52421F3B11D60091BEE5 /* PopulationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopulationTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -238,6 +241,7 @@
 				ED7C214A1F3AD8C200018F97 /* ParametersTests.swift */,
 				ED7C21471F3AD33700018F97 /* CoordinateTests.swift */,
 				EDBA52421F3B11D60091BEE5 /* PopulationTests.swift */,
+				EDABFDF71F42ECCE00E1D56C /* RecipeTests.swift */,
 			);
 			path = SwarmChemistryTests;
 			sourceTree = "<group>";
@@ -559,6 +563,7 @@
 			files = (
 				ED7C214B1F3AD8C200018F97 /* ParametersTests.swift in Sources */,
 				ED7C21451F3AD1C400018F97 /* SwarmChemistryTests.swift in Sources */,
+				EDABFDF81F42ECCE00E1D56C /* RecipeTests.swift in Sources */,
 				EDBA52431F3B11D60091BEE5 /* PopulationTests.swift in Sources */,
 				ED7C21481F3AD33700018F97 /* CoordinateTests.swift in Sources */,
 			);
@@ -570,6 +575,7 @@
 			files = (
 				ED7C214C1F3AD8C200018F97 /* ParametersTests.swift in Sources */,
 				ED7C21461F3AD1C400018F97 /* SwarmChemistryTests.swift in Sources */,
+				EDABFDF91F42ECCE00E1D56C /* RecipeTests.swift in Sources */,
 				EDBA52441F3B11D60091BEE5 /* PopulationTests.swift in Sources */,
 				ED7C21491F3AD33700018F97 /* CoordinateTests.swift in Sources */,
 			);
