@@ -100,8 +100,7 @@ class ViewController: UIViewController, SwarmRenderer {
       recipe = renderView.population.recipe(in: visibleRect)
     }
     
-    let recipeText = recipe.description
-    let shareText = "\(selectedRecipe.name)\n\(recipeText)"
+    let shareText = recipe.description
     var activityItems: [Any] = [
       shareText
     ]
