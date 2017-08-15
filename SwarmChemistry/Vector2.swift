@@ -13,7 +13,6 @@ public struct Vector2 {
   
   public let x: Value
   public let y: Value
-  //  let z: Double // TODO: make it 3D
 }
 
 // MARK: - Convenience initializer
