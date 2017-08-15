@@ -11,6 +11,8 @@
 		2C33F2331F41CB62007A4068 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C33F2321F41CB62007A4068 /* Utility.swift */; };
 		2C33F2351F43427E007A4068 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C33F2341F43427E007A4068 /* Extensions.swift */; };
 		2C33F2361F43427E007A4068 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C33F2341F43427E007A4068 /* Extensions.swift */; };
+		2C33F23A1F434ACE007A4068 /* CommonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C33F2371F434AC8007A4068 /* CommonUtility.swift */; };
+		2C33F23B1F434ACF007A4068 /* CommonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C33F2371F434AC8007A4068 /* CommonUtility.swift */; };
 		2C5A625D1F3CB50500F10E8E /* RecipeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5A625C1F3CB50500F10E8E /* RecipeListViewController.swift */; };
 		2CA5C3161F3CA0DF0037080C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3151F3CA0DF0037080C /* AppDelegate.swift */; };
 		2CA5C3181F3CA0DF0037080C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3171F3CA0DF0037080C /* ViewController.swift */; };
@@ -121,6 +123,7 @@
 		2C33F2301F411EE1007A4068 /* RecipeInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeInputViewController.swift; sourceTree = "<group>"; };
 		2C33F2321F41CB62007A4068 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		2C33F2341F43427E007A4068 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		2C33F2371F434AC8007A4068 /* CommonUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonUtility.swift; sourceTree = "<group>"; };
 		2C5A625C1F3CB50500F10E8E /* RecipeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeListViewController.swift; sourceTree = "<group>"; };
 		2CA5C3131F3CA0DF0037080C /* Demo_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA5C3151F3CA0DF0037080C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -215,6 +218,7 @@
 			children = (
 				2CA5C3251F3CA19B0037080C /* SwarmRenderView.swift */,
 				2CA5C32F1F3CAAB70037080C /* SwarmRenderer.swift */,
+				2C33F2371F434AC8007A4068 /* CommonUtility.swift */,
 				2CA5C3341F3CAB370037080C /* PlatformSpecific.swift */,
 			);
 			path = Demo;
@@ -552,6 +556,7 @@
 			files = (
 				2C33F2311F411EE1007A4068 /* RecipeInputViewController.swift in Sources */,
 				2CA5C3181F3CA0DF0037080C /* ViewController.swift in Sources */,
+				2C33F23A1F434ACE007A4068 /* CommonUtility.swift in Sources */,
 				2CA5C3161F3CA0DF0037080C /* AppDelegate.swift in Sources */,
 				2C5A625D1F3CB50500F10E8E /* RecipeListViewController.swift in Sources */,
 				2C33F2331F41CB62007A4068 /* Utility.swift in Sources */,
@@ -593,6 +598,7 @@
 			files = (
 				ED7C21691F3AE51100018F97 /* ViewController.swift in Sources */,
 				ED7C21671F3AE51100018F97 /* AppDelegate.swift in Sources */,
+				2C33F23B1F434ACF007A4068 /* CommonUtility.swift in Sources */,
 				2CA5C3291F3CA1A00037080C /* SwarmRenderView.swift in Sources */,
 				2CA5C3331F3CAABD0037080C /* SwarmRenderer.swift in Sources */,
 				2CA5C3381F3CAB3C0037080C /* PlatformSpecific.swift in Sources */,

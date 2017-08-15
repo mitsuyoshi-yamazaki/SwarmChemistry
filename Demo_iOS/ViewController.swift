@@ -46,11 +46,14 @@ class ViewController: UIViewController, SwarmRenderer {
     super.viewWillAppear(animated)
     
     navigationController?.setNavigationBarHidden(true, animated: true)
-    resume()
+    if shouldRun {
+      resume()
+    }
   }
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
+    shouldRun = isRunning
     pause()
   }
   
@@ -64,6 +67,7 @@ class ViewController: UIViewController, SwarmRenderer {
     setupRenderView(with: selectedRecipe, numberOfPopulation: 1000, fieldSize: fieldSize)
     
     isRecipeSaved = false
+    shouldRun = true
   }
   
   // MARK: - Action
@@ -87,10 +91,16 @@ class ViewController: UIViewController, SwarmRenderer {
   }
 
   @IBAction func share(sender: AnyObject!) {
-//    print(renderView.population!.recipe(in: .init(x: 0, y: 0, width: 300, height: 300)))
     
+    let recipe: Recipe
+    if scrollView.zoomScale == 1.0 {
+      recipe = renderView.population.recipe
+    } else {
+      let visibleRect = renderView.convert(scrollView.visibleRect)
+      recipe = renderView.population.recipe(in: visibleRect)
+    }
     
-    let recipeText = renderView.population.description  // Currently Population?.description is the recipe text representable    let shareText = "\(selectedRecipe.name)\n\(recipeText)"
+    let recipeText = recipe.description
     let shareText = "\(selectedRecipe.name)\n\(recipeText)"
     var activityItems: [Any] = [
       shareText
