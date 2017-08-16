@@ -116,6 +116,16 @@ public extension Recipe {
   }
 }
 
+// MARK: - Operator override
+public extension Recipe {
+  static func +(recipe: Recipe, genome: GenomeInfo) -> Recipe {
+    let name = "Expanded \(recipe.name)"
+    let genomes = recipe.genomes + [genome]
+    
+    return Recipe.init(name: name, genomes: genomes)
+  }
+}
+
 // MARK: - CustomStringConvertible
 extension Recipe: CustomStringConvertible {
   public var description: String {
