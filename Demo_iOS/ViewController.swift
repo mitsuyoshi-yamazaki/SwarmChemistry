@@ -33,7 +33,10 @@ class ViewController: UIViewController, SwarmRenderer {
   var steps: Int {
     return 3
   }
-  
+  var delay: Double {
+    return 0.0
+  }
+
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -64,7 +67,12 @@ class ViewController: UIViewController, SwarmRenderer {
     
     let screenSize = UIScreen.main.bounds.size
     let fieldSize = Vector2(Value(screenSize.width), Value(screenSize.height)) * 10
-    setupRenderView(with: selectedRecipe, numberOfPopulation: 1000, fieldSize: fieldSize)
+    let population = Population.init(selectedRecipe,
+                                     numberOfPopulation: 1000,
+                                     fieldSize: fieldSize,
+                                     initialArea: Vector2.Rect.init(origin: fieldSize * 0.1, size: fieldSize * 0.6))
+    
+    setupRenderView(with: population)
     
     isRecipeSaved = false
     shouldRun = true
@@ -128,6 +136,7 @@ class ViewController: UIViewController, SwarmRenderer {
       let navigationController = segue.destination as! UINavigationController
       let recipeListViewController = navigationController.topViewController as! RecipeListViewController
       recipeListViewController.delegate = self
+      recipeListViewController.currentRecipe = selectedRecipe
     }
   }
 }

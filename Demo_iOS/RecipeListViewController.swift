@@ -27,6 +27,7 @@ class RecipeListViewController: UITableViewController {
   }
   
   weak var delegate: RecipeListViewControllerDelegate?
+  var currentRecipe: Recipe?
   
   private let recipeList = Recipe.presetRecipes
   
@@ -106,6 +107,7 @@ class RecipeListViewController: UITableViewController {
     case .inputRecipe:
       let inputViewController = segue.destination as! RecipeInputViewController
       inputViewController.delegate = self
+      inputViewController.currentRecipe = currentRecipe
     }
   }
 }

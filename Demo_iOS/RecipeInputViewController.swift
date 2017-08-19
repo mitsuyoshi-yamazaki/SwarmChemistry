@@ -16,11 +16,17 @@ protocol RecipeInputViewControllerDelegate: class {
 class RecipeInputViewController: UIViewController {
 
   weak var delegate: RecipeInputViewControllerDelegate?
-  
+  var currentRecipe: Recipe? {
+    didSet {
+      textView?.text = currentRecipe?.description ?? ""
+    }
+  }
+
   @IBOutlet private weak var textView: UITextView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    textView.text = currentRecipe?.description ?? ""
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -38,6 +44,7 @@ class RecipeInputViewController: UIViewController {
       return
     }
     
+    currentRecipe = recipe
     let delegate = self.delegate
     
     dismiss(animated: true) {
