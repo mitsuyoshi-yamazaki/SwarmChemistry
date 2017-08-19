@@ -50,7 +50,6 @@
                                         <color key="backgroundColor" white="0.33333333329999998" alpha="0.20000000000000001" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="50B-Fr-sjG"/>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="355" id="gOP-ff-hDg"/>
                                         </constraints>
                                         <state key="normal" title="Recipe">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
