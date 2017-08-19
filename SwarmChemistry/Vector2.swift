@@ -115,6 +115,11 @@ public extension Vector2 {
   struct Rect {
     let origin: Vector2
     let size: Vector2
+    
+    public init(origin: Vector2, size: Vector2) {
+      self.origin = origin
+      self.size = size
+    }
   }
 }
 
@@ -132,6 +137,13 @@ public extension Vector2.Rect {
 // MARK: - Accessor
 public extension Vector2.Rect {
   static let zero = Vector2.Rect.init(x: 0, y: 0, width: 0, height: 0)
+  
+  func random() -> Vector2 {
+    let x = size.x * (Value(Int(arc4random() % 100)) / 100.0) + origin.x
+    let y = size.y * (Value(Int(arc4random() % 100)) / 100.0) + origin.y
+    
+    return Vector2(x, y)
+  }
 }
 
 // MARK: - Function

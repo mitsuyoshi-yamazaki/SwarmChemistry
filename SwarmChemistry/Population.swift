@@ -17,7 +17,7 @@ public struct Population {
 
 // MARK: - Recipe
 public extension Population {
-  init(_ recipe: Recipe, numberOfPopulation: Int? = nil, fieldSize: Vector2 = Vector2(500, 500)) {
+  init(_ recipe: Recipe, numberOfPopulation: Int? = nil, fieldSize: Vector2 = Vector2(500, 500), initialArea: Vector2.Rect? = nil) {
     
     self.recipe = recipe
     
@@ -27,12 +27,19 @@ public extension Population {
       }
     let magnitude = Value(numberOfPopulation ?? sum) / Value(sum)
     
+    let area: Vector2.Rect
+    if let initialArea = initialArea {
+      area = initialArea
+    } else {
+      area = .init(origin: .zero, size: fieldSize)
+    }
+    
     population = recipe.genomes
       .map { value -> [Individual] in
         let count = Int(Value(value.count) * magnitude)
         return (0..<count)
           .map { _ in
-            Individual(position: fieldSize.random(), genome: value.genome)
+            Individual(position: area.random(), genome: value.genome)
           }
       }
       .flatMap { $0 }

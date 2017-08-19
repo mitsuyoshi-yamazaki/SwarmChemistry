@@ -12,6 +12,8 @@ import Foundation
 public extension Recipe {
   static var presetRecipes: [Recipe] {
     return [
+      slicer,
+      oscillator,
       insurmountableWall,
       cellWithTwoNuclei,
       multicellularity,
@@ -20,6 +22,7 @@ public extension Recipe {
       recombiningBlobs,
       playingCatch,
       pulsatingEye,
+      chaosCells,
       aggressivePredator,
       fastWalkerAndSlowFollower,
       swinger,
@@ -31,7 +34,16 @@ public extension Recipe {
     ]
     // More recipes see: http://bingweb.binghamton.edu/~sayama/SwarmChemistry/
   }
-  
+
+  static var slicer: Recipe {
+    return self.init(Raw.slicer)!
+  }
+
+  static var oscillator: Recipe {
+    return self.init(Raw.oscillator)!
+  }
+
+  // MARK: -
   static var insurmountableWall: Recipe {
     return self.init(Raw.insurmountableWall)!
   }
@@ -62,6 +74,10 @@ public extension Recipe {
   
   static var pulsatingEye: Recipe {
     return self.init(Raw.pulsatingEye)!
+  }
+  
+  static var chaosCells: Recipe {
+    return self.init(Raw.chaosCells)!
   }
   
   static var aggressivePredator: Recipe {
@@ -99,6 +115,20 @@ public extension Recipe {
 
 private extension Recipe {
   struct Raw {
+    
+    static var slicer: String {
+      return "Slicer\n"
+        + "12 * (86.89, 1.8, 22.26, 0.57, 0.35, 80.8, 0.35, 0.64)\n"
+        + "1 * (140.55, 2.52, 20.39, 0.97, 0.45, 35.51, 0.45, 0.06)\n"
+    }
+
+    static var oscillator: String {
+      return "Oscillator\n"
+        + "500 * (200.0, 20.0, 40.0, 0.64, 0.01, 0.29, 0.08, 0.97)\n"
+        + "120 * (300.0, 7.19, 15.51, 1.0, 0.33, 32.65, 0.34, 0.56)\n"
+    }
+    
+    // MARK: -
     static var insurmountableWall: String {
       return "Insurmountable Wall\n"
         + "42 * (52.57, 9.91, 20.42, 0.32, 0.76, 1.8, 0.01, 0.64)\n"

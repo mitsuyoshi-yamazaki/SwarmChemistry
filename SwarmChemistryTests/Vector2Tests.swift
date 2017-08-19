@@ -10,7 +10,7 @@ import XCTest
 @testable import SwarmChemistry
 
 class Vector2Tests: XCTestCase {
-
+  
   func test_zero() {
     let zero = Vector2.zero
     
@@ -62,7 +62,7 @@ class Vector2Tests: XCTestCase {
     XCTAssert(vector == Vector2(1.1, 2.2))
     XCTAssert(vector != Vector2(1.0, 2.2))
     XCTAssert(vector != Vector2(1.1, 2.0))
- }
+  }
   
   func test_description() {
     XCTAssert(Vector2(1, 2).description == "(1.00, 2.00)")
@@ -98,7 +98,7 @@ class Vector2RectTests: XCTestCase {
     XCTAssert(rectWithValue.origin.y == 2.0)
     XCTAssert(rectWithValue.size.x == 10.0)
     XCTAssert(rectWithValue.size.y == 20.0)
-
+    
     let rectWithInt = Vector2.Rect.init(x: 1, y: 2, width: 10, height: 20)
     
     XCTAssert(rectWithInt.origin.x == 1.0)
@@ -111,6 +111,14 @@ class Vector2RectTests: XCTestCase {
   
   func test_zero() {
     XCTAssert(Vector2.Rect.zero == Vector2.Rect.init(x: 0, y: 0, width: 0, height: 0))
+  }
+  
+  func test_random() {
+    let rect = Vector2.Rect.init(x: 100, y: 100, width: 100, height: 100)
+    
+    (0..<100).forEach { _ in
+      XCTAssert(rect.contains(rect.random()))
+    }
   }
   
   func test_contains() {
