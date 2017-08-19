@@ -20,7 +20,7 @@ class ViewController: UIViewController, SwarmRenderer {
   @IBOutlet private weak var shareButton: UIButton!
 
   fileprivate var isRecipeSaved = false
-  fileprivate var selectedRecipe = Recipe.jellyFish
+  fileprivate var selectedRecipe = Recipe.slicer
   fileprivate var shouldRun = false
   
   // MARK: - SwarmRenderer
@@ -70,7 +70,7 @@ class ViewController: UIViewController, SwarmRenderer {
     let population = Population.init(selectedRecipe,
                                      numberOfPopulation: 1000,
                                      fieldSize: fieldSize,
-                                     initialArea: Vector2.Rect.init(origin: fieldSize * 0.1, size: fieldSize * 0.8))
+                                     initialArea: Vector2.Rect.init(origin: fieldSize * 0.45, size: fieldSize * 0.1))
     
     setupRenderView(with: population)
     
