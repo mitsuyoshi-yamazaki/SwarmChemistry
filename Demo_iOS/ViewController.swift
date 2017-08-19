@@ -70,7 +70,7 @@ class ViewController: UIViewController, SwarmRenderer {
     let population = Population.init(selectedRecipe,
                                      numberOfPopulation: 1000,
                                      fieldSize: fieldSize,
-                                     initialArea: Vector2.Rect.init(origin: fieldSize * 0.1, size: fieldSize * 0.6))
+                                     initialArea: Vector2.Rect.init(origin: fieldSize * 0.1, size: fieldSize * 0.8))
     
     setupRenderView(with: population)
     
