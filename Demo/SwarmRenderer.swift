@@ -18,20 +18,23 @@ protocol SwarmRenderer: class {
   weak var renderView: SwarmRenderView! { set get }
   var isRunning: Bool { set get }
   var steps: Int { get }
+  var delay: Double { get }
   
-  func setupRenderView(with recipe: Recipe?, numberOfPopulation: Int, fieldSize: Vector2)
+  func setupRenderView(with population: Population)
   func step()
   func pause()
   func resume()
+  func clear()
 }
 
 extension SwarmRenderer {
-  func setupRenderView(with recipe: Recipe?, numberOfPopulation: Int, fieldSize: Vector2) {
-    isRunning = false
+  var delay: Double {
+    return 0.0
+  }
 
-    renderView.population = Population.init(recipe ?? Recipe.none(),
-                                            numberOfPopulation: numberOfPopulation,
-                                            fieldSize: fieldSize)
+  func setupRenderView(with population: Population) {
+    isRunning = false
+    renderView.population = population
   }
   
   func step() {
@@ -41,7 +44,7 @@ extension SwarmRenderer {
     
     DispatchQueue.global(qos: .userInitiated).async {
       self.renderView.population.step(self.steps)
-      DispatchQueue.main.async {
+      DispatchQueue.main.asyncAfter(deadline: .now() + self.delay) {
         guard self.isRunning == true else {
           return  // Without this, setNeedsDisplay() maybe called one time after pause() call
         }
@@ -58,5 +61,10 @@ extension SwarmRenderer {
   func resume() {
     isRunning = true
     step()
+  }
+  
+  func clear() {
+    pause()
+    renderView.clear()
   }
 }

@@ -19,31 +19,36 @@ class SwarmRenderView: View {
   var cellSize: CGFloat = 16.0
   var population = Population.zero() {
     didSet {
-      let fieldWidth = CGFloat(population.fieldSize.x)
-      let fieldHeight = CGFloat(population.fieldSize.y)
-      fieldSizeMultiplier = min(frame.width / fieldWidth, frame.height / fieldHeight)
+      updateFieldSizeMultiplier()
     }
   }
 
   fileprivate var fieldSizeMultiplier: CGFloat = 1.0
-  
-  // MARK: - Layout
-  override func layoutSubviews() {
-    super.layoutSubviews()
-    updateFieldSizeMultiplier()
-  }
+  fileprivate var shouldClear = false
   
   private func updateFieldSizeMultiplier() {
-    // TODO:
+    let fieldWidth = CGFloat(population.fieldSize.x)
+    let fieldHeight = CGFloat(population.fieldSize.y)
+    fieldSizeMultiplier = min(frame.width / fieldWidth, frame.height / fieldHeight)
   }
   
   // MARK: - Draw
   #if os(iOS) || os(watchOS) || os(tvOS)
+  override func layoutSubviews() {
+    super.layoutSubviews()
+    updateFieldSizeMultiplier()
+  }
+
   override func draw(_ rect: CGRect) {
     let context = UIGraphicsGetCurrentContext()!
     draw(with: context)
   }
   #elseif os(macOS)
+  override func layout() {
+    super.layout()
+    updateFieldSizeMultiplier()
+  }
+  
   override func draw(_ dirtyRect: NSRect) {
     guard let context = NSGraphicsContext.current()?.cgContext else {
       fatalError()
@@ -53,7 +58,13 @@ class SwarmRenderView: View {
   #endif
   
   private func draw(with context: CGContext) {
-
+    guard shouldClear == false else {
+      shouldClear = false
+      context.setFillColor(Color.white.cgColor)
+      context.fill(bounds)
+      return
+    }
+    
     context.setFillColor(Color(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor)
     context.fill(bounds)
     
@@ -74,6 +85,11 @@ class SwarmRenderView: View {
 
 // MARK: - Function
 extension SwarmRenderView {
+  func clear() {
+    shouldClear = true
+    setNeedsDisplay(bounds)
+  }
+  
   func convert(_ rect: CGRect) -> Vector2.Rect {
     return Vector2.Rect(rect) / Value(fieldSizeMultiplier)
   }
