@@ -37,9 +37,9 @@ class ViewController: NSViewController, SwarmRenderer {
     
     let fieldSize = Vector2(3000, 3000)
     let population = Population.init(Recipe.oscillator,
-                                     numberOfPopulation: inner + outer,
+                                     numberOfPopulation: 2000,
                                      fieldSize: fieldSize,
-                                     initialArea: Vector2.Rect.init(origin: fieldSize * 0.4, size: fieldSize * 0.1))
+                                     initialArea: Vector2.Rect.init(origin: fieldSize * 0.1, size: fieldSize * 0.8))
 
     setupRenderView(with: population)
   }
