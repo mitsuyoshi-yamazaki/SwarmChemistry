@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -688,6 +688,9 @@
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2ZL-Es-Ppo">
                                 <rect key="frame" x="14" y="222" width="84" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="72" id="ZpW-fF-5oT"/>
+                                </constraints>
                                 <buttonCell key="cell" type="push" title="Restart" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RjO-aZ-0W9">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -696,10 +699,23 @@
                                     <action selector="resetWithSender:" target="XfG-lQ-9wD" id="5ju-fI-aUC"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ebO-EL-elg">
+                                <rect key="frame" x="382" y="222" width="84" height="32"/>
+                                <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="STK-mF-uQb">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="clearWithSender:" target="XfG-lQ-9wD" id="g3C-zp-196"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ebO-EL-elg" secondAttribute="trailing" constant="20" id="9Of-vv-BCf"/>
                             <constraint firstItem="2ZL-Es-Ppo" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="MZP-df-b7g"/>
+                            <constraint firstItem="2ZL-Es-Ppo" firstAttribute="width" secondItem="ebO-EL-elg" secondAttribute="width" id="Sdv-PF-rJW"/>
                             <constraint firstItem="2ZL-Es-Ppo" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="wyM-dY-lFc"/>
+                            <constraint firstItem="ebO-EL-elg" firstAttribute="centerY" secondItem="2ZL-Es-Ppo" secondAttribute="centerY" id="zB5-e8-fbl"/>
                         </constraints>
                     </view>
                     <connections>

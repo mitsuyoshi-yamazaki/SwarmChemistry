@@ -15,7 +15,10 @@ class ViewController: NSViewController, SwarmRenderer {
   @IBOutlet weak var renderView: SwarmRenderView!
   var isRunning = false
   var steps: Int {
-    return 6
+    return 2
+  }
+  var delay: Double {
+    return 0.0
   }
   
   // MARK: - Lifecycle
@@ -31,12 +34,23 @@ class ViewController: NSViewController, SwarmRenderer {
   
   // MARK: - Function
   private func setup() {
-    setupRenderView(with: .jellyFish, numberOfPopulation: 1000, fieldSize: Vector2(6000, 4000))
+    
+    let fieldSize = Vector2(3000, 3000)
+    let population = Population.init(Recipe.oscillator,
+                                     numberOfPopulation: inner + outer,
+                                     fieldSize: fieldSize,
+                                     initialArea: Vector2.Rect.init(origin: fieldSize * 0.4, size: fieldSize * 0.1))
+
+    setupRenderView(with: population)
   }
 
   // MARK: - Action
   @IBAction func reset(sender: AnyObject!) {
     setup()
     resume()
+  }
+  
+  @IBAction func clear(sender: AnyObject!) {
+    clear()
   }
 }
