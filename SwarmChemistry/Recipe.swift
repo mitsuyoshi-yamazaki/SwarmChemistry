@@ -10,8 +10,6 @@ import Foundation
 
 // MARK: - Recipe
 public struct Recipe {
-  public typealias GenomeInfo = (genome: Parameters, count: Int)
-  
   public let name: String
   public let genomes: [GenomeInfo]
 }
@@ -65,7 +63,7 @@ public extension Recipe {
         guard let genome = Recipe.parseGenome(from: value.genomeText) else {
           return nil
         }
-        return (genome: genome, count: value.count)
+        return GenomeInfo.init(count: value.count, area: nil, genome: genome)
     }
     
     guard let genome = result as? [GenomeInfo] else {
@@ -111,7 +109,7 @@ public extension Recipe {
   
   static func random(numberOfGenomes: Int) -> Recipe {
     let genomes = (0..<numberOfGenomes)
-      .map { _ in (genome: Parameters.random, count: 10) }
+      .map { _ in GenomeInfo.init(count: 10, area: nil, genome: Parameters.random) }
     
     let random = self.init(name: "Random", genomes: genomes)
     Log.debug(random.description)
@@ -138,5 +136,14 @@ extension Recipe: CustomStringConvertible {
       .joined(separator: "\n")
     
     return "\(name)\n\(genomesText)"
+  }
+}
+
+// MARK: - GenomeInfo
+public extension Recipe {
+  struct GenomeInfo {
+    let count: Int
+    let area: Vector2.Rect?
+    let genome: Parameters
   }
 }

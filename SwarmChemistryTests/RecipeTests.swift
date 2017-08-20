@@ -60,7 +60,7 @@ class RecipeTests: XCTestCase {
     let recipe = Recipe.init(recipeText)!
     
     let genome = Parameters([279.64, 10.29, 35.95, 0.37, 0.49, 38.09, 0.32, 0.89])!
-    let additionalGenome = (genome: genome, count: 49)
+    let additionalGenome = Recipe.GenomeInfo.init(count: 49, area: nil, genome: genome)
     
     let expectedRecipeDescription = "Expanded " + recipeText
       + "49 * (279.64, 10.29, 35.95, 0.37, 0.49, 38.09, 0.32, 0.89)"

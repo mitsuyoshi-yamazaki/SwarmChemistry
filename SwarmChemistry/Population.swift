@@ -66,7 +66,7 @@ public extension Population {
         return result.filter { $0 == individual.genome }.isEmpty ? result + [individual.genome] : result
       }
       .map { genome -> Recipe.GenomeInfo in
-        return (genome: genome, count: populationInRect.filter { $0.genome == genome }.count)
+        return Recipe.GenomeInfo.init(count: populationInRect.filter { $0.genome == genome }.count, area: nil, genome: genome)
     }
     
     let name = "Subset of \(recipe.name)"
