@@ -17,36 +17,54 @@ import SwarmChemistry
 protocol SwarmRenderer: class {
   weak var renderView: SwarmRenderView! { set get }
   var isRunning: Bool { set get }
+  var steps: Int { get }
+  var delay: Double { get }
   
-  func setupRenderView(with recipe: Recipe?, numberOfPopulation: Int, fieldSize: Coordinate)
-  func stepSwarm(_ step: Int)
+  func setupRenderView(with population: Population)
+  func step()
+  func pause()
+  func resume()
+  func clear()
 }
 
 extension SwarmRenderer {
-  func setupRenderView(with recipe: Recipe?, numberOfPopulation: Int, fieldSize: Coordinate) {
-    isRunning = false
+  var delay: Double {
+    return 0.0
+  }
 
-    renderView.population = Population.init(recipe ?? Recipe.random(numberOfGenomes: 5),
-                                            numberOfPopulation: numberOfPopulation,
-                                            fieldSize: fieldSize)
+  func setupRenderView(with population: Population) {
+    isRunning = false
+    renderView.population = population
   }
   
-  func stepSwarm(_ step: Int) {
-    guard isRunning == false else {
+  func step() {
+    guard isRunning == true else {
       return
     }
-    isRunning = true
     
     DispatchQueue.global(qos: .userInitiated).async {
-      self.renderView.population?.step(step)
-      DispatchQueue.main.async {
-        self.renderView.setNeedsDisplay(self.renderView.bounds)
-        guard self.isRunning else {
-          return
+      self.renderView.population.step(self.steps)
+      DispatchQueue.main.asyncAfter(deadline: .now() + self.delay) {
+        guard self.isRunning == true else {
+          return  // Without this, setNeedsDisplay() maybe called one time after pause() call
         }
-        self.isRunning = false
-        self.stepSwarm(step)
+        self.renderView.setNeedsDisplay(self.renderView.bounds)
+        self.step()
       }
     }
+  }
+  
+  func pause() {
+    isRunning = false
+  }
+  
+  func resume() {
+    isRunning = true
+    step()
+  }
+  
+  func clear() {
+    pause()
+    renderView.clear()
   }
 }

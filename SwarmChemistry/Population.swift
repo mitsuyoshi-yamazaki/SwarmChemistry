@@ -10,14 +10,14 @@ import Foundation
 
 // MARK: - Population
 public struct Population {
-  public var fieldSize = Coordinate(500, 500)
+  public var fieldSize = Vector2(500, 500)
   public let population: [Individual]
   public let recipe: Recipe
 }
 
 // MARK: - Recipe
 public extension Population {
-  init(_ recipe: Recipe, numberOfPopulation: Int? = nil, fieldSize: Coordinate = Coordinate(500, 500)) {
+  init(_ recipe: Recipe, numberOfPopulation: Int? = nil, fieldSize: Vector2 = Vector2(500, 500), initialArea: Vector2.Rect? = nil) {
     
     self.recipe = recipe
     
@@ -27,12 +27,19 @@ public extension Population {
       }
     let magnitude = Value(numberOfPopulation ?? sum) / Value(sum)
     
+    let area: Vector2.Rect
+    if let initialArea = initialArea {
+      area = initialArea
+    } else {
+      area = .init(origin: .zero, size: fieldSize)
+    }
+    
     population = recipe.genomes
       .map { value -> [Individual] in
         let count = Int(Value(value.count) * magnitude)
         return (0..<count)
           .map { _ in
-            Individual(position: fieldSize.random(), genome: value.genome)
+            Individual(position: area.random(), genome: value.genome)
           }
       }
       .flatMap { $0 }
@@ -41,8 +48,32 @@ public extension Population {
   }
 }
 
+// MARK: - Accessor
+public extension Population {
+  static func zero() -> Population {
+    return Population.init(.none(), numberOfPopulation: 0, fieldSize: .zero)
+  }
+}
+
 // MARK: - Function
 public extension Population {
+  func recipe(`in` rect: Vector2.Rect) -> Recipe {
+    let populationInRect = population
+      .filter { rect.contains($0.position) }
+    
+    let genomesInRect = populationInRect
+      .reduce([Parameters]()) { (result, individual) -> [Parameters] in
+        return result.filter { $0 == individual.genome }.isEmpty ? result + [individual.genome] : result
+      }
+      .map { genome -> Recipe.GenomeInfo in
+        return (genome: genome, count: populationInRect.filter { $0.genome == genome }.count)
+    }
+    
+    let name = "Subset of \(recipe.name)"
+    
+    return Recipe.init(name: name, genomes: genomesInRect)
+  }
+
   func step(_ count: Int = 1) {
     guard count > 0 else {
       Log.error("Argument \"count\" should be a positive value")
@@ -69,28 +100,28 @@ public extension Population {
         
         let genome = individual.genome
         let neighbors = getNeighbors(individual: individual)
-        let acceleration: Coordinate
+        let acceleration: Vector2
         
         if neighbors.count == 0 {
-          acceleration = Coordinate(1, 1).random() - Coordinate(0.5, 0.5)
+          acceleration = Vector2(1, 1).random() - Vector2(0.5, 0.5)
           
         } else {
           let numberOfNeighbors = Value(neighbors.count)
           
           // Center
-          let sumCenter = neighbors.reduce(Coordinate.zero) { (result, value) -> Coordinate in
+          let sumCenter = neighbors.reduce(Vector2.zero) { (result, value) -> Vector2 in
             return result + value.individual.position
           }
           let averageCenter = sumCenter / numberOfNeighbors
           
           // Velocity
-          let sumVelocity = neighbors.reduce(Coordinate.zero) { (result, value) -> Coordinate in
+          let sumVelocity = neighbors.reduce(Vector2.zero) { (result, value) -> Vector2 in
             return result + value.individual.velocity
           }
           let averageVelocity = sumVelocity / numberOfNeighbors
 
           // Separation
-          let sumSeparation = neighbors.reduce(Coordinate.zero) { (result, value) -> Coordinate in
+          let sumSeparation = neighbors.reduce(Vector2.zero) { (result, value) -> Vector2 in
             return result
               + (individual.position - value.individual.position)
               / max(value.distance * value.distance, 0.001)
@@ -98,9 +129,9 @@ public extension Population {
           }
           
           // Steering
-          let steering: Coordinate
+          let steering: Vector2
           if Double(arc4random() % 100) < (genome.probabilityOfRandomSteering * 100.0) {
-            steering = Coordinate(Value(arc4random() % 10) - 5.0, Value(arc4random() % 10) - 5.0)
+            steering = Vector2(Value(arc4random() % 10) - 5.0, Value(arc4random() % 10) - 5.0)
           } else {
             steering = .zero
           }

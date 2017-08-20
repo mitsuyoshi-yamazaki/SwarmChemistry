@@ -14,30 +14,50 @@ class ViewController: UIViewController, SwarmRenderer {
     case selectRecipe = "SelectRecipe"
   }
   
+  @IBOutlet private weak var scrollView: UIScrollView!
   @IBOutlet private weak var recipeSelectionButton: UIButton!
+  @IBOutlet private weak var resumeButton: UIButton!
   @IBOutlet private weak var shareButton: UIButton!
-  @IBOutlet weak var renderView: SwarmRenderView!
-  
-  var isRunning = false
+
   fileprivate var isRecipeSaved = false
-  fileprivate var selectedRecipe = Recipe.jellyFish
+  fileprivate var selectedRecipe = Recipe.slicer
+  fileprivate var shouldRun = false
   
+  // MARK: - SwarmRenderer
+  @IBOutlet weak var renderView: SwarmRenderView!
+  var isRunning = false {
+    didSet {
+      resumeButton.isHidden = isRunning
+    }
+  }
+  var steps: Int {
+    return 3
+  }
+  var delay: Double {
+    return 0.0
+  }
+
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     setup()
+    scrollView.maximumZoomScale = CGFloat(renderView.population.fieldSize.x) / 400.0
   }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
     navigationController?.setNavigationBarHidden(true, animated: true)
-    stepSwarm(3)
+    if shouldRun {
+      resume()
+    }
   }
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    isRunning = false
+    shouldRun = isRunning
+    pause()
   }
   
   // MARK: - Function
@@ -46,29 +66,53 @@ class ViewController: UIViewController, SwarmRenderer {
     recipeSelectionButton.setTitle(selectedRecipe.name, for: .normal)
     
     let screenSize = UIScreen.main.bounds.size
-    let fieldSize = Coordinate(Value(screenSize.width), Value(screenSize.height)) * 10
-    setupRenderView(with: selectedRecipe, numberOfPopulation: 1000, fieldSize: fieldSize)
+    let fieldSize = Vector2(Value(screenSize.width), Value(screenSize.height)) * 10
+    let population = Population.init(selectedRecipe,
+                                     numberOfPopulation: 1000,
+                                     fieldSize: fieldSize,
+                                     initialArea: Vector2.Rect.init(origin: fieldSize * 0.45, size: fieldSize * 0.1))
+    
+    setupRenderView(with: population)
     
     isRecipeSaved = false
+    shouldRun = true
   }
   
   // MARK: - Action
   @IBAction func reset(sender: AnyObject!) {
     setup()
-    stepSwarm(3)
+    resume()
   }
   
-  @IBAction func share(sender: AnyObject!) {
-    guard let recipeText = renderView.population?.description else {  // Currently Population?.description is the recipe text representable
-      print("No population")
+  @IBAction func pause(sender: AnyObject!) {
+    guard isRunning == true else {
       return
     }
+    pause()
+  }
+
+  @IBAction func resume(sender: AnyObject!) {
+    guard isRunning == false else {
+      return
+    }
+    resume()
+  }
+
+  @IBAction func share(sender: AnyObject!) {
     
-    let shareText = "\(selectedRecipe.name)\n\(recipeText)"
+    let recipe: Recipe
+    if scrollView.zoomScale == 1.0 {
+      recipe = renderView.population.recipe
+    } else {
+      let visibleRect = renderView.convert(scrollView.visibleRect)
+      recipe = renderView.population.recipe(in: visibleRect)
+    }
+    
+    let shareText = recipe.description
     var activityItems: [Any] = [
       shareText
     ]
-    if  let shareImage = renderView.takeScreenshot() {
+    if let shareImage = renderView.takeScreenshot() {
       activityItems.append(shareImage)
     }
     
@@ -92,6 +136,7 @@ class ViewController: UIViewController, SwarmRenderer {
       let navigationController = segue.destination as! UINavigationController
       let recipeListViewController = navigationController.topViewController as! RecipeListViewController
       recipeListViewController.delegate = self
+      recipeListViewController.currentRecipe = selectedRecipe
     }
   }
 }
@@ -100,5 +145,23 @@ extension ViewController: RecipeListViewControllerDelegate {
   func recipeListViewController(_ controller: RecipeListViewController, didSelect recipe: Recipe) {
     selectedRecipe = recipe
     reset(sender: self)
+  }
+}
+
+extension ViewController: UIScrollViewDelegate {
+  func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+    return renderView
+  }
+  
+  func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+    shouldRun = isRunning
+    pause()
+  }
+  
+  func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+    if shouldRun {
+      resume()
+      shouldRun = false
+    }
   }
 }

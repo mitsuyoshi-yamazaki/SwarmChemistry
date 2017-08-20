@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		2C33F2311F411EE1007A4068 /* RecipeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C33F2301F411EE1007A4068 /* RecipeInputViewController.swift */; };
 		2C33F2331F41CB62007A4068 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C33F2321F41CB62007A4068 /* Utility.swift */; };
+		2C33F2351F43427E007A4068 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C33F2341F43427E007A4068 /* Extensions.swift */; };
+		2C33F2361F43427E007A4068 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C33F2341F43427E007A4068 /* Extensions.swift */; };
+		2C33F23A1F434ACE007A4068 /* CommonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C33F2371F434AC8007A4068 /* CommonUtility.swift */; };
+		2C33F23B1F434ACF007A4068 /* CommonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C33F2371F434AC8007A4068 /* CommonUtility.swift */; };
 		2C5A625D1F3CB50500F10E8E /* RecipeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5A625C1F3CB50500F10E8E /* RecipeListViewController.swift */; };
 		2CA5C3161F3CA0DF0037080C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3151F3CA0DF0037080C /* AppDelegate.swift */; };
 		2CA5C3181F3CA0DF0037080C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3171F3CA0DF0037080C /* ViewController.swift */; };
@@ -29,14 +33,14 @@
 		ED7C21181F39942800018F97 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21161F39942800018F97 /* Parameters.swift */; };
 		ED7C211D1F399F6E00018F97 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C211C1F399F6E00018F97 /* Utility.swift */; };
 		ED7C211E1F399F6E00018F97 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C211C1F399F6E00018F97 /* Utility.swift */; };
-		ED7C21201F39A91E00018F97 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C211F1F39A91E00018F97 /* Coordinate.swift */; };
-		ED7C21211F39A98600018F97 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C211F1F39A91E00018F97 /* Coordinate.swift */; };
+		ED7C21201F39A91E00018F97 /* Vector2.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C211F1F39A91E00018F97 /* Vector2.swift */; };
+		ED7C21211F39A98600018F97 /* Vector2.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C211F1F39A91E00018F97 /* Vector2.swift */; };
 		ED7C212D1F3AD0F900018F97 /* SwarmChemistry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED97B2381F39901D001DDA4B /* SwarmChemistry.framework */; };
 		ED7C213C1F3AD10B00018F97 /* SwarmChemistry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED97B2451F399037001DDA4B /* SwarmChemistry.framework */; };
 		ED7C21451F3AD1C400018F97 /* SwarmChemistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21441F3AD13100018F97 /* SwarmChemistryTests.swift */; };
 		ED7C21461F3AD1C400018F97 /* SwarmChemistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21441F3AD13100018F97 /* SwarmChemistryTests.swift */; };
-		ED7C21481F3AD33700018F97 /* CoordinateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21471F3AD33700018F97 /* CoordinateTests.swift */; };
-		ED7C21491F3AD33700018F97 /* CoordinateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21471F3AD33700018F97 /* CoordinateTests.swift */; };
+		ED7C21481F3AD33700018F97 /* Vector2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21471F3AD33700018F97 /* Vector2Tests.swift */; };
+		ED7C21491F3AD33700018F97 /* Vector2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21471F3AD33700018F97 /* Vector2Tests.swift */; };
 		ED7C214B1F3AD8C200018F97 /* ParametersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C214A1F3AD8C200018F97 /* ParametersTests.swift */; };
 		ED7C214C1F3AD8C200018F97 /* ParametersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C214A1F3AD8C200018F97 /* ParametersTests.swift */; };
 		ED7C21671F3AE51100018F97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21661F3AE51100018F97 /* AppDelegate.swift */; };
@@ -53,6 +57,8 @@
 		ED7C21801F3AFBE600018F97 /* Individual.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C217E1F3AFBE600018F97 /* Individual.swift */; };
 		EDABFDF51F3C5A3C00E1D56C /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDABFDF41F3C5A3C00E1D56C /* Recipe.swift */; };
 		EDABFDF61F3C5A4500E1D56C /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDABFDF41F3C5A3C00E1D56C /* Recipe.swift */; };
+		EDABFDF81F42ECCE00E1D56C /* RecipeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDABFDF71F42ECCE00E1D56C /* RecipeTests.swift */; };
+		EDABFDF91F42ECCE00E1D56C /* RecipeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDABFDF71F42ECCE00E1D56C /* RecipeTests.swift */; };
 		EDBA52431F3B11D60091BEE5 /* PopulationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBA52421F3B11D60091BEE5 /* PopulationTests.swift */; };
 		EDBA52441F3B11D60091BEE5 /* PopulationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBA52421F3B11D60091BEE5 /* PopulationTests.swift */; };
 /* End PBXBuildFile section */
@@ -116,6 +122,8 @@
 /* Begin PBXFileReference section */
 		2C33F2301F411EE1007A4068 /* RecipeInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeInputViewController.swift; sourceTree = "<group>"; };
 		2C33F2321F41CB62007A4068 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		2C33F2341F43427E007A4068 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		2C33F2371F434AC8007A4068 /* CommonUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonUtility.swift; sourceTree = "<group>"; };
 		2C5A625C1F3CB50500F10E8E /* RecipeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeListViewController.swift; sourceTree = "<group>"; };
 		2CA5C3131F3CA0DF0037080C /* Demo_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA5C3151F3CA0DF0037080C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -130,12 +138,12 @@
 		2CA5C3391F3CACEF0037080C /* RecipeDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDefinitions.swift; sourceTree = "<group>"; };
 		ED7C21161F39942800018F97 /* Parameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
 		ED7C211C1F399F6E00018F97 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
-		ED7C211F1F39A91E00018F97 /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		ED7C211F1F39A91E00018F97 /* Vector2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector2.swift; sourceTree = "<group>"; };
 		ED7C21281F3AD0F800018F97 /* SwarmChemistryTests_iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwarmChemistryTests_iOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED7C21371F3AD10B00018F97 /* SwarmChemistryTests_Mac.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwarmChemistryTests_Mac.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED7C21431F3AD13100018F97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED7C21441F3AD13100018F97 /* SwarmChemistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwarmChemistryTests.swift; sourceTree = "<group>"; };
-		ED7C21471F3AD33700018F97 /* CoordinateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinateTests.swift; sourceTree = "<group>"; };
+		ED7C21471F3AD33700018F97 /* Vector2Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector2Tests.swift; sourceTree = "<group>"; };
 		ED7C214A1F3AD8C200018F97 /* ParametersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParametersTests.swift; sourceTree = "<group>"; };
 		ED7C21641F3AE51000018F97 /* Demo_Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo_Mac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED7C21661F3AE51100018F97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +159,7 @@
 		ED97B2381F39901D001DDA4B /* SwarmChemistry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwarmChemistry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED97B2451F399037001DDA4B /* SwarmChemistry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwarmChemistry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDABFDF41F3C5A3C00E1D56C /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		EDABFDF71F42ECCE00E1D56C /* RecipeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeTests.swift; sourceTree = "<group>"; };
 		EDBA52421F3B11D60091BEE5 /* PopulationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopulationTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -209,6 +218,7 @@
 			children = (
 				2CA5C3251F3CA19B0037080C /* SwarmRenderView.swift */,
 				2CA5C32F1F3CAAB70037080C /* SwarmRenderer.swift */,
+				2C33F2371F434AC8007A4068 /* CommonUtility.swift */,
 				2CA5C3341F3CAB370037080C /* PlatformSpecific.swift */,
 			);
 			path = Demo;
@@ -236,8 +246,10 @@
 				ED7C21431F3AD13100018F97 /* Info.plist */,
 				ED7C21441F3AD13100018F97 /* SwarmChemistryTests.swift */,
 				ED7C214A1F3AD8C200018F97 /* ParametersTests.swift */,
-				ED7C21471F3AD33700018F97 /* CoordinateTests.swift */,
+				ED7C21471F3AD33700018F97 /* Vector2Tests.swift */,
 				EDBA52421F3B11D60091BEE5 /* PopulationTests.swift */,
+				EDABFDF71F42ECCE00E1D56C /* RecipeTests.swift */,
+				2C33F2341F43427E007A4068 /* Extensions.swift */,
 			);
 			path = SwarmChemistryTests;
 			sourceTree = "<group>";
@@ -288,7 +300,7 @@
 				ED7C21761F3AF54100018F97 /* Population.swift */,
 				EDABFDF41F3C5A3C00E1D56C /* Recipe.swift */,
 				2CA5C3391F3CACEF0037080C /* RecipeDefinitions.swift */,
-				ED7C211F1F39A91E00018F97 /* Coordinate.swift */,
+				ED7C211F1F39A91E00018F97 /* Vector2.swift */,
 				ED7C211C1F399F6E00018F97 /* Utility.swift */,
 				ED7C21731F3AEA5100018F97 /* PlatformSpecific.swift */,
 				ED97B22C1F398ECF001DDA4B /* Info.plist */,
@@ -544,6 +556,7 @@
 			files = (
 				2C33F2311F411EE1007A4068 /* RecipeInputViewController.swift in Sources */,
 				2CA5C3181F3CA0DF0037080C /* ViewController.swift in Sources */,
+				2C33F23A1F434ACE007A4068 /* CommonUtility.swift in Sources */,
 				2CA5C3161F3CA0DF0037080C /* AppDelegate.swift in Sources */,
 				2C5A625D1F3CB50500F10E8E /* RecipeListViewController.swift in Sources */,
 				2C33F2331F41CB62007A4068 /* Utility.swift in Sources */,
@@ -558,9 +571,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED7C214B1F3AD8C200018F97 /* ParametersTests.swift in Sources */,
+				2C33F2351F43427E007A4068 /* Extensions.swift in Sources */,
 				ED7C21451F3AD1C400018F97 /* SwarmChemistryTests.swift in Sources */,
+				EDABFDF81F42ECCE00E1D56C /* RecipeTests.swift in Sources */,
 				EDBA52431F3B11D60091BEE5 /* PopulationTests.swift in Sources */,
-				ED7C21481F3AD33700018F97 /* CoordinateTests.swift in Sources */,
+				ED7C21481F3AD33700018F97 /* Vector2Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,9 +584,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED7C214C1F3AD8C200018F97 /* ParametersTests.swift in Sources */,
+				2C33F2361F43427E007A4068 /* Extensions.swift in Sources */,
 				ED7C21461F3AD1C400018F97 /* SwarmChemistryTests.swift in Sources */,
+				EDABFDF91F42ECCE00E1D56C /* RecipeTests.swift in Sources */,
 				EDBA52441F3B11D60091BEE5 /* PopulationTests.swift in Sources */,
-				ED7C21491F3AD33700018F97 /* CoordinateTests.swift in Sources */,
+				ED7C21491F3AD33700018F97 /* Vector2Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,6 +598,7 @@
 			files = (
 				ED7C21691F3AE51100018F97 /* ViewController.swift in Sources */,
 				ED7C21671F3AE51100018F97 /* AppDelegate.swift in Sources */,
+				2C33F23B1F434ACF007A4068 /* CommonUtility.swift in Sources */,
 				2CA5C3291F3CA1A00037080C /* SwarmRenderView.swift in Sources */,
 				2CA5C3331F3CAABD0037080C /* SwarmRenderer.swift in Sources */,
 				2CA5C3381F3CAB3C0037080C /* PlatformSpecific.swift in Sources */,
@@ -596,7 +614,7 @@
 				EDABFDF51F3C5A3C00E1D56C /* Recipe.swift in Sources */,
 				ED7C21171F39942800018F97 /* Parameters.swift in Sources */,
 				ED7C211D1F399F6E00018F97 /* Utility.swift in Sources */,
-				ED7C21201F39A91E00018F97 /* Coordinate.swift in Sources */,
+				ED7C21201F39A91E00018F97 /* Vector2.swift in Sources */,
 				2CA5C33A1F3CACEF0037080C /* RecipeDefinitions.swift in Sources */,
 				ED7C21741F3AEA5100018F97 /* PlatformSpecific.swift in Sources */,
 			);
@@ -611,7 +629,7 @@
 				EDABFDF61F3C5A4500E1D56C /* Recipe.swift in Sources */,
 				ED7C21181F39942800018F97 /* Parameters.swift in Sources */,
 				ED7C211E1F399F6E00018F97 /* Utility.swift in Sources */,
-				ED7C21211F39A98600018F97 /* Coordinate.swift in Sources */,
+				ED7C21211F39A98600018F97 /* Vector2.swift in Sources */,
 				2CA5C33B1F3CACEF0037080C /* RecipeDefinitions.swift in Sources */,
 				ED7C21751F3AEF4900018F97 /* PlatformSpecific.swift in Sources */,
 			);

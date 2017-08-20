@@ -35,3 +35,28 @@ extension UIView {
     return UIImage(cgImage: cgImage, scale: scale, orientation: .up)
   }
 }
+
+extension UIScrollView {
+  var visibleRect: CGRect {
+    var rect = CGRect.init(origin: contentOffset, size: bounds.size)
+    
+    rect.origin.x /= zoomScale
+    rect.origin.y /= zoomScale
+    rect.size.width /= zoomScale
+    rect.size.height /= zoomScale
+    
+    return rect
+  }
+}
+
+class TouchTransparentStackView: UIStackView {
+  
+  override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    let hitView = super.hitTest(point, with: event)
+    
+    guard hitView !== self else {
+      return nil
+    }
+    return hitView
+  }
+}

@@ -87,7 +87,7 @@ public extension Parameters {
   }
 }
 
-// MARK: - Function
+// MARK: - Accessor
 public extension Parameters {
   var all: [Value] {
     return [
@@ -113,6 +113,10 @@ public extension Parameters {
       probabilityOfRandomSteeringMax,
       tendencyOfPacekeepingMax
     ]
+  }
+  
+  static var zero: Parameters {
+    return Parameters((0..<numberOfParameters).map { _ in 0.0 })!
   }
   
   static var random: Parameters {

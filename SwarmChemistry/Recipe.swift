@@ -16,8 +16,6 @@ public struct Recipe {
   public let genomes: [GenomeInfo]
 }
 
-// TODO: write tests
-
 public extension Recipe {
   /**
    Expecting:
@@ -26,7 +24,7 @@ public extension Recipe {
    26 * (277.87, 15.02, 35.48, 0.68, 0.05, 82.96, 0.46, 0.9)
    ...
    */
-  init?(_ recipeText: String) {
+  init?(_ recipeText: String, name: String? = nil) {
     func isGenome(_ line: String) -> Bool {
       if let (genomeText, _) = Recipe.parseLine(line) {
         if let _ = Recipe.parseGenome(from: genomeText) {
@@ -41,15 +39,15 @@ public extension Recipe {
     let firstLine = components.first!
 
     if isGenome(firstLine) {
-      self.init(recipeText, name: "Untitled")
+      self.init(recipeText, givenName: name ?? "Untitled")
 
     } else {
       let genomeText = components.dropFirst().joined(separator: lineSeparator)
-      self.init(genomeText, name: firstLine)
+      self.init(genomeText, givenName: firstLine)
     }
   }
   
-  init?(_ recipeText: String, name: String) {
+  private init?(_ recipeText: String, givenName: String) {
     guard recipeText.characters.isEmpty == false else {
       return nil
     }
@@ -73,7 +71,7 @@ public extension Recipe {
     guard let genome = result as? [GenomeInfo] else {
       return nil
     }
-    self.init(name: name, genomes: genome)
+    self.init(name: givenName, genomes: genome)
   }
   
   private static func parseLine(_ text: String) -> (genomeText: String, count: Int)? {
@@ -105,12 +103,30 @@ public extension Recipe {
   }
 }
 
-// MARK: - Function
+// MARK: - Accessor
 public extension Recipe {
+  static func none() -> Recipe {
+    return self.init(name: "None", genomes: [])
+  }
+  
   static func random(numberOfGenomes: Int) -> Recipe {
     let genomes = (0..<numberOfGenomes)
       .map { _ in (genome: Parameters.random, count: 10) }
-    return self.init(name: "Random", genomes: genomes)
+    
+    let random = self.init(name: "Random", genomes: genomes)
+    Log.debug(random.description)
+    
+    return random
+  }
+}
+
+// MARK: - Operator override
+public extension Recipe {
+  static func +(recipe: Recipe, genome: GenomeInfo) -> Recipe {
+    let name = "Expanded \(recipe.name)"
+    let genomes = recipe.genomes + [genome]
+    
+    return Recipe.init(name: name, genomes: genomes)
   }
 }
 
