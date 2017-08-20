@@ -112,7 +112,11 @@ public extension Recipe {
   static func random(numberOfGenomes: Int) -> Recipe {
     let genomes = (0..<numberOfGenomes)
       .map { _ in (genome: Parameters.random, count: 10) }
-    return self.init(name: "Random", genomes: genomes)
+    
+    let random = self.init(name: "Random", genomes: genomes)
+    Log.debug(random.description)
+    
+    return random
   }
 }
 
