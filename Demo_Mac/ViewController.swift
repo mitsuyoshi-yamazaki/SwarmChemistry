@@ -14,6 +14,8 @@ class ViewController: NSViewController, SwarmRenderer {
   @IBOutlet weak var clickGestureRecognizer: NSClickGestureRecognizer!
   @IBOutlet weak var resumeButton: NSButton!
 
+  private var mouseDownLocation: NSPoint?
+  
   // MARK: - SwarmRenderer
   @IBOutlet weak var renderView: SwarmRenderView!
   var isRunning = false {
@@ -77,5 +79,32 @@ class ViewController: NSViewController, SwarmRenderer {
   
   @IBAction func resume(sender: AnyObject!) {
     resume()
+  }
+  
+  // MARK: -
+  override func mouseDown(with event: NSEvent) {
+    mouseDownLocation = event.locationInWindow // If the view structure is changed,
+  }
+  
+  override func mouseUp(with event: NSEvent) {
+    guard let mouseDownLocation = mouseDownLocation else {
+      print("Something wrong: \"mouseDownLocation\" is nil")
+      return
+    }
+    let mouseUpLocation = event.locationInWindow
+    
+    let x = min(mouseDownLocation.x, mouseUpLocation.x)
+    let y = min(mouseDownLocation.y, mouseUpLocation.y)
+    let width = abs(mouseUpLocation.x - mouseDownLocation.x)
+    let height = abs(mouseUpLocation.y - mouseDownLocation.y)
+    
+    let rect = CGRect.init(x: x, y: y, width: width, height: height)
+    let swarmRect = renderView.convert(rect)
+    let recipe = renderView.population.recipe(in: swarmRect)
+    
+    NSPasteboard.general().declareTypes([NSPasteboardTypeString], owner: nil)
+    NSPasteboard.general().setString(recipe.description, forType: NSPasteboardTypeString)
+    
+    self.mouseDownLocation = nil
   }
 }
