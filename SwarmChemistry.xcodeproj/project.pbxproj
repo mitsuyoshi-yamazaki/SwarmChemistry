@@ -391,6 +391,7 @@
 				ED7C21611F3AE51000018F97 /* Frameworks */,
 				ED7C21621F3AE51000018F97 /* Resources */,
 				ED7C217C1F3AF66900018F97 /* Embed Frameworks */,
+				2C88351A1F4990D9008B44FD /* Copy Executable */,
 			);
 			buildRules = (
 			);
@@ -548,6 +549,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2C88351A1F4990D9008B44FD /* Copy Executable */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Executable";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp -r $BUILT_PRODUCTS_DIR/Demo_Mac.app $SRCROOT/.output/";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2CA5C30F1F3CA0DF0037080C /* Sources */ = {
