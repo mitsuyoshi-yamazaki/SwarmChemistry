@@ -112,7 +112,7 @@ class ViewController: UIViewController, SwarmRenderer {
     var activityItems: [Any] = [
       shareText
     ]
-    if  let shareImage = renderView.takeScreenshot() {
+    if let shareImage = renderView.takeScreenshot() {
       activityItems.append(shareImage)
     }
     

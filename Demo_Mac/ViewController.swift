@@ -11,9 +11,22 @@ import SwarmChemistry
 
 class ViewController: NSViewController, SwarmRenderer {
 
+  @IBOutlet weak var clickGestureRecognizer: NSClickGestureRecognizer!
+  @IBOutlet weak var resumeButton: NSButton!
+
   // MARK: - SwarmRenderer
   @IBOutlet weak var renderView: SwarmRenderView!
-  var isRunning = false
+  var isRunning = false {
+    didSet {
+      if isRunning {
+        resumeButton?.isHidden = true
+        clickGestureRecognizer?.isEnabled = true
+      } else {
+        resumeButton?.isHidden = false
+        clickGestureRecognizer?.isEnabled = false
+      }
+    }
+  }
   var steps: Int {
     return 2
   }
@@ -24,7 +37,11 @@ class ViewController: NSViewController, SwarmRenderer {
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     setup()
+    
+    let temp = isRunning
+    isRunning = temp  // To call didSet
   }
   
   override func viewDidAppear() {
@@ -52,5 +69,13 @@ class ViewController: NSViewController, SwarmRenderer {
   
   @IBAction func clear(sender: AnyObject!) {
     clear()
+  }
+  
+  @IBAction func pause(sender: AnyObject!) {
+    pause()
+  }
+  
+  @IBAction func resume(sender: AnyObject!) {
+    resume()
   }
 }
