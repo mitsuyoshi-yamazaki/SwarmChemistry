@@ -11,6 +11,7 @@ import Foundation
 // MARK: - Population
 public struct Population {
   public var fieldSize = Vector2(500, 500)
+  public var steps = 0
   public let population: [Individual]
   public let recipe: Recipe
 }
@@ -74,7 +75,7 @@ public extension Population {
     return Recipe.init(name: name, genomes: genomesInRect)
   }
 
-  func step(_ count: Int = 1) {
+  mutating func step(_ count: Int = 1) {
     guard count > 0 else {
       Log.error("Argument \"count\" should be a positive value")
       return
@@ -150,6 +151,7 @@ public extension Population {
         individual.move(in: self.fieldSize)
       }
     }
+    steps += count
   }
 }
 
