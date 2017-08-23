@@ -8,8 +8,13 @@
 
 import Foundation
 import ScreenSaver
+import SwarmChemistry
 
+// https://developer.apple.com/documentation/screensaver
 class Demo_ScreenSaverView: ScreenSaverView {
+  
+  private var population = Population.init(Recipe.jellyFish, numberOfPopulation: 1000, fieldSize: Vector2(1000, 1000), initialArea: Vector2.Rect.init(x: 400, y: 400, width: 200, height: 200))
+  
   required init?(coder: NSCoder) {
     super.init(coder: coder)
     self.animationTimeInterval = 1.0 / 30.0
@@ -32,12 +37,29 @@ class Demo_ScreenSaverView: ScreenSaverView {
     guard let context = NSGraphicsContext.current()?.cgContext else {
       fatalError()
     }
-    context.setFillColor(NSColor.blue.cgColor)
-    context.fillEllipse(in: bounds)
+    
+    context.setFillColor(Color(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor)
+    context.fill(bounds)
+    
+    let fieldWidth = CGFloat(population.fieldSize.x)
+    let fieldHeight = CGFloat(population.fieldSize.y)
+    let fieldSizeMultiplier = min(frame.width / fieldWidth, frame.height / fieldHeight)
+
+    let size = 10.0 * fieldSizeMultiplier
+    
+    context.setFillColor(Color.white.cgColor)
+    context.fill(NSRect.init(x: 0.0, y: 0.0, width: fieldWidth * fieldSizeMultiplier, height: fieldHeight * fieldSizeMultiplier))
+    
+    for individual in population.population {
+      
+      individual.genome.color.setFill()
+      context.fillEllipse(in: CGRect(x: CGFloat(individual.position.x) * fieldSizeMultiplier, y: CGFloat(individual.position.y) * fieldSizeMultiplier, width: size, height: size))
+    }
   }
   
   override func animateOneFrame() {
-    return
+    population.step(1)
+    setNeedsDisplay(bounds)
   }
   
   override func hasConfigureSheet() -> Bool {
