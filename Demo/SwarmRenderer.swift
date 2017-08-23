@@ -25,6 +25,8 @@ protocol SwarmRenderer: class {
   func pause()
   func resume()
   func clear()
+  
+  func didStep(currentSteps: Int)
 }
 
 extension SwarmRenderer {
@@ -45,6 +47,7 @@ extension SwarmRenderer {
     DispatchQueue.global(qos: .userInitiated).async {
       self.renderView.population.step(self.steps)
       DispatchQueue.main.asyncAfter(deadline: .now() + self.delay) {
+        self.didStep(currentSteps: self.renderView.population.steps)
         guard self.isRunning == true else {
           return  // Without this, setNeedsDisplay() maybe called one time after pause() call
         }
@@ -66,5 +69,9 @@ extension SwarmRenderer {
   func clear() {
     pause()
     renderView.clear()
+  }
+  
+  func didStep(currentSteps: Int) {
+    // Default implementation: does nothing
   }
 }
