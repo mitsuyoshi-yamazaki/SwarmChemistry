@@ -40,7 +40,7 @@ public extension Population {
         let count = Int(Value(value.count) * magnitude)
         return (0..<count)
           .map { _ in
-            Individual(position: area.random(), genome: value.genome)
+            Individual(position: (value.area ?? area).random(), genome: value.genome)
           }
       }
       .flatMap { $0 }
