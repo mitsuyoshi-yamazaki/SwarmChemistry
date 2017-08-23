@@ -146,3 +146,20 @@ extension NSRect {
     size = NSSize.init(width: width, height: height)
   }
 }
+
+extension NSView {
+  func takeScreenshot(_ rect: NSRect? = nil) -> NSImage? {
+    
+    let screenshotRect = rect ?? bounds
+    guard let bitmapRepresentation = bitmapImageRepForCachingDisplay(in: screenshotRect) else {
+      print("Fail to capture screenshot: bitmapImageRep")
+      return nil
+    }
+    cacheDisplay(in: screenshotRect, to: bitmapRepresentation)
+    
+    let image = NSImage.init(size: screenshotRect.size)
+    image.addRepresentation(bitmapRepresentation)
+    
+    return image
+  }
+}
