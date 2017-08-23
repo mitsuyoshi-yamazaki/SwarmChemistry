@@ -14,6 +14,7 @@
 		2C33F23A1F434ACE007A4068 /* CommonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C33F2371F434AC8007A4068 /* CommonUtility.swift */; };
 		2C33F23B1F434ACF007A4068 /* CommonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C33F2371F434AC8007A4068 /* CommonUtility.swift */; };
 		2C5A625D1F3CB50500F10E8E /* RecipeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5A625C1F3CB50500F10E8E /* RecipeListViewController.swift */; };
+		2C8835201F4DE12E008B44FD /* SwarmChemistry.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = ED97B2451F399037001DDA4B /* SwarmChemistry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2CA5C3161F3CA0DF0037080C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3151F3CA0DF0037080C /* AppDelegate.swift */; };
 		2CA5C3181F3CA0DF0037080C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3171F3CA0DF0037080C /* ViewController.swift */; };
 		2CA5C31B1F3CA0DF0037080C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CA5C3191F3CA0DF0037080C /* Main.storyboard */; };
@@ -98,6 +99,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		2C88351F1F4DE125008B44FD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2C8835201F4DE12E008B44FD /* SwarmChemistry.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2CA5C32E1F3CA31B0037080C /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -493,6 +504,7 @@
 				EDEBCC741F4DA8CE0029FAB6 /* Headers */,
 				EDEBCC751F4DA8CE0029FAB6 /* Resources */,
 				EDEBCC871F4DA9340029FAB6 /* Copy Screen Saver */,
+				2C88351F1F4DE125008B44FD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1127,7 +1139,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Demo_ScreenSaver/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/ $(LOCAL_LIBRARY_DIR)/Frameworks";
 				LIBRARY_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "mitsuyoshi.Demo-ScreenSaver";
@@ -1148,7 +1160,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Demo_ScreenSaver/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/ $(LOCAL_LIBRARY_DIR)/Frameworks";
 				LIBRARY_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "mitsuyoshi.Demo-ScreenSaver";
@@ -1233,6 +1245,7 @@
 				EDEBCC7F1F4DA8CE0029FAB6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
