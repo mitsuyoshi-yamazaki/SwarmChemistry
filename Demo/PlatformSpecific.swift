@@ -10,8 +10,10 @@
   import UIKit
   typealias View = UIView
   typealias Nib = UINib
+  typealias Window = UIWindow
 #elseif os(macOS)
   import Cocoa
   typealias View = NSView
   typealias Nib = NSNib
+  typealias Window = NSWindow
 #endif

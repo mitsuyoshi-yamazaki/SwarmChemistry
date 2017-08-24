@@ -47,6 +47,8 @@ extension IBInstantiatable {
   }
 }
 
+#if os(iOS) || os(watchOS) || os(tvOS)
+#elseif os(macOS)
 extension IBInstantiatable where Self: View {
   static var nib: Nib {
     let bundle = Bundle.init(for: self)
@@ -62,3 +64,20 @@ extension IBInstantiatable where Self: View {
     return topLevelObjects.filter { $0 is Self }.first as! Self
   }
 }
+
+extension IBInstantiatable where Self: Window {
+  static var nib: Nib {
+    let bundle = Bundle.init(for: self)
+    return Nib.init(nibNamed: ibFileName, bundle: bundle)!
+  }
+  
+  static func instantiate() -> Self {
+    var topLevelObjects = NSArray()
+    let bundle = Bundle.init(for: self)
+    
+    bundle.loadNibNamed(ibFileName, owner: self, topLevelObjects: &topLevelObjects)
+    
+    return topLevelObjects.filter { $0 is Self }.first as! Self
+  }
+}
+#endif
