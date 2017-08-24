@@ -86,6 +86,7 @@ class Demo_ScreenSaverView: ScreenSaverView {
                                    fieldSize: fieldSize,
                                    initialArea: initialArea)
       contentView.set(title: "ArtificialLife@Home")
+      send(recipe: recipe)
     #else
       let recipe = selectedRecipe ?? Recipe.jellyFish
       
@@ -165,6 +166,37 @@ extension Demo_ScreenSaverView: ConfigureWindowDelegate {
   func configureWindow(_ window: ConfigureWindow, didSelect recipe: Recipe) {
     selectedRecipe = recipe
     setupSwarmChemistry()
+  }
+}
+
+// Network
+extension Demo_ScreenSaverView {
+  fileprivate func send(recipe: Recipe) {
+    guard let data = try? JSONSerialization.data(withJSONObject: ["raw": recipe.description], options: []) else {
+      Swift.print("Serializing to JSON failed")
+      return
+    }
+    
+    let path = Constants.dataServerURL + "recipes"
+    let url = URL.init(string: path)!
+    var request = URLRequest.init(url: url)
+    
+    request.httpMethod = "POST"
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.httpBody = data
+    
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+      guard
+        let nonNilData = data,
+        error == nil,
+        let result = try? JSONSerialization.jsonObject(with: nonNilData, options: [])
+      else {
+        Swift.print("Failed to send recipe")
+        return
+      }
+      Swift.print(result)
+    }
+    task.resume()
   }
 }
 
