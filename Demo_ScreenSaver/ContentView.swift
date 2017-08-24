@@ -9,7 +9,6 @@
 import Cocoa
 
 class ContentView: NSView {
-  
   static func instantiate() -> ContentView {
     var topLevelObjects = NSArray()
     let nibName = String.init(describing: self)
@@ -19,4 +18,8 @@ class ContentView: NSView {
     
     return topLevelObjects.filter { $0 is ContentView }.first as! ContentView
   }
+  
+  @IBOutlet private var titleLabel: NSTextField!
+  @IBOutlet private var stepsLabel: NSTextField!
+  @IBOutlet private var versionLabel: NSTextField!
 }

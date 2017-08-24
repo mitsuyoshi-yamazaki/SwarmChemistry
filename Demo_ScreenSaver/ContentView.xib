@@ -4,6 +4,7 @@
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ContentView" customModule="Demo_ScreenSaver" customModuleProvider="target"/>
@@ -14,28 +15,66 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ed-Wt-psw">
-                    <rect key="frame" x="18" y="235" width="108" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="SwarmChemistry" id="iad-Q5-bOP">
-                        <font key="font" metaFont="system"/>
+                    <rect key="frame" x="38" y="208" width="261" height="24"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="SwarmChemistry" id="iad-Q5-bOP">
+                        <font key="font" metaFont="systemSemibold" size="20"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkH-Or-RdK">
-                    <rect key="frame" x="-103" y="76" width="686" height="119"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="HOGHOEHOGE" id="rBo-hW-EDn">
-                        <font key="font" metaFont="system" size="100"/>
-                        <color key="textColor" red="1" green="0.2411553136" blue="0.24570151730000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9R-FF-vz4">
+                    <rect key="frame" x="38" y="152" width="261" height="48"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="TitleTitleTitle" id="wZw-hi-3YY">
+                        <font key="font" metaFont="systemHeavy" size="40"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qil-T2-dx0">
+                    <rect key="frame" x="381" y="213" width="61" height="19"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0 steps" id="DmV-Ip-Nq5">
+                        <font key="font" metaFont="systemSemibold" size="16"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQA-Ox-vZo">
+                    <rect key="frame" x="74" y="40" width="368" height="38"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" id="iKG-Qm-4c4">
+                        <font key="font" metaFont="systemLight" size="16"/>
+                        <string key="title">by Mitsuyoshi Yamazaki
+github.com/mitsuyoshi-yamazaki/SwarmChemistry</string>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0IT-hW-nNR">
+                    <rect key="frame" x="353" y="78" width="89" height="19"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ver. 0.0.0(0)" id="xOy-Wj-Szc">
+                        <font key="font" metaFont="systemLight" size="16"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
             </subviews>
             <constraints>
-                <constraint firstItem="vkH-Or-RdK" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="03w-LU-PwQ"/>
-                <constraint firstItem="5ed-Wt-psw" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" id="1sk-Ty-L1n"/>
-                <constraint firstItem="5ed-Wt-psw" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" id="J1v-ty-gQx"/>
-                <constraint firstItem="vkH-Or-RdK" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="giq-05-GrE"/>
+                <constraint firstAttribute="trailing" secondItem="Qil-T2-dx0" secondAttribute="trailing" constant="40" id="0bo-x4-9tm"/>
+                <constraint firstItem="5ed-Wt-psw" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="40" id="1sk-Ty-L1n"/>
+                <constraint firstItem="5ed-Wt-psw" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="40" id="J1v-ty-gQx"/>
+                <constraint firstAttribute="bottom" secondItem="AQA-Ox-vZo" secondAttribute="bottom" constant="40" id="S2J-9G-teD"/>
+                <constraint firstItem="AQA-Ox-vZo" firstAttribute="trailing" secondItem="Qil-T2-dx0" secondAttribute="trailing" id="Vqo-GW-j0z"/>
+                <constraint firstItem="h9R-FF-vz4" firstAttribute="leading" secondItem="5ed-Wt-psw" secondAttribute="leading" id="X0N-HP-cen"/>
+                <constraint firstItem="h9R-FF-vz4" firstAttribute="trailing" secondItem="5ed-Wt-psw" secondAttribute="trailing" id="ZXv-IJ-jHJ"/>
+                <constraint firstItem="0IT-hW-nNR" firstAttribute="trailing" secondItem="AQA-Ox-vZo" secondAttribute="trailing" id="qB9-hi-XHS"/>
+                <constraint firstItem="h9R-FF-vz4" firstAttribute="top" secondItem="5ed-Wt-psw" secondAttribute="bottom" constant="8" id="sU8-9L-xAH"/>
+                <constraint firstItem="5ed-Wt-psw" firstAttribute="top" secondItem="Qil-T2-dx0" secondAttribute="top" id="yuT-dG-jfi"/>
+                <constraint firstItem="AQA-Ox-vZo" firstAttribute="top" secondItem="0IT-hW-nNR" secondAttribute="bottom" id="yyh-FA-fEl"/>
             </constraints>
+            <connections>
+                <outlet property="stepsLabel" destination="Qil-T2-dx0" id="Tkr-ZG-fE4"/>
+                <outlet property="titleLabel" destination="h9R-FF-vz4" id="4je-dR-H0V"/>
+                <outlet property="versionLabel" destination="0IT-hW-nNR" id="6lQ-fy-gNd"/>
+            </connections>
         </customView>
     </objects>
 </document>
