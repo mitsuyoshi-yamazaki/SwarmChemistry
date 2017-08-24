@@ -25,18 +25,19 @@ class Demo_ScreenSaverView: ScreenSaverView {
     }
   }
   
-  private var frameCount = 0
-  private let fps = 2
-  private let defaultFPS = 30
+  override var animationTimeInterval: TimeInterval {
+    get {
+      return 0.5
+    }
+    set {}
+  }
   
   required init?(coder: NSCoder) {
     super.init(coder: coder)
-    self.animationTimeInterval = 1.0 / 30.0
   }
   
   override init?(frame: NSRect, isPreview: Bool) {
     super.init(frame: frame, isPreview: isPreview)
-    self.animationTimeInterval = 1.0 / 30.0
   }
   
   override func startAnimation() {
@@ -85,10 +86,7 @@ class Demo_ScreenSaverView: ScreenSaverView {
   
   // 30fps
   override func animateOneFrame() {
-    if frameCount % (defaultFPS / fps) == 0 {
-      setNeedsDisplay(bounds)
-    }
-    frameCount += 1
+    setNeedsDisplay(bounds)
   }
   
   override func hasConfigureSheet() -> Bool {
