@@ -19,6 +19,11 @@ class Demo_ScreenSaverView: ScreenSaverView {
     return view
   }()
   
+  private let configureWindow: NSWindow = {
+    let window = ConfigureWindow.instantiate()
+    return window
+  }()
+  
   private let fieldSizeMultiplier: CGFloat = 0.25
   private var population = Population.empty()
   private var isRunning = false {
@@ -111,10 +116,10 @@ class Demo_ScreenSaverView: ScreenSaverView {
   }
   
   override func hasConfigureSheet() -> Bool {
-    return false
+    return true
   }
   
   override func configureSheet() -> NSWindow? {
-    return nil
+    return configureWindow
   }
 }
