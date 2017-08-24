@@ -65,6 +65,7 @@
 		EDEBCC831F4DA8E10029FAB6 /* Demo_ScreenSaverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEBCC821F4DA8E10029FAB6 /* Demo_ScreenSaverView.swift */; };
 		EDEBCC861F4DA8F00029FAB6 /* ScreenSaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDEBCC851F4DA8F00029FAB6 /* ScreenSaver.framework */; };
 		EDEBCC881F4DAA2C0029FAB6 /* SwarmChemistry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED97B2451F399037001DDA4B /* SwarmChemistry.framework */; };
+		EDEBCC8A1F4E92CF0029FAB6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEBCC891F4E92CF0029FAB6 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,6 +181,7 @@
 		EDEBCC811F4DA8E00029FAB6 /* Demo_ScreenSaver-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Demo_ScreenSaver-Bridging-Header.h"; sourceTree = "<group>"; };
 		EDEBCC821F4DA8E10029FAB6 /* Demo_ScreenSaverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Demo_ScreenSaverView.swift; sourceTree = "<group>"; };
 		EDEBCC851F4DA8F00029FAB6 /* ScreenSaver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScreenSaver.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/ScreenSaver.framework; sourceTree = DEVELOPER_DIR; };
+		EDEBCC891F4E92CF0029FAB6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				EDEBCC821F4DA8E10029FAB6 /* Demo_ScreenSaverView.swift */,
+				EDEBCC891F4E92CF0029FAB6 /* Constants.swift */,
 				EDEBCC7D1F4DA8CE0029FAB6 /* Info.plist */,
 				EDEBCC811F4DA8E00029FAB6 /* Demo_ScreenSaver-Bridging-Header.h */,
 			);
@@ -761,6 +764,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDEBCC831F4DA8E10029FAB6 /* Demo_ScreenSaverView.swift in Sources */,
+				EDEBCC8A1F4E92CF0029FAB6 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
