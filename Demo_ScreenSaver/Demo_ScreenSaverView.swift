@@ -19,7 +19,7 @@ class Demo_ScreenSaverView: ScreenSaverView {
     return view
   }()
   
-  private let configureWindow: NSWindow = {
+  private lazy var configureWindow: NSWindow? = {
     let window = ConfigureWindow.instantiate()
     return window
   }()
@@ -116,10 +116,11 @@ class Demo_ScreenSaverView: ScreenSaverView {
   }
   
   override func hasConfigureSheet() -> Bool {
-    return true
+    return isPreview
   }
   
   override func configureSheet() -> NSWindow? {
-    return configureWindow
+    Swift.print(#function)
+    return isPreview ? configureWindow : nil
   }
 }
