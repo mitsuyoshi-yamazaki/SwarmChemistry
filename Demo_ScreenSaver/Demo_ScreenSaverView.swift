@@ -44,6 +44,8 @@ class Demo_ScreenSaverView: ScreenSaverView {
     }
   }
   
+  fileprivate var recipeID: Int?
+  
   override var animationTimeInterval: TimeInterval {
     get {
       #if AT_HOME
@@ -172,6 +174,9 @@ extension Demo_ScreenSaverView: ConfigureWindowDelegate {
 // Network
 extension Demo_ScreenSaverView {
   fileprivate func send(recipe: Recipe) {
+    guard isPreview == false else {
+      return
+    }
     guard let data = try? JSONSerialization.data(withJSONObject: ["raw": recipe.description], options: []) else {
       Swift.print("Serializing to JSON failed")
       return
@@ -189,12 +194,18 @@ extension Demo_ScreenSaverView {
       guard
         let nonNilData = data,
         error == nil,
-        let result = try? JSONSerialization.jsonObject(with: nonNilData, options: [])
+        let result = try? JSONSerialization.jsonObject(with: nonNilData, options: []) as? [String: Any]
       else {
         Swift.print("Failed to send recipe")
         return
       }
-      Swift.print(result)
+      guard let recipeID = result?["id"] as? Int else {
+        Swift.print("Faild to parse the response data")
+        Swift.print(String.init(describing: result))
+        return
+      }
+      Swift.print("Sending recipe succeeded")
+      self.recipeID = recipeID
     }
     task.resume()
   }
