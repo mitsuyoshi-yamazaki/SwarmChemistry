@@ -9,7 +9,9 @@
 #if os(iOS) || os(watchOS) || os(tvOS)
   import UIKit
   typealias View = UIView
+  typealias Nib = UINib
 #elseif os(macOS)
   import Cocoa
   typealias View = NSView
+  typealias Nib = NSNib
 #endif
