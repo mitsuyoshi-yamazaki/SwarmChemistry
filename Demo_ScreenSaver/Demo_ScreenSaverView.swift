@@ -13,7 +13,7 @@ import SwarmChemistry
 // https://developer.apple.com/documentation/screensaver
 class Demo_ScreenSaverView: ScreenSaverView {
   
-  private let fieldSizeMultiplier: CGFloat = 0.25
+  private var fieldSizeMultiplier: CGFloat = 0.25
   private var population = Population.empty()
   private var isRunning = false {
     didSet {
@@ -28,7 +28,7 @@ class Demo_ScreenSaverView: ScreenSaverView {
   
   override var animationTimeInterval: TimeInterval {
     get {
-      return 0.15
+      return 1.0
     }
     set {}
   }
@@ -45,15 +45,20 @@ class Demo_ScreenSaverView: ScreenSaverView {
   
   private func setup() {
     
+    let supporsedFieldSize: CGFloat = 8000
+    fieldSizeMultiplier = (frame.size.width / supporsedFieldSize)
+    
     let width = Int(frame.size.width / fieldSizeMultiplier)
     let height = Int(frame.size.height / fieldSizeMultiplier)
     let fieldSize = Vector2(width, height)
     let initialArea = Vector2.Rect.init(origin: fieldSize * 0.2, size: fieldSize * 0.6)
-    
-    population = Population.init(Recipe.jellyFish,
-                                 numberOfPopulation: 1000,
+
+    let recipe = Recipe.random(numberOfGenomes: 20, fieldSize: fieldSize.rect)
+    population = Population.init(recipe,
+                                 numberOfPopulation: 5000,
                                  fieldSize: fieldSize,
                                  initialArea: initialArea)
+
   }
   
   override func startAnimation() {
