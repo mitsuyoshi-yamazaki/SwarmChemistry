@@ -277,7 +277,7 @@ extension NSView {
     
     let screenshotRect = rect ?? bounds
     guard let bitmapRepresentation = bitmapImageRepForCachingDisplay(in: screenshotRect) else {
-      print("Fail to capture screenshot: bitmapImageRep")
+      Swift.print("Fail to capture screenshot: bitmapImageRep")
       return nil
     }
     cacheDisplay(in: screenshotRect, to: bitmapRepresentation)
