@@ -21,5 +21,18 @@ class ContentView: NSView {
   
   @IBOutlet private var titleLabel: NSTextField!
   @IBOutlet private var stepsLabel: NSTextField!
-  @IBOutlet private var versionLabel: NSTextField!
+  @IBOutlet private var versionLabel: NSTextField! {
+    didSet {
+      let bundle = Bundle.init(for: type(of: self))
+      versionLabel.stringValue = bundle.appVersionFullString
+    }
+  }
+  
+  func set(title: String) {
+    titleLabel.stringValue = title
+  }
+  
+  func set(steps: Int) {
+    stepsLabel.stringValue = "\(steps) steps"
+  }
 }
