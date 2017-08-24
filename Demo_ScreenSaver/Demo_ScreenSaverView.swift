@@ -85,6 +85,7 @@ class Demo_ScreenSaverView: ScreenSaverView {
                                    numberOfPopulation: numberOfPopulation,
                                    fieldSize: fieldSize,
                                    initialArea: initialArea)
+      contentView.set(title: "ArtificialLife@Home")
     #else
       let recipe = selectedRecipe ?? Recipe.jellyFish
       
@@ -92,9 +93,9 @@ class Demo_ScreenSaverView: ScreenSaverView {
                                    numberOfPopulation: 1000,
                                    fieldSize: fieldSize,
                                    initialArea: initialArea)
+      contentView.set(title: population.recipe.name)
     #endif
     
-    contentView.set(title: population.recipe.name)
     contentView.set(steps: population.steps)
   }
   
