@@ -14,6 +14,20 @@ import SwarmChemistry
 class Demo_ScreenSaverView: ScreenSaverView {
   
   private var population = Population.init(Recipe.jellyFish, numberOfPopulation: 1000, fieldSize: Vector2(1000, 1000), initialArea: Vector2.Rect.init(x: 400, y: 400, width: 200, height: 200))
+  private var isRunning = false {
+    didSet {
+      guard isRunning != oldValue else {
+        return
+      }
+      if isRunning {
+        step()
+      }
+    }
+  }
+  
+  private var frameCount = 0
+  private let fps = 2
+  private let defaultFPS = 30
   
   required init?(coder: NSCoder) {
     super.init(coder: coder)
@@ -27,10 +41,22 @@ class Demo_ScreenSaverView: ScreenSaverView {
   
   override func startAnimation() {
     super.startAnimation()
+    isRunning = true
+  }
+  
+  func step() {
+    guard isRunning else {
+      return
+    }
+    DispatchQueue.global().async {
+      self.population.step(10)
+      self.step()
+    }
   }
   
   override func stopAnimation() {
     super.stopAnimation()
+    isRunning = false
   }
   
   override func draw(_ rect: NSRect) {
@@ -57,9 +83,12 @@ class Demo_ScreenSaverView: ScreenSaverView {
     }
   }
   
+  // 30fps
   override func animateOneFrame() {
-    population.step(1)
-    setNeedsDisplay(bounds)
+    if frameCount % (defaultFPS / fps) == 0 {
+      setNeedsDisplay(bounds)
+    }
+    frameCount += 1
   }
   
   override func hasConfigureSheet() -> Bool {
