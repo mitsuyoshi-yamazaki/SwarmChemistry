@@ -72,5 +72,7 @@ extension ConfigureWindow: NSTableViewDelegate {
     
     selectedRecipe = recipe
     configureWindowDelegate?.configureWindow(self, didSelect: recipe)
+    
+    tableView.reloadData()
   }
 }
