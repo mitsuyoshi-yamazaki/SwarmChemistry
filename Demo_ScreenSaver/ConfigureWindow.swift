@@ -65,3 +65,12 @@ extension ConfigureWindow: NSTableViewDataSource {
   }
 }
 
+extension ConfigureWindow: NSTableViewDelegate {
+  func tableViewSelectionDidChange(_ notification: Notification) {
+    let tableView = notification.object as! NSTableView
+    let recipe = recipeList[tableView.selectedRow]
+    
+    selectedRecipe = recipe
+    configureWindowDelegate?.configureWindow(self, didSelect: recipe)
+  }
+}

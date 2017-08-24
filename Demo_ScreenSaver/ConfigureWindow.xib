@@ -111,7 +111,7 @@ DQ
                                 </tableView>
                             </subviews>
                         </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" arrowsPosition="none" horizontal="YES" id="JiX-sI-M36">
+                        <scroller key="horizontalScroller" verticalHuggingPriority="750" arrowsPosition="none" horizontal="YES" id="JiX-sI-M36">
                             <rect key="frame" x="1" y="178" width="438" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>

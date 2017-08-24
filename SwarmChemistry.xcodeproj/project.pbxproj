@@ -192,6 +192,7 @@
 		EDEBCC8E1F4EC09B0029FAB6 /* ContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentView.xib; sourceTree = "<group>"; };
 		EDEBCC921F4ED20A0029FAB6 /* ConfigureWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigureWindow.swift; sourceTree = "<group>"; };
 		EDEBCC941F4ED2180029FAB6 /* ConfigureWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigureWindow.xib; sourceTree = "<group>"; };
+		EDEBCC971F4EE26E0029FAB6 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -359,6 +360,7 @@
 				EDEBCC8E1F4EC09B0029FAB6 /* ContentView.xib */,
 				EDEBCC921F4ED20A0029FAB6 /* ConfigureWindow.swift */,
 				EDEBCC941F4ED2180029FAB6 /* ConfigureWindow.xib */,
+				EDEBCC971F4EE26E0029FAB6 /* Utility.swift */,
 				EDEBCC891F4E92CF0029FAB6 /* Constants.swift */,
 				EDEBCC7D1F4DA8CE0029FAB6 /* Info.plist */,
 				EDEBCC811F4DA8E00029FAB6 /* Demo_ScreenSaver-Bridging-Header.h */,
