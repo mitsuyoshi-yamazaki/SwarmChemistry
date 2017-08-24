@@ -11,7 +11,13 @@ import ScreenSaver
 import SwarmChemistry
 
 // https://developer.apple.com/documentation/screensaver
+// TODO: Change class name & set it to Principal Class in Info.plist
 class Demo_ScreenSaverView: ScreenSaverView {
+  
+  private let contentView: ContentView = {
+    let view = ContentView.instantiate()
+    return view
+  }()
   
   private let fieldSizeMultiplier: CGFloat = 0.25
   private var population = Population.empty()
@@ -44,7 +50,9 @@ class Demo_ScreenSaverView: ScreenSaverView {
   }
   
   private func setup() {
-    
+    contentView.frame = bounds
+    addSubview(contentView)
+        
     let width = Int(frame.size.width / fieldSizeMultiplier)
     let height = Int(frame.size.height / fieldSizeMultiplier)
     let fieldSize = Vector2(width, height)
@@ -54,6 +62,9 @@ class Demo_ScreenSaverView: ScreenSaverView {
                                  numberOfPopulation: 1000,
                                  fieldSize: fieldSize,
                                  initialArea: initialArea)
+    
+    contentView.set(title: population.recipe.name)
+    contentView.set(steps: population.steps)
   }
   
   override func startAnimation() {
@@ -89,14 +100,13 @@ class Demo_ScreenSaverView: ScreenSaverView {
     context.fill(NSRect.init(x: 0.0, y: 0.0, width: fieldWidth * fieldSizeMultiplier, height: fieldHeight * fieldSizeMultiplier))
     
     for individual in population.population {
-      
       individual.genome.color.setFill()
       context.fillEllipse(in: CGRect(x: CGFloat(individual.position.x) * fieldSizeMultiplier, y: CGFloat(individual.position.y) * fieldSizeMultiplier, width: size, height: size))
     }
   }
   
-  // 30fps
   override func animateOneFrame() {
+    contentView.set(steps: population.steps)
     setNeedsDisplay(bounds)
   }
   

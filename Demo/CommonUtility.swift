@@ -19,3 +19,17 @@ extension Vector2.Rect {
     self.init(x: Value(rect.origin.x), y: Value(rect.origin.y), width: Value(rect.size.width), height: Value(rect.size.height))
   }
 }
+
+extension Bundle {
+  var appVersion: String {
+    return object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+  }
+  
+  var buildNumber: String {
+    return object(forInfoDictionaryKey: "CFBundleVersion") as! String
+  }
+  
+  var appVersionFullString: String {
+    return "ver. \(appVersion)(\(buildNumber))"
+  }
+}
