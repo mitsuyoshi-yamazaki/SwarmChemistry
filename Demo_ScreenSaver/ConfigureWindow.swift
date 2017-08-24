@@ -16,9 +16,13 @@ protocol ConfigureWindowDelegate: class {
 final class ConfigureWindow: NSWindow, IBInstantiatable {
 
   weak var configureWindowDelegate: ConfigureWindowDelegate?
-  var currentRecipe: Recipe?
+  var selectedRecipe: Recipe?
 
   fileprivate let recipeList = Recipe.presetRecipes
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+  }
   
   // MARK: -
   @IBAction func ok(sender: AnyObject!) {
@@ -49,12 +53,15 @@ extension ConfigureWindow: NSTableViewDataSource {
     }
     
     let recipe = recipeList[row]
+    let isSelected = recipe.name == selectedRecipe?.name
+    Swift.print("\(recipe.name): \(isSelected)")
     
     switch ColumnIdentifier.init(rawValue: tableColumn.identifier)! {
     case .selected:
-      return "✔︎"
+      return isSelected ? "✔︎" : ""
     case .recipeName:
       return recipe.name
     }
   }
 }
+

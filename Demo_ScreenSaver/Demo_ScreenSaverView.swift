@@ -19,7 +19,7 @@ class Demo_ScreenSaverView: ScreenSaverView {
     return view
   }()
   
-  private lazy var configureWindow: NSWindow? = {
+  private lazy var configureWindow: ConfigureWindow = {
     let window = ConfigureWindow.instantiate()
     return window
   }()
@@ -120,7 +120,18 @@ class Demo_ScreenSaverView: ScreenSaverView {
   }
   
   override func configureSheet() -> NSWindow? {
+    guard isPreview else {
+      return nil
+    }
+    configureWindow.configureWindowDelegate = self
+    configureWindow.selectedRecipe = population.recipe
+    
+    return configureWindow
+  }
+}
+
+extension Demo_ScreenSaverView: ConfigureWindowDelegate {
+  func configureWindow(_ window: ConfigureWindow, didSelect recipe: Recipe) {
     Swift.print(#function)
-    return isPreview ? configureWindow : nil
   }
 }
