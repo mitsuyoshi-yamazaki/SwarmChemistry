@@ -13,7 +13,8 @@ import SwarmChemistry
 // https://developer.apple.com/documentation/screensaver
 class Demo_ScreenSaverView: ScreenSaverView {
   
-  private var population = Population.init(Recipe.jellyFish, numberOfPopulation: 1000, fieldSize: Vector2(1000, 1000), initialArea: Vector2.Rect.init(x: 400, y: 400, width: 200, height: 200))
+  private let fieldSizeMultiplier: CGFloat = 0.25
+  private var population = Population.empty()
   private var isRunning = false {
     didSet {
       guard isRunning != oldValue else {
@@ -34,10 +35,25 @@ class Demo_ScreenSaverView: ScreenSaverView {
   
   required init?(coder: NSCoder) {
     super.init(coder: coder)
+    setup()
   }
   
   override init?(frame: NSRect, isPreview: Bool) {
     super.init(frame: frame, isPreview: isPreview)
+    setup()
+  }
+  
+  private func setup() {
+    
+    let width = Int(frame.size.width / fieldSizeMultiplier)
+    let height = Int(frame.size.height / fieldSizeMultiplier)
+    let fieldSize = Vector2(width, height)
+    let initialArea = Vector2.Rect.init(origin: fieldSize * 0.2, size: fieldSize * 0.6)
+    
+    population = Population.init(Recipe.jellyFish,
+                                 numberOfPopulation: 1000,
+                                 fieldSize: fieldSize,
+                                 initialArea: initialArea)
   }
   
   override func startAnimation() {
@@ -45,7 +61,7 @@ class Demo_ScreenSaverView: ScreenSaverView {
     isRunning = true
   }
   
-  func step() {
+  private func step() {
     guard isRunning else {
       return
     }
@@ -65,14 +81,9 @@ class Demo_ScreenSaverView: ScreenSaverView {
       fatalError()
     }
     
-    context.setFillColor(Color(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor)
-    context.fill(bounds)
-    
     let fieldWidth = CGFloat(population.fieldSize.x)
     let fieldHeight = CGFloat(population.fieldSize.y)
-    let fieldSizeMultiplier = min(frame.width / fieldWidth, frame.height / fieldHeight)
-
-    let size = 10.0 * fieldSizeMultiplier
+    let size = 20.0 * fieldSizeMultiplier
     
     context.setFillColor(Color.white.cgColor)
     context.fill(NSRect.init(x: 0.0, y: 0.0, width: fieldWidth * fieldSizeMultiplier, height: fieldHeight * fieldSizeMultiplier))
