@@ -24,7 +24,14 @@ class Demo_ScreenSaverView: ScreenSaverView {
     return window
   }()
   
+  #if AT_HOME
+  private let fieldSizeMultiplier: CGFloat = 0.15
+  private let steps = 1
+  #else
   private let fieldSizeMultiplier: CGFloat = 0.25
+  private let steps = 10
+  #endif
+  
   private var population = Population.empty()
   private var isRunning = false {
     didSet {
@@ -37,9 +44,15 @@ class Demo_ScreenSaverView: ScreenSaverView {
     }
   }
   
+  fileprivate var recipeID: Int?
+  
   override var animationTimeInterval: TimeInterval {
     get {
-      return 0.15
+      #if AT_HOME
+        return isPreview ? 0.15 : 5.0
+      #else
+        return 0.15
+      #endif
     }
     set {}
   }
@@ -67,14 +80,25 @@ class Demo_ScreenSaverView: ScreenSaverView {
     let fieldSize = Vector2(width, height)
     let initialArea = Vector2.Rect.init(origin: fieldSize * 0.2, size: fieldSize * 0.6)
     
-    let recipe = selectedRecipe ?? Recipe.jellyFish
+    #if AT_HOME
+      let numberOfPopulation = isPreview ? 1000 : 5000
+      let recipe = Recipe.random(numberOfGenomes: 20, fieldSize: fieldSize.rect)
+      population = Population.init(recipe,
+                                   numberOfPopulation: numberOfPopulation,
+                                   fieldSize: fieldSize,
+                                   initialArea: initialArea)
+      contentView.set(title: "ArtificialLife@Home")
+      send(recipe: recipe)
+    #else
+      let recipe = selectedRecipe ?? Recipe.jellyFish
+      
+      population = Population.init(recipe,
+                                   numberOfPopulation: 1000,
+                                   fieldSize: fieldSize,
+                                   initialArea: initialArea)
+      contentView.set(title: population.recipe.name)
+    #endif
     
-    population = Population.init(recipe,
-                                 numberOfPopulation: 1000,
-                                 fieldSize: fieldSize,
-                                 initialArea: initialArea)
-    
-    contentView.set(title: population.recipe.name)
     contentView.set(steps: population.steps)
   }
   
@@ -88,7 +112,7 @@ class Demo_ScreenSaverView: ScreenSaverView {
       return
     }
     DispatchQueue.global().async {
-      self.population.step(10)
+      self.population.step(self.steps)
       self.step()
     }
   }
@@ -122,7 +146,11 @@ class Demo_ScreenSaverView: ScreenSaverView {
   }
   
   override func hasConfigureSheet() -> Bool {
-    return isPreview
+    #if AT_HOME
+      return false
+    #else
+      return isPreview
+    #endif
   }
   
   override func configureSheet() -> NSWindow? {
@@ -140,6 +168,46 @@ extension Demo_ScreenSaverView: ConfigureWindowDelegate {
   func configureWindow(_ window: ConfigureWindow, didSelect recipe: Recipe) {
     selectedRecipe = recipe
     setupSwarmChemistry()
+  }
+}
+
+// Network
+extension Demo_ScreenSaverView {
+  fileprivate func send(recipe: Recipe) {
+    guard isPreview == false else {
+      return
+    }
+    guard let data = try? JSONSerialization.data(withJSONObject: ["raw": recipe.description], options: []) else {
+      Swift.print("Serializing to JSON failed")
+      return
+    }
+    
+    let path = Constants.dataServerURL + "recipes"
+    let url = URL.init(string: path)!
+    var request = URLRequest.init(url: url)
+    
+    request.httpMethod = "POST"
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.httpBody = data
+    
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+      guard
+        let nonNilData = data,
+        error == nil,
+        let result = try? JSONSerialization.jsonObject(with: nonNilData, options: []) as? [String: Any]
+      else {
+        Swift.print("Failed to send recipe")
+        return
+      }
+      guard let recipeID = result?["id"] as? Int else {
+        Swift.print("Faild to parse the response data")
+        Swift.print(String.init(describing: result))
+        return
+      }
+      Swift.print("Sending recipe succeeded")
+      self.recipeID = recipeID
+    }
+    task.resume()
   }
 }
 
