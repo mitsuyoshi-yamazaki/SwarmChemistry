@@ -203,7 +203,7 @@
 		EDABFDF41F3C5A3C00E1D56C /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		EDABFDF71F42ECCE00E1D56C /* RecipeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeTests.swift; sourceTree = "<group>"; };
 		EDBA52421F3B11D60091BEE5 /* PopulationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopulationTests.swift; sourceTree = "<group>"; };
-		EDEBCC771F4DA8CE0029FAB6 /* Demo_ScreenSaver.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Demo_ScreenSaver.saver; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDEBCC771F4DA8CE0029FAB6 /* Demo_ScreenSaver.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Demo_ScreenSaver.saver; path = "Swarm Chemistry.saver"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDEBCC7D1F4DA8CE0029FAB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EDEBCC811F4DA8E00029FAB6 /* Demo_ScreenSaver-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Demo_ScreenSaver-Bridging-Header.h"; sourceTree = "<group>"; };
 		EDEBCC821F4DA8E10029FAB6 /* Demo_ScreenSaverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Demo_ScreenSaverView.swift; sourceTree = "<group>"; };
@@ -213,7 +213,7 @@
 		EDEBCC8E1F4EC09B0029FAB6 /* ContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentView.xib; sourceTree = "<group>"; };
 		EDEBCC921F4ED20A0029FAB6 /* ConfigureWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigureWindow.swift; sourceTree = "<group>"; };
 		EDEBCC941F4ED2180029FAB6 /* ConfigureWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigureWindow.xib; sourceTree = "<group>"; };
-		EDEBCCC51F4EF2910029FAB6 /* AtHome.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AtHome.saver; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDEBCCC51F4EF2910029FAB6 /* AtHome.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = AtHome.saver; path = "AL@Home.saver"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
