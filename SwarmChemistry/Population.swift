@@ -51,7 +51,7 @@ public extension Population {
 
 // MARK: - Accessor
 public extension Population {
-  static func zero() -> Population {
+  static func empty() -> Population {
     return Population.init(.none(), numberOfPopulation: 0, fieldSize: .zero)
   }
 }

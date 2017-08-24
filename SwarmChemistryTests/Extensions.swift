@@ -15,3 +15,12 @@ extension Parameters {
     self.init(values)!
   }
 }
+
+extension Population {
+  init(population: [Individual], recipe: Recipe, fieldSize: Vector2) {
+    self.population = population
+    self.recipe = recipe
+    self.fieldSize = fieldSize
+    steps = 0
+  }
+}
