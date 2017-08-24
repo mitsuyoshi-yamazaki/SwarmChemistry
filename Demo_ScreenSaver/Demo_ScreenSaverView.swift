@@ -62,6 +62,9 @@ class Demo_ScreenSaverView: ScreenSaverView {
                                  numberOfPopulation: 1000,
                                  fieldSize: fieldSize,
                                  initialArea: initialArea)
+    
+    contentView.set(title: population.recipe.name)
+    contentView.set(steps: population.steps)
   }
   
   override func startAnimation() {
@@ -103,6 +106,7 @@ class Demo_ScreenSaverView: ScreenSaverView {
   }
   
   override func animateOneFrame() {
+    contentView.set(steps: population.steps)
     setNeedsDisplay(bounds)
   }
   

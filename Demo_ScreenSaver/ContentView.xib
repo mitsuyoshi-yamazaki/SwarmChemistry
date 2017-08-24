@@ -23,7 +23,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9R-FF-vz4">
-                    <rect key="frame" x="38" y="152" width="261" height="48"/>
+                    <rect key="frame" x="38" y="164" width="261" height="48"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="TitleTitleTitle" id="wZw-hi-3YY">
                         <font key="font" metaFont="systemHeavy" size="40"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -66,7 +66,7 @@ github.com/mitsuyoshi-yamazaki/SwarmChemistry</string>
                 <constraint firstItem="h9R-FF-vz4" firstAttribute="leading" secondItem="5ed-Wt-psw" secondAttribute="leading" id="X0N-HP-cen"/>
                 <constraint firstItem="h9R-FF-vz4" firstAttribute="trailing" secondItem="5ed-Wt-psw" secondAttribute="trailing" id="ZXv-IJ-jHJ"/>
                 <constraint firstItem="0IT-hW-nNR" firstAttribute="trailing" secondItem="AQA-Ox-vZo" secondAttribute="trailing" id="qB9-hi-XHS"/>
-                <constraint firstItem="h9R-FF-vz4" firstAttribute="top" secondItem="5ed-Wt-psw" secondAttribute="bottom" constant="8" id="sU8-9L-xAH"/>
+                <constraint firstItem="h9R-FF-vz4" firstAttribute="top" secondItem="5ed-Wt-psw" secondAttribute="bottom" constant="-4" id="sU8-9L-xAH"/>
                 <constraint firstItem="5ed-Wt-psw" firstAttribute="top" secondItem="Qil-T2-dx0" secondAttribute="top" id="yuT-dG-jfi"/>
                 <constraint firstItem="AQA-Ox-vZo" firstAttribute="top" secondItem="0IT-hW-nNR" secondAttribute="bottom" id="yyh-FA-fEl"/>
             </constraints>
