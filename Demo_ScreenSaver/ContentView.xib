@@ -39,18 +39,24 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQA-Ox-vZo">
-                    <rect key="frame" x="74" y="40" width="368" height="38"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" id="iKG-Qm-4c4">
+                    <rect key="frame" x="74" y="40" width="368" height="19"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="github.com/mitsuyoshi-yamazaki/SwarmChemistry" id="iKG-Qm-4c4">
                         <font key="font" metaFont="systemLight" size="16"/>
-                        <string key="title">by Mitsuyoshi Yamazaki
-github.com/mitsuyoshi-yamazaki/SwarmChemistry</string>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0IT-hW-nNR">
-                    <rect key="frame" x="353" y="78" width="89" height="19"/>
+                    <rect key="frame" x="353" y="86" width="89" height="19"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ver. 0.0.0(0)" id="xOy-Wj-Szc">
+                        <font key="font" metaFont="systemLight" size="16"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KmQ-a3-KNL">
+                    <rect key="frame" x="268" y="63" width="174" height="19"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="by Mitsuyoshi Yamazaki" id="h9f-rI-s8f">
                         <font key="font" metaFont="systemLight" size="16"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -58,17 +64,21 @@ github.com/mitsuyoshi-yamazaki/SwarmChemistry</string>
                 </textField>
             </subviews>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="Qil-T2-dx0" secondAttribute="trailing" constant="40" id="0bo-x4-9tm"/>
+                <constraint firstAttribute="trailing" secondItem="Qil-T2-dx0" secondAttribute="trailing" priority="900" constant="40" id="0bo-x4-9tm"/>
                 <constraint firstItem="5ed-Wt-psw" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="40" id="1sk-Ty-L1n"/>
+                <constraint firstItem="0IT-hW-nNR" firstAttribute="top" relation="greaterThanOrEqual" secondItem="h9R-FF-vz4" secondAttribute="bottom" id="HRy-2V-zi4"/>
+                <constraint firstItem="KmQ-a3-KNL" firstAttribute="top" secondItem="0IT-hW-nNR" secondAttribute="bottom" constant="4" id="ILb-Ja-9Ds"/>
                 <constraint firstItem="5ed-Wt-psw" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="40" id="J1v-ty-gQx"/>
-                <constraint firstAttribute="bottom" secondItem="AQA-Ox-vZo" secondAttribute="bottom" constant="40" id="S2J-9G-teD"/>
+                <constraint firstItem="Qil-T2-dx0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5ed-Wt-psw" secondAttribute="trailing" id="Jfi-co-FDE"/>
+                <constraint firstAttribute="bottom" secondItem="AQA-Ox-vZo" secondAttribute="bottom" priority="900" constant="40" id="S2J-9G-teD"/>
                 <constraint firstItem="AQA-Ox-vZo" firstAttribute="trailing" secondItem="Qil-T2-dx0" secondAttribute="trailing" id="Vqo-GW-j0z"/>
                 <constraint firstItem="h9R-FF-vz4" firstAttribute="leading" secondItem="5ed-Wt-psw" secondAttribute="leading" id="X0N-HP-cen"/>
                 <constraint firstItem="h9R-FF-vz4" firstAttribute="trailing" secondItem="5ed-Wt-psw" secondAttribute="trailing" id="ZXv-IJ-jHJ"/>
+                <constraint firstItem="KmQ-a3-KNL" firstAttribute="trailing" secondItem="AQA-Ox-vZo" secondAttribute="trailing" id="a6z-hN-urC"/>
                 <constraint firstItem="0IT-hW-nNR" firstAttribute="trailing" secondItem="AQA-Ox-vZo" secondAttribute="trailing" id="qB9-hi-XHS"/>
+                <constraint firstItem="AQA-Ox-vZo" firstAttribute="top" secondItem="KmQ-a3-KNL" secondAttribute="bottom" constant="4" id="s38-DX-DrU"/>
                 <constraint firstItem="h9R-FF-vz4" firstAttribute="top" secondItem="5ed-Wt-psw" secondAttribute="bottom" constant="-4" id="sU8-9L-xAH"/>
                 <constraint firstItem="5ed-Wt-psw" firstAttribute="top" secondItem="Qil-T2-dx0" secondAttribute="top" id="yuT-dG-jfi"/>
-                <constraint firstItem="AQA-Ox-vZo" firstAttribute="top" secondItem="0IT-hW-nNR" secondAttribute="bottom" id="yyh-FA-fEl"/>
             </constraints>
             <connections>
                 <outlet property="stepsLabel" destination="Qil-T2-dx0" id="Tkr-ZG-fE4"/>
