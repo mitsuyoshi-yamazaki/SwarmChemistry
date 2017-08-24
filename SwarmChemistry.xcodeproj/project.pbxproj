@@ -72,6 +72,17 @@
 		EDEBCC931F4ED20A0029FAB6 /* ConfigureWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEBCC921F4ED20A0029FAB6 /* ConfigureWindow.swift */; };
 		EDEBCC951F4ED2180029FAB6 /* ConfigureWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDEBCC941F4ED2180029FAB6 /* ConfigureWindow.xib */; };
 		EDEBCC961F4ED2920029FAB6 /* PlatformSpecific.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3341F3CAB370037080C /* PlatformSpecific.swift */; };
+		EDEBCCB21F4EF2910029FAB6 /* PlatformSpecific.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3341F3CAB370037080C /* PlatformSpecific.swift */; };
+		EDEBCCB31F4EF2910029FAB6 /* CommonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C33F2371F434AC8007A4068 /* CommonUtility.swift */; };
+		EDEBCCB41F4EF2910029FAB6 /* Demo_ScreenSaverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEBCC821F4DA8E10029FAB6 /* Demo_ScreenSaverView.swift */; };
+		EDEBCCB51F4EF2910029FAB6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEBCC8C1F4EC0900029FAB6 /* ContentView.swift */; };
+		EDEBCCB61F4EF2910029FAB6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEBCC891F4E92CF0029FAB6 /* Constants.swift */; };
+		EDEBCCB71F4EF2910029FAB6 /* ConfigureWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEBCC921F4ED20A0029FAB6 /* ConfigureWindow.swift */; };
+		EDEBCCB91F4EF2910029FAB6 /* SwarmChemistry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED97B2451F399037001DDA4B /* SwarmChemistry.framework */; };
+		EDEBCCBA1F4EF2910029FAB6 /* ScreenSaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDEBCC851F4DA8F00029FAB6 /* ScreenSaver.framework */; };
+		EDEBCCBD1F4EF2910029FAB6 /* ConfigureWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDEBCC941F4ED2180029FAB6 /* ConfigureWindow.xib */; };
+		EDEBCCBE1F4EF2910029FAB6 /* ContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDEBCC8E1F4EC09B0029FAB6 /* ContentView.xib */; };
+		EDEBCCC11F4EF2910029FAB6 /* SwarmChemistry.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = ED97B2451F399037001DDA4B /* SwarmChemistry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +149,16 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EDEBCCC01F4EF2910029FAB6 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				EDEBCCC11F4EF2910029FAB6 /* SwarmChemistry.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -192,6 +213,7 @@
 		EDEBCC8E1F4EC09B0029FAB6 /* ContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentView.xib; sourceTree = "<group>"; };
 		EDEBCC921F4ED20A0029FAB6 /* ConfigureWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigureWindow.swift; sourceTree = "<group>"; };
 		EDEBCC941F4ED2180029FAB6 /* ConfigureWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigureWindow.xib; sourceTree = "<group>"; };
+		EDEBCCC51F4EF2910029FAB6 /* AtHome.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AtHome.saver; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +269,15 @@
 			files = (
 				EDEBCC881F4DAA2C0029FAB6 /* SwarmChemistry.framework in Frameworks */,
 				EDEBCC861F4DA8F00029FAB6 /* ScreenSaver.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDEBCCB81F4EF2910029FAB6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDEBCCB91F4EF2910029FAB6 /* SwarmChemistry.framework in Frameworks */,
+				EDEBCCBA1F4EF2910029FAB6 /* ScreenSaver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +361,7 @@
 				ED7C21641F3AE51000018F97 /* Demo_Mac.app */,
 				2CA5C3131F3CA0DF0037080C /* Demo_iOS.app */,
 				EDEBCC771F4DA8CE0029FAB6 /* Demo_ScreenSaver.saver */,
+				EDEBCCC51F4EF2910029FAB6 /* AtHome.saver */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -392,6 +424,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		EDEBCC741F4DA8CE0029FAB6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDEBCCBB1F4EF2910029FAB6 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -532,6 +571,26 @@
 			productReference = EDEBCC771F4DA8CE0029FAB6 /* Demo_ScreenSaver.saver */;
 			productType = "com.apple.product-type.bundle";
 		};
+		EDEBCCB01F4EF2910029FAB6 /* AtHome */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EDEBCCC21F4EF2910029FAB6 /* Build configuration list for PBXNativeTarget "AtHome" */;
+			buildPhases = (
+				EDEBCCB11F4EF2910029FAB6 /* Sources */,
+				EDEBCCB81F4EF2910029FAB6 /* Frameworks */,
+				EDEBCCBB1F4EF2910029FAB6 /* Headers */,
+				EDEBCCBC1F4EF2910029FAB6 /* Resources */,
+				EDEBCCBF1F4EF2910029FAB6 /* Copy Screen Saver */,
+				EDEBCCC01F4EF2910029FAB6 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AtHome;
+			productName = Demo_ScreenSaver;
+			productReference = EDEBCCC51F4EF2910029FAB6 /* AtHome.saver */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -595,6 +654,7 @@
 				2CA5C3121F3CA0DF0037080C /* Demo_iOS */,
 				ED7C21631F3AE51000018F97 /* Demo_Mac */,
 				EDEBCC761F4DA8CE0029FAB6 /* Demo_ScreenSaver */,
+				EDEBCCB01F4EF2910029FAB6 /* AtHome */,
 			);
 		};
 /* End PBXProject section */
@@ -656,6 +716,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EDEBCCBC1F4EF2910029FAB6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDEBCCBD1F4EF2910029FAB6 /* ConfigureWindow.xib in Resources */,
+				EDEBCCBE1F4EF2910029FAB6 /* ContentView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -674,6 +743,20 @@
 			shellScript = "cp -r $BUILT_PRODUCTS_DIR/Demo_Mac.app $SRCROOT/.output/";
 		};
 		EDEBCC871F4DA9340029FAB6 /* Copy Screen Saver */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Screen Saver";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "open -W \"${CODESIGNING_FOLDER_PATH}\"";
+		};
+		EDEBCCBF1F4EF2910029FAB6 /* Copy Screen Saver */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -785,6 +868,19 @@
 				EDEBCC8D1F4EC0900029FAB6 /* ContentView.swift in Sources */,
 				EDEBCC8A1F4E92CF0029FAB6 /* Constants.swift in Sources */,
 				EDEBCC931F4ED20A0029FAB6 /* ConfigureWindow.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDEBCCB11F4EF2910029FAB6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDEBCCB21F4EF2910029FAB6 /* PlatformSpecific.swift in Sources */,
+				EDEBCCB31F4EF2910029FAB6 /* CommonUtility.swift in Sources */,
+				EDEBCCB41F4EF2910029FAB6 /* Demo_ScreenSaverView.swift in Sources */,
+				EDEBCCB51F4EF2910029FAB6 /* ContentView.swift in Sources */,
+				EDEBCCB61F4EF2910029FAB6 /* Constants.swift in Sources */,
+				EDEBCCB71F4EF2910029FAB6 /* ConfigureWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1167,7 +1263,7 @@
 				LIBRARY_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "mitsuyoshi.Demo-ScreenSaver";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Swarm Chemistry";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "Demo_ScreenSaver/Demo_ScreenSaver-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1188,7 +1284,48 @@
 				LIBRARY_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "mitsuyoshi.Demo-ScreenSaver";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Swarm Chemistry";
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "Demo_ScreenSaver/Demo_ScreenSaver-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+				WRAPPER_EXTENSION = saver;
+			};
+			name = Release;
+		};
+		EDEBCCC31F4EF2910029FAB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Demo_ScreenSaver/Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/ $(LOCAL_LIBRARY_DIR)/Frameworks";
+				LIBRARY_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = mitsuyoshi.AtHome;
+				PRODUCT_NAME = "AL@Home";
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "Demo_ScreenSaver/Demo_ScreenSaver-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				WRAPPER_EXTENSION = saver;
+			};
+			name = Debug;
+		};
+		EDEBCCC41F4EF2910029FAB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Demo_ScreenSaver/Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/ $(LOCAL_LIBRARY_DIR)/Frameworks";
+				LIBRARY_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = mitsuyoshi.AtHome;
+				PRODUCT_NAME = "AL@Home";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "Demo_ScreenSaver/Demo_ScreenSaver-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -1267,6 +1404,15 @@
 			buildConfigurations = (
 				EDEBCC7E1F4DA8CE0029FAB6 /* Debug */,
 				EDEBCC7F1F4DA8CE0029FAB6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EDEBCCC21F4EF2910029FAB6 /* Build configuration list for PBXNativeTarget "AtHome" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDEBCCC31F4EF2910029FAB6 /* Debug */,
+				EDEBCCC41F4EF2910029FAB6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
