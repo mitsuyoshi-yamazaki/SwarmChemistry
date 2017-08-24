@@ -28,7 +28,7 @@ class Demo_ScreenSaverView: ScreenSaverView {
   
   override var animationTimeInterval: TimeInterval {
     get {
-      return 0.5
+      return 0.15
     }
     set {}
   }
