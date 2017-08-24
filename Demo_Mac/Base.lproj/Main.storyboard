@@ -741,11 +741,33 @@
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y26-FM-42k">
+                                <rect key="frame" x="18" y="233" width="13" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="0" id="NMy-aK-MbA">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1eE-yC-n9O">
+                                <rect key="frame" x="385" y="222" width="81" height="32"/>
+                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Do8-b6-sTx">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="changeModeWithSender:" target="XfG-lQ-9wD" id="XzU-Is-vEK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="e1d-zK-OYN" secondAttribute="bottom" constant="20" id="Eee-P1-PKd"/>
                             <constraint firstItem="e1d-zK-OYN" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="QAJ-Eh-eAr"/>
+                            <constraint firstItem="y26-FM-42k" firstAttribute="leading" secondItem="e1d-zK-OYN" secondAttribute="leading" id="QQp-Vf-wKA"/>
+                            <constraint firstItem="y26-FM-42k" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="Vz6-vm-hem"/>
+                            <constraint firstItem="1eE-yC-n9O" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="bVj-xJ-U2N"/>
                             <constraint firstItem="e1d-zK-OYN" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="efB-58-nzm"/>
+                            <constraint firstAttribute="trailing" secondItem="1eE-yC-n9O" secondAttribute="trailing" constant="20" id="qiF-IG-kn7"/>
                         </constraints>
                         <gestureRecognizers>
                             <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="a6b-fK-GQL">
@@ -759,6 +781,7 @@
                         <outlet property="clickGestureRecognizer" destination="a6b-fK-GQL" id="69d-dO-Xd1"/>
                         <outlet property="renderView" destination="m2S-Jp-Qdl" id="9lv-hD-ljC"/>
                         <outlet property="resumeButton" destination="lW9-tE-ua6" id="fFE-s2-w9p"/>
+                        <outlet property="stepsLabel" destination="y26-FM-42k" id="Xq7-0v-ks0"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

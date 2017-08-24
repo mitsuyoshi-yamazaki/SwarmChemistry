@@ -42,6 +42,10 @@ public extension Vector2 {
     
     return Vector2(x, y)
   }
+  
+  var rect: Vector2.Rect { // TODO: Needs test
+    return Vector2.Rect.init(origin: .zero, size: self)
+  }
 }
 
 // MARK: - Function
@@ -137,6 +141,11 @@ public extension Vector2.Rect {
 // MARK: - Accessor
 public extension Vector2.Rect {
   static let zero = Vector2.Rect.init(x: 0, y: 0, width: 0, height: 0)
+  
+  func random(unit: Int = 1) -> Vector2.Rect {
+    // TODO: Need validation
+    return Vector2.Rect.init(origin: random(), size: random())
+  }
   
   func random() -> Vector2 {
     let x = size.x * (Value(Int(arc4random() % 100)) / 100.0) + origin.x

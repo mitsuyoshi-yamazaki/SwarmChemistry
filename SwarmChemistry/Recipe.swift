@@ -10,8 +10,6 @@ import Foundation
 
 // MARK: - Recipe
 public struct Recipe {
-  public typealias GenomeInfo = (genome: Parameters, count: Int)
-  
   public let name: String
   public let genomes: [GenomeInfo]
 }
@@ -65,7 +63,7 @@ public extension Recipe {
         guard let genome = Recipe.parseGenome(from: value.genomeText) else {
           return nil
         }
-        return (genome: genome, count: value.count)
+        return GenomeInfo.init(count: value.count, area: nil, genome: genome)
     }
     
     guard let genome = result as? [GenomeInfo] else {
@@ -111,7 +109,17 @@ public extension Recipe {
   
   static func random(numberOfGenomes: Int) -> Recipe {
     let genomes = (0..<numberOfGenomes)
-      .map { _ in (genome: Parameters.random, count: 10) }
+      .map { _ in GenomeInfo.init(count: 10, area: nil, genome: Parameters.random) }
+    
+    let random = self.init(name: "Random", genomes: genomes)
+    Log.debug(random.description)
+    
+    return random
+  }
+  
+  static func random(numberOfGenomes: Int, fieldSize: Vector2.Rect) -> Recipe {
+    let genomes = (0..<numberOfGenomes)
+      .map { _ in GenomeInfo.random(in: fieldSize) }
     
     let random = self.init(name: "Random", genomes: genomes)
     Log.debug(random.description)
@@ -132,11 +140,38 @@ public extension Recipe {
 
 // MARK: - CustomStringConvertible
 extension Recipe: CustomStringConvertible {
-  public var description: String {
+  public var description: String {  // TODO: Needs test
+    
+    var hasInitialArea = true
+    genomes.forEach {
+      if $0.area == nil {
+        hasInitialArea = false
+      }
+    }
+    
     let genomesText = genomes
-      .map { "\($0.count) * \($0.genome)" }
+      .map { (hasInitialArea ? "\($0.area!.description)\n" : "") + "\($0.count) * \($0.genome)" }
       .joined(separator: "\n")
     
     return "\(name)\n\(genomesText)"
+  }
+}
+
+// MARK: - GenomeInfo
+public extension Recipe {
+  struct GenomeInfo {
+    let count: Int
+    let area: Vector2.Rect?
+    let genome: Parameters
+  }
+}
+
+public extension Recipe.GenomeInfo {
+  static func random(`in` fieldSize: Vector2.Rect) -> Recipe.GenomeInfo {
+    
+    let count = (Int(arc4random()) % 999) + 1
+    let area: Vector2.Rect = fieldSize.random()
+    
+    return Recipe.GenomeInfo.init(count: count, area: area, genome: .random)
   }
 }

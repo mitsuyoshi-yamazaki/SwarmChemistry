@@ -19,18 +19,18 @@ class PopulationTests: XCTestCase {
   }
   
   func test_zero() {
-    let zero = Population.zero()
+    let empty = Population.empty()
     
-    XCTAssert(zero.fieldSize == .zero)
-    XCTAssert(zero.population.isEmpty == true)
-    XCTAssert(zero.recipe.genomes.isEmpty == true)
+    XCTAssert(empty.fieldSize == .zero)
+    XCTAssert(empty.population.isEmpty == true)
+    XCTAssert(empty.recipe.genomes.isEmpty == true)
   }
   
   func test_recipeInRect() {
     let individuals = (0..<10)
       .map { Individual.init(position: .init($0, $0), genome: .init($0)) }
     
-    let population = Population.init(fieldSize: .init(100, 100), population: individuals, recipe: .none())
+    let population = Population.init(population: individuals, recipe: .none(), fieldSize: .init(100, 100))
     let rect = Vector2.Rect.init(x: 2, y: 2, width: 2, height: 2)
     
     let recipeInRect = population.recipe(in: rect)

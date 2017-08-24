@@ -36,3 +36,6 @@ xcuserdata/
 # End of https://www.gitignore.io/api/xcode
 
 Playground.playground/Contents.swift
+
+.output/
+Demo_ScreenSaver/Constants.swift

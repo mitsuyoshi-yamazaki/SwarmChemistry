@@ -17,7 +17,7 @@ import SwarmChemistry
 class SwarmRenderView: View {
 
   var cellSize: CGFloat = 16.0
-  var population = Population.zero() {
+  var population = Population.empty() {
     didSet {
       updateFieldSizeMultiplier()
     }

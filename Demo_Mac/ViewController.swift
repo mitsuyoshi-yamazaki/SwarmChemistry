@@ -9,10 +9,15 @@
 import Cocoa
 import SwarmChemistry
 
-class ViewController: NSViewController, SwarmRenderer {
-
+class ViewController: NSViewController {//, SwarmRenderer {
+  enum Mode {
+    case interactive
+    case overNight
+  }
+  
   @IBOutlet weak var clickGestureRecognizer: NSClickGestureRecognizer!
   @IBOutlet weak var resumeButton: NSButton!
+  @IBOutlet weak var stepsLabel: NSTextField!
   private var dragIndicatorView: NSView = {
     let view = NSBox.init()
 
@@ -25,6 +30,7 @@ class ViewController: NSViewController, SwarmRenderer {
   }()
   
   private var mouseDownLocation: NSPoint?
+  private var mode = Mode.overNight
   
   // MARK: - SwarmRenderer
   @IBOutlet weak var renderView: SwarmRenderView!
@@ -40,7 +46,12 @@ class ViewController: NSViewController, SwarmRenderer {
     }
   }
   var steps: Int {
-    return 2
+    switch mode {
+    case .interactive:
+      return 3
+    case .overNight:
+      return 100
+    }
   }
   var delay: Double {
     return 0.0
@@ -65,16 +76,82 @@ class ViewController: NSViewController, SwarmRenderer {
   
   // MARK: - Function
   private func setup() {
+    let population: Population
+    let recipe: Recipe
     
-    let fieldSize = Vector2(3000, 3000)
-    let population = Population.init(Recipe.oscillator,
-                                     numberOfPopulation: 2000,
-                                     fieldSize: fieldSize,
-                                     initialArea: Vector2.Rect.init(origin: fieldSize * 0.1, size: fieldSize * 0.8))
+    switch mode {
+    case .interactive:
+      let fieldSize = Vector2(8000, 6000)
+      recipe = Recipe.random(numberOfGenomes: 10, fieldSize: fieldSize.rect)
+      population = Population.init(recipe,
+                                   numberOfPopulation: 2000,
+                                   fieldSize: fieldSize,
+                                   initialArea: Vector2.Rect.init(origin: fieldSize * 0.3, size: fieldSize * 0.4))
+    case .overNight:
+      let fieldSize = Vector2(10000, 8000)
+      recipe = Recipe.random(numberOfGenomes: 20, fieldSize: fieldSize.rect)
+      population = Population.init(recipe,
+                                   numberOfPopulation: 5000,
+                                   fieldSize: fieldSize,
+                                   initialArea: Vector2.Rect.init(origin: fieldSize * 0.3, size: fieldSize * 0.4))
+    }
+    
+    let recipeText = recipe.description
+    let recipeData = recipeText.data(using: .utf16)
+    let fileURL = URL.init(fileURLWithPath: Date().description + ".txt")
 
+    try? recipeData?.write(to: fileURL)
+    
     setupRenderView(with: population)
   }
+  
+  private func saveScreenshotToFile() {
+    guard let screenshot = renderView.takeScreenshot() else {
+      print("Saving screenshot failed: cannot take a screenshot")
+      return
+    }
+    guard let tiffRepresentation = screenshot.tiffRepresentation else {
+      print("Saving screenshot failed: cannot obtain a tiff representation")
+      return
+    }
+    let bitmapImageRepresentation = NSBitmapImageRep.init(data: tiffRepresentation)
+    guard let data = bitmapImageRepresentation?.representation(using: .PNG, properties: [:]) else {
+      print("Saving screenshot failed: cannot obtain image data")
+      return
+    }
+    
+    let fileURL = URL.init(fileURLWithPath: Date().description + ".png")
+    
+    do {
+      try data.write(to: fileURL)
+    } catch {
+      print("Saving screenshot failed: cannot save a screenshot to file: \(error)")
+    }
+  }
 
+  func didStep(currentSteps: Int) {
+    stepsLabel.stringValue = "\(currentSteps)"
+    
+    switch mode {
+    case .overNight:
+      saveScreenshotToFile()
+      (0..<10).forEach { _ in
+        self.renderView.population.step(self.steps / 20)
+        saveScreenshotToFile()
+      }
+      
+      if currentSteps >= 4000 {
+        pause()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: { 
+          self.setup()
+          self.resume()
+        })
+      }
+    default:
+      break
+    }
+  }
+  
   // MARK: - Action
   @IBAction func reset(sender: AnyObject!) {
     setup()
@@ -92,7 +169,16 @@ class ViewController: NSViewController, SwarmRenderer {
   @IBAction func resume(sender: AnyObject!) {
     resume()
   }
-  
+
+  @IBAction func changeMode(sender: AnyObject!) {
+    switch mode {
+    case .interactive:
+      mode = .overNight
+    case .overNight:
+      mode = .interactive
+    }
+  }
+
   // MARK: -
   override func mouseDown(with event: NSEvent) {
     let mouseDownLocation = event.locationInWindow // Currently the render view fills its window.
@@ -135,6 +221,45 @@ class ViewController: NSViewController, SwarmRenderer {
   }
 }
 
+extension ViewController {
+  func setupRenderView(with population: Population) {
+    isRunning = false
+    renderView.population = population
+  }
+  
+  func step() {
+    guard isRunning == true else {
+      return
+    }
+    
+    DispatchQueue.global(qos: .userInitiated).async {
+      self.renderView.population.step(self.steps)
+      DispatchQueue.main.asyncAfter(deadline: .now() + self.delay) {
+        self.didStep(currentSteps: self.renderView.population.steps)
+        guard self.isRunning == true else {
+          return  // Without this, setNeedsDisplay() maybe called one time after pause() call
+        }
+        self.renderView.setNeedsDisplay(self.renderView.bounds)
+        self.step()
+      }
+    }
+  }
+  
+  func pause() {
+    isRunning = false
+  }
+  
+  func resume() {
+    isRunning = true
+    step()
+  }
+  
+  func clear() {
+    pause()
+    renderView.clear()
+  }
+}
+
 extension NSRect {
   init(point1: NSPoint, point2: NSPoint) {
     let x = min(point1.x, point2.x)
@@ -144,5 +269,22 @@ extension NSRect {
     
     origin = NSPoint.init(x: x, y: y)
     size = NSSize.init(width: width, height: height)
+  }
+}
+
+extension NSView {
+  func takeScreenshot(_ rect: NSRect? = nil) -> NSImage? {
+    
+    let screenshotRect = rect ?? bounds
+    guard let bitmapRepresentation = bitmapImageRepForCachingDisplay(in: screenshotRect) else {
+      print("Fail to capture screenshot: bitmapImageRep")
+      return nil
+    }
+    cacheDisplay(in: screenshotRect, to: bitmapRepresentation)
+    
+    let image = NSImage.init(size: screenshotRect.size)
+    image.addRepresentation(bitmapRepresentation)
+    
+    return image
   }
 }
