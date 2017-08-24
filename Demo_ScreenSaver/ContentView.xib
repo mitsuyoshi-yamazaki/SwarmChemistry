@@ -31,9 +31,9 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qil-T2-dx0">
-                    <rect key="frame" x="381" y="213" width="61" height="19"/>
+                    <rect key="frame" x="384" y="213" width="58" height="19"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0 steps" id="DmV-Ip-Nq5">
-                        <font key="font" metaFont="systemSemibold" size="16"/>
+                        <font key="font" metaFont="systemLight" size="16"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>

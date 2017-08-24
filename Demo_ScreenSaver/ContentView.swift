@@ -8,16 +8,7 @@
 
 import Cocoa
 
-class ContentView: NSView {
-  static func instantiate() -> ContentView {
-    var topLevelObjects = NSArray()
-    let nibName = String.init(describing: self)
-    let bundle = Bundle.init(for: self)
-
-    bundle.loadNibNamed(nibName, owner: self, topLevelObjects: &topLevelObjects)
-    
-    return topLevelObjects.filter { $0 is ContentView }.first as! ContentView
-  }
+final class ContentView: NSView, IBInstantiatable {
   
   @IBOutlet private var titleLabel: NSTextField!
   @IBOutlet private var stepsLabel: NSTextField!

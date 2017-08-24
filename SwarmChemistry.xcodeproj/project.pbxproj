@@ -69,6 +69,9 @@
 		EDEBCC8B1F4EBFB70029FAB6 /* CommonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C33F2371F434AC8007A4068 /* CommonUtility.swift */; };
 		EDEBCC8D1F4EC0900029FAB6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEBCC8C1F4EC0900029FAB6 /* ContentView.swift */; };
 		EDEBCC8F1F4EC09B0029FAB6 /* ContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDEBCC8E1F4EC09B0029FAB6 /* ContentView.xib */; };
+		EDEBCC931F4ED20A0029FAB6 /* ConfigureWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEBCC921F4ED20A0029FAB6 /* ConfigureWindow.swift */; };
+		EDEBCC951F4ED2180029FAB6 /* ConfigureWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDEBCC941F4ED2180029FAB6 /* ConfigureWindow.xib */; };
+		EDEBCC961F4ED2920029FAB6 /* PlatformSpecific.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3341F3CAB370037080C /* PlatformSpecific.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,6 +190,8 @@
 		EDEBCC891F4E92CF0029FAB6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EDEBCC8C1F4EC0900029FAB6 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EDEBCC8E1F4EC09B0029FAB6 /* ContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentView.xib; sourceTree = "<group>"; };
+		EDEBCC921F4ED20A0029FAB6 /* ConfigureWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigureWindow.swift; sourceTree = "<group>"; };
+		EDEBCC941F4ED2180029FAB6 /* ConfigureWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigureWindow.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -352,6 +357,8 @@
 				EDEBCC821F4DA8E10029FAB6 /* Demo_ScreenSaverView.swift */,
 				EDEBCC8C1F4EC0900029FAB6 /* ContentView.swift */,
 				EDEBCC8E1F4EC09B0029FAB6 /* ContentView.xib */,
+				EDEBCC921F4ED20A0029FAB6 /* ConfigureWindow.swift */,
+				EDEBCC941F4ED2180029FAB6 /* ConfigureWindow.xib */,
 				EDEBCC891F4E92CF0029FAB6 /* Constants.swift */,
 				EDEBCC7D1F4DA8CE0029FAB6 /* Info.plist */,
 				EDEBCC811F4DA8E00029FAB6 /* Demo_ScreenSaver-Bridging-Header.h */,
@@ -644,6 +651,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDEBCC951F4ED2180029FAB6 /* ConfigureWindow.xib in Resources */,
 				EDEBCC8F1F4EC09B0029FAB6 /* ContentView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -771,10 +779,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDEBCC961F4ED2920029FAB6 /* PlatformSpecific.swift in Sources */,
 				EDEBCC8B1F4EBFB70029FAB6 /* CommonUtility.swift in Sources */,
 				EDEBCC831F4DA8E10029FAB6 /* Demo_ScreenSaverView.swift in Sources */,
 				EDEBCC8D1F4EC0900029FAB6 /* ContentView.swift in Sources */,
 				EDEBCC8A1F4E92CF0029FAB6 /* Constants.swift in Sources */,
+				EDEBCC931F4ED20A0029FAB6 /* ConfigureWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

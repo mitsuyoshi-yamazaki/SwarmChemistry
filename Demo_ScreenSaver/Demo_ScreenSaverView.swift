@@ -19,6 +19,11 @@ class Demo_ScreenSaverView: ScreenSaverView {
     return view
   }()
   
+  private lazy var configureWindow: ConfigureWindow = {
+    let window = ConfigureWindow.instantiate()
+    return window
+  }()
+  
   private let fieldSizeMultiplier: CGFloat = 0.25
   private var population = Population.empty()
   private var isRunning = false {
@@ -52,13 +57,19 @@ class Demo_ScreenSaverView: ScreenSaverView {
   private func setup() {
     contentView.frame = bounds
     addSubview(contentView)
-        
+    
+    setupSwarmChemistry()
+  }
+  
+  fileprivate func setupSwarmChemistry() {
     let width = Int(frame.size.width / fieldSizeMultiplier)
     let height = Int(frame.size.height / fieldSizeMultiplier)
     let fieldSize = Vector2(width, height)
     let initialArea = Vector2.Rect.init(origin: fieldSize * 0.2, size: fieldSize * 0.6)
     
-    population = Population.init(Recipe.jellyFish,
+    let recipe = selectedRecipe ?? Recipe.jellyFish
+    
+    population = Population.init(recipe,
                                  numberOfPopulation: 1000,
                                  fieldSize: fieldSize,
                                  initialArea: initialArea)
@@ -111,10 +122,56 @@ class Demo_ScreenSaverView: ScreenSaverView {
   }
   
   override func hasConfigureSheet() -> Bool {
-    return false
+    return isPreview
   }
   
   override func configureSheet() -> NSWindow? {
-    return nil
+    guard isPreview else {
+      return nil
+    }
+    configureWindow.configureWindowDelegate = self
+    configureWindow.selectedRecipe = population.recipe
+    
+    return configureWindow
   }
 }
+
+extension Demo_ScreenSaverView: ConfigureWindowDelegate {
+  func configureWindow(_ window: ConfigureWindow, didSelect recipe: Recipe) {
+    selectedRecipe = recipe
+    setupSwarmChemistry()
+  }
+}
+
+// FixMe: Cannot separate following members to a different class.. the system calls init(frame: isPreview:) to the class and it crashes
+extension Demo_ScreenSaverView {
+  fileprivate var moduleName: String {
+    let bundle = Bundle.init(for: type(of: self))
+    return bundle.bundleIdentifier!
+  }
+  
+  fileprivate var defaults: ScreenSaverDefaults {
+    return ScreenSaverDefaults.init(forModuleWithName: moduleName)!
+  }
+  
+  fileprivate func fullKey(of key: String) -> String {
+    return moduleName + "." + key
+  }
+}
+
+extension Demo_ScreenSaverView {
+  fileprivate var selectedRecipe: Recipe? {
+    get {
+      guard let recipeName = defaults.object(forKey: fullKey(of: "selectedRecipeName")) as? String else {
+        return nil
+      }
+      return Recipe.presetRecipes.filter { $0.name == recipeName }.first
+    }
+    set {
+      let defaults = self.defaults
+      defaults.set(newValue?.name, forKey: fullKey(of: "selectedRecipeName"))
+      defaults.synchronize()
+    }
+  }
+}
+
