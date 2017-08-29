@@ -137,26 +137,26 @@ public extension Population {
             steering = .zero
           }
           
-          // Repulsion 
+          // Repulsive Force
           let x = individual.position.x
           let y = individual.position.y
-          let repulsionDistance: Value = Parameters.neighborhoodRadiusMax * 2.0
+          let repulsiveDistance: Value = Parameters.neighborhoodRadiusMax * 2.0
 
-          let distanceFromBorderX = min(x, fieldSize.x - x) / repulsionDistance
-          let repulsionX = distanceFromBorderX <= 1.0 ? pow(1.0 - distanceFromBorderX, 2.0) * individual.genome.maxVelocity : 0.0
+          let distanceFromBorderX = min(x, fieldSize.x - x) / repulsiveDistance
+          let repulsiveX = distanceFromBorderX <= 1.0 ? pow(1.0 - distanceFromBorderX, 10.0) * individual.genome.maxVelocity : 0.0
           let directionX: Value = (x < fieldSize.x - x) ? 1 : -1
           
-          let distanceFromBorderY = min(y, fieldSize.y - y) / repulsionDistance
-          let repulsionY = distanceFromBorderY <= 1.0 ? pow(1.0 - distanceFromBorderY, 2.0) * individual.genome.maxVelocity : 0.0
+          let distanceFromBorderY = min(y, fieldSize.y - y) / repulsiveDistance
+          let repulsiveY = distanceFromBorderY <= 1.0 ? pow(1.0 - distanceFromBorderY, 10.0) * individual.genome.maxVelocity : 0.0
           let directionY: Value = (y < fieldSize.y - y) ? 1 : -1
           
-          let repulsion = Vector2(repulsionX * directionX, repulsionY * directionY)
+          let repulsive = Vector2(repulsiveX * directionX, repulsiveY * directionY)
 
           acceleration = (averageCenter - individual.position) * genome.cohesiveForce
             + (averageVelocity - individual.velocity) * genome.aligningForce
             + sumSeparation
             + steering
-            + repulsion
+            + repulsive
         }
         
         individual.accelerate(acceleration)
