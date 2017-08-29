@@ -11,9 +11,9 @@ macOS10.12+
 
 # Usage
 
-a) [Install to Your App](#user-content-yourapp)
-b) [Run Demo Apps](#user-content-demoapp)
-c) [Install Screensaver](#user-content-screensaver)
+- [Install to Your App](#user-content-yourapp)
+- [Run Demo Apps](#user-content-demoapp)
+- [Install Screensaver](#user-content-screensaver)
  
 ## <a name="yourapp"></a>Install to Your App
 
