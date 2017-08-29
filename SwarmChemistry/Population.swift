@@ -132,7 +132,7 @@ public extension Population {
           // Steering
           let steering: Vector2
           if Double(arc4random() % 100) < (genome.probabilityOfRandomSteering * 100.0) {
-            steering = Vector2(Value(arc4random() % 10) - 5.0, Value(arc4random() % 10) - 5.0)
+            steering = Vector2(Value(arc4random() % 10) - 4.5, Value(arc4random() % 10) - 4.5)
           } else {
             steering = .zero
           }
