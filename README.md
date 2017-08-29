@@ -6,7 +6,7 @@ Swift library of Hiroki Sayama's artificial chemistry model [SwarmChemistry](htt
 
 # Requirement
 
-iOS10+
+iOS10+<br>
 macOS10.12+
 
 # Usage
