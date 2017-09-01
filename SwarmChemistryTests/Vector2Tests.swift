@@ -27,6 +27,14 @@ class Vector2Tests: XCTestCase {
     XCTAssert(Vector2.zero.size() == 0.0)
   }
   
+  func test_random() {
+    let vector = Vector2(10.0, 10.0)
+    
+    (0..<100).forEach { _ in
+      XCTAssert(vector.contains(vector.random()))
+    }
+  }
+  
   func test_distance() {
     let zero = Vector2.zero
     
@@ -67,14 +75,6 @@ class Vector2Tests: XCTestCase {
   func test_description() {
     XCTAssert(Vector2(1, 2).description == "(1.00, 2.00)")
     XCTAssert(Vector2(1.001, 2.001).description == "(1.00, 2.00)")
-  }
-  
-  func test_random() {
-    let vector = Vector2(10.0, 10.0)
-    
-    (0..<100).forEach { _ in
-      XCTAssert(vector.contains(vector.random()))
-    }
   }
   
   func test_contains() {
