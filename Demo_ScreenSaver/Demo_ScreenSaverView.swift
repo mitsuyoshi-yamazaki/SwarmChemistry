@@ -118,38 +118,10 @@ class Demo_ScreenSaverView: ScreenSaverView, SwarmRenderer {
     resume()
   }
   
-//  private func step() {
-//    guard isRunning else {
-//      return
-//    }
-//    DispatchQueue.global().async {
-//      self.population.step(self.steps)
-//      self.step()
-//    }
-//  }
-  
   override func stopAnimation() {
     super.stopAnimation()
     pause()
   }
-  
-//  override func draw(_ rect: NSRect) {
-//    guard let context = NSGraphicsContext.current()?.cgContext else {
-//      fatalError()
-//    }
-//    
-//    let fieldWidth = CGFloat(population.fieldSize.x)
-//    let fieldHeight = CGFloat(population.fieldSize.y)
-//    let size = 20.0 * fieldSizeMultiplier
-//    
-//    context.setFillColor(Color.white.cgColor)
-//    context.fill(NSRect.init(x: 0.0, y: 0.0, width: fieldWidth * fieldSizeMultiplier, height: fieldHeight * fieldSizeMultiplier))
-//    
-//    for individual in population.population {
-//      individual.genome.color.setFill()
-//      context.fillEllipse(in: CGRect(x: CGFloat(individual.position.x) * fieldSizeMultiplier, y: CGFloat(individual.position.y) * fieldSizeMultiplier, width: size, height: size))
-//    }
-//  }
   
   override func animateOneFrame() {
     contentView.set(steps: renderView.population.steps)
