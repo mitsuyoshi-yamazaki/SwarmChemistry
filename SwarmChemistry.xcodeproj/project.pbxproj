@@ -30,6 +30,10 @@
 		2CA5C3381F3CAB3C0037080C /* PlatformSpecific.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3341F3CAB370037080C /* PlatformSpecific.swift */; };
 		2CA5C33A1F3CACEF0037080C /* RecipeDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3391F3CACEF0037080C /* RecipeDefinitions.swift */; };
 		2CA5C33B1F3CACEF0037080C /* RecipeDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3391F3CACEF0037080C /* RecipeDefinitions.swift */; };
+		ED2325F21F594D460001A6E3 /* SwarmRenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3251F3CA19B0037080C /* SwarmRenderView.swift */; };
+		ED2325F31F594D470001A6E3 /* SwarmRenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3251F3CA19B0037080C /* SwarmRenderView.swift */; };
+		ED2325F41F594D950001A6E3 /* SwarmRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C32F1F3CAAB70037080C /* SwarmRenderer.swift */; };
+		ED2325F51F594D950001A6E3 /* SwarmRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C32F1F3CAAB70037080C /* SwarmRenderer.swift */; };
 		ED7C21171F39942800018F97 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21161F39942800018F97 /* Parameters.swift */; };
 		ED7C21181F39942800018F97 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21161F39942800018F97 /* Parameters.swift */; };
 		ED7C211D1F399F6E00018F97 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C211C1F399F6E00018F97 /* Utility.swift */; };
@@ -868,6 +872,8 @@
 				EDEBCC8D1F4EC0900029FAB6 /* ContentView.swift in Sources */,
 				EDEBCC8A1F4E92CF0029FAB6 /* Constants.swift in Sources */,
 				EDEBCC931F4ED20A0029FAB6 /* ConfigureWindow.swift in Sources */,
+				ED2325F21F594D460001A6E3 /* SwarmRenderView.swift in Sources */,
+				ED2325F41F594D950001A6E3 /* SwarmRenderer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -881,6 +887,8 @@
 				EDEBCCB51F4EF2910029FAB6 /* ContentView.swift in Sources */,
 				EDEBCCB61F4EF2910029FAB6 /* Constants.swift in Sources */,
 				EDEBCCB71F4EF2910029FAB6 /* ConfigureWindow.swift in Sources */,
+				ED2325F31F594D470001A6E3 /* SwarmRenderView.swift in Sources */,
+				ED2325F51F594D950001A6E3 /* SwarmRenderer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
