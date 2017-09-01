@@ -5,7 +5,6 @@ import PlaygroundSupport
 import SwarmChemistry
 
 class View: UIView {
-  
   var population = Population.empty()
   
   override func draw(_ rect: CGRect) {
@@ -34,14 +33,14 @@ let initialArea = Vector2.Rect(origin: fieldSize * 0.2, size: fieldSize * 0.6)
 
 let population = Population(recipe, numberOfPopulation: 160, fieldSize: fieldSize, initialArea: initialArea)
 
-// Setup RenderView
+// Setup View
 let frame = CGRect(x: 0, y: 0, width: 400, height: 600)
 let view = View(frame: frame)
 view.population = population
 
 func step() {
   view.population.step(3)
-  view.setNeedsDisplay() // or `renderView.setNeedsDisplay()` if it's for iOS
+  view.setNeedsDisplay()
   
   DispatchQueue.main.async {
     step()
