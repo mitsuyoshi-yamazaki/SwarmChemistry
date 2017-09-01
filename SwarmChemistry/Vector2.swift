@@ -43,7 +43,7 @@ public extension Vector2 {
     return Vector2(x, y)
   }
   
-  var rect: Vector2.Rect { // TODO: Needs test
+  var rect: Vector2.Rect {
     return Vector2.Rect.init(origin: .zero, size: self)
   }
 }

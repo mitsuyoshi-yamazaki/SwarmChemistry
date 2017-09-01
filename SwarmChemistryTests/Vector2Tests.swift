@@ -35,6 +35,14 @@ class Vector2Tests: XCTestCase {
     }
   }
   
+  func test_rect() {
+    let vector = Vector2(12, 34)
+    let rect = vector.rect
+    
+    XCTAssert(rect.origin == .zero)
+    XCTAssert(rect.size == vector)
+  }
+  
   func test_distance() {
     let zero = Vector2.zero
     
