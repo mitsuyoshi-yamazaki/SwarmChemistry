@@ -69,7 +69,7 @@ Choose a scheme Demo_iOS or Demo_Mac and run.
 
 ## <a name="screensaver"></a>Install Screensaver
 
-Download screensavers from [Releases](#releases), unzip them and double-click to install.
+Download screensavers from [Releases](https://github.com/mitsuyoshi-yamazaki/SwarmChemistry/releases/), unzip them and double-click to install.
 
 # Content
 
