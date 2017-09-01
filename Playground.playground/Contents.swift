@@ -4,6 +4,9 @@ import UIKit
 import PlaygroundSupport
 import SwarmChemistry
 
+// Recommendation: run following command on terminal to ignore modifications on this file.
+// $ git update-index --skip-worktree Playground.playground/Contents.swift
+
 class View: UIView {
   var population = Population.empty()
   
