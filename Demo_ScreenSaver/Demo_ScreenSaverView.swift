@@ -13,8 +13,8 @@ import SwarmChemistry
 // https://developer.apple.com/documentation/screensaver
 class Demo_ScreenSaverView: ScreenSaverView, SwarmRenderer {
   
-  private let contentView: ContentView = {
-    let view = ContentView.instantiate()
+  private let statusView: StatusView = {
+    let view = StatusView.instantiate()
     return view
   }()
   
@@ -77,8 +77,8 @@ class Demo_ScreenSaverView: ScreenSaverView, SwarmRenderer {
     renderView.frame = bounds
     addSubview(renderView)
     
-    contentView.frame = bounds
-    addSubview(contentView)
+    statusView.frame = bounds
+    addSubview(statusView)
     
     setupSwarmChemistry()
   }
@@ -97,7 +97,7 @@ class Demo_ScreenSaverView: ScreenSaverView, SwarmRenderer {
                                    numberOfPopulation: numberOfPopulation,
                                    fieldSize: fieldSize,
                                    initialArea: initialArea)
-      contentView.set(title: "ArtificialLife@Home")
+      statusView.set(title: "ArtificialLife@Home")
       Request.send(recipe: recipe)
     #else
       let recipe = Defaults.selectedRecipe ?? Recipe.jellyFish
@@ -106,10 +106,10 @@ class Demo_ScreenSaverView: ScreenSaverView, SwarmRenderer {
                                    numberOfPopulation: 1000,
                                    fieldSize: fieldSize,
                                    initialArea: initialArea)
-      contentView.set(title: population.recipe.name)
+      statusView.set(title: population.recipe.name)
     #endif
     
-    contentView.set(steps: population.steps)
+    statusView.set(steps: population.steps)
     setupRenderView(with: population)
   }
   
@@ -124,7 +124,7 @@ class Demo_ScreenSaverView: ScreenSaverView, SwarmRenderer {
   }
   
   override func animateOneFrame() {
-    contentView.set(steps: renderView.population.steps)
+    statusView.set(steps: renderView.population.steps)
     setNeedsDisplay(bounds)
   }
   
