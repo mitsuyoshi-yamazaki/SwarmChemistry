@@ -8,7 +8,7 @@ This project includes followings:
 - Demo app implementation for macOS
 - Screensaver for Mac
 
-<img width="720" src="https://user-images.githubusercontent.com/904354/29809092-b9351970-8cd5-11e7-8961-0444773cbfed.gif">
+<img width=720 src="https://user-images.githubusercontent.com/904354/30146831-5138cc0c-93d5-11e7-8a23-ac7b96054db9.gif">
 
 # Requirement
 
@@ -49,7 +49,6 @@ Open `SwarmChemistry.xcworkspace` on Xcode8.3
 
 Choose a scheme Demo_iOS or Demo_Mac and run.
 
-<img width=400 src="https://user-images.githubusercontent.com/904354/29957641-87c3e780-8f29-11e7-8936-ff46020f6178.png">
 
 #### About iOS app
 
@@ -57,10 +56,7 @@ Choose a scheme Demo_iOS or Demo_Mac and run.
 	- Predefined recipes
 	- Random
 	- Manual input
-- You can share the current recipe and screenshot
-
-<br>
-<img width=320 src="https://user-images.githubusercontent.com/904354/29957998-7f25b124-8f2b-11e7-8d2e-eb847fdf9e49.jpg">
+- You can share the current recipe and the screenshot
 
 
 #### About Mac app
