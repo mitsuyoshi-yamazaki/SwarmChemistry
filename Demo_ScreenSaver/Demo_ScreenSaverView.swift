@@ -98,7 +98,10 @@ class Demo_ScreenSaverView: ScreenSaverView, SwarmRenderer {
                                    fieldSize: fieldSize,
                                    initialArea: initialArea)
       statusView.set(title: "ArtificialLife@Home")
-      Request.send(recipe: recipe)
+      Request.send(recipe: recipe, completed: { [weak self] recipeID in
+        self?.recipeID = recipeID
+        Swift.print("recipeID: \(recipeID)")
+      })
     #else
       let recipe = Defaults.selectedRecipe ?? Recipe.jellyFish
       
@@ -144,6 +147,19 @@ class Demo_ScreenSaverView: ScreenSaverView, SwarmRenderer {
     configureWindow.selectedRecipe = renderView.population.recipe
     
     return configureWindow
+  }
+  
+  func didStep(currentSteps: Int) {
+    #if AT_HOME
+    guard currentSteps % (steps * 200) == 0 else {
+        return
+      }
+      guard let recipeID = recipeID else {
+        Swift.print("Cannot send population to server. recipeID cannot be nil")
+        return
+      }
+      Request.send(population: renderView.population, recipeID: recipeID)
+    #endif
   }
 }
 
