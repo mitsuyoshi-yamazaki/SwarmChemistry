@@ -7,10 +7,10 @@
         <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="ContentView" customModule="Demo_ScreenSaver" customModuleProvider="target"/>
+        <customObject id="-2" userLabel="File's Owner" customClass="ContentView" customModule="AL_Home" customModuleProvider="target"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView id="c22-O7-iKe" customClass="ContentView" customModule="Demo_ScreenSaver" customModuleProvider="target">
+        <customView id="c22-O7-iKe" customClass="StatusView" customModule="AL_Home" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>

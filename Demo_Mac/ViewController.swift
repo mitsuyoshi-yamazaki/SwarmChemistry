@@ -3,7 +3,7 @@
 //  Demo_Mac
 //
 //  Created by mitsuyoshi.yamazaki on 2017/08/09.
-//  Copyright © 2017年 Mitsuyoshi Yamazaki. All rights reserved.
+//  Copyright © 2017 Mitsuyoshi Yamazaki. All rights reserved.
 //
 
 import Cocoa
@@ -16,8 +16,8 @@ class ViewController: NSViewController {//, SwarmRenderer {
   }
   
   @IBOutlet weak var clickGestureRecognizer: NSClickGestureRecognizer!
+  @IBOutlet weak var contentView: NSView!
   @IBOutlet weak var resumeButton: NSButton!
-  @IBOutlet weak var stepsLabel: NSTextField!
   private var dragIndicatorView: NSView = {
     let view = NSBox.init()
 
@@ -28,7 +28,13 @@ class ViewController: NSViewController {//, SwarmRenderer {
     
     return view
   }()
-  
+  private let statusView: StatusView = {
+    let view = StatusView.instantiate()
+    view.autoresizingMask = [ NSAutoresizingMaskOptions.viewHeightSizable, .viewWidthSizable ]
+    
+    return view
+  }()
+
   private var mouseDownLocation: NSPoint?
   private var mode = Mode.interactive
   
@@ -61,6 +67,9 @@ class ViewController: NSViewController {//, SwarmRenderer {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    statusView.frame = view.bounds
+    view.addSubview(statusView, positioned: NSWindowOrderingMode.below, relativeTo: contentView)
+    
     setup()
     
     view.addSubview(dragIndicatorView)
@@ -82,11 +91,11 @@ class ViewController: NSViewController {//, SwarmRenderer {
     switch mode {
     case .interactive:
       let fieldSize = Vector2(6000, 4000)
-      recipe = Recipe.fastWalkerAndSlowFollower
+      recipe = Recipe.jellyFish
       population = Population.init(recipe,
                                    numberOfPopulation: 1200,
-                                   fieldSize: fieldSize)
-//                                   initialArea: Vector2.Rect.init(origin: fieldSize * 0.1, size: fieldSize * 0.8))
+                                   fieldSize: fieldSize,
+                                   initialArea: Vector2.Rect.init(origin: fieldSize * 0.2, size: fieldSize * 0.6))
     case .overNight:
       let fieldSize = Vector2(10000, 8000)
       recipe = Recipe.random(numberOfGenomes: 20, fieldSize: fieldSize.rect)
@@ -102,6 +111,7 @@ class ViewController: NSViewController {//, SwarmRenderer {
 
     try? recipeData?.write(to: fileURL)
     
+    statusView.set(title: recipe.name)
     setupRenderView(with: population)
   }
   
@@ -130,7 +140,7 @@ class ViewController: NSViewController {//, SwarmRenderer {
   }
 
   func didStep(currentSteps: Int) {
-    stepsLabel.stringValue = "\(currentSteps)"
+    statusView.set(steps: currentSteps)
     
     switch mode {
     case .overNight:

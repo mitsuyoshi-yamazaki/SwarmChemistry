@@ -1,14 +1,15 @@
 //
-//  ContentView.swift
+//  StatusView.swift
 //  SwarmChemistry
 //
 //  Created by mitsuyoshi.yamazaki on 2017/08/24.
-//  Copyright © 2017年 Mitsuyoshi Yamazaki. All rights reserved.
+//  Copyright © 2017 Mitsuyoshi Yamazaki. All rights reserved.
 //
 
 import Cocoa
+import SwarmChemistry
 
-final class ContentView: NSView, IBInstantiatable {
+final class StatusView: NSView, IBInstantiatable {
   
   @IBOutlet private var titleLabel: NSTextField!
   @IBOutlet private var stepsLabel: NSTextField!

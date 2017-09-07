@@ -3,7 +3,7 @@
 //  SwarmChemistry
 //
 //  Created by mitsuyoshi.yamazaki on 2017/08/09.
-//  Copyright © 2017年 Mitsuyoshi Yamazaki. All rights reserved.
+//  Copyright © 2017 Mitsuyoshi Yamazaki. All rights reserved.
 //
 
 import XCTest
@@ -25,6 +25,22 @@ class Vector2Tests: XCTestCase {
     XCTAssert(Vector2(3, 4).size() == 5.0)
     XCTAssert(Vector2(-3, -4).size() == 5.0)
     XCTAssert(Vector2.zero.size() == 0.0)
+  }
+  
+  func test_random() {
+    let vector = Vector2(10.0, 10.0)
+    
+    (0..<100).forEach { _ in
+      XCTAssert(vector.contains(vector.random()))
+    }
+  }
+  
+  func test_rect() {
+    let vector = Vector2(12, 34)
+    let rect = vector.rect
+    
+    XCTAssert(rect.origin == .zero)
+    XCTAssert(rect.size == vector)
   }
   
   func test_distance() {
@@ -67,14 +83,6 @@ class Vector2Tests: XCTestCase {
   func test_description() {
     XCTAssert(Vector2(1, 2).description == "(1.00, 2.00)")
     XCTAssert(Vector2(1.001, 2.001).description == "(1.00, 2.00)")
-  }
-  
-  func test_random() {
-    let vector = Vector2(10.0, 10.0)
-    
-    (0..<100).forEach { _ in
-      XCTAssert(vector.contains(vector.random()))
-    }
   }
   
   func test_contains() {

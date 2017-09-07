@@ -65,6 +65,8 @@ extension IBInstantiatable where Self: View {
   }
 }
 
+// The codes are completely same as `extension IBInstantiatable where Self: View` 
+// But NSWindow does not inherit NSView and `where` clause does not support `where Self: NSView or NSWindow`
 extension IBInstantiatable where Self: Window {
   static var nib: Nib {
     let bundle = Bundle.init(for: self)

@@ -3,7 +3,7 @@
 //  SwarmChemistry
 //
 //  Created by mitsuyoshi.yamazaki on 2017/08/08.
-//  Copyright © 2017年 Mitsuyoshi Yamazaki. All rights reserved.
+//  Copyright © 2017 Mitsuyoshi Yamazaki. All rights reserved.
 //
 
 import Foundation
@@ -43,7 +43,7 @@ public extension Vector2 {
     return Vector2(x, y)
   }
   
-  var rect: Vector2.Rect { // TODO: Needs test
+  var rect: Vector2.Rect {
     return Vector2.Rect.init(origin: .zero, size: self)
   }
 }

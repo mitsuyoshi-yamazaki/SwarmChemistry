@@ -3,7 +3,7 @@
 //  SwarmChemistry
 //
 //  Created by mitsuyoshi.yamazaki on 2017/08/09.
-//  Copyright © 2017年 Mitsuyoshi Yamazaki. All rights reserved.
+//  Copyright © 2017 Mitsuyoshi Yamazaki. All rights reserved.
 //
 
 import Foundation

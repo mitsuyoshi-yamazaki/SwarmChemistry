@@ -30,6 +30,16 @@
 		2CA5C3381F3CAB3C0037080C /* PlatformSpecific.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3341F3CAB370037080C /* PlatformSpecific.swift */; };
 		2CA5C33A1F3CACEF0037080C /* RecipeDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3391F3CACEF0037080C /* RecipeDefinitions.swift */; };
 		2CA5C33B1F3CACEF0037080C /* RecipeDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3391F3CACEF0037080C /* RecipeDefinitions.swift */; };
+		ED2325F21F594D460001A6E3 /* SwarmRenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3251F3CA19B0037080C /* SwarmRenderView.swift */; };
+		ED2325F31F594D470001A6E3 /* SwarmRenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3251F3CA19B0037080C /* SwarmRenderView.swift */; };
+		ED2325F41F594D950001A6E3 /* SwarmRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C32F1F3CAAB70037080C /* SwarmRenderer.swift */; };
+		ED2325F51F594D950001A6E3 /* SwarmRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C32F1F3CAAB70037080C /* SwarmRenderer.swift */; };
+		ED2325F71F61022F0001A6E3 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2325F61F61022F0001A6E3 /* Request.swift */; };
+		ED2325F81F61022F0001A6E3 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2325F61F61022F0001A6E3 /* Request.swift */; };
+		ED2325FA1F6104B60001A6E3 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2325F91F6104B60001A6E3 /* Defaults.swift */; };
+		ED2325FB1F6104B60001A6E3 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2325F91F6104B60001A6E3 /* Defaults.swift */; };
+		ED2325FC1F6108110001A6E3 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEBCC8C1F4EC0900029FAB6 /* StatusView.swift */; };
+		ED2325FD1F6108110001A6E3 /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDEBCC8E1F4EC09B0029FAB6 /* StatusView.xib */; };
 		ED7C21171F39942800018F97 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21161F39942800018F97 /* Parameters.swift */; };
 		ED7C21181F39942800018F97 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21161F39942800018F97 /* Parameters.swift */; };
 		ED7C211D1F399F6E00018F97 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C211C1F399F6E00018F97 /* Utility.swift */; };
@@ -67,21 +77,21 @@
 		EDEBCC881F4DAA2C0029FAB6 /* SwarmChemistry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED97B2451F399037001DDA4B /* SwarmChemistry.framework */; };
 		EDEBCC8A1F4E92CF0029FAB6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEBCC891F4E92CF0029FAB6 /* Constants.swift */; };
 		EDEBCC8B1F4EBFB70029FAB6 /* CommonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C33F2371F434AC8007A4068 /* CommonUtility.swift */; };
-		EDEBCC8D1F4EC0900029FAB6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEBCC8C1F4EC0900029FAB6 /* ContentView.swift */; };
-		EDEBCC8F1F4EC09B0029FAB6 /* ContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDEBCC8E1F4EC09B0029FAB6 /* ContentView.xib */; };
+		EDEBCC8D1F4EC0900029FAB6 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEBCC8C1F4EC0900029FAB6 /* StatusView.swift */; };
+		EDEBCC8F1F4EC09B0029FAB6 /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDEBCC8E1F4EC09B0029FAB6 /* StatusView.xib */; };
 		EDEBCC931F4ED20A0029FAB6 /* ConfigureWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEBCC921F4ED20A0029FAB6 /* ConfigureWindow.swift */; };
 		EDEBCC951F4ED2180029FAB6 /* ConfigureWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDEBCC941F4ED2180029FAB6 /* ConfigureWindow.xib */; };
 		EDEBCC961F4ED2920029FAB6 /* PlatformSpecific.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3341F3CAB370037080C /* PlatformSpecific.swift */; };
 		EDEBCCB21F4EF2910029FAB6 /* PlatformSpecific.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C3341F3CAB370037080C /* PlatformSpecific.swift */; };
 		EDEBCCB31F4EF2910029FAB6 /* CommonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C33F2371F434AC8007A4068 /* CommonUtility.swift */; };
 		EDEBCCB41F4EF2910029FAB6 /* Demo_ScreenSaverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEBCC821F4DA8E10029FAB6 /* Demo_ScreenSaverView.swift */; };
-		EDEBCCB51F4EF2910029FAB6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEBCC8C1F4EC0900029FAB6 /* ContentView.swift */; };
+		EDEBCCB51F4EF2910029FAB6 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEBCC8C1F4EC0900029FAB6 /* StatusView.swift */; };
 		EDEBCCB61F4EF2910029FAB6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEBCC891F4E92CF0029FAB6 /* Constants.swift */; };
 		EDEBCCB71F4EF2910029FAB6 /* ConfigureWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEBCC921F4ED20A0029FAB6 /* ConfigureWindow.swift */; };
 		EDEBCCB91F4EF2910029FAB6 /* SwarmChemistry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED97B2451F399037001DDA4B /* SwarmChemistry.framework */; };
 		EDEBCCBA1F4EF2910029FAB6 /* ScreenSaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDEBCC851F4DA8F00029FAB6 /* ScreenSaver.framework */; };
 		EDEBCCBD1F4EF2910029FAB6 /* ConfigureWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDEBCC941F4ED2180029FAB6 /* ConfigureWindow.xib */; };
-		EDEBCCBE1F4EF2910029FAB6 /* ContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDEBCC8E1F4EC09B0029FAB6 /* ContentView.xib */; };
+		EDEBCCBE1F4EF2910029FAB6 /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDEBCC8E1F4EC09B0029FAB6 /* StatusView.xib */; };
 		EDEBCCC11F4EF2910029FAB6 /* SwarmChemistry.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = ED97B2451F399037001DDA4B /* SwarmChemistry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -178,6 +188,8 @@
 		2CA5C32F1F3CAAB70037080C /* SwarmRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwarmRenderer.swift; sourceTree = "<group>"; };
 		2CA5C3341F3CAB370037080C /* PlatformSpecific.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformSpecific.swift; sourceTree = "<group>"; };
 		2CA5C3391F3CACEF0037080C /* RecipeDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDefinitions.swift; sourceTree = "<group>"; };
+		ED2325F61F61022F0001A6E3 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		ED2325F91F6104B60001A6E3 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		ED7C21161F39942800018F97 /* Parameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
 		ED7C211C1F399F6E00018F97 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		ED7C211F1F39A91E00018F97 /* Vector2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector2.swift; sourceTree = "<group>"; };
@@ -209,8 +221,8 @@
 		EDEBCC821F4DA8E10029FAB6 /* Demo_ScreenSaverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Demo_ScreenSaverView.swift; sourceTree = "<group>"; };
 		EDEBCC851F4DA8F00029FAB6 /* ScreenSaver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScreenSaver.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/ScreenSaver.framework; sourceTree = DEVELOPER_DIR; };
 		EDEBCC891F4E92CF0029FAB6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		EDEBCC8C1F4EC0900029FAB6 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		EDEBCC8E1F4EC09B0029FAB6 /* ContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentView.xib; sourceTree = "<group>"; };
+		EDEBCC8C1F4EC0900029FAB6 /* StatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
+		EDEBCC8E1F4EC09B0029FAB6 /* StatusView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusView.xib; sourceTree = "<group>"; };
 		EDEBCC921F4ED20A0029FAB6 /* ConfigureWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigureWindow.swift; sourceTree = "<group>"; };
 		EDEBCC941F4ED2180029FAB6 /* ConfigureWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigureWindow.xib; sourceTree = "<group>"; };
 		EDEBCCC51F4EF2910029FAB6 /* AtHome.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = AtHome.saver; path = "AL@Home.saver"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -387,10 +399,12 @@
 			isa = PBXGroup;
 			children = (
 				EDEBCC821F4DA8E10029FAB6 /* Demo_ScreenSaverView.swift */,
-				EDEBCC8C1F4EC0900029FAB6 /* ContentView.swift */,
-				EDEBCC8E1F4EC09B0029FAB6 /* ContentView.xib */,
+				EDEBCC8C1F4EC0900029FAB6 /* StatusView.swift */,
+				EDEBCC8E1F4EC09B0029FAB6 /* StatusView.xib */,
 				EDEBCC921F4ED20A0029FAB6 /* ConfigureWindow.swift */,
 				EDEBCC941F4ED2180029FAB6 /* ConfigureWindow.xib */,
+				ED2325F61F61022F0001A6E3 /* Request.swift */,
+				ED2325F91F6104B60001A6E3 /* Defaults.swift */,
 				EDEBCC891F4E92CF0029FAB6 /* Constants.swift */,
 				EDEBCC7D1F4DA8CE0029FAB6 /* Info.plist */,
 				EDEBCC811F4DA8E00029FAB6 /* Demo_ScreenSaver-Bridging-Header.h */,
@@ -688,6 +702,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED2325FD1F6108110001A6E3 /* StatusView.xib in Resources */,
 				ED7C216B1F3AE51100018F97 /* Assets.xcassets in Resources */,
 				ED7C216E1F3AE51100018F97 /* Main.storyboard in Resources */,
 			);
@@ -712,7 +727,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDEBCC951F4ED2180029FAB6 /* ConfigureWindow.xib in Resources */,
-				EDEBCC8F1F4EC09B0029FAB6 /* ContentView.xib in Resources */,
+				EDEBCC8F1F4EC09B0029FAB6 /* StatusView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -721,7 +736,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDEBCCBD1F4EF2910029FAB6 /* ConfigureWindow.xib in Resources */,
-				EDEBCCBE1F4EF2910029FAB6 /* ContentView.xib in Resources */,
+				EDEBCCBE1F4EF2910029FAB6 /* StatusView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -823,6 +838,7 @@
 				ED7C21671F3AE51100018F97 /* AppDelegate.swift in Sources */,
 				2C33F23B1F434ACF007A4068 /* CommonUtility.swift in Sources */,
 				2CA5C3291F3CA1A00037080C /* SwarmRenderView.swift in Sources */,
+				ED2325FC1F6108110001A6E3 /* StatusView.swift in Sources */,
 				2CA5C3331F3CAABD0037080C /* SwarmRenderer.swift in Sources */,
 				2CA5C3381F3CAB3C0037080C /* PlatformSpecific.swift in Sources */,
 			);
@@ -865,9 +881,13 @@
 				EDEBCC961F4ED2920029FAB6 /* PlatformSpecific.swift in Sources */,
 				EDEBCC8B1F4EBFB70029FAB6 /* CommonUtility.swift in Sources */,
 				EDEBCC831F4DA8E10029FAB6 /* Demo_ScreenSaverView.swift in Sources */,
-				EDEBCC8D1F4EC0900029FAB6 /* ContentView.swift in Sources */,
+				EDEBCC8D1F4EC0900029FAB6 /* StatusView.swift in Sources */,
 				EDEBCC8A1F4E92CF0029FAB6 /* Constants.swift in Sources */,
 				EDEBCC931F4ED20A0029FAB6 /* ConfigureWindow.swift in Sources */,
+				ED2325F21F594D460001A6E3 /* SwarmRenderView.swift in Sources */,
+				ED2325FA1F6104B60001A6E3 /* Defaults.swift in Sources */,
+				ED2325F71F61022F0001A6E3 /* Request.swift in Sources */,
+				ED2325F41F594D950001A6E3 /* SwarmRenderer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -878,9 +898,13 @@
 				EDEBCCB21F4EF2910029FAB6 /* PlatformSpecific.swift in Sources */,
 				EDEBCCB31F4EF2910029FAB6 /* CommonUtility.swift in Sources */,
 				EDEBCCB41F4EF2910029FAB6 /* Demo_ScreenSaverView.swift in Sources */,
-				EDEBCCB51F4EF2910029FAB6 /* ContentView.swift in Sources */,
+				EDEBCCB51F4EF2910029FAB6 /* StatusView.swift in Sources */,
 				EDEBCCB61F4EF2910029FAB6 /* Constants.swift in Sources */,
 				EDEBCCB71F4EF2910029FAB6 /* ConfigureWindow.swift in Sources */,
+				ED2325F31F594D470001A6E3 /* SwarmRenderView.swift in Sources */,
+				ED2325FB1F6104B60001A6E3 /* Defaults.swift in Sources */,
+				ED2325F81F61022F0001A6E3 /* Request.swift in Sources */,
+				ED2325F51F594D950001A6E3 /* SwarmRenderer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
