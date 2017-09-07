@@ -36,6 +36,8 @@
 		ED2325F51F594D950001A6E3 /* SwarmRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5C32F1F3CAAB70037080C /* SwarmRenderer.swift */; };
 		ED2325F71F61022F0001A6E3 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2325F61F61022F0001A6E3 /* Request.swift */; };
 		ED2325F81F61022F0001A6E3 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2325F61F61022F0001A6E3 /* Request.swift */; };
+		ED2325FA1F6104B60001A6E3 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2325F91F6104B60001A6E3 /* Defaults.swift */; };
+		ED2325FB1F6104B60001A6E3 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2325F91F6104B60001A6E3 /* Defaults.swift */; };
 		ED7C21171F39942800018F97 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21161F39942800018F97 /* Parameters.swift */; };
 		ED7C21181F39942800018F97 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21161F39942800018F97 /* Parameters.swift */; };
 		ED7C211D1F399F6E00018F97 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C211C1F399F6E00018F97 /* Utility.swift */; };
@@ -185,6 +187,7 @@
 		2CA5C3341F3CAB370037080C /* PlatformSpecific.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformSpecific.swift; sourceTree = "<group>"; };
 		2CA5C3391F3CACEF0037080C /* RecipeDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDefinitions.swift; sourceTree = "<group>"; };
 		ED2325F61F61022F0001A6E3 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		ED2325F91F6104B60001A6E3 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		ED7C21161F39942800018F97 /* Parameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
 		ED7C211C1F399F6E00018F97 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		ED7C211F1F39A91E00018F97 /* Vector2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector2.swift; sourceTree = "<group>"; };
@@ -399,6 +402,7 @@
 				EDEBCC921F4ED20A0029FAB6 /* ConfigureWindow.swift */,
 				EDEBCC941F4ED2180029FAB6 /* ConfigureWindow.xib */,
 				ED2325F61F61022F0001A6E3 /* Request.swift */,
+				ED2325F91F6104B60001A6E3 /* Defaults.swift */,
 				EDEBCC891F4E92CF0029FAB6 /* Constants.swift */,
 				EDEBCC7D1F4DA8CE0029FAB6 /* Info.plist */,
 				EDEBCC811F4DA8E00029FAB6 /* Demo_ScreenSaver-Bridging-Header.h */,
@@ -877,6 +881,7 @@
 				EDEBCC8A1F4E92CF0029FAB6 /* Constants.swift in Sources */,
 				EDEBCC931F4ED20A0029FAB6 /* ConfigureWindow.swift in Sources */,
 				ED2325F21F594D460001A6E3 /* SwarmRenderView.swift in Sources */,
+				ED2325FA1F6104B60001A6E3 /* Defaults.swift in Sources */,
 				ED2325F71F61022F0001A6E3 /* Request.swift in Sources */,
 				ED2325F41F594D950001A6E3 /* SwarmRenderer.swift in Sources */,
 			);
@@ -893,6 +898,7 @@
 				EDEBCCB61F4EF2910029FAB6 /* Constants.swift in Sources */,
 				EDEBCCB71F4EF2910029FAB6 /* ConfigureWindow.swift in Sources */,
 				ED2325F31F594D470001A6E3 /* SwarmRenderView.swift in Sources */,
+				ED2325FB1F6104B60001A6E3 /* Defaults.swift in Sources */,
 				ED2325F81F61022F0001A6E3 /* Request.swift in Sources */,
 				ED2325F51F594D950001A6E3 /* SwarmRenderer.swift in Sources */,
 			);

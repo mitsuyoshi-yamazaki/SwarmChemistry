@@ -100,7 +100,7 @@ class Demo_ScreenSaverView: ScreenSaverView, SwarmRenderer {
       contentView.set(title: "ArtificialLife@Home")
       Request.send(recipe: recipe)
     #else
-      let recipe = selectedRecipe ?? Recipe.jellyFish
+      let recipe = Defaults.selectedRecipe ?? Recipe.jellyFish
       
       population = Population.init(recipe,
                                    numberOfPopulation: 1000,
@@ -149,40 +149,7 @@ class Demo_ScreenSaverView: ScreenSaverView, SwarmRenderer {
 
 extension Demo_ScreenSaverView: ConfigureWindowDelegate {
   func configureWindow(_ window: ConfigureWindow, didSelect recipe: Recipe) {
-    selectedRecipe = recipe
+    Defaults.selectedRecipe = recipe
     setupSwarmChemistry()
   }
 }
-
-// FixMe: Cannot separate following members to a different class.. the system calls init(frame: isPreview:) to the class and it crashes
-extension Demo_ScreenSaverView {
-  fileprivate var moduleName: String {
-    let bundle = Bundle.init(for: type(of: self))
-    return bundle.bundleIdentifier!
-  }
-  
-  fileprivate var defaults: ScreenSaverDefaults {
-    return ScreenSaverDefaults.init(forModuleWithName: moduleName)!
-  }
-  
-  fileprivate func fullKey(of key: String) -> String {
-    return moduleName + "." + key
-  }
-}
-
-extension Demo_ScreenSaverView {
-  fileprivate var selectedRecipe: Recipe? {
-    get {
-      guard let recipeName = defaults.object(forKey: fullKey(of: "selectedRecipeName")) as? String else {
-        return nil
-      }
-      return Recipe.presetRecipes.filter { $0.name == recipeName }.first
-    }
-    set {
-      let defaults = self.defaults
-      defaults.set(newValue?.name, forKey: fullKey(of: "selectedRecipeName"))
-      defaults.synchronize()
-    }
-  }
-}
-
