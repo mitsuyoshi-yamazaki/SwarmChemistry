@@ -687,8 +687,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <stackView distribution="equalSpacing" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e1d-zK-OYN">
-                                <rect key="frame" x="20" y="20" width="440" height="21"/>
+                            <stackView distribution="equalSpacing" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="e1d-zK-OYN">
+                                <rect key="frame" x="40" y="40" width="400" height="21"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2ZL-Es-Ppo">
                                         <rect key="frame" x="-6" y="-7" width="84" height="32"/>
@@ -704,7 +704,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lW9-tE-ua6" userLabel="Resume">
-                                        <rect key="frame" x="178" y="-7" width="84" height="32"/>
+                                        <rect key="frame" x="158" y="-7" width="84" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="72" id="pgi-SN-GeE"/>
                                         </constraints>
@@ -716,8 +716,8 @@
                                             <action selector="resumeWithSender:" target="XfG-lQ-9wD" id="UdI-LM-cC0"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ebO-EL-elg">
-                                        <rect key="frame" x="362" y="-7" width="84" height="32"/>
+                                    <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ebO-EL-elg">
+                                        <rect key="frame" x="322" y="-7" width="84" height="32"/>
                                         <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="STK-mF-uQb">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -743,8 +743,8 @@
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="e1d-zK-OYN" secondAttribute="bottom" constant="20" id="Eee-P1-PKd"/>
-                            <constraint firstItem="e1d-zK-OYN" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="QAJ-Eh-eAr"/>
+                            <constraint firstAttribute="bottom" secondItem="e1d-zK-OYN" secondAttribute="bottom" constant="40" id="Eee-P1-PKd"/>
+                            <constraint firstItem="e1d-zK-OYN" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="40" id="QAJ-Eh-eAr"/>
                             <constraint firstItem="e1d-zK-OYN" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="efB-58-nzm"/>
                         </constraints>
                         <gestureRecognizers>
