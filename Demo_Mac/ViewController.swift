@@ -16,8 +16,8 @@ class ViewController: NSViewController {//, SwarmRenderer {
   }
   
   @IBOutlet weak var clickGestureRecognizer: NSClickGestureRecognizer!
+  @IBOutlet weak var contentView: NSView!
   @IBOutlet weak var resumeButton: NSButton!
-  @IBOutlet weak var stepsLabel: NSTextField!
   private var dragIndicatorView: NSView = {
     let view = NSBox.init()
 
@@ -28,7 +28,13 @@ class ViewController: NSViewController {//, SwarmRenderer {
     
     return view
   }()
-  
+  private let statusView: StatusView = {
+    let view = StatusView.instantiate()
+    view.autoresizingMask = [ NSAutoresizingMaskOptions.viewHeightSizable, .viewWidthSizable ]
+    
+    return view
+  }()
+
   private var mouseDownLocation: NSPoint?
   private var mode = Mode.interactive
   
@@ -60,6 +66,9 @@ class ViewController: NSViewController {//, SwarmRenderer {
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    statusView.frame = view.bounds
+    view.addSubview(statusView, positioned: NSWindowOrderingMode.below, relativeTo: contentView)
     
     setup()
     
@@ -102,6 +111,7 @@ class ViewController: NSViewController {//, SwarmRenderer {
 
     try? recipeData?.write(to: fileURL)
     
+    statusView.set(title: recipe.name)
     setupRenderView(with: population)
   }
   
@@ -130,7 +140,7 @@ class ViewController: NSViewController {//, SwarmRenderer {
   }
 
   func didStep(currentSteps: Int) {
-    stepsLabel.stringValue = "\(currentSteps)"
+    statusView.set(steps: currentSteps)
     
     switch mode {
     case .overNight:

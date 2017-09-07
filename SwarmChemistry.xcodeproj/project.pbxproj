@@ -38,6 +38,8 @@
 		ED2325F81F61022F0001A6E3 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2325F61F61022F0001A6E3 /* Request.swift */; };
 		ED2325FA1F6104B60001A6E3 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2325F91F6104B60001A6E3 /* Defaults.swift */; };
 		ED2325FB1F6104B60001A6E3 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2325F91F6104B60001A6E3 /* Defaults.swift */; };
+		ED2325FC1F6108110001A6E3 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEBCC8C1F4EC0900029FAB6 /* StatusView.swift */; };
+		ED2325FD1F6108110001A6E3 /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDEBCC8E1F4EC09B0029FAB6 /* StatusView.xib */; };
 		ED7C21171F39942800018F97 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21161F39942800018F97 /* Parameters.swift */; };
 		ED7C21181F39942800018F97 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C21161F39942800018F97 /* Parameters.swift */; };
 		ED7C211D1F399F6E00018F97 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C211C1F399F6E00018F97 /* Utility.swift */; };
@@ -700,6 +702,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED2325FD1F6108110001A6E3 /* StatusView.xib in Resources */,
 				ED7C216B1F3AE51100018F97 /* Assets.xcassets in Resources */,
 				ED7C216E1F3AE51100018F97 /* Main.storyboard in Resources */,
 			);
@@ -835,6 +838,7 @@
 				ED7C21671F3AE51100018F97 /* AppDelegate.swift in Sources */,
 				2C33F23B1F434ACF007A4068 /* CommonUtility.swift in Sources */,
 				2CA5C3291F3CA1A00037080C /* SwarmRenderView.swift in Sources */,
+				ED2325FC1F6108110001A6E3 /* StatusView.swift in Sources */,
 				2CA5C3331F3CAABD0037080C /* SwarmRenderer.swift in Sources */,
 				2CA5C3381F3CAB3C0037080C /* PlatformSpecific.swift in Sources */,
 			);
