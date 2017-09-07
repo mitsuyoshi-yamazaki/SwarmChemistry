@@ -10,7 +10,7 @@ import Foundation
 import ScreenSaver
 import SwarmChemistry
 
-class Defaults {
+internal class Defaults {
   fileprivate static var moduleName: String {
     let bundle = Bundle.init(for: self)
     return bundle.bundleIdentifier!
