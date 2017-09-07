@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import SwarmChemistry
 
 final class ContentView: NSView, IBInstantiatable {
   
