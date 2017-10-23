@@ -103,8 +103,24 @@ public extension Population {
         let neighbors = getNeighbors(individual: individual)
         let acceleration: Vector2
         
+        // Repulsive Force
+        let x = individual.position.x
+        let y = individual.position.y
+        let repulsiveDistance: Value = Parameters.neighborhoodRadiusMax * 2.0
+        
+        let distanceFromBorderX = min(x, fieldSize.x - x) / repulsiveDistance
+        let repulsiveX = distanceFromBorderX <= 1.0 ? pow(1.0 - distanceFromBorderX, 10.0) * individual.genome.maxVelocity : 0.0
+        let directionX: Value = (x < fieldSize.x - x) ? 1 : -1
+        
+        let distanceFromBorderY = min(y, fieldSize.y - y) / repulsiveDistance
+        let repulsiveY = distanceFromBorderY <= 1.0 ? pow(1.0 - distanceFromBorderY, 10.0) * individual.genome.maxVelocity : 0.0
+        let directionY: Value = (y < fieldSize.y - y) ? 1 : -1
+        
+        let repulsiveForce = Vector2(repulsiveX * directionX, repulsiveY * directionY)
+
         if neighbors.count == 0 {
           acceleration = Vector2(1, 1).random() - Vector2(0.5, 0.5)
+            + repulsiveForce
           
         } else {
           let numberOfNeighbors = Value(neighbors.count)
@@ -137,26 +153,11 @@ public extension Population {
             steering = .zero
           }
           
-          // Repulsive Force
-          let x = individual.position.x
-          let y = individual.position.y
-          let repulsiveDistance: Value = Parameters.neighborhoodRadiusMax * 2.0
-
-          let distanceFromBorderX = min(x, fieldSize.x - x) / repulsiveDistance
-          let repulsiveX = distanceFromBorderX <= 1.0 ? pow(1.0 - distanceFromBorderX, 10.0) * individual.genome.maxVelocity : 0.0
-          let directionX: Value = (x < fieldSize.x - x) ? 1 : -1
-          
-          let distanceFromBorderY = min(y, fieldSize.y - y) / repulsiveDistance
-          let repulsiveY = distanceFromBorderY <= 1.0 ? pow(1.0 - distanceFromBorderY, 10.0) * individual.genome.maxVelocity : 0.0
-          let directionY: Value = (y < fieldSize.y - y) ? 1 : -1
-          
-          let repulsive = Vector2(repulsiveX * directionX, repulsiveY * directionY)
-
           acceleration = (averageCenter - individual.position) * genome.cohesiveForce
             + (averageVelocity - individual.velocity) * genome.aligningForce
             + sumSeparation
             + steering
-            + repulsive
+            + repulsiveForce
         }
         
         individual.accelerate(acceleration)
