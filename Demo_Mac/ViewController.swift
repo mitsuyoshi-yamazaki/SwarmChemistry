@@ -90,8 +90,8 @@ class ViewController: NSViewController {//, SwarmRenderer {
     
     switch mode {
     case .interactive:
-      let fieldSize = Vector2(6000, 4000)
-      recipe = Recipe.jellyFish
+      let fieldSize = Vector2(3000, 2000)
+      recipe = Recipe.random(numberOfGenomes: 6, fieldSize: fieldSize.rect)
       population = Population.init(recipe,
                                    numberOfPopulation: 1200,
                                    fieldSize: fieldSize,

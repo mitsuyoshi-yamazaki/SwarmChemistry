@@ -120,8 +120,14 @@ public extension Parameters {
   }
   
   static var random: Parameters {
-    let values = maxValues
+    var values = maxValues
       .map { Value(Int(arc4random()) % Int($0 * 100)) / 100.0 }
+    
+    let minimum = 20.0
+    
+    if values[5] < 30.0 {   // Separation Force
+      values[5] = 30.0 * Value(Int(arc4random()) % Int(3))
+    }
     
     return Parameters(values)!
   }
