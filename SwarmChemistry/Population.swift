@@ -88,7 +88,7 @@ public extension Population {
             return nil
           }
           let distance = individual.position.distance(neighbor.position)
-          guard distance < individual.genome.neighborhoodRadius else {
+          guard distance < 300.0 else { // Temporaly
             return nil
           }
           return (distance: distance, individual: neighbor)
@@ -106,24 +106,43 @@ public extension Population {
         // Repulsive Force
         let x = individual.position.x
         let y = individual.position.y
-        let repulsiveDistance: Value = Parameters.neighborhoodRadiusMax * 2.0
+        let repulsiveDistance: Value = 300.0 * 2.0
         
         let distanceFromBorderX = min(x, fieldSize.x - x) / repulsiveDistance
-        let repulsiveX = distanceFromBorderX <= 1.0 ? pow(1.0 - distanceFromBorderX, 10.0) * individual.genome.maxVelocity : 0.0
+        let repulsiveX = distanceFromBorderX <= 1.0 ? pow(1.0 - distanceFromBorderX, 10.0) * 40.0 : 0.0
         let directionX: Value = (x < fieldSize.x - x) ? 1 : -1
         
         let distanceFromBorderY = min(y, fieldSize.y - y) / repulsiveDistance
-        let repulsiveY = distanceFromBorderY <= 1.0 ? pow(1.0 - distanceFromBorderY, 10.0) * individual.genome.maxVelocity : 0.0
+        let repulsiveY = distanceFromBorderY <= 1.0 ? pow(1.0 - distanceFromBorderY, 10.0) * 40.0 : 0.0
         let directionY: Value = (y < fieldSize.y - y) ? 1 : -1
         
         let repulsiveForce = Vector2(repulsiveX * directionX, repulsiveY * directionY)
 
         if neighbors.count == 0 {
-          acceleration = Vector2(1, 1).random() - Vector2(0.5, 0.5)
-            + repulsiveForce
+          acceleration =
+//            Vector2(1, 1).random() - Vector2(0.5, 0.5) +
+            repulsiveForce
           
         } else {
           let numberOfNeighbors = Value(neighbors.count)
+          
+          // Nuclear Force
+          let sumNuclearForce = neighbors.reduce(Vector2.zero) { (result, value) -> Vector2 in
+            return result
+              
+              (individual.position - value.individual.position)
+              
+              + (Vector2.init(1, 1) / max(value.distance * value.distance, 0.001))
+              * genome.nuclearForce
+          }
+          
+          // Polarity Force
+          let polarityForce = neighbors.reduce(Vector2.zero) { (result, value) -> Vector2 in
+            return result
+              + (Vector2.init(5, 5) / (value.distance + 1))
+              * genome.nuclearForce
+          }
+          
           
           // Center
           let sumCenter = neighbors.reduce(Vector2.zero) { (result, value) -> Vector2 in
@@ -140,18 +159,18 @@ public extension Population {
           // Separation
           let sumSeparation = neighbors.reduce(Vector2.zero) { (result, value) -> Vector2 in
             return result
-              + (individual.position - value.individual.position)
+              + (individual.position - value.individual.position) // direction
               / max(value.distance * value.distance, 0.001)
               * genome.separatingForce
           }
           
           // Steering
           let steering: Vector2
-          if Double(arc4random() % 100) < (genome.probabilityOfRandomSteering * 100.0) {
-            steering = Vector2(Value(arc4random() % 10) - 4.5, Value(arc4random() % 10) - 4.5)
-          } else {
+//          if Double(arc4random() % 100) < (genome.probabilityOfRandomSteering * 100.0) {
+//            steering = Vector2(Value(arc4random() % 10) - 4.5, Value(arc4random() % 10) - 4.5)
+//          } else {
             steering = .zero
-          }
+//          }
           
           acceleration = (averageCenter - individual.position) * genome.cohesiveForce
             + (averageVelocity - individual.velocity) * genome.aligningForce

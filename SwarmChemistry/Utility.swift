@@ -10,6 +10,15 @@ import Foundation
 
 public typealias Value = Double
 
+public struct Range<T: Comparable> {
+  let minimum: T
+  let maximum: T
+  
+  func contains(_ value: T) -> Bool {
+    return (value >= minimum) && (value <= maximum)
+  }
+}
+
 internal struct Log {
   private enum Level {
     case debug

@@ -27,9 +27,11 @@ class SwarmRenderView: View {
   fileprivate var shouldClear = false
   
   private func updateFieldSizeMultiplier() {
-    let fieldWidth = CGFloat(population.fieldSize.x)
-    let fieldHeight = CGFloat(population.fieldSize.y)
-    fieldSizeMultiplier = min(frame.width / fieldWidth, frame.height / fieldHeight)
+    DispatchQueue.main.async {
+      let fieldWidth = CGFloat(self.population.fieldSize.x)
+      let fieldHeight = CGFloat(self.population.fieldSize.y)
+      self.fieldSizeMultiplier = min(self.frame.width / fieldWidth, self.frame.height / fieldHeight)
+    }
   }
   
   // MARK: - Draw

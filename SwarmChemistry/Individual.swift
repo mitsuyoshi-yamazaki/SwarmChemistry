@@ -34,10 +34,10 @@ extension Individual {
   func accelerate(_ acceleration: Vector2) {
     self.acceleration = self.acceleration + acceleration
 
-    let d = self.acceleration.x * self.acceleration.x + self.acceleration.y * self.acceleration.y
-    if d > genome.maxVelocity {
-      self.acceleration = self.acceleration * (genome.maxSpeed / sqrt(d))
-    }
+//    let d = self.acceleration.x * self.acceleration.x + self.acceleration.y * self.acceleration.y
+//    if d > genome.maxVelocity {
+//      self.acceleration = self.acceleration * (genome.maxSpeed / sqrt(d))
+//    }
   }
   
   func move(`in` fieldSize: Vector2) {

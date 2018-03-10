@@ -11,57 +11,62 @@ import CoreGraphics
 
 // MARK: - Parameters
 public struct Parameters {
+  public enum Polarity {
+    case positive(force: Value)
+    case neutral
+    case negative(force: Value)
+    
+    func getForces() -> (positiveForce: Value, negativeForce: Value) {
+      switch self {
+      case .positive(let force):
+        return (force, 0.0)
+      
+      case .neutral:
+        return (0.0, 0.0)
+
+      case .negative(let force):
+        return (0.0, force)
+      }
+    }
+    
+    init(positiveForce: Value, negativeForce: Value) {
+      switch (positiveForce, negativeForce) {
+      case _ where (positiveForce > 0.0 && negativeForce == 0.0):
+        self = .positive(force: positiveForce)
+        
+      case _ where (positiveForce == 0.0 && negativeForce > 0.0):
+        self = .negative(force: negativeForce)
+        
+      default:
+        self = .neutral
+      }
+    }
+  }
   
-  public let neighborhoodRadius: Value
-  public static let neighborhoodRadiusMax = 300.0
+  public let nuclearForce: Value
+  public static let nuclearForceRange = Range<Value>.init(minimum: 1.0, maximum: 10.0)
   
-  public let normalSpeed: Value
-  public static let normalSpeedMax = 20.0
+  public let polarityForce: Polarity
+  public static let polarityForceRange = Range<Value>.init(minimum: 1.0, maximum: 100.0)
   
-  public let maxSpeed: Value
-  public static let maxSpeedMax = 40.0
-  
-  public let cohesiveForce: Value // c1
-  public static let cohesiveForceMax = 1.0
-  
-  public let aligningForce: Value // c2
-  public static let aligningForceMax = 1.0
-  
-  public let separatingForce: Value // c3
-  public static let separatingForceMax = 100.0
-  
-  public let probabilityOfRandomSteering: Value // c4
-  public static let probabilityOfRandomSteeringMax = 0.5
-  
-  public let tendencyOfPacekeeping: Value // c5
-  public static let tendencyOfPacekeepingMax = 1.0
-  
-  public let maxVelocity: Value
   public let color: Color
   
-  public init(neighborhoodRadius: Value, normalSpeed: Value, maxSpeed: Value, cohesiveForce: Value, aligningForce: Value, separatingForce: Value, probabilityOfRandomSteering: Value, tendencyOfPacekeeping: Value) {
+  init(nuclearForce: Value, polarityForce: Polarity) {
+    self.nuclearForce = nuclearForce
+    self.polarityForce = polarityForce
     
-    self.neighborhoodRadius = neighborhoodRadius
-    self.normalSpeed = normalSpeed
-    self.maxSpeed = maxSpeed
-    self.cohesiveForce = cohesiveForce
-    self.aligningForce = aligningForce
-    self.separatingForce = separatingForce
-    self.probabilityOfRandomSteering = probabilityOfRandomSteering
-    self.tendencyOfPacekeeping = tendencyOfPacekeeping
+    let (positiveForce, negativeForce) = polarityForce.getForces()
     
-    maxVelocity = maxSpeed * maxSpeed
-    
-    let red = CGFloat((cohesiveForce / type(of: self).cohesiveForceMax) * 0.8)
-    let green = CGFloat((aligningForce / type(of: self).aligningForceMax) * 0.8)
-    let blue = CGFloat((separatingForce / type(of: self).separatingForceMax) * 0.8)
+    let red = CGFloat((1.0 - (negativeForce / type(of: self).polarityForceRange.maximum)) * 0.8)
+    let green = CGFloat((nuclearForce / type(of: self).nuclearForceRange.maximum) * 0.8)
+    let blue = CGFloat((1.0 - (positiveForce / type(of: self).polarityForceRange.maximum)) * 0.8)
     color = Color.init(red: red, green: green, blue: blue, alpha: 1.0)
   }
 }
 
 // MARK: Convenience initializer
 public extension Parameters {
-  internal static let numberOfParameters = 8
+  internal static let numberOfParameters = 3
   
   init?(_ parameters: [Value]) {
     guard parameters.count == type(of: self).numberOfParameters else {
@@ -69,20 +74,14 @@ public extension Parameters {
     }
     
     // should validate each values?
-    neighborhoodRadius          = parameters[0]
-    normalSpeed                 = parameters[1]
-    maxSpeed                    = parameters[2]
-    cohesiveForce               = parameters[3]
-    aligningForce               = parameters[4]
-    separatingForce             = parameters[5]
-    probabilityOfRandomSteering = parameters[6]
-    tendencyOfPacekeeping       = parameters[7]
+    nuclearForce = parameters[0]
+    polarityForce = Polarity.init(positiveForce: parameters[1], negativeForce: parameters[2])
     
-    maxVelocity = maxSpeed * maxSpeed
-    
-    let red = CGFloat((cohesiveForce / type(of: self).cohesiveForceMax) * 0.8)
-    let green = CGFloat((aligningForce / type(of: self).aligningForceMax) * 0.8)
-    let blue = CGFloat((separatingForce / type(of: self).separatingForceMax) * 0.8)
+    let (positiveForce, negativeForce) = polarityForce.getForces()
+
+    let red = CGFloat((1.0 - (negativeForce / type(of: self).polarityForceRange.maximum)) * 0.8)
+    let green = CGFloat((nuclearForce / type(of: self).nuclearForceRange.maximum) * 0.8)
+    let blue = CGFloat((1.0 - (positiveForce / type(of: self).polarityForceRange.maximum)) * 0.8)
     color = Color.init(red: red, green: green, blue: blue, alpha: 1.0)
   }
 }
@@ -90,28 +89,20 @@ public extension Parameters {
 // MARK: - Accessor
 public extension Parameters {
   var all: [Value] {
+    let (positiveForce, negativeForce) = polarityForce.getForces()
+
     return [
-      neighborhoodRadius,
-      normalSpeed,
-      maxSpeed,
-      cohesiveForce,
-      aligningForce,
-      separatingForce,
-      probabilityOfRandomSteering,
-      tendencyOfPacekeeping
+      nuclearForce,
+      positiveForce,
+      negativeForce
     ]
   }
   
   static var maxValues: [Value] {
     return [
-      neighborhoodRadiusMax,
-      normalSpeedMax,
-      maxSpeedMax,
-      cohesiveForceMax,
-      aligningForceMax,
-      separatingForceMax,
-      probabilityOfRandomSteeringMax,
-      tendencyOfPacekeepingMax
+      nuclearForceRange.maximum,
+      polarityForceRange.maximum,
+      polarityForceRange.maximum
     ]
   }
   
