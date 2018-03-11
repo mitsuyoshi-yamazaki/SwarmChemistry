@@ -129,60 +129,75 @@ public extension Population {
           // Nuclear Force
           let sumNuclearForce = neighbors.reduce(Vector2.zero) { (result, value) -> Vector2 in
             return result
-              
-              (individual.position - value.individual.position)
-              
-              + (Vector2.init(1, 1) / max(value.distance * value.distance, 0.001))
+              + ((individual.position - value.individual.position) * 10)
+              / max(value.distance * value.distance * value.distance, 0.001)
               * genome.nuclearForce
           }
           
           // Polarity Force
-          let polarityForce = neighbors.reduce(Vector2.zero) { (result, value) -> Vector2 in
-            return result
-              + (Vector2.init(5, 5) / (value.distance + 1))
-              * genome.nuclearForce
+          let sumPolarityForce: Vector2
+          if case .neutral = genome.polarityForce {
+            sumPolarityForce = Vector2.zero
+          } else {
+            sumPolarityForce = neighbors.reduce(Vector2.zero) { (result, value) -> Vector2 in
+              let otherPolarityForce = value.individual.genome.polarityForce
+              
+              guard case .neutral = otherPolarityForce else {
+                let forceDirection = genome.polarityForce.getForceDirection(to: otherPolarityForce)
+                
+                return result
+                  + ((individual.position - value.individual.position) * 50.0)
+                  / (max(value.distance, 0.001) * (value.distance + 1.0))
+                  * genome.polarityForce.magnitude
+                  * forceDirection * -1
+              }
+              return result
+            }
           }
           
-          
-          // Center
-          let sumCenter = neighbors.reduce(Vector2.zero) { (result, value) -> Vector2 in
-            return result + value.individual.position
-          }
-          let averageCenter = sumCenter / numberOfNeighbors
-          
-          // Velocity
-          let sumVelocity = neighbors.reduce(Vector2.zero) { (result, value) -> Vector2 in
-            return result + value.individual.velocity
-          }
-          let averageVelocity = sumVelocity / numberOfNeighbors
-
-          // Separation
-          let sumSeparation = neighbors.reduce(Vector2.zero) { (result, value) -> Vector2 in
-            return result
-              + (individual.position - value.individual.position) // direction
-              / max(value.distance * value.distance, 0.001)
-              * genome.separatingForce
-          }
-          
-          // Steering
-          let steering: Vector2
-//          if Double(arc4random() % 100) < (genome.probabilityOfRandomSteering * 100.0) {
-//            steering = Vector2(Value(arc4random() % 10) - 4.5, Value(arc4random() % 10) - 4.5)
-//          } else {
-            steering = .zero
-//          }
-          
-          acceleration = (averageCenter - individual.position) * genome.cohesiveForce
-            + (averageVelocity - individual.velocity) * genome.aligningForce
-            + sumSeparation
-            + steering
+          acceleration = sumNuclearForce
+            + sumPolarityForce
             + repulsiveForce
+          
+//          // Center
+//          let sumCenter = neighbors.reduce(Vector2.zero) { (result, value) -> Vector2 in
+//            return result + value.individual.position
+//          }
+//          let averageCenter = sumCenter / numberOfNeighbors
+//
+//          // Velocity
+//          let sumVelocity = neighbors.reduce(Vector2.zero) { (result, value) -> Vector2 in
+//            return result + value.individual.velocity
+//          }
+//          let averageVelocity = sumVelocity / numberOfNeighbors
+//
+//          // Separation
+//          let sumSeparation = neighbors.reduce(Vector2.zero) { (result, value) -> Vector2 in
+//            return result
+//              + (individual.position - value.individual.position) // direction
+//              / max(value.distance * value.distance, 0.001)
+//              * genome.separatingForce
+//          }
+//
+//          // Steering
+//          let steering: Vector2
+////          if Double(arc4random() % 100) < (genome.probabilityOfRandomSteering * 100.0) {
+////            steering = Vector2(Value(arc4random() % 10) - 4.5, Value(arc4random() % 10) - 4.5)
+////          } else {
+//            steering = .zero
+////          }
+//
+//          acceleration = (averageCenter - individual.position) * genome.cohesiveForce
+//            + (averageVelocity - individual.velocity) * genome.aligningForce
+//            + sumSeparation
+//            + steering
+//            + repulsiveForce
         }
         
         individual.accelerate(acceleration)
         
         let d = max(individual.acceleration.size(), 0.001)
-        individual.accelerate(individual.acceleration * (genome.normalSpeed - d) / d * genome.tendencyOfPacekeeping)
+        individual.accelerate(individual.acceleration * (20.0 - d) / d)
         
         individual.move(in: self.fieldSize)
       }

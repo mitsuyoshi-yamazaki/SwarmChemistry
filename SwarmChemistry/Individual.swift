@@ -34,14 +34,16 @@ extension Individual {
   func accelerate(_ acceleration: Vector2) {
     self.acceleration = self.acceleration + acceleration
 
-//    let d = self.acceleration.x * self.acceleration.x + self.acceleration.y * self.acceleration.y
-//    if d > genome.maxVelocity {
-//      self.acceleration = self.acceleration * (genome.maxSpeed / sqrt(d))
-//    }
+    let d = self.acceleration.x * self.acceleration.x + self.acceleration.y * self.acceleration.y
+    if d > 1600 {
+      self.acceleration = self.acceleration * (40.0 / sqrt(d))
+    }
   }
   
   func move(`in` fieldSize: Vector2) {
-    velocity = acceleration
+    let friction = velocity * -0.5
+    
+    velocity = acceleration + friction
     position = (position + velocity).fit(to: fieldSize)
   }
 }

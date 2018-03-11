@@ -16,19 +16,6 @@ public struct Parameters {
     case neutral
     case negative(force: Value)
     
-    func getForces() -> (positiveForce: Value, negativeForce: Value) {
-      switch self {
-      case .positive(let force):
-        return (force, 0.0)
-      
-      case .neutral:
-        return (0.0, 0.0)
-
-      case .negative(let force):
-        return (0.0, force)
-      }
-    }
-    
     init(positiveForce: Value, negativeForce: Value) {
       switch (positiveForce, negativeForce) {
       case _ where (positiveForce > 0.0 && negativeForce == 0.0):
@@ -41,13 +28,52 @@ public struct Parameters {
         self = .neutral
       }
     }
+    
+    var magnitude: Value {
+      switch self {
+      case .positive(let force):
+        return force
+        
+      case .neutral:
+        return 0.0
+        
+      case .negative(let force):
+        return force
+      }
+    }
+    
+    func getForces() -> (positiveForce: Value, negativeForce: Value) {
+      switch self {
+      case .positive(let force):
+        return (force, 0.0)
+        
+      case .neutral:
+        return (0.0, 0.0)
+        
+      case .negative(let force):
+        return (0.0, force)
+      }
+    }
+    
+    func getForceDirection(to other: Polarity) -> Value {
+      switch (self, other) {
+      case (.neutral, _), (_, .neutral):
+        return 0.0
+        
+      case (.positive, .positive), (.negative, .negative):
+        return -1.0
+        
+      case (.positive, .negative), (.negative, .positive):
+        return 1.0
+      }
+    }
   }
   
   public let nuclearForce: Value
   public static let nuclearForceRange = Range<Value>.init(minimum: 1.0, maximum: 10.0)
   
   public let polarityForce: Polarity
-  public static let polarityForceRange = Range<Value>.init(minimum: 1.0, maximum: 100.0)
+  public static let polarityForceRange = Range<Value>.init(minimum: 1.0, maximum: 10.0)
   
   public let color: Color
   
@@ -79,9 +105,13 @@ public extension Parameters {
     
     let (positiveForce, negativeForce) = polarityForce.getForces()
 
-    let red = CGFloat((1.0 - (negativeForce / type(of: self).polarityForceRange.maximum)) * 0.8)
-    let green = CGFloat((nuclearForce / type(of: self).nuclearForceRange.maximum) * 0.8)
-    let blue = CGFloat((1.0 - (positiveForce / type(of: self).polarityForceRange.maximum)) * 0.8)
+//    let red = CGFloat((1.0 - (negativeForce / type(of: self).polarityForceRange.maximum)) * 0.8)
+//    let green = CGFloat((nuclearForce / type(of: self).nuclearForceRange.maximum) * 0.8)
+//    let blue = CGFloat((1.0 - (positiveForce / type(of: self).polarityForceRange.maximum)) * 0.8)
+    let red = CGFloat((1.0 - (negativeForce / 2.0)) * 0.8)
+    let green = CGFloat(0.0)//CGFloat((nuclearForce / type(of: self).nuclearForceRange.maximum) * 0.8)
+    let blue = CGFloat((1.0 - (positiveForce / 8.0)) * 0.8)
+
     color = Color.init(red: red, green: green, blue: blue, alpha: 1.0)
   }
 }

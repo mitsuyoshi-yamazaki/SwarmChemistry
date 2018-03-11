@@ -60,7 +60,7 @@ class ViewController: NSViewController {//, SwarmRenderer {
     }
   }
   var delay: Double {
-    return 0.0
+    return 0.1
   }
   
   // MARK: - Lifecycle
@@ -91,9 +91,17 @@ class ViewController: NSViewController {//, SwarmRenderer {
     switch mode {
     case .interactive:
       let fieldSize = Vector2(5000, 4000)
-      recipe = Recipe.random(numberOfGenomes: 16)
+//      recipe = Recipe.random(numberOfGenomes: 16)
+      
+      let recipeText = """
+1 * (20.0, 8.0, 0.0)
+1 * (20.0, 2.0, 0.0)
+2 * (20.0, 0.0, 2.0)
+"""
+      recipe = Recipe.init(recipeText)!
+      
       population = Population.init(recipe,
-                                   numberOfPopulation: 1200,
+                                   numberOfPopulation: 1000,
                                    fieldSize: fieldSize,
                                    initialArea: Vector2.Rect.init(origin: fieldSize * 0.2, size: fieldSize * 0.6))
     case .overNight:
