@@ -116,7 +116,7 @@ class ViewController: UIViewController, SwarmRenderer {
       activityItems.append(shareImage)
     }
     
-    let completionHandler: UIActivityViewControllerCompletionWithItemsHandler = { [unowned self] _ in
+    let completionHandler: UIActivityViewController.CompletionWithItemsHandler = { [unowned self] _,_,_,_  in
       self.isRunning = true
     }
     

@@ -15,7 +15,7 @@
 import SwarmChemistry
 
 protocol SwarmRenderer: class {
-  weak var renderView: SwarmRenderView! { set get }
+  var renderView: SwarmRenderView! { set get }
   var isRunning: Bool { set get }
   var steps: Int { get }
   var delay: Double { get }

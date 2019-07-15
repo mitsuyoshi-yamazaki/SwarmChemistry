@@ -215,7 +215,7 @@
 		EDABFDF41F3C5A3C00E1D56C /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		EDABFDF71F42ECCE00E1D56C /* RecipeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeTests.swift; sourceTree = "<group>"; };
 		EDBA52421F3B11D60091BEE5 /* PopulationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopulationTests.swift; sourceTree = "<group>"; };
-		EDEBCC771F4DA8CE0029FAB6 /* Demo_ScreenSaver.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Demo_ScreenSaver.saver; path = "Swarm Chemistry.saver"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDEBCC771F4DA8CE0029FAB6 /* Swarm Chemistry.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swarm Chemistry.saver"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDEBCC7D1F4DA8CE0029FAB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EDEBCC811F4DA8E00029FAB6 /* Demo_ScreenSaver-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Demo_ScreenSaver-Bridging-Header.h"; sourceTree = "<group>"; };
 		EDEBCC821F4DA8E10029FAB6 /* Demo_ScreenSaverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Demo_ScreenSaverView.swift; sourceTree = "<group>"; };
@@ -225,7 +225,7 @@
 		EDEBCC8E1F4EC09B0029FAB6 /* StatusView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusView.xib; sourceTree = "<group>"; };
 		EDEBCC921F4ED20A0029FAB6 /* ConfigureWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigureWindow.swift; sourceTree = "<group>"; };
 		EDEBCC941F4ED2180029FAB6 /* ConfigureWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigureWindow.xib; sourceTree = "<group>"; };
-		EDEBCCC51F4EF2910029FAB6 /* AtHome.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = AtHome.saver; path = "AL@Home.saver"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDEBCCC51F4EF2910029FAB6 /* AL@Home.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AL@Home.saver"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -372,8 +372,8 @@
 				ED7C21371F3AD10B00018F97 /* SwarmChemistryTests_Mac.xctest */,
 				ED7C21641F3AE51000018F97 /* Demo_Mac.app */,
 				2CA5C3131F3CA0DF0037080C /* Demo_iOS.app */,
-				EDEBCC771F4DA8CE0029FAB6 /* Demo_ScreenSaver.saver */,
-				EDEBCCC51F4EF2910029FAB6 /* AtHome.saver */,
+				EDEBCC771F4DA8CE0029FAB6 /* Swarm Chemistry.saver */,
+				EDEBCCC51F4EF2910029FAB6 /* AL@Home.saver */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -582,7 +582,7 @@
 			);
 			name = Demo_ScreenSaver;
 			productName = Demo_ScreenSaver;
-			productReference = EDEBCC771F4DA8CE0029FAB6 /* Demo_ScreenSaver.saver */;
+			productReference = EDEBCC771F4DA8CE0029FAB6 /* Swarm Chemistry.saver */;
 			productType = "com.apple.product-type.bundle";
 		};
 		EDEBCCB01F4EF2910029FAB6 /* AtHome */ = {
@@ -602,7 +602,7 @@
 			);
 			name = AtHome;
 			productName = Demo_ScreenSaver;
-			productReference = EDEBCCC51F4EF2910029FAB6 /* AtHome.saver */;
+			productReference = EDEBCCC51F4EF2910029FAB6 /* AL@Home.saver */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -653,6 +653,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -972,7 +973,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = mitsuyoshi.SwarmChemistryIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -987,7 +988,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = mitsuyoshi.SwarmChemistryIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -998,7 +999,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mitsuyoshi.SwarmChemistryTests-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1009,7 +1010,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mitsuyoshi.SwarmChemistryTests-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1024,7 +1025,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "mitsuyoshi.SwarmChemistryTests-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1039,7 +1040,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "mitsuyoshi.SwarmChemistryTests-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1056,7 +1057,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = mitsuyoshi.SwarmChemistryMac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1073,7 +1074,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = mitsuyoshi.SwarmChemistryMac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1125,6 +1126,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1171,6 +1173,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1198,7 +1201,7 @@
 				PRODUCT_NAME = SwarmChemistry;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1221,7 +1224,7 @@
 				PRODUCT_MODULE_NAME = SwarmChemistry;
 				PRODUCT_NAME = SwarmChemistry;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1247,7 +1250,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1271,7 +1274,7 @@
 				PRODUCT_NAME = SwarmChemistry;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1291,7 +1294,7 @@
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "Demo_ScreenSaver/Demo_ScreenSaver-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = saver;
 			};
 			name = Debug;
@@ -1311,7 +1314,7 @@
 				PRODUCT_NAME = "Swarm Chemistry";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "Demo_ScreenSaver/Demo_ScreenSaver-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = saver;
 			};
 			name = Release;
@@ -1333,7 +1336,7 @@
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "Demo_ScreenSaver/Demo_ScreenSaver-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = saver;
 			};
 			name = Debug;
@@ -1354,7 +1357,7 @@
 				PRODUCT_NAME = "AL@Home";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "Demo_ScreenSaver/Demo_ScreenSaver-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = saver;
 			};
 			name = Release;
