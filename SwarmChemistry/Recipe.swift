@@ -46,7 +46,7 @@ public extension Recipe {
   }
   
   private init?(_ recipeText: String, givenName: String) {
-    guard recipeText.characters.isEmpty == false else {
+    guard recipeText.isEmpty == false else {
       return nil
     }
     

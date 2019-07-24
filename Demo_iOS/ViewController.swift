@@ -9,6 +9,10 @@
 import UIKit
 import SwarmChemistry
 
+private let numberOfPopulation = 500
+private let numberOfStepsInOneFrame = 4
+private let intervalBetweenSteps = 0.0
+
 class ViewController: UIViewController, SwarmRenderer {
   enum SegueIdentifier: String {
     case selectRecipe = "SelectRecipe"
@@ -25,16 +29,20 @@ class ViewController: UIViewController, SwarmRenderer {
   
   // MARK: - SwarmRenderer
   @IBOutlet weak var renderView: SwarmRenderView!
-  var isRunning = false {
+  var timer: Timer? {
     didSet {
-      resumeButton.isHidden = isRunning
+      resumeButton.isHidden = (timer != nil)
     }
   }
+  var isRunning: Bool {
+    guard let timer = timer else { return false }
+    return timer.isValid
+  }
   var steps: Int {
-    return 3
+    return numberOfStepsInOneFrame
   }
   var delay: Double {
-    return 0.0
+    return intervalBetweenSteps
   }
 
   // MARK: - Lifecycle
@@ -50,7 +58,7 @@ class ViewController: UIViewController, SwarmRenderer {
     
     navigationController?.setNavigationBarHidden(true, animated: true)
     if shouldRun {
-      resume()
+      start()
     }
   }
   
@@ -68,7 +76,7 @@ class ViewController: UIViewController, SwarmRenderer {
     let screenSize = UIScreen.main.bounds.size
     let fieldSize = Vector2(Value(screenSize.width), Value(screenSize.height)) * 10
     let population = Population.init(selectedRecipe,
-                                     numberOfPopulation: 1000,
+                                     numberOfPopulation: numberOfPopulation,
                                      fieldSize: fieldSize,
                                      initialArea: Vector2.Rect.init(origin: fieldSize * 0.45, size: fieldSize * 0.1))
     
@@ -81,7 +89,7 @@ class ViewController: UIViewController, SwarmRenderer {
   // MARK: - Action
   @IBAction func reset(sender: AnyObject!) {
     setup()
-    resume()
+    start()
   }
   
   @IBAction func pause(sender: AnyObject!) {
@@ -95,7 +103,7 @@ class ViewController: UIViewController, SwarmRenderer {
     guard isRunning == false else {
       return
     }
-    resume()
+    start()
   }
 
   @IBAction func share(sender: AnyObject!) {
@@ -116,8 +124,8 @@ class ViewController: UIViewController, SwarmRenderer {
       activityItems.append(shareImage)
     }
     
-    let completionHandler: UIActivityViewControllerCompletionWithItemsHandler = { [unowned self] _ in
-      self.isRunning = true
+    let completionHandler: UIActivityViewController.CompletionWithItemsHandler = { [unowned self] _,_,_,_  in
+      self.start()
     }
     
     let activityViewController = UIActivityViewController.init(activityItems: activityItems, applicationActivities: nil)
@@ -160,7 +168,7 @@ extension ViewController: UIScrollViewDelegate {
   
   func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
     if shouldRun {
-      resume()
+      start()
       shouldRun = false
     }
   }
