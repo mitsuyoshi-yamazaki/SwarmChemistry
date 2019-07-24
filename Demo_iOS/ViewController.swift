@@ -25,10 +25,14 @@ class ViewController: UIViewController, SwarmRenderer {
   
   // MARK: - SwarmRenderer
   @IBOutlet weak var renderView: SwarmRenderView!
-  var isRunning = false {
+  var timer: Timer? {
     didSet {
-      resumeButton.isHidden = isRunning
+      resumeButton.isHidden = (timer != nil)
     }
+  }
+  var isRunning: Bool {
+    guard let timer = timer else { return false }
+    return timer.isValid
   }
   var steps: Int {
     return 3
@@ -50,7 +54,7 @@ class ViewController: UIViewController, SwarmRenderer {
     
     navigationController?.setNavigationBarHidden(true, animated: true)
     if shouldRun {
-      resume()
+      start()
     }
   }
   
@@ -81,7 +85,7 @@ class ViewController: UIViewController, SwarmRenderer {
   // MARK: - Action
   @IBAction func reset(sender: AnyObject!) {
     setup()
-    resume()
+    start()
   }
   
   @IBAction func pause(sender: AnyObject!) {
@@ -95,7 +99,7 @@ class ViewController: UIViewController, SwarmRenderer {
     guard isRunning == false else {
       return
     }
-    resume()
+    start()
   }
 
   @IBAction func share(sender: AnyObject!) {
@@ -117,7 +121,7 @@ class ViewController: UIViewController, SwarmRenderer {
     }
     
     let completionHandler: UIActivityViewController.CompletionWithItemsHandler = { [unowned self] _,_,_,_  in
-      self.isRunning = true
+      self.start()
     }
     
     let activityViewController = UIActivityViewController.init(activityItems: activityItems, applicationActivities: nil)
@@ -160,7 +164,7 @@ extension ViewController: UIScrollViewDelegate {
   
   func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
     if shouldRun {
-      resume()
+      start()
       shouldRun = false
     }
   }
