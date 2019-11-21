@@ -17,12 +17,12 @@ public struct Vector2 {
 
 // MARK: - Convenience initializer
 public extension Vector2 {
-  public init(_ x: Value, _ y: Value) {
+  init(_ x: Value, _ y: Value) {
     self.x = x
     self.y = y
   }
   
-  public init(_ x: Int, _ y: Int) {
+  init(_ x: Int, _ y: Int) {
     self.x = Value(x)
     self.y = Value(y)
   }

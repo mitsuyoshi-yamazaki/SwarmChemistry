@@ -93,7 +93,7 @@ public extension Population {
           }
           return (distance: distance, individual: neighbor)
         }
-        .flatMap { $0 }
+        .compactMap { $0 }
     }
     
     (0..<count).forEach { _ in
