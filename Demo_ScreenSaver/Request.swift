@@ -10,7 +10,7 @@ import Foundation
 import SwarmChemistry
 
 struct Request {
-  static func send(recipe: Recipe) {  // TODO: Callback
+  static func send(recipe: Recipe, completed: ((Int?) -> Void)? = nil) {  // TODO: Callback
     guard let data = try? JSONSerialization.data(withJSONObject: ["raw": recipe.description], options: []) else {
       Swift.print("Serializing to JSON failed")
       return
@@ -39,7 +39,15 @@ struct Request {
         return
       }
       Swift.print("Sending recipe succeeded")
+      completed?(recipeID)
     }
     task.resume()
+  }
+  
+  static func send(population: Population, recipeID: Int) {
+    print(#function)
+    // TODO: 
+    // genome 1-n individual
+    // send population and screenshot
   }
 }
