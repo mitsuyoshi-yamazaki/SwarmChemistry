@@ -11,20 +11,19 @@ import ScreenSaver
 import SwarmChemistry
 
 // https://developer.apple.com/documentation/screensaver
-class Demo_ScreenSaverView: ScreenSaverView, SwarmRenderer {
-  
+final class Demo_ScreenSaverView: ScreenSaverView, SwarmRenderer {  // swiftlint:disable:this type_name
   private let statusView: StatusView = {
     let view = StatusView.instantiate()
     return view
   }()
-  
+
   private lazy var configureWindow: ConfigureWindow = {
     let window = ConfigureWindow.instantiate()
     return window
   }()
-  
+
   fileprivate var recipeID: Int?
-  
+
   override var animationTimeInterval: TimeInterval {
     get {
       #if AT_HOME
@@ -35,7 +34,7 @@ class Demo_ScreenSaverView: ScreenSaverView, SwarmRenderer {
     }
     set {}
   }
-  
+
   // MARK: - SwarmRenderer
   var renderView: SwarmRenderView! = {
     let view = SwarmRenderView()
@@ -67,67 +66,71 @@ class Demo_ScreenSaverView: ScreenSaverView, SwarmRenderer {
     super.init(coder: coder)
     setup()
   }
-  
+
   override init?(frame: NSRect, isPreview: Bool) {
     super.init(frame: frame, isPreview: isPreview)
     setup()
   }
-  
+
   private func setup() {
     renderView.frame = bounds
     addSubview(renderView)
-    
+
     statusView.frame = bounds
     addSubview(statusView)
-    
+
     setupSwarmChemistry()
   }
-  
+
   fileprivate func setupSwarmChemistry() {
     let width = Int(frame.size.width / fieldSizeMultiplier)
     let height = Int(frame.size.height / fieldSizeMultiplier)
     let fieldSize = Vector2(width, height)
-    let initialArea = Vector2.Rect.init(origin: fieldSize * 0.2, size: fieldSize * 0.6)
+    let initialArea = Vector2.Rect(origin: fieldSize * 0.2, size: fieldSize * 0.6)
     let population: Population
-    
-    #if AT_HOME
-      let numberOfPopulation = isPreview ? 1000 : 5000
-      let recipe = Recipe.random(numberOfGenomes: 20, fieldSize: fieldSize.rect)
-      population = Population.init(recipe,
-                                   numberOfPopulation: numberOfPopulation,
-                                   fieldSize: fieldSize,
-                                   initialArea: initialArea)
-      statusView.set(title: "ArtificialLife@Home")
-      Request.send(recipe: recipe)
-    #else
-      let recipe = Defaults.selectedRecipe ?? Recipe.jellyFish
-      
-      population = Population.init(recipe,
-                                   numberOfPopulation: 1000,
-                                   fieldSize: fieldSize,
-                                   initialArea: initialArea)
-      statusView.set(title: population.recipe.name)
-    #endif
-    
+
+#if AT_HOME
+    let numberOfPopulation = isPreview ? 1_000 : 5_000
+    let recipe = Recipe.random(numberOfGenomes: 20, fieldSize: fieldSize.rect)
+    population = Population(
+      recipe,
+      numberOfPopulation: numberOfPopulation,
+      fieldSize: fieldSize,
+      initialArea: initialArea
+    )
+    statusView.set(title: "ArtificialLife@Home")
+    Request.send(recipe: recipe)
+#else
+    let recipe = Defaults.selectedRecipe ?? Recipe.jellyFish
+
+    population = Population(
+      recipe,
+      numberOfPopulation: 1_000,
+      fieldSize: fieldSize,
+      initialArea: initialArea
+    )
+    statusView.set(title: population.recipe.name)
+#endif
+
     statusView.set(steps: population.steps)
     setupRenderView(with: population)
   }
-  
+
   override func startAnimation() {
     super.startAnimation()
     resume()
   }
-  
+
   override func stopAnimation() {
     super.stopAnimation()
     pause()
   }
-  
+
   override func animateOneFrame() {
     statusView.set(steps: renderView.population.steps)
     setNeedsDisplay(bounds)
   }
-  
+
   override func hasConfigureSheet() -> Bool {
     #if AT_HOME
       return false
@@ -135,14 +138,14 @@ class Demo_ScreenSaverView: ScreenSaverView, SwarmRenderer {
       return isPreview
     #endif
   }
-  
+
   override func configureSheet() -> NSWindow? {
     guard isPreview else {
       return nil
     }
     configureWindow.configureWindowDelegate = self
     configureWindow.selectedRecipe = renderView.population.recipe
-    
+
     return configureWindow
   }
 }

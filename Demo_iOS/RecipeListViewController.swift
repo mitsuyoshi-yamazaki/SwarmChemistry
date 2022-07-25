@@ -6,39 +6,37 @@
 //  Copyright © 2017 Mitsuyoshi Yamazaki. All rights reserved.
 //
 
-import UIKit
 import SwarmChemistry
+import UIKit
 
-protocol RecipeListViewControllerDelegate: class {
+protocol RecipeListViewControllerDelegate: AnyObject {
   func recipeListViewController(_ controller: RecipeListViewController, didSelect recipe: Recipe)
 }
 
-class RecipeListViewController: UITableViewController {
-  enum SegueIdentifier: String {
-    case inputRecipe = "InputRecipe"
-  }
-  
+final class RecipeListViewController: UITableViewController {
   enum Section: Int {
     case random
     case input
     case preset
-    
+
     static let count = 3
   }
-  
+
   weak var delegate: RecipeListViewControllerDelegate?
   var currentRecipe: Recipe?
-  
+
   private let recipeList = Recipe.presetRecipes
-  
+
   private func recipe(at indexPath: IndexPath) -> Recipe {
-    switch Section.init(rawValue: indexPath.section)! {
+    switch Section(rawValue: indexPath.section) {
     case .random:
       return Recipe.random(numberOfGenomes: 5)
     case .preset:
       return recipeList[indexPath.row]
     case .input:
-      fatalError()  // TODO:
+      fatalError("Not implemented yet")  // TODO:
+    case nil:
+      fatalError("Index out of bounds")
     }
   }
 
@@ -46,49 +44,53 @@ class RecipeListViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
   }
-  
+
   // MARK: - TableViewDataSource
   override func numberOfSections(in tableView: UITableView) -> Int {
     return Section.count
   }
-  
+
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    switch Section.init(rawValue: section)! {
+    switch Section(rawValue: section) {
     case .random:
       return 1
     case .preset:
       return recipeList.count
     case .input:
       return 1
+    case nil:
+      fatalError("Index out of bounds")
     }
   }
-  
+
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-    
+
     guard indexPath.section != Section.input.rawValue else {
       cell.textLabel?.text = "Input Manually"
       return cell
     }
-    
+
     let recipe = self.recipe(at: indexPath)
-    
+
     cell.textLabel?.text = recipe.name
-    
+
     return cell
   }
-  
+
   override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    switch Section.init(rawValue: section)! {
+    switch Section(rawValue: section) {
     case .random:
       return nil
     case .preset:
       return "Preset"
     case .input:
       return nil
+    case nil:
+      fatalError("Index out of bounds")
     }
   }
-  
+
   // MARK: - TableViewDelegate
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard indexPath.section != Section.input.rawValue else {
@@ -98,16 +100,20 @@ class RecipeListViewController: UITableViewController {
 
     let recipe = self.recipe(at: indexPath)
     delegate?.recipeListViewController(self, didSelect: recipe)
-    
+
     dismiss(animated: true, completion: nil)
   }
-  
+
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    switch SegueIdentifier.init(rawValue: segue.identifier!)! {
-    case .inputRecipe:
-      let inputViewController = segue.destination as! RecipeInputViewController
+    switch segue.identifier {
+    case "InputRecipe":
+      guard let inputViewController = segue.destination as? RecipeInputViewController else {
+        fatalError("Unexpected destination")
+      }
       inputViewController.delegate = self
       inputViewController.currentRecipe = currentRecipe
+    default:
+      fatalError("Unrecognized segue identifier \(segue.identifier)")
     }
   }
 }

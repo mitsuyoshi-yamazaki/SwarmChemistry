@@ -6,29 +6,28 @@
 //  Copyright © 2017 Mitsuyoshi Yamazaki. All rights reserved.
 //
 
-import UIKit
 import SwarmChemistry
+import UIKit
 
 private let numberOfPopulation = 500
 private let numberOfStepsInOneFrame = 4
 private let intervalBetweenSteps = 0.0
 
-class ViewController: UIViewController, SwarmRenderer {
-  enum SegueIdentifier: String {
-    case selectRecipe = "SelectRecipe"
-  }
-  
-  @IBOutlet private weak var scrollView: UIScrollView!
-  @IBOutlet private weak var recipeSelectionButton: UIButton!
-  @IBOutlet private weak var resumeButton: UIButton!
-  @IBOutlet private weak var shareButton: UIButton!
+final class ViewController: UIViewController, SwarmRenderer {
+  @IBOutlet private var scrollView: UIScrollView!
+  @IBOutlet private var recipeSelectionButton: UIButton!
+  @IBOutlet private var resumeButton: UIButton!
+  @IBOutlet private var shareButton: UIButton!
 
   fileprivate var isRecipeSaved = false
   fileprivate var selectedRecipe = Recipe.slicer
   fileprivate var shouldRun = false
-  
+
   // MARK: - SwarmRenderer
-  @IBOutlet weak var renderView: SwarmRenderView!
+  @IBOutlet private var swarmRenderView: SwarmRenderView!
+  var renderView: SwarmRenderView! {
+    return swarmRenderView
+  }
   var timer: Timer? {
     didSet {
       resumeButton.isHidden = (timer != nil)
@@ -48,66 +47,66 @@ class ViewController: UIViewController, SwarmRenderer {
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     setup()
     scrollView.maximumZoomScale = CGFloat(renderView.population.fieldSize.x) / 400.0
   }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    
+
     navigationController?.setNavigationBarHidden(true, animated: true)
     if shouldRun {
       start()
     }
   }
-  
+
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     shouldRun = isRunning
     pause()
   }
-  
+
   // MARK: - Function
   private func setup() {
-    
     recipeSelectionButton.setTitle(selectedRecipe.name, for: .normal)
-    
+
     let screenSize = UIScreen.main.bounds.size
     let fieldSize = Vector2(Value(screenSize.width), Value(screenSize.height)) * 10
-    let population = Population.init(selectedRecipe,
-                                     numberOfPopulation: numberOfPopulation,
-                                     fieldSize: fieldSize,
-                                     initialArea: Vector2.Rect.init(origin: fieldSize * 0.45, size: fieldSize * 0.1))
-    
+    let population = Population(
+      selectedRecipe,
+      numberOfPopulation: numberOfPopulation,
+      fieldSize: fieldSize,
+      initialArea: Vector2.Rect(origin: fieldSize * 0.45, size: fieldSize * 0.1)
+    )
+
     setupRenderView(with: population)
-    
+
     isRecipeSaved = false
     shouldRun = true
   }
-  
+
   // MARK: - Action
-  @IBAction func reset(sender: AnyObject!) {
+  @IBAction private func reset(sender: Any) {
     setup()
     start()
   }
-  
-  @IBAction func pause(sender: AnyObject!) {
+
+  @IBAction private func pause(sender: Any) {
     guard isRunning == true else {
       return
     }
     pause()
   }
 
-  @IBAction func resume(sender: AnyObject!) {
+  @IBAction private func resume(sender: Any) {
     guard isRunning == false else {
       return
     }
     start()
   }
 
-  @IBAction func share(sender: AnyObject!) {
-    
+  @IBAction private func share(sender: Any) {
     let recipe: Recipe
     if scrollView.zoomScale == 1.0 {
       recipe = renderView.population.recipe
@@ -115,7 +114,7 @@ class ViewController: UIViewController, SwarmRenderer {
       let visibleRect = renderView.convert(scrollView.visibleRect)
       recipe = renderView.population.recipe(in: visibleRect)
     }
-    
+
     let shareText = recipe.description
     var activityItems: [Any] = [
       shareText
@@ -123,28 +122,35 @@ class ViewController: UIViewController, SwarmRenderer {
     if let shareImage = renderView.takeScreenshot() {
       activityItems.append(shareImage)
     }
-    
-    let completionHandler: UIActivityViewController.CompletionWithItemsHandler = { [unowned self] _,_,_,_  in
-      self.start()
+
+    let completionHandler: UIActivityViewController.CompletionWithItemsHandler = { [weak self] _, _, _, _  in
+      self?.start()
     }
-    
-    let activityViewController = UIActivityViewController.init(activityItems: activityItems, applicationActivities: nil)
-    activityViewController.completionWithItemsHandler = completionHandler // FixMe: Not working
-    
-    let popoverPresentationController = activityViewController.popoverPresentationController!
-    popoverPresentationController.sourceView = view
-    popoverPresentationController.sourceRect = shareButton.frame
-    
-    present(activityViewController, animated: true, completion: nil)
+
+    // FixMe:
+//    let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+//    activityViewController.completionWithItemsHandler = completionHandler // FixMe: Not working
+//
+//    let popoverPresentationController = activityViewController.popoverPresentationController!
+//    popoverPresentationController.sourceView = view
+//    popoverPresentationController.sourceRect = shareButton.frame
+//
+//    present(activityViewController, animated: true, completion: nil)
   }
-  
+
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    switch SegueIdentifier.init(rawValue: segue.identifier!)! {
-    case .selectRecipe:
-      let navigationController = segue.destination as! UINavigationController
-      let recipeListViewController = navigationController.topViewController as! RecipeListViewController
+    switch segue.identifier {
+    case "SelectRecipe":
+      guard let navigationController = segue.destination as? UINavigationController else {
+        fatalError("Unexpected destination")
+      }
+      guard let recipeListViewController = navigationController.topViewController as? RecipeListViewController else {
+        fatalError("Unexpected destination")
+      }
       recipeListViewController.delegate = self
       recipeListViewController.currentRecipe = selectedRecipe
+    default:
+      fatalError("Unrecognized segue identifier \(segue.identifier)")
     }
   }
 }
@@ -160,12 +166,12 @@ extension ViewController: UIScrollViewDelegate {
   func viewForZooming(in scrollView: UIScrollView) -> UIView? {
     return renderView
   }
-  
+
   func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
     shouldRun = isRunning
     pause()
   }
-  
+
   func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
     if shouldRun {
       start()

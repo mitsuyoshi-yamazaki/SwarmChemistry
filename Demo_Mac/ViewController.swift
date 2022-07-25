@@ -9,39 +9,39 @@
 import Cocoa
 import SwarmChemistry
 
-class ViewController: NSViewController {//, SwarmRenderer {
+final class ViewController: NSViewController {// , SwarmRenderer {
   enum Mode {
     case interactive
     case overNight
   }
-  
-  @IBOutlet weak var clickGestureRecognizer: NSClickGestureRecognizer!
-  @IBOutlet weak var contentView: NSView!
-  @IBOutlet weak var restartButton: NSButton!
-  @IBOutlet weak var clearButton: NSButton!
-  @IBOutlet weak var resumeButton: NSButton!
+
+  @IBOutlet private var clickGestureRecognizer: NSClickGestureRecognizer!
+  @IBOutlet private var contentView: NSView!
+  @IBOutlet private var restartButton: NSButton!
+  @IBOutlet private var clearButton: NSButton!
+  @IBOutlet private var resumeButton: NSButton!
   private var dragIndicatorView: NSView = {
-    let view = NSBox.init()
+    let view = NSBox()
 
     view.boxType = .custom
-    view.fillColor = NSColor.init(white: 0.2, alpha: 0.2)
+    view.fillColor = NSColor(white: 0.2, alpha: 0.2)
     view.borderType = .noBorder
     view.isHidden = true
-    
+
     return view
   }()
   private let statusView: StatusView = {
     let view = StatusView.instantiate()
     view.autoresizingMask = [ NSView.AutoresizingMask.height, .width ]
-    
+
     return view
   }()
 
   private var mouseDownLocation: NSPoint?
   private var mode = Mode.interactive
-  
+
   // MARK: - SwarmRenderer
-  @IBOutlet weak var renderView: SwarmRenderView!
+  @IBOutlet private var renderView: SwarmRenderView!
   var isRunning = false {
     didSet {
       if isRunning {
@@ -64,22 +64,22 @@ class ViewController: NSViewController {//, SwarmRenderer {
   var delay: Double {
     return 0.0
   }
-  
+
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     statusView.frame = view.bounds
     view.addSubview(statusView, positioned: NSWindow.OrderingMode.below, relativeTo: contentView)
-    
+
     setup()
-    
+
     view.addSubview(dragIndicatorView)
 
     let basicAppearanceButtons: [NSButton] = [
       restartButton,
       resumeButton,
-      clearButton,
+      clearButton
     ]
     basicAppearanceButtons.forEach {
       $0.attributedTitle = NSAttributedString(string: $0.title, attributes: [NSAttributedString.Key.foregroundColor: NSColor.black])
@@ -88,44 +88,48 @@ class ViewController: NSViewController {//, SwarmRenderer {
     let temp = isRunning
     isRunning = temp  // To call didSet
   }
-  
+
   override func viewDidAppear() {
     super.viewDidAppear()
     resume()
   }
-  
+
   // MARK: - Function
   private func setup() {
     let population: Population
     let recipe: Recipe
-    
+
     switch mode {
     case .interactive:
-      let fieldSize = Vector2(6000, 4000)
+      let fieldSize = Vector2(6_000, 4_000)
       recipe = Recipe.jellyFish
-      population = Population.init(recipe,
-                                   numberOfPopulation: 1200,
-                                   fieldSize: fieldSize,
-                                   initialArea: Vector2.Rect.init(origin: fieldSize * 0.2, size: fieldSize * 0.6))
+      population = Population(
+        recipe,
+        numberOfPopulation: 1_200,
+        fieldSize: fieldSize,
+        initialArea: Vector2.Rect(origin: fieldSize * 0.2, size: fieldSize * 0.6)
+      )
     case .overNight:
-      let fieldSize = Vector2(10000, 8000)
+      let fieldSize = Vector2(10_000, 8_000)
       recipe = Recipe.random(numberOfGenomes: 20, fieldSize: fieldSize.rect)
-      population = Population.init(recipe,
-                                   numberOfPopulation: 5000,
-                                   fieldSize: fieldSize,
-                                   initialArea: Vector2.Rect.init(origin: fieldSize * 0.3, size: fieldSize * 0.4))
+      population = Population(
+        recipe,
+        numberOfPopulation: 5_000,
+        fieldSize: fieldSize,
+        initialArea: Vector2.Rect(origin: fieldSize * 0.3, size: fieldSize * 0.4)
+      )
     }
-    
+
     let recipeText = recipe.description
     let recipeData = recipeText.data(using: .utf16)
-    let fileURL = URL.init(fileURLWithPath: Date().description + ".txt")
+    let fileURL = URL(fileURLWithPath: Date().description + ".txt")
 
     try? recipeData?.write(to: fileURL)
-    
+
     statusView.set(title: recipe.name)
     setupRenderView(with: population)
   }
-  
+
   private func saveScreenshotToFile() {
     guard let screenshot = renderView.takeScreenshot() else {
       print("Saving screenshot failed: cannot take a screenshot")
@@ -135,14 +139,14 @@ class ViewController: NSViewController {//, SwarmRenderer {
       print("Saving screenshot failed: cannot obtain a tiff representation")
       return
     }
-    let bitmapImageRepresentation = NSBitmapImageRep.init(data: tiffRepresentation)
+    let bitmapImageRepresentation = NSBitmapImageRep(data: tiffRepresentation)
     guard let data = bitmapImageRepresentation?.representation(using: .png, properties: [:]) else {
       print("Saving screenshot failed: cannot obtain image data")
       return
     }
-    
-    let fileURL = URL.init(fileURLWithPath: Date().description + ".png")
-    
+
+    let fileURL = URL(fileURLWithPath: Date().description + ".png")
+
     do {
       try data.write(to: fileURL)
     } catch {
@@ -152,7 +156,7 @@ class ViewController: NSViewController {//, SwarmRenderer {
 
   func didStep(currentSteps: Int) {
     statusView.set(steps: currentSteps)
-    
+
     switch mode {
     case .overNight:
       saveScreenshotToFile()
@@ -160,10 +164,10 @@ class ViewController: NSViewController {//, SwarmRenderer {
         self.renderView.population.step(self.steps / 20)
         saveScreenshotToFile()
       }
-      
-      if currentSteps >= 4000 {
+
+      if currentSteps >= 4_000 {
         pause()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: { 
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
           self.setup()
           self.resume()
         })
@@ -172,26 +176,26 @@ class ViewController: NSViewController {//, SwarmRenderer {
       break
     }
   }
-  
+
   // MARK: - Action
-  @IBAction func reset(sender: AnyObject!) {
+  @IBAction private func reset(sender: Any) {
     setup()
     resume()
   }
-  
-  @IBAction func clear(sender: AnyObject!) {
+
+  @IBAction private func clear(sender: Any) {
     clear()
   }
-  
-  @IBAction func pause(sender: AnyObject!) {
+
+  @IBAction private func pause(sender: Any) {
     pause()
   }
-  
-  @IBAction func resume(sender: AnyObject!) {
+
+  @IBAction private func resume(sender: Any) {
     resume()
   }
 
-  @IBAction func changeMode(sender: AnyObject!) {
+  @IBAction private func changeMode(sender: Any) {
     switch mode {
     case .interactive:
       mode = .overNight
@@ -204,21 +208,21 @@ class ViewController: NSViewController {//, SwarmRenderer {
   override func mouseDown(with event: NSEvent) {
     let mouseDownLocation = event.locationInWindow // Currently the render view fills its window.
     self.mouseDownLocation = mouseDownLocation
-    
-    dragIndicatorView.frame = NSRect.init(origin: mouseDownLocation, size: .zero)
+
+    dragIndicatorView.frame = NSRect(origin: mouseDownLocation, size: .zero)
     dragIndicatorView.isHidden = false
   }
-  
+
   override func mouseDragged(with event: NSEvent) {
     guard let mouseDownLocation = mouseDownLocation else {
       print("Something wrong: \"mouseDownLocation\" is nil")
       return
     }
     let mouseDraggedLocation = event.locationInWindow
-    
-    dragIndicatorView.frame = NSRect.init(point1: mouseDownLocation, point2: mouseDraggedLocation)
+
+    dragIndicatorView.frame = NSRect(point1: mouseDownLocation, point2: mouseDraggedLocation)
   }
-  
+
   override func mouseUp(with event: NSEvent) {
     defer {
       dragIndicatorView.isHidden = true
@@ -229,15 +233,15 @@ class ViewController: NSViewController {//, SwarmRenderer {
     }
     let mouseUpLocation = event.locationInWindow
 
-    let rect = NSRect.init(point1: mouseDownLocation, point2: mouseUpLocation)
+    let rect = NSRect(point1: mouseDownLocation, point2: mouseUpLocation)
     let swarmRect = renderView.convert(rect)
     let recipe = renderView.population.recipe(in: swarmRect)
     let recipeText = recipe.description
     print(recipeText)
-    
+
     NSPasteboard.general.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
     NSPasteboard.general.setString(recipeText, forType: NSPasteboard.PasteboardType.string)
-    
+
     self.mouseDownLocation = nil
   }
 }
@@ -247,12 +251,12 @@ extension ViewController {
     isRunning = false
     renderView.population = population
   }
-  
+
   func step() {
     guard isRunning == true else {
       return
     }
-    
+
     DispatchQueue.global(qos: .userInitiated).async {
       self.renderView.population.step(self.steps)
       DispatchQueue.main.asyncAfter(deadline: .now() + self.delay) {
@@ -265,16 +269,16 @@ extension ViewController {
       }
     }
   }
-  
+
   func pause() {
     isRunning = false
   }
-  
+
   func resume() {
     isRunning = true
     step()
   }
-  
+
   func clear() {
     pause()
     renderView.clear()
@@ -288,23 +292,22 @@ extension NSRect {
     let width = abs(point2.x - point1.x)
     let height = abs(point2.y - point1.y)
 
-    self.init(origin: NSPoint.init(x: x, y: y), size: NSSize.init(width: width, height: height))
+    self.init(origin: NSPoint(x: x, y: y), size: NSSize(width: width, height: height))
   }
 }
 
 extension NSView {
   func takeScreenshot(_ rect: NSRect? = nil) -> NSImage? {
-    
     let screenshotRect = rect ?? bounds
     guard let bitmapRepresentation = bitmapImageRepForCachingDisplay(in: screenshotRect) else {
       print("Fail to capture screenshot: bitmapImageRep")
       return nil
     }
     cacheDisplay(in: screenshotRect, to: bitmapRepresentation)
-    
-    let image = NSImage.init(size: screenshotRect.size)
+
+    let image = NSImage(size: screenshotRect.size)
     image.addRepresentation(bitmapRepresentation)
-    
+
     return image
   }
 }

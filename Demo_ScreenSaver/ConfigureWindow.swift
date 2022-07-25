@@ -9,28 +9,27 @@
 import Cocoa
 import SwarmChemistry
 
-protocol ConfigureWindowDelegate: class {
+protocol ConfigureWindowDelegate: AnyObject {
   func configureWindow(_ window: ConfigureWindow, didSelect recipe: Recipe)
 }
 
-final class ConfigureWindow: NSWindow, IBInstantiatable {
-
+final final class ConfigureWindow: NSWindow, IBInstantiatable {
   weak var configureWindowDelegate: ConfigureWindowDelegate?
   var selectedRecipe: Recipe?
 
   fileprivate let recipeList = Recipe.presetRecipes
-  
+
   override func awakeFromNib() {
     super.awakeFromNib()
   }
-  
+
   // MARK: -
-  @IBAction func ok(sender: AnyObject!) {
+  @IBAction private func ok(sender: Any) {
     NSApp.endSheet(self)
 //    endSheet(self)  // Doesn't work
   }
-  
-  @IBAction func cancel(sender: AnyObject!) {
+
+  @IBAction private func cancel(sender: Any) {
     NSApp.endSheet(self)
     //    endSheet(self)  // Doesn't work
   }
@@ -41,38 +40,42 @@ extension ConfigureWindow: NSTableViewDataSource {
     case selected   = "Selected"
     case recipeName = "RecipeName"
   }
-  
+
   func numberOfRows(in tableView: NSTableView) -> Int {
     return recipeList.count
   }
-  
+
   func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
     guard let tableColumn = tableColumn else {
       Swift.print("No tableColumn specified")
       return nil
     }
-    
+
     let recipe = recipeList[row]
     let isSelected = recipe.name == selectedRecipe?.name
     Swift.print("\(recipe.name): \(isSelected)")
-    
-    switch ColumnIdentifier.init(rawValue: tableColumn.identifier)! {
+
+    switch ColumnIdentifier(rawValue: tableColumn.identifier) {
     case .selected:
       return isSelected ? "✔︎" : ""
     case .recipeName:
       return recipe.name
+    case nil:
+      fatalError("Index out of range")
     }
   }
 }
 
 extension ConfigureWindow: NSTableViewDelegate {
   func tableViewSelectionDidChange(_ notification: Notification) {
-    let tableView = notification.object as! NSTableView
+    guard let tableView = notification.object as? NSTableView else {
+      fatalError("Unexpected notification object \(notification.object)")
+    }
     let recipe = recipeList[tableView.selectedRow]
-    
+
     selectedRecipe = recipe
     configureWindowDelegate?.configureWindow(self, didSelect: recipe)
-    
+
     tableView.reloadData()
   }
 }

@@ -25,31 +25,32 @@ public extension Recipe {
   init?(_ recipeText: String, name: String? = nil) {
     func isGenome(_ line: String) -> Bool {
       if let (genomeText, _) = Recipe.parseLine(line) {
-        if let _ = Recipe.parseGenome(from: genomeText) {
+        if Recipe.parseGenome(from: genomeText) != nil {
           return true
         }
       }
       return false
     }
-    
+
     let lineSeparator = "\n"
     let components = recipeText.components(separatedBy: lineSeparator)
-    let firstLine = components.first!
+    guard let firstLine = components.first else {
+      return nil
+    }
 
     if isGenome(firstLine) {
       self.init(recipeText, givenName: name ?? "Untitled")
-
     } else {
       let genomeText = components.dropFirst().joined(separator: lineSeparator)
       self.init(genomeText, givenName: firstLine)
     }
   }
-  
+
   private init?(_ recipeText: String, givenName: String) {
     guard recipeText.isEmpty == false else {
       return nil
     }
-    
+
     let result = recipeText
       .trimmingCharacters(in: .whitespacesAndNewlines)
       .components(separatedBy: "\n")
@@ -63,20 +64,20 @@ public extension Recipe {
         guard let genome = Recipe.parseGenome(from: value.genomeText) else {
           return nil
         }
-        return GenomeInfo.init(count: value.count, area: nil, genome: genome)
-    }
-    
+        return GenomeInfo(count: value.count, area: nil, genome: genome)
+      }
+
     guard let genome = result as? [GenomeInfo] else {
       return nil
     }
     self.init(name: givenName, genomes: genome)
   }
-  
+
   private static func parseLine(_ text: String) -> (genomeText: String, count: Int)? {
     let components = text
       .replacingOccurrences(of: " ", with: "")
       .components(separatedBy: "*")
-    
+
     guard
       let count = Int(components.first ?? ""),
       let genomeText = components.dropFirst().first
@@ -85,14 +86,14 @@ public extension Recipe {
     }
     return (genomeText: genomeText, count: count)
   }
-  
+
   private static func parseGenome(from text: String) -> Parameters? {
     let components = text
       .replacingOccurrences(of: " ", with: "")  // Can't just use CharacterSet?
       .replacingOccurrences(of: "(", with: "")
       .replacingOccurrences(of: ")", with: "")
       .components(separatedBy: ",")
-    
+
     guard let values = components.map({ Value($0) }) as? [Value] else {
       Log.debug("Parse genome parameters failed: \"\(text)\"")
       return nil
@@ -106,53 +107,48 @@ public extension Recipe {
   static func none() -> Recipe {
     return self.init(name: "None", genomes: [])
   }
-  
+
   static func random(numberOfGenomes: Int) -> Recipe {
     let genomes = (0..<numberOfGenomes)
-      .map { _ in GenomeInfo.init(count: 10, area: nil, genome: Parameters.random) }
-    
+      .map { _ in GenomeInfo(count: 10, area: nil, genome: Parameters.random) }
+
     let random = self.init(name: "Random", genomes: genomes)
     Log.debug(random.description)
-    
+
     return random
   }
-  
+
   static func random(numberOfGenomes: Int, fieldSize: Vector2.Rect) -> Recipe {
     let genomes = (0..<numberOfGenomes)
       .map { _ in GenomeInfo.random(in: fieldSize) }
-    
+
     let random = self.init(name: "Random", genomes: genomes)
     Log.debug(random.description)
-    
+
     return random
   }
 }
 
 // MARK: - Operator override
 public extension Recipe {
-  static func +(recipe: Recipe, genome: GenomeInfo) -> Recipe {
+  static func + (recipe: Recipe, genome: GenomeInfo) -> Recipe {
     let name = "Expanded \(recipe.name)"
     let genomes = recipe.genomes + [genome]
-    
-    return Recipe.init(name: name, genomes: genomes)
+
+    return Recipe(name: name, genomes: genomes)
   }
 }
 
 // MARK: - CustomStringConvertible
 extension Recipe: CustomStringConvertible {
   public var description: String {  // TODO: Needs test
-    
-    var hasInitialArea = true
-    genomes.forEach {
-      if $0.area == nil {
-        hasInitialArea = false
-      }
-    }
-    
+
+    let hasInitialArea = genomes.allSatisfy { $0.area != nil }
+
     let genomesText = genomes
-      .map { (hasInitialArea ? "\($0.area!.description)\n" : "") + "\($0.count) * \($0.genome)" }
+      .map { (hasInitialArea ? "\($0.area?.description ?? "")\n" : "") + "\($0.count) * \($0.genome)" }
       .joined(separator: "\n")
-    
+
     return "\(name)\n\(genomesText)"
   }
 }
@@ -168,10 +164,9 @@ public extension Recipe {
 
 public extension Recipe.GenomeInfo {
   static func random(`in` fieldSize: Vector2.Rect) -> Recipe.GenomeInfo {
-    
-    let count = (Int(arc4random()) % 999) + 1
+    let count = Int.random(in: 0..<999)
     let area: Vector2.Rect = fieldSize.random()
-    
-    return Recipe.GenomeInfo.init(count: count, area: area, genome: .random)
+
+    return Recipe.GenomeInfo(count: count, area: area, genome: .random)
   }
 }

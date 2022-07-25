@@ -10,10 +10,9 @@ import Foundation
 
 // MARK: - Individual
 public class Individual {
-  
-  fileprivate(set) public var position: Vector2
-  fileprivate(set) public var velocity = Vector2.zero
-  fileprivate(set) public var acceleration = Vector2.zero
+  public fileprivate(set) var position: Vector2
+  public fileprivate(set) var velocity = Vector2.zero
+  public fileprivate(set) var acceleration = Vector2.zero
   public let genome: Parameters
 
   public init(position: Vector2, genome: Parameters) {
@@ -32,14 +31,14 @@ public extension Individual {
 // MARK: - Function
 extension Individual {
   func accelerate(_ acceleration: Vector2) {
-    self.acceleration = self.acceleration + acceleration
+    self.acceleration = self.acceleration + acceleration  // swiftlint:disable:this shorthand_operator
 
-    let d = self.acceleration.x * self.acceleration.x + self.acceleration.y * self.acceleration.y
-    if d > genome.maxVelocity {
-      self.acceleration = self.acceleration * (genome.maxSpeed / sqrt(d))
+    let accelerationSize = self.acceleration.x * self.acceleration.x + self.acceleration.y * self.acceleration.y
+    if accelerationSize > genome.maxVelocity {
+      self.acceleration = self.acceleration * (genome.maxSpeed / sqrt(accelerationSize))
     }
   }
-  
+
   func move(`in` fieldSize: Vector2) {
     velocity = acceleration
     position = (position + velocity).fit(to: fieldSize)

@@ -10,16 +10,21 @@ import Foundation
 import ScreenSaver
 import SwarmChemistry
 
-internal class Defaults {
+internal final class Defaults {
   fileprivate static var moduleName: String {
-    let bundle = Bundle.init(for: self)
-    return bundle.bundleIdentifier!
+    guard let bundleIdentifier = Bundle(for: self).bundleIdentifier else {
+      fatalError("Missing bundleIdentifier")
+    }
+    return bundleIdentifier
   }
-  
+
   fileprivate static var defaults: ScreenSaverDefaults {
-    return ScreenSaverDefaults.init(forModuleWithName: moduleName)!
+    guard let screenSaverDefaults = ScreenSaverDefaults(forModuleWithName: moduleName) else {
+      fatalError("Missing screenSaverDefaults")
+    }
+    return screenSaverDefaults
   }
-  
+
   fileprivate static func fullKey(of key: String) -> String {
     return moduleName + "." + key
   }
@@ -31,7 +36,7 @@ extension Defaults {
       guard let recipeName = defaults.object(forKey: fullKey(of: "selectedRecipeName")) as? String else {
         return nil
       }
-      return Recipe.presetRecipes.filter { $0.name == recipeName }.first
+      return Recipe.presetRecipes.first { $0.name == recipeName }
     }
     set {
       let defaults = self.defaults
@@ -40,4 +45,3 @@ extension Defaults {
     }
   }
 }
-

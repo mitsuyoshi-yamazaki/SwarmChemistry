@@ -22,13 +22,19 @@ extension Vector2.Rect {
 
 extension Bundle {
   var appVersion: String {
-    return object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    guard let appVersion = object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String else {
+      fatalError("Missing CFBundleShortVersionString")
+    }
+    return appVersion
   }
-  
+
   var buildNumber: String {
-    return object(forInfoDictionaryKey: "CFBundleVersion") as! String
+    guard let buildNumber = object(forInfoDictionaryKey: "CFBundleVersion") as? String else {
+      fatalError("Missing CFBundleVersion")
+    }
+    return buildNumber
   }
-  
+
   var appVersionFullString: String {
     return "ver. \(appVersion)(\(buildNumber))"
   }
@@ -37,13 +43,13 @@ extension Bundle {
 protocol IBInstantiatable: AnyObject {
   static var ibFileName: String { get }
   static var nib: Nib { get }
-  
+
   static func instantiate() -> Self
 }
 
 extension IBInstantiatable {
   static var ibFileName: String {
-    return String.init(describing: self)
+    return String(describing: self)
   }
 }
 
@@ -51,17 +57,23 @@ extension IBInstantiatable {
 #elseif os(macOS)
 extension IBInstantiatable where Self: View {
   static var nib: Nib {
-    let bundle = Bundle.init(for: self)
-    return Nib.init(nibNamed: ibFileName, bundle: bundle)!
+    let bundle = Bundle(for: self)
+    guard let nib = Nib(nibNamed: ibFileName, bundle: bundle) else {
+      fatalError("Missing nib file")
+    }
+    return nib
   }
-  
+
   static func instantiate() -> Self {
     var topLevelObjects: NSArray? = NSArray()
-    let bundle = Bundle.init(for: self)
-    
+    let bundle = Bundle(for: self)
+
     bundle.loadNibNamed(ibFileName, owner: self, topLevelObjects: &topLevelObjects)
-    
-    return topLevelObjects!.filter { $0 is Self }.first as! Self
+
+    guard let view = topLevelObjects?.first(where: { $0 is Self }) as? Self else {
+      fatalError("The top level object in \(ibFileName) is not \(self)")
+    }
+    return view
   }
 }
 
@@ -69,17 +81,23 @@ extension IBInstantiatable where Self: View {
 // But NSWindow does not inherit NSView and `where` clause does not support `where Self: NSView or NSWindow`
 extension IBInstantiatable where Self: Window {
   static var nib: Nib {
-    let bundle = Bundle.init(for: self)
-    return Nib.init(nibNamed: ibFileName, bundle: bundle)!
+    let bundle = Bundle(for: self)
+    guard let nib = Nib(nibNamed: ibFileName, bundle: bundle) else {
+      fatalError("Missing nib file")
+    }
+    return nib
   }
-  
+
   static func instantiate() -> Self {
     var topLevelObjects: NSArray? = NSArray()
-    let bundle = Bundle.init(for: self)
-    
+    let bundle = Bundle(for: self)
+
     bundle.loadNibNamed(ibFileName, owner: self, topLevelObjects: &topLevelObjects)
-    
-    return topLevelObjects!.filter { $0 is Self }.first as! Self
+
+    guard let window = topLevelObjects?.first(where: { $0 is Self }) as? Self else {
+      fatalError("The top level object in \(ibFileName) is not \(self)")
+    }
+    return window
   }
 }
 #endif

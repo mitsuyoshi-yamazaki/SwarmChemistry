@@ -464,6 +464,7 @@
 				2CA5C3101F3CA0DF0037080C /* Frameworks */,
 				2CA5C3111F3CA0DF0037080C /* Resources */,
 				2CA5C32E1F3CA31B0037080C /* Embed Frameworks */,
+				2CA7791D288EE74E006524C8 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -519,6 +520,7 @@
 				ED7C21611F3AE51000018F97 /* Frameworks */,
 				ED7C21621F3AE51000018F97 /* Resources */,
 				ED7C217C1F3AF66900018F97 /* Embed Frameworks */,
+				2CA7791C288ECB50006524C8 /* Swiftlint */,
 				2C88351A1F4990D9008B44FD /* Copy Executable */,
 			);
 			buildRules = (
@@ -759,6 +761,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cp -r $BUILT_PRODUCTS_DIR/Demo_Mac.app $SRCROOT/.output/\n# cpが失敗する場合は .output ディレクトリの中身を削除すること\n";
+		};
+		2CA7791C288ECB50006524C8 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd BuildTools\n \nswift run -c release swiftlint --fix\nswift run -c release swiftlint\n";
+		};
+		2CA7791D288EE74E006524C8 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd BuildTools\n\nTEMP_SDKROOT=$SDKROOT\nunset SDKROOT # iOS用のターゲットが入っているため\nswift run -c release swiftlint --fix\nswift run -c release swiftlint\nSDKROOT=$TEMP_SDKROOT\n";
 		};
 		EDEBCC871F4DA9340029FAB6 /* Copy Screen Saver */ = {
 			isa = PBXShellScriptBuildPhase;
