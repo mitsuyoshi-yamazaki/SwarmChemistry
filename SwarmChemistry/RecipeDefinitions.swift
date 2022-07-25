@@ -111,6 +111,66 @@ public extension Recipe {
   static var linearOscillator: Recipe {
     return self.init(Raw.linearOscillator)!
   }
+
+  static var diversity: Recipe {
+    let diverseness = 7  // パラメータの多様さ
+    assert(diverseness >= 2)
+
+    let parameters: [Parameters] = {
+      let diverse = 1.0 / Value(diverseness - 1)
+      func diverseValues(maxValue: Value) -> [Value] {
+        let diverseValue = diverse * maxValue
+        return (0..<diverseness).map { Value($0) * diverseValue }
+      }
+
+      let cohesiveForce = diverseValues(maxValue: Parameters.cohesiveForceMax)
+      let aligningForce = diverseValues(maxValue: Parameters.aligningForceMax)
+      let separatingForce = diverseValues(maxValue: Parameters.separatingForceMax)
+
+      let mutableParameters: [[Value]] = [
+        cohesiveForce,
+        aligningForce,
+        separatingForce,
+      ]
+
+      func diversedParameterMap(parameterIndex: Int) -> [[Value]] {
+        let parameters = mutableParameters[parameterIndex]
+        if parameterIndex >= (mutableParameters.count - 1) {
+          return parameters.map { [$0] }
+        }
+
+        let childParameters = diversedParameterMap(parameterIndex: parameterIndex + 1)
+        return parameters.flatMap { parameter in
+          return childParameters.map { child in
+            var child = child
+            child.insert(parameter, at: 0)
+            return child
+          }
+        }
+      }
+
+      return diversedParameterMap(parameterIndex: 0).map { diversedParameters in
+        return Parameters(
+          neighborhoodRadius: Parameters.neighborhoodRadiusMax,
+          normalSpeed: Parameters.normalSpeedMax,
+          maxSpeed: Parameters.maxSpeedMax,
+          cohesiveForce: diversedParameters[0],
+          aligningForce: diversedParameters[1],
+          separatingForce: diversedParameters[2],
+          probabilityOfRandomSteering: Parameters.probabilityOfRandomSteeringMax,
+          tendencyOfPacekeeping: Parameters.tendencyOfPacekeepingMax
+        )
+      }
+    }()
+
+    let genomes = parameters.map {
+      return GenomeInfo(count: 1, area: nil, genome: $0)
+    }
+
+    let recipe = self.init(name: "Diversity", genomes: genomes)
+    print(recipe)
+    return recipe
+  }
 }
 
 private extension Recipe {

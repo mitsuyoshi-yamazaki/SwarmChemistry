@@ -26,8 +26,8 @@ public extension Population {
       .reduce(0) { (result, value) -> Int in
         result + value.count
       }
-    let magnitude = Value(numberOfPopulation ?? sum) / Value(sum)
-    
+    let magnitude = max(Value(numberOfPopulation ?? sum) / Value(sum), 1.0)
+
     let area: Vector2.Rect
     if let initialArea = initialArea {
       area = initialArea
@@ -44,7 +44,9 @@ public extension Population {
           }
       }
       .flatMap { $0 }
-    
+
+    print("\(recipe.name) magnitude: \(magnitude), total population: \(population.count)")
+
     self.fieldSize = fieldSize
   }
 }
