@@ -127,15 +127,15 @@ final class ViewController: UIViewController, SwarmRenderer {
       self?.start()
     }
 
-    // FixMe:
-//    let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-//    activityViewController.completionWithItemsHandler = completionHandler // FixMe: Not working
-//
-//    let popoverPresentationController = activityViewController.popoverPresentationController!
-//    popoverPresentationController.sourceView = view
-//    popoverPresentationController.sourceRect = shareButton.frame
-//
-//    present(activityViewController, animated: true, completion: nil)
+    let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+    activityViewController.completionWithItemsHandler = completionHandler
+    activityViewController.modalPresentationStyle = .popover
+
+    let popoverPresentationController = activityViewController.popoverPresentationController
+    popoverPresentationController?.sourceView = view
+    popoverPresentationController?.sourceRect = shareButton.frame
+
+    present(activityViewController, animated: true, completion: nil)
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -150,7 +150,7 @@ final class ViewController: UIViewController, SwarmRenderer {
       recipeListViewController.delegate = self
       recipeListViewController.currentRecipe = selectedRecipe
     default:
-      fatalError("Unrecognized segue identifier \(segue.identifier)")
+      fatalError("Unrecognized segue identifier \(String(describing: segue.identifier))")
     }
   }
 }
