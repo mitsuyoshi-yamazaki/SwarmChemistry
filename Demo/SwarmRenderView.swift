@@ -50,7 +50,7 @@ class SwarmRenderView: View {
   }
   
   override func draw(_ dirtyRect: NSRect) {
-    guard let context = NSGraphicsContext.current()?.cgContext else {
+    guard let context = NSGraphicsContext.current?.cgContext else {
       fatalError()
     }
     draw(with: context)

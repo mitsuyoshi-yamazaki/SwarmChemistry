@@ -758,7 +758,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -r $BUILT_PRODUCTS_DIR/Demo_Mac.app $SRCROOT/.output/";
+			shellScript = "cp -r $BUILT_PRODUCTS_DIR/Demo_Mac.app $SRCROOT/.output/\n# cpが失敗する場合は .output ディレクトリの中身を削除すること\n";
 		};
 		EDEBCC871F4DA9340029FAB6 /* Copy Screen Saver */ = {
 			isa = PBXShellScriptBuildPhase;

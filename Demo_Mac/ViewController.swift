@@ -30,7 +30,7 @@ class ViewController: NSViewController {//, SwarmRenderer {
   }()
   private let statusView: StatusView = {
     let view = StatusView.instantiate()
-    view.autoresizingMask = [ NSAutoresizingMaskOptions.viewHeightSizable, .viewWidthSizable ]
+    view.autoresizingMask = [ NSView.AutoresizingMask.height, .width ]
     
     return view
   }()
@@ -68,7 +68,7 @@ class ViewController: NSViewController {//, SwarmRenderer {
     super.viewDidLoad()
     
     statusView.frame = view.bounds
-    view.addSubview(statusView, positioned: NSWindowOrderingMode.below, relativeTo: contentView)
+    view.addSubview(statusView, positioned: NSWindow.OrderingMode.below, relativeTo: contentView)
     
     setup()
     
@@ -125,7 +125,7 @@ class ViewController: NSViewController {//, SwarmRenderer {
       return
     }
     let bitmapImageRepresentation = NSBitmapImageRep.init(data: tiffRepresentation)
-    guard let data = bitmapImageRepresentation?.representation(using: .PNG, properties: [:]) else {
+    guard let data = bitmapImageRepresentation?.representation(using: .png, properties: [:]) else {
       print("Saving screenshot failed: cannot obtain image data")
       return
     }
@@ -224,8 +224,8 @@ class ViewController: NSViewController {//, SwarmRenderer {
     let recipeText = recipe.description
     print(recipeText)
     
-    NSPasteboard.general().declareTypes([NSPasteboardTypeString], owner: nil)
-    NSPasteboard.general().setString(recipeText, forType: NSPasteboardTypeString)
+    NSPasteboard.general.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
+    NSPasteboard.general.setString(recipeText, forType: NSPasteboard.PasteboardType.string)
     
     self.mouseDownLocation = nil
   }
@@ -276,9 +276,8 @@ extension NSRect {
     let y = min(point1.y, point2.y)
     let width = abs(point2.x - point1.x)
     let height = abs(point2.y - point1.y)
-    
-    origin = NSPoint.init(x: x, y: y)
-    size = NSSize.init(width: width, height: height)
+
+    self.init(origin: NSPoint.init(x: x, y: y), size: NSSize.init(width: width, height: height))
   }
 }
 

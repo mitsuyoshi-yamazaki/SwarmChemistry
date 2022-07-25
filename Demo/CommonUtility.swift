@@ -34,7 +34,7 @@ extension Bundle {
   }
 }
 
-protocol IBInstantiatable: class {
+protocol IBInstantiatable: AnyObject {
   static var ibFileName: String { get }
   static var nib: Nib { get }
   
@@ -56,12 +56,12 @@ extension IBInstantiatable where Self: View {
   }
   
   static func instantiate() -> Self {
-    var topLevelObjects = NSArray()
+    var topLevelObjects: NSArray? = NSArray()
     let bundle = Bundle.init(for: self)
     
     bundle.loadNibNamed(ibFileName, owner: self, topLevelObjects: &topLevelObjects)
     
-    return topLevelObjects.filter { $0 is Self }.first as! Self
+    return topLevelObjects!.filter { $0 is Self }.first as! Self
   }
 }
 
@@ -74,12 +74,12 @@ extension IBInstantiatable where Self: Window {
   }
   
   static func instantiate() -> Self {
-    var topLevelObjects = NSArray()
+    var topLevelObjects: NSArray? = NSArray()
     let bundle = Bundle.init(for: self)
     
     bundle.loadNibNamed(ibFileName, owner: self, topLevelObjects: &topLevelObjects)
     
-    return topLevelObjects.filter { $0 is Self }.first as! Self
+    return topLevelObjects!.filter { $0 is Self }.first as! Self
   }
 }
 #endif

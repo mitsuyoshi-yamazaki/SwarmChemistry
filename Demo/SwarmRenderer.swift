@@ -14,7 +14,7 @@
 
 import SwarmChemistry
 
-protocol SwarmRenderer: class {
+protocol SwarmRenderer: AnyObject {
   var renderView: SwarmRenderView! { set get }
   var timer: Timer? { set get }
   var steps: Int { get }
