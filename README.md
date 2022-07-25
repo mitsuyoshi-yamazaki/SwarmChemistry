@@ -86,3 +86,7 @@ This project includes following targets:
 # <a name="releases"></a>Releases
 
 See [Releases](https://github.com/mitsuyoshi-yamazaki/SwarmChemistry/releases/)
+
+# Troubleshooting
+## Breakpoint does not work on the mac demo app
+Because Build Configuration is set to `Release` to make it runs faster. Change it to `Debug` to enable debugging.
