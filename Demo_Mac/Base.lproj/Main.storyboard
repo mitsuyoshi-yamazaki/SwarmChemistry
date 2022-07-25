@@ -756,9 +756,11 @@
                         </gestureRecognizers>
                     </view>
                     <connections>
+                        <outlet property="clearButton" destination="ebO-EL-elg" id="jfm-FB-xIy"/>
                         <outlet property="clickGestureRecognizer" destination="a6b-fK-GQL" id="69d-dO-Xd1"/>
                         <outlet property="contentView" destination="e1d-zK-OYN" id="POL-9k-if3"/>
                         <outlet property="renderView" destination="m2S-Jp-Qdl" id="9lv-hD-ljC"/>
+                        <outlet property="restartButton" destination="2ZL-Es-Ppo" id="PRO-hO-Xqg"/>
                         <outlet property="resumeButton" destination="lW9-tE-ua6" id="fFE-s2-w9p"/>
                     </connections>
                 </viewController>

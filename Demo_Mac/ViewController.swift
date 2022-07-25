@@ -17,6 +17,8 @@ class ViewController: NSViewController {//, SwarmRenderer {
   
   @IBOutlet weak var clickGestureRecognizer: NSClickGestureRecognizer!
   @IBOutlet weak var contentView: NSView!
+  @IBOutlet weak var restartButton: NSButton!
+  @IBOutlet weak var clearButton: NSButton!
   @IBOutlet weak var resumeButton: NSButton!
   private var dragIndicatorView: NSView = {
     let view = NSBox.init()
@@ -73,7 +75,16 @@ class ViewController: NSViewController {//, SwarmRenderer {
     setup()
     
     view.addSubview(dragIndicatorView)
-    
+
+    let basicAppearanceButtons: [NSButton] = [
+      restartButton,
+      resumeButton,
+      clearButton,
+    ]
+    basicAppearanceButtons.forEach {
+      $0.attributedTitle = NSAttributedString(string: $0.title, attributes: [NSAttributedString.Key.foregroundColor: NSColor.black])
+    }
+
     let temp = isRunning
     isRunning = temp  // To call didSet
   }
