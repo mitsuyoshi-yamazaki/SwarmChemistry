@@ -15,16 +15,17 @@ struct Request {
       Swift.print("Serializing to JSON failed")
       return
     }
-    
-    let path = Constants.dataServerURL + "recipes"
-    let url = URL.init(string: path)!
-    var request = URLRequest.init(url: url)
-    
+
+    guard let url = URL(string: path)?.appendPathComponent("recipes") else {
+      fatalError("URL initialization failed: \(path)")
+    }
+    var request = URLRequest(url: url)
+
     request.httpMethod = "POST"
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     request.httpBody = data
-    
-    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+
+    let task = URLSession.shared.dataTask(with: request) { data, _, error in
       guard
         let nonNilData = data,
         error == nil,
@@ -35,7 +36,7 @@ struct Request {
       }
       guard let recipeID = result?["id"] as? Int else {
         Swift.print("Faild to parse the response data")
-        Swift.print(String.init(describing: result))
+        Swift.print(String(describing: result))
         return
       }
       Swift.print("Sending recipe succeeded")

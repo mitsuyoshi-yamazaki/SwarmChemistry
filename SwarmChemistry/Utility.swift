@@ -15,7 +15,7 @@ internal struct Log {
     case debug
     case error
   }
-  
+
   private static func log(_ message: String, _ level: Level) {
     if level == .error {
       #if DEBUG
@@ -24,11 +24,11 @@ internal struct Log {
     }
     print(message)
   }
-  
+
   static func debug(_ message: String) {
     log(message, .debug)
   }
-  
+
   static func error(_ message: String) {
     log(message, .error)
   }

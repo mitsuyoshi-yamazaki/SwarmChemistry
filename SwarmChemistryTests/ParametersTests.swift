@@ -6,15 +6,17 @@
 //  Copyright © 2017 Mitsuyoshi Yamazaki. All rights reserved.
 //
 
-import XCTest
 @testable import SwarmChemistry
+import XCTest
 
-class ParametersTests: XCTestCase {
-
+final class ParametersTests: XCTestCase {
   func test_init() {
     let values = [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ]
-    let parameters = Parameters(values)!
-    
+    guard let parameters = Parameters(values) else {
+      XCTAssert(false, "Parameter initialization failed")
+      return
+    }
+
     XCTAssert(parameters.neighborhoodRadius == 1.0)
     XCTAssert(parameters.normalSpeed == 2.0)
     XCTAssert(parameters.maxSpeed == 3.0)
@@ -25,22 +27,25 @@ class ParametersTests: XCTestCase {
     XCTAssert(parameters.tendencyOfPacekeeping == 8.0)
     XCTAssert(parameters.maxVelocity == 9.0)
   }
-  
+
   func test_all() {
     let values = [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ]
-    let parameters = Parameters(values)!
-    
+    guard let parameters = Parameters(values) else {
+      XCTAssert(false, "Parameter initialization failed")
+      return
+    }
+
     XCTAssert(parameters.all == values)
   }
-  
+
   func test_equality() {
     let values = [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ]
     let anotherValues = [ 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 ]
 
-    XCTAssert(Parameters(values)! == Parameters(values)!)
-    XCTAssert(Parameters(values)! != Parameters(anotherValues)!)
+    XCTAssert(Parameters(values)! == Parameters(values)!) // swiftlint:disable:this force_unwrapping
+    XCTAssert(Parameters(values)! != Parameters(anotherValues)!) // swiftlint:disable:this force_unwrapping
   }
-  
+
   func test_zero() {
     let parameters = Parameters.zero
 
@@ -54,7 +59,7 @@ class ParametersTests: XCTestCase {
     XCTAssert(parameters.tendencyOfPacekeeping == 0.0)
     XCTAssert(parameters.maxVelocity == 0.0)
   }
-  
+
   func test_random() {
     XCTAssert(Parameters.random != Parameters.random)
   }

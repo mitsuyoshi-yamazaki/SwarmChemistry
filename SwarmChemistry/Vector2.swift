@@ -10,7 +10,6 @@ import Foundation
 
 // MARK: - Vector2
 public struct Vector2 {
-  
   public let x: Value
   public let y: Value
 }
@@ -21,7 +20,7 @@ public extension Vector2 {
     self.x = x
     self.y = y
   }
-  
+
   init(_ x: Int, _ y: Int) {
     self.x = Value(x)
     self.y = Value(y)
@@ -31,20 +30,20 @@ public extension Vector2 {
 // MARK: - Accessor
 public extension Vector2 {
   static let zero = Vector2(0.0, 0.0)
-  
+
   func size() -> Value {
     return hypot(x, y)
   }
- 
+
   func random() -> Vector2 {
-    let x = self.x * (Value(Int(arc4random() % 100)) / 100.0)
-    let y = self.y * (Value(Int(arc4random() % 100)) / 100.0)
-    
+    let x = self.x * (Value.random(in: 0.0..<100.0) / 100.0)
+    let y = self.y * (Value.random(in: 0.0..<100.0) / 100.0)
+
     return Vector2(x, y)
   }
-  
+
   var rect: Vector2.Rect {
-    return Vector2.Rect.init(origin: .zero, size: self)
+    return Vector2.Rect(origin: .zero, size: self)
   }
 }
 
@@ -53,7 +52,7 @@ public extension Vector2 {
   func distance(_ other: Vector2) -> Value {
     return hypot(x - other.x, y - other.y)
   }
-  
+
   func fit(to size: Vector2) -> Vector2 {
     let x: Value
     if self.x > size.x {
@@ -75,7 +74,7 @@ public extension Vector2 {
 
     return Vector2(x, y)
   }
-  
+
   func contains(_ other: Vector2) -> Bool {
     return (x >= other.x) && (y >= other.y)
   }
@@ -86,15 +85,15 @@ public extension Vector2 {
   static func +(lhs: Vector2, rhs: Vector2) -> Vector2 {
     return Vector2(lhs.x + rhs.x, lhs.y + rhs.y)
   }
-  
+
   static func -(lhs: Vector2, rhs: Vector2) -> Vector2 {
     return Vector2(lhs.x - rhs.x, lhs.y - rhs.y)
   }
-  
+
   static func *(vector: Vector2, multiplier: Value) -> Vector2 {
     return Vector2(vector.x * multiplier, vector.y * multiplier)
   }
-  
+
   static func /(vector: Vector2, divider: Value) -> Vector2 {
     return Vector2(vector.x / divider, vector.y / divider)
   }
@@ -103,7 +102,7 @@ public extension Vector2 {
 // MARK: - CustomStringConvertible
 extension Vector2: CustomStringConvertible {
   public var description: String {
-    return String.init(format: "(%.2f, %.2f)", x, y)
+    return String(format: "(%.2f, %.2f)", x, y)
   }
 }
 
@@ -119,7 +118,7 @@ public extension Vector2 {
   struct Rect {
     let origin: Vector2
     let size: Vector2
-    
+
     public init(origin: Vector2, size: Vector2) {
       self.origin = origin
       self.size = size
@@ -132,7 +131,7 @@ public extension Vector2.Rect {
   init(x: Value, y: Value, width: Value, height: Value) {
     self.init(origin: .init(x, y), size: .init(width, height))
   }
-  
+
   init(x: Int, y: Int, width: Int, height: Int) {
     self.init(origin: .init(x, y), size: .init(width, height))
   }
@@ -140,17 +139,17 @@ public extension Vector2.Rect {
 
 // MARK: - Accessor
 public extension Vector2.Rect {
-  static let zero = Vector2.Rect.init(x: 0, y: 0, width: 0, height: 0)
-  
+  static let zero = Vector2.Rect(x: 0, y: 0, width: 0, height: 0)
+
   func random(unit: Int = 1) -> Vector2.Rect {
     // TODO: Need validation
-    return Vector2.Rect.init(origin: random(), size: random())
+    return Vector2.Rect(origin: random(), size: random())
   }
-  
+
   func random() -> Vector2 {
-    let x = size.x * (Value(Int(arc4random() % 100)) / 100.0) + origin.x
-    let y = size.y * (Value(Int(arc4random() % 100)) / 100.0) + origin.y
-    
+    let x = size.x * (Value.random(in: 0.0..<100.0) / 100.0) + origin.x
+    let y = size.y * (Value.random(in: 0.0..<100.0) / 100.0) + origin.y
+
     return Vector2(x, y)
   }
 }
@@ -170,26 +169,26 @@ public extension Vector2.Rect {
 
 // MARK: - Operator override
 public extension Vector2.Rect {
-  static func +(lhs: Vector2.Rect, rhs: Vector2.Rect) -> Vector2.Rect {
+  static func + (lhs: Vector2.Rect, rhs: Vector2.Rect) -> Vector2.Rect {
     return .init(origin: lhs.origin + rhs.origin, size: lhs.size + rhs.size)
   }
-  
-  static func -(lhs: Vector2.Rect, rhs: Vector2.Rect) -> Vector2.Rect {
+
+  static func - (lhs: Vector2.Rect, rhs: Vector2.Rect) -> Vector2.Rect {
     return .init(origin: lhs.origin - rhs.origin, size: lhs.size - rhs.size)
   }
-  
-  static func *(rect: Vector2.Rect, multiplier: Value) -> Vector2.Rect {
+
+  static func * (rect: Vector2.Rect, multiplier: Value) -> Vector2.Rect {
     return .init(origin: rect.origin * multiplier, size: rect.size * multiplier)
   }
-  
-  static func /(rect: Vector2.Rect, divider: Value) -> Vector2.Rect {
+
+  static func / (rect: Vector2.Rect, divider: Value) -> Vector2.Rect {
     return .init(origin: rect.origin / divider, size: rect.size / divider)
   }
 }
 
 // MARK: - Equatable
 extension Vector2.Rect: Equatable {
-  public static func ==(lhs: Vector2.Rect, rhs: Vector2.Rect) -> Bool {
+  public static func == (lhs: Vector2.Rect, rhs: Vector2.Rect) -> Bool {
     return (lhs.origin == rhs.origin) && (lhs.size == rhs.size)
   }
 }
@@ -197,6 +196,6 @@ extension Vector2.Rect: Equatable {
 // MARK: - CustomStringConvertible
 extension Vector2.Rect: CustomStringConvertible {
   public var description: String {
-    return String.init(format: "((x: %.2f, y: %.2f), (width: %.2f, height: %.2f))", origin.x, origin.y, size.x, size.y)
+    return String(format: "((x: %.2f, y: %.2f), (width: %.2f, height: %.2f))", origin.x, origin.y, size.x, size.y)
   }
 }

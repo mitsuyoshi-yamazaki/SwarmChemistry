@@ -6,41 +6,48 @@
 //  Copyright © 2017 Mitsuyoshi Yamazaki. All rights reserved.
 //
 
-import Foundation
 import CoreGraphics
+import Foundation
 
 // MARK: - Parameters
 public struct Parameters {
-  
   public let neighborhoodRadius: Value
   public static let neighborhoodRadiusMax = 300.0
-  
+
   public let normalSpeed: Value
   public static let normalSpeedMax = 20.0
-  
+
   public let maxSpeed: Value
   public static let maxSpeedMax = 40.0
-  
+
   public let cohesiveForce: Value // c1
   public static let cohesiveForceMax = 1.0
-  
+
   public let aligningForce: Value // c2
   public static let aligningForceMax = 1.0
-  
+
   public let separatingForce: Value // c3
   public static let separatingForceMax = 100.0
-  
+
   public let probabilityOfRandomSteering: Value // c4
   public static let probabilityOfRandomSteeringMax = 0.5
-  
+
   public let tendencyOfPacekeeping: Value // c5
   public static let tendencyOfPacekeepingMax = 1.0
-  
+
   public let maxVelocity: Value
   public let color: Color
-  
-  public init(neighborhoodRadius: Value, normalSpeed: Value, maxSpeed: Value, cohesiveForce: Value, aligningForce: Value, separatingForce: Value, probabilityOfRandomSteering: Value, tendencyOfPacekeeping: Value) {
-    
+
+  public init(
+    neighborhoodRadius: Value,
+    normalSpeed: Value,
+    maxSpeed: Value,
+    cohesiveForce: Value,
+    aligningForce: Value,
+    separatingForce: Value,
+    probabilityOfRandomSteering: Value,
+    tendencyOfPacekeeping: Value
+  ) {
     self.neighborhoodRadius = neighborhoodRadius
     self.normalSpeed = normalSpeed
     self.maxSpeed = maxSpeed
@@ -49,25 +56,25 @@ public struct Parameters {
     self.separatingForce = separatingForce
     self.probabilityOfRandomSteering = probabilityOfRandomSteering
     self.tendencyOfPacekeeping = tendencyOfPacekeeping
-    
+
     maxVelocity = maxSpeed * maxSpeed
-    
-    let red = CGFloat((cohesiveForce / type(of: self).cohesiveForceMax) * 0.8)
-    let green = CGFloat((aligningForce / type(of: self).aligningForceMax) * 0.8)
-    let blue = CGFloat((separatingForce / type(of: self).separatingForceMax) * 0.8)
-    color = Color.init(red: red, green: green, blue: blue, alpha: 1.0)
+
+    let red = CGFloat((cohesiveForce / Self.cohesiveForceMax) * 0.8)
+    let green = CGFloat((aligningForce / Self.aligningForceMax) * 0.8)
+    let blue = CGFloat((separatingForce / Self.separatingForceMax) * 0.8)
+    color = Color(red: red, green: green, blue: blue, alpha: 1.0)
   }
 }
 
 // MARK: Convenience initializer
 public extension Parameters {
   internal static let numberOfParameters = 8
-  
+
   init?(_ parameters: [Value]) {
-    guard parameters.count == type(of: self).numberOfParameters else {
+    guard parameters.count == Self.numberOfParameters else {
       return nil
     }
-    
+
     // should validate each values?
     neighborhoodRadius          = parameters[0]
     normalSpeed                 = parameters[1]
@@ -77,13 +84,13 @@ public extension Parameters {
     separatingForce             = parameters[5]
     probabilityOfRandomSteering = parameters[6]
     tendencyOfPacekeeping       = parameters[7]
-    
+
     maxVelocity = maxSpeed * maxSpeed
-    
-    let red = CGFloat((cohesiveForce / type(of: self).cohesiveForceMax) * 0.8)
-    let green = CGFloat((aligningForce / type(of: self).aligningForceMax) * 0.8)
-    let blue = CGFloat((separatingForce / type(of: self).separatingForceMax) * 0.8)
-    color = Color.init(red: red, green: green, blue: blue, alpha: 1.0)
+
+    let red = CGFloat((cohesiveForce / Self.cohesiveForceMax) * 0.8)
+    let green = CGFloat((aligningForce / Self.aligningForceMax) * 0.8)
+    let blue = CGFloat((separatingForce / Self.separatingForceMax) * 0.8)
+    color = Color(red: red, green: green, blue: blue, alpha: 1.0)
   }
 }
 
@@ -101,7 +108,7 @@ public extension Parameters {
       tendencyOfPacekeeping
     ]
   }
-  
+
   static var maxValues: [Value] {
     return [
       neighborhoodRadiusMax,
@@ -114,30 +121,30 @@ public extension Parameters {
       tendencyOfPacekeepingMax
     ]
   }
-  
+
   static var zero: Parameters {
-    return Parameters((0..<numberOfParameters).map { _ in 0.0 })!
+    return Parameters((0..<numberOfParameters).map { _ in 0.0 })! // swiftlint:disable:this force_unwrapping
   }
-  
+
   static var random: Parameters {
     let values = maxValues
-      .map { Value(Int(arc4random()) % Int($0 * 100)) / 100.0 }
-    
-    return Parameters(values)!
+      .map { Value.random(in: 0..<$0) }
+
+    return Parameters(values)! // swiftlint:disable:this force_unwrapping
   }
 }
 
 // MARK: - CustomStringConvertible
 extension Parameters: CustomStringConvertible {
   public var description: String {
-    let values = all.map { String.init(format: "%.2f", $0) }.joined(separator: ", ")
+    let values = all.map { String(format: "%.2f", $0) }.joined(separator: ", ")
     return "(\(values))"
   }
 }
 
 // MARK: - Equatable
 extension Parameters: Equatable {
-  public static func ==(lhs: Parameters, rhs: Parameters) -> Bool {
+  public static func == (lhs: Parameters, rhs: Parameters) -> Bool {
     return lhs.all == rhs.all
   }
 }

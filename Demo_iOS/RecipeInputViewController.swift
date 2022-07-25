@@ -6,15 +6,14 @@
 //  Copyright © 2017 Mitsuyoshi Yamazaki. All rights reserved.
 //
 
-import UIKit
 import SwarmChemistry
+import UIKit
 
-protocol RecipeInputViewControllerDelegate: class {
+protocol RecipeInputViewControllerDelegate: AnyObject {
   func recipeInputViewController(_ controller: RecipeInputViewController, didInput recipe: Recipe)
 }
 
-class RecipeInputViewController: UIViewController {
-
+final class RecipeInputViewController: UIViewController {
   weak var delegate: RecipeInputViewControllerDelegate?
   var currentRecipe: Recipe? {
     didSet {
@@ -22,31 +21,31 @@ class RecipeInputViewController: UIViewController {
     }
   }
 
-  @IBOutlet private weak var textView: UITextView!
-  
+  @IBOutlet private var textView: UITextView!
+
   override func viewDidLoad() {
     super.viewDidLoad()
     textView.text = currentRecipe?.description ?? ""
   }
-  
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    
+
     textView.becomeFirstResponder()
   }
 
-  @IBAction func done(sender: AnyObject!) {
-    guard let recipe = Recipe.init(textView.text, name: "Manual Input") else {
-      let alertController = UIAlertController.init(title: "Error", message: "Cannot parse recipe", preferredStyle: .alert)
+  @IBAction private func done(sender: Any) {
+    guard let recipe = Recipe(textView.text, name: "Manual Input") else {
+      let alertController = UIAlertController(title: "Error", message: "Cannot parse recipe", preferredStyle: .alert)
       alertController.addAction(.init(title: "OK", style: .cancel, handler: nil))
-      
+
       present(alertController, animated: true, completion: nil)
       return
     }
-    
+
     currentRecipe = recipe
     let delegate = self.delegate
-    
+
     dismiss(animated: true) {
       delegate?.recipeInputViewController(self, didInput: recipe)
     }

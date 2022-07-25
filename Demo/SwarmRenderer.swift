@@ -15,16 +15,16 @@
 import SwarmChemistry
 
 protocol SwarmRenderer: AnyObject {
-  var renderView: SwarmRenderView! { set get }
-  var timer: Timer? { set get }
+  var renderView: SwarmRenderView! { get }
+  var timer: Timer? { get set }
   var steps: Int { get }
   var delay: Double { get }
-  
+
   func setupRenderView(with population: Population)
   func pause()
   func start()
   func clear()
-  
+
   func didStep(currentSteps: Int)
 }
 
@@ -35,7 +35,7 @@ extension SwarmRenderer {
 
   func setupRenderView(with population: Population) {
     renderView.population = population
-    
+
     pause()
   }
 
@@ -43,10 +43,10 @@ extension SwarmRenderer {
     timer?.invalidate()
     timer = nil
   }
-  
+
   func start() {
     pause()
-    
+
     timer = Timer.scheduledTimer(withTimeInterval: delay, repeats: true, block: { [weak self] _ in
       guard let self = self else { return }
       self.renderView.population.step(self.steps)
@@ -54,12 +54,12 @@ extension SwarmRenderer {
       self.renderView.setNeedsDisplay(self.renderView.bounds)
     })
   }
-  
+
   func clear() {
     pause()
     renderView.clear()
   }
-  
+
   func didStep(currentSteps: Int) {
     // Default implementation: does nothing
   }
